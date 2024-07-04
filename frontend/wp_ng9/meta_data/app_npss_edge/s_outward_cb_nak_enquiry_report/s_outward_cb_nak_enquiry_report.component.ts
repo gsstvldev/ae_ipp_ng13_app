@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35947 
+Build ID        : 35950 
 Modified By     : Admin 
-Modified Date   : 2024-Jul-04 7:1 AM 
+Modified Date   : 2024-Jul-04 10:19 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_outward_cb_nak_enquiry_report
@@ -213,18 +213,13 @@ export class s_outward_cb_nak_enquiry_reportComponent implements OnInit,AfterVie
 
 	//Handler for INTERNAL event of "brfq from list"
 	brfq_from_list__internal(parent_event_result){
-		this.brfq_from_list__sfr_for_list(parent_event_result)
+		this.brfq_from_list__ee_for_pdf_btn(parent_event_result)
+		this.brfq_from_list__ee_for_excel_btn(parent_event_result)
 	}
 
 	//Handler for INTERNAL event of "e 1708425960961"
 	e_1708425960961__internal(parent_event_result){
 		this.e_1708425960961__e_1708425977969(parent_event_result)
-	}
-
-	//Handler for SELECTION_CHANGED event of "list"
-	list__selection_changed(){
-		this.list__ee_for_excel()
-		this.list__ee_for_pdf()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation search"
@@ -408,7 +403,7 @@ export class s_outward_cb_nak_enquiry_reportComponent implements OnInit,AfterVie
 		let event_code="e_1710480399724"
 		let event_params={"caller_name":"ssp_from_serach__brfq_from_list","event_desc":"BRFQ from List","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N","avoid_key_column_filter":"N"},"parent_event_result":"SUCCESS"}
 		let handler_code="bind_record_from_query"
-		let internals="brfq_from_list__sfr_for_list,"
+		let internals="brfq_from_list__ee_for_pdf_btn,brfq_from_list__ee_for_excel_btn,"
 		let event_data={}
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1710324022228","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Outward CB NAK Enquiry Report","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"npsstrrd_refno","alias_name":"","mq_id":"MQ_1710227373440","date_format":false},{"column_name":"payment_endtoend_id","alias_name":"","mq_id":"MQ_1710227389215","date_format":false},{"column_name":"dbtr_iban","alias_name":"","mq_id":"MQ_1710227400351","date_format":false},{"column_name":"created_date","alias_name":"","mq_id":"MQ_1710227416935","date_format":true},{"column_name":"cdtr_iban","alias_name":"","mq_id":"MQ_1710227440776","date_format":false},{"column_name":"cdtr_acct_name","alias_name":"","mq_id":"MQ_1710227455423","date_format":false},{"column_name":"bank_name","alias_name":"","mq_id":"MQ_1710227476087","date_format":false},{"column_name":"intrbk_sttlm_amnt","alias_name":"","mq_id":"MQ_1710227493911","date_format":false,"currency_format":true}],"joins":[]},"eq_text":"select  npsst_id,  accp_date_time,  intrbk_sttlm_cur,  exhf_id,  value_date,  cdtr_acct_no,  dbtr_acct_no,  dr_sort_code,  cr_sort_code,  uetr,  product_code,  process_type,  tenant_id,  tran_ref_id,  processing_system,  process_group,  bank_name,  department_code,  payment_endtoend_id,  cdtr_iban,  created_date,  dbtr_iban,  intrbk_sttlm_amnt,  cdtr_acct_name,  dbtr_acct_name,  BENEFICIARY_BANK,  npsstrrd_refno from  (  select   a.npsst_id,   a.value_date,   a.created_date,   a.cdtr_acct_no,   a.department_code,   a.cdtr_acct_name,   a.intrbk_sttlm_amnt,   a.intrbk_sttlm_cur,   a.dbtr_acct_name,   a.dr_sort_code,   a.cr_sort_code,   a.uetr,   a.ext_purpose_code,   a.product_code,   a.channel_id,   a.process_type,   a.dbtr_iban,   a.cdtr_iban,   a.clrsysref,   a.payment_endtoend_id,   a.accp_date_time,   a.dbtr_acct_no,   a.exhf_id,   a.tenant_id,   a.processing_system,   a.process_group,   a.tran_ref_id,   cmb.bank_name,   cmb.bank_name as BENEFICIARY_BANK,   pl.ADDITIONAL_INFO,   PL.npsstrrd_refno,   cse.s_description  from   npss_transactions a  inner join (   select    plr.npsstpl_id,    plr.uetr,    plr.npsstrrd_refno,    plr.ADDITIONAL_INFO,    plr.row_num   from    (    select     a.npsstpl_id,     a.uetr,     a.created_date,     a.npsstrrd_refno,     a.ADDITIONAL_INFO,     row_number() over( partition by a.uetr    order by     a.npsstpl_id desc) as row_num    from     npss_trn_process_log a ) plr    where    plr.row_num = 1) pl on   pl.uetr = a.uetr   left join core_member_banks cmb on   cmb.bic_code = a.cr_sort_code   and cmb.NEED_SYNC = 'Y'  inner join CORE_SYSTEM_EXTN CSE on   CSE.department_code = A.DEPARTMENT_CODE )VW where  process_type = 'OP'$AND   order by  npsst_id"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Outward CB NAK Enquiry Report","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Transaction ID","target_column":"npsstrrd_refno","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"End To End ID","target_column":"payment_endtoend_id","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Payer Account Number","target_column":"dbtr_iban","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Date","target_column":"created_date","alias_name":"","alignment":"Left","width":"","format":"date:\"dd-MM-yyyy\"","date_format":true},{"header":"Bene Account Number","target_column":"cdtr_iban","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Bene Name","target_column":"cdtr_acct_name","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Bene Bank Name","target_column":"bank_name","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Amount","target_column":"intrbk_sttlm_amnt","alias_name":"","alignment":"Right","width":"","format":"CURRENCY:د.إ","date_format":false,"currency_format":true}]}}}}}}
 		try {
@@ -420,21 +415,43 @@ export class s_outward_cb_nak_enquiry_reportComponent implements OnInit,AfterVie
 	} 
 
 	//Handler for INTERNAL event of "brfq from list"
-	brfq_from_list__sfr_for_list(parent_event_result) { 
+	brfq_from_list__ee_for_pdf_btn(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="brfq_from_list"
-		let destn_id="list"
+		let destn_id="navigation_export_as_pdf"
 		let parent_source_id="ssp_from_serach"
-		let event_code="e_1720072600131"
-		let event_params={"caller_name":"brfq_from_list__sfr_for_list","event_desc":"SFR For List","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{},"parent_event_result":"SUCCESS"}
-		let handler_code="select_first_record"
+		let event_code="e_1720087292021"
+		let event_params={"caller_name":"brfq_from_list__ee_for_pdf_btn","event_desc":"EE For PDF btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"enable_disable_count":"Y","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""},"parent_event_result":"SUCCESS"}
+		let handler_code="enable_element"
 		let internals=""
 		let event_data={}
-		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1710324022228","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Outward CB NAK Enquiry Report","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"npsstrrd_refno","alias_name":"","mq_id":"MQ_1710227373440","date_format":false},{"column_name":"payment_endtoend_id","alias_name":"","mq_id":"MQ_1710227389215","date_format":false},{"column_name":"dbtr_iban","alias_name":"","mq_id":"MQ_1710227400351","date_format":false},{"column_name":"created_date","alias_name":"","mq_id":"MQ_1710227416935","date_format":true},{"column_name":"cdtr_iban","alias_name":"","mq_id":"MQ_1710227440776","date_format":false},{"column_name":"cdtr_acct_name","alias_name":"","mq_id":"MQ_1710227455423","date_format":false},{"column_name":"bank_name","alias_name":"","mq_id":"MQ_1710227476087","date_format":false},{"column_name":"intrbk_sttlm_amnt","alias_name":"","mq_id":"MQ_1710227493911","date_format":false,"currency_format":true}],"joins":[]},"eq_text":"select  npsst_id,  accp_date_time,  intrbk_sttlm_cur,  exhf_id,  value_date,  cdtr_acct_no,  dbtr_acct_no,  dr_sort_code,  cr_sort_code,  uetr,  product_code,  process_type,  tenant_id,  tran_ref_id,  processing_system,  process_group,  bank_name,  department_code,  payment_endtoend_id,  cdtr_iban,  created_date,  dbtr_iban,  intrbk_sttlm_amnt,  cdtr_acct_name,  dbtr_acct_name,  BENEFICIARY_BANK,  npsstrrd_refno from  (  select   a.npsst_id,   a.value_date,   a.created_date,   a.cdtr_acct_no,   a.department_code,   a.cdtr_acct_name,   a.intrbk_sttlm_amnt,   a.intrbk_sttlm_cur,   a.dbtr_acct_name,   a.dr_sort_code,   a.cr_sort_code,   a.uetr,   a.ext_purpose_code,   a.product_code,   a.channel_id,   a.process_type,   a.dbtr_iban,   a.cdtr_iban,   a.clrsysref,   a.payment_endtoend_id,   a.accp_date_time,   a.dbtr_acct_no,   a.exhf_id,   a.tenant_id,   a.processing_system,   a.process_group,   a.tran_ref_id,   cmb.bank_name,   cmb.bank_name as BENEFICIARY_BANK,   pl.ADDITIONAL_INFO,   PL.npsstrrd_refno,   cse.s_description  from   npss_transactions a  inner join (   select    plr.npsstpl_id,    plr.uetr,    plr.npsstrrd_refno,    plr.ADDITIONAL_INFO,    plr.row_num   from    (    select     a.npsstpl_id,     a.uetr,     a.created_date,     a.npsstrrd_refno,     a.ADDITIONAL_INFO,     row_number() over( partition by a.uetr    order by     a.npsstpl_id desc) as row_num    from     npss_trn_process_log a ) plr    where    plr.row_num = 1) pl on   pl.uetr = a.uetr   left join core_member_banks cmb on   cmb.bic_code = a.cr_sort_code   and cmb.NEED_SYNC = 'Y'  inner join CORE_SYSTEM_EXTN CSE on   CSE.department_code = A.DEPARTMENT_CODE )VW where  process_type = 'OP'$AND   order by  npsst_id"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Outward CB NAK Enquiry Report","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Transaction ID","target_column":"npsstrrd_refno","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"End To End ID","target_column":"payment_endtoend_id","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Payer Account Number","target_column":"dbtr_iban","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Date","target_column":"created_date","alias_name":"","alignment":"Left","width":"","format":"date:\"dd-MM-yyyy\"","date_format":true},{"header":"Bene Account Number","target_column":"cdtr_iban","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Bene Name","target_column":"cdtr_acct_name","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Bene Bank Name","target_column":"bank_name","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Amount","target_column":"intrbk_sttlm_amnt","alias_name":"","alignment":"Right","width":"","format":"CURRENCY:د.إ","date_format":false,"currency_format":true}]}}}}}}
+		let data_source={}
 		try {
-			this.handler.select_first_record(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "brfq from list"
+	brfq_from_list__ee_for_excel_btn(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="brfq_from_list"
+		let destn_id="navigation_export_as_excel"
+		let parent_source_id="ssp_from_serach"
+		let event_code="e_1720087344772"
+		let event_params={"caller_name":"brfq_from_list__ee_for_excel_btn","event_desc":"EE For Excel btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"enable_disable_count":"Y","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""},"parent_event_result":"SUCCESS"}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -541,48 +558,6 @@ export class s_outward_cb_nak_enquiry_reportComponent implements OnInit,AfterVie
 		let data_source={}
 		try {
 			this.handler.create_form(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for SELECTION_CHANGED event of "list"
-	list__ee_for_excel() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="list"
-		let destn_id="navigation_export_as_excel"
-		let parent_source_id=""
-		let event_code="e_1710333142998"
-		let event_params={"caller_name":"list__ee_for_excel","event_desc":"EE For Excel","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
-		let handler_code="enable_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for SELECTION_CHANGED event of "list"
-	list__ee_for_pdf() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="list"
-		let destn_id="navigation_export_as_pdf"
-		let parent_source_id=""
-		let event_code="e_1710333190841"
-		let event_params={"caller_name":"list__ee_for_pdf","event_desc":"EE For Pdf","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
-		let handler_code="enable_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

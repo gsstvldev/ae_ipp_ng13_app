@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35947 
+Build ID        : 35950 
 Modified By     : Admin 
-Modified Date   : 2024-Jul-04 7:2 AM 
+Modified Date   : 2024-Jul-04 10:19 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_liquidity_management_camt052
@@ -213,18 +213,13 @@ export class s_liquidity_management_camt052Component implements OnInit,AfterView
 
 	//Handler for INTERNAL event of "brfq from list"
 	brfq_from_list__internal(parent_event_result){
-		this.brfq_from_list__sfr_for_list(parent_event_result)
+		this.brfq_from_list__ee_for_pdf_btn(parent_event_result)
+		this.brfq_from_list__ee_for_excel_btn(parent_event_result)
 	}
 
 	//Handler for INTERNAL event of "e 1708425960961"
 	e_1708425960961__internal(parent_event_result){
 		this.e_1708425960961__e_1708425977969(parent_event_result)
-	}
-
-	//Handler for SELECTION_CHANGED event of "list"
-	list__selection_changed(){
-		this.list__ee_for_excel()
-		this.list__ee_for_pdf()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation search"
@@ -408,7 +403,7 @@ export class s_liquidity_management_camt052Component implements OnInit,AfterView
 		let event_code="e_1710480399724"
 		let event_params={"caller_name":"ssp_from_serach__brfq_from_list","event_desc":"BRFQ from List","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N","avoid_key_column_filter":"N"},"parent_event_result":"SUCCESS"}
 		let handler_code="bind_record_from_query"
-		let internals="brfq_from_list__sfr_for_list,"
+		let internals="brfq_from_list__ee_for_pdf_btn,brfq_from_list__ee_for_excel_btn,"
 		let event_data={}
 		let data_source={"default":{"dt_1304_1672471156312":{"dtt_1304_1672471459948":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1672471156312","dt_desc":"NPSS Liquidity Management Group","dtt_code":"DTT_1304_1672471459948","dtt_desc":"NPSS CAMT Account Report","ds_eligible":"DS_1712207906127","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Liquidity Management camt052 MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"HEADER_MSG_ID","alias_name":"","mq_id":"MQ_1712206364966","date_format":false},{"column_name":"REPORT_ID","alias_name":"","mq_id":"MQ_1712206365165","date_format":false},{"column_name":"RPT_CREATED_DATETIME","alias_name":"","mq_id":"MQ_1712206365333","date_format":true},{"column_name":"IBAN","alias_name":"","mq_id":"MQ_1712206365461","date_format":false},{"column_name":"ACCOUNT_CURRENCY","alias_name":"","mq_id":"MQ_1712206442860","date_format":false},{"column_name":"ACCOUNT_NAME","alias_name":"","mq_id":"MQ_1712206443036","date_format":false},{"column_name":"BIC","alias_name":"","mq_id":"MQ_1712206443173","date_format":false},{"column_name":"BALANCE_TYPE_CODE","alias_name":"","mq_id":"MQ_1712206482572","date_format":false},{"column_name":"BALANCE_AMOUNT","alias_name":"","mq_id":"MQ_1712206482748","date_format":false,"currency_format":true},{"column_name":"CR_DR_INDICATOR","alias_name":"","mq_id":"MQ_1712206503932","date_format":false},{"column_name":"RPT_BAL_DATETIME","alias_name":"","mq_id":"MQ_1712206504092","date_format":true}],"joins":[]},"eq_text":"SELECT CREATED_DATE,  REPORT_ID,  NCAR_ID,  IBAN,  ACCOUNT_CURRENCY,  CR_DR_INDICATOR,  RPT_CREATED_DATETIME,  BIC,  HEADER_MSG_ID,  ACCOUNT_NAME,  BALANCE_TYPE_CODE,  BALANCE_AMOUNT,  RPT_BAL_DATETIME,  MESSAGE_DATA,  PROCESS_STATUS,  STATUS,  DT_CODE,  DTT_CODE,  TENANT_ID,  VERSION_NO FROM  (SELECT A.NCAR_ID,    A.REPORT_ID,    A.RPT_CREATED_DATETIME,    A.IBAN,    A.ACCOUNT_CURRENCY,    A.BIC,    A.CR_DR_INDICATOR,    A.HEADER_MSG_ID,    A.ACCOUNT_NAME,    A.BALANCE_TYPE_CODE,    A.BALANCE_AMOUNT,    A.RPT_BAL_DATETIME,    A.MESSAGE_DATA,    A.PROCESS_STATUS,    A.STATUS,    A.DT_CODE,    A.DTT_CODE,    A.TENANT_ID,    A.CREATED_DATE,    A.VERSION_NO   FROM <TRAN_DB>.NPSS_CAMT_ACCOUNT_REPORT A)V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Liquidity Management camt052 MQ CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Header Msg Id","target_column":"HEADER_MSG_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Report Id","target_column":"REPORT_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Rpt Created Datetime","target_column":"RPT_CREATED_DATETIME","alias_name":"","alignment":"Left","width":"","format":"date:\"dd/MM/yyyy\"","date_format":true},{"header":"Account Number","target_column":"IBAN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Account Currency","target_column":"ACCOUNT_CURRENCY","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Account Name","target_column":"ACCOUNT_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"BIC","target_column":"BIC","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Balance Type Code","target_column":"BALANCE_TYPE_CODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Balance Amount","target_column":"BALANCE_AMOUNT","alias_name":"","alignment":"Right","width":"","format":"CURRENCY:د.إ","date_format":false,"currency_format":true},{"header":"Cr Dr Indicator","target_column":"CR_DR_INDICATOR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Rpt Bal Datetime","target_column":"RPT_BAL_DATETIME","alias_name":"","alignment":"Left","width":"","format":"date:\"dd/MM/yyyy\"","date_format":true}]}}}}}}
 		try {
@@ -420,21 +415,43 @@ export class s_liquidity_management_camt052Component implements OnInit,AfterView
 	} 
 
 	//Handler for INTERNAL event of "brfq from list"
-	brfq_from_list__sfr_for_list(parent_event_result) { 
+	brfq_from_list__ee_for_pdf_btn(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="brfq_from_list"
-		let destn_id="list"
+		let destn_id="navigation_export_as_pdf"
 		let parent_source_id="ssp_from_serach"
-		let event_code="e_1720072600131"
-		let event_params={"caller_name":"brfq_from_list__sfr_for_list","event_desc":"SFR For List","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{},"parent_event_result":"SUCCESS"}
-		let handler_code="select_first_record"
+		let event_code="e_1720087292021"
+		let event_params={"caller_name":"brfq_from_list__ee_for_pdf_btn","event_desc":"EE For PDF btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"enable_disable_count":"Y","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""},"parent_event_result":"SUCCESS"}
+		let handler_code="enable_element"
 		let internals=""
 		let event_data={}
-		let data_source={"default":{"dt_1304_1672471156312":{"dtt_1304_1672471459948":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1672471156312","dt_desc":"NPSS Liquidity Management Group","dtt_code":"DTT_1304_1672471459948","dtt_desc":"NPSS CAMT Account Report","ds_eligible":"DS_1712207906127","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Liquidity Management camt052 MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"HEADER_MSG_ID","alias_name":"","mq_id":"MQ_1712206364966","date_format":false},{"column_name":"REPORT_ID","alias_name":"","mq_id":"MQ_1712206365165","date_format":false},{"column_name":"RPT_CREATED_DATETIME","alias_name":"","mq_id":"MQ_1712206365333","date_format":true},{"column_name":"IBAN","alias_name":"","mq_id":"MQ_1712206365461","date_format":false},{"column_name":"ACCOUNT_CURRENCY","alias_name":"","mq_id":"MQ_1712206442860","date_format":false},{"column_name":"ACCOUNT_NAME","alias_name":"","mq_id":"MQ_1712206443036","date_format":false},{"column_name":"BIC","alias_name":"","mq_id":"MQ_1712206443173","date_format":false},{"column_name":"BALANCE_TYPE_CODE","alias_name":"","mq_id":"MQ_1712206482572","date_format":false},{"column_name":"BALANCE_AMOUNT","alias_name":"","mq_id":"MQ_1712206482748","date_format":false,"currency_format":true},{"column_name":"CR_DR_INDICATOR","alias_name":"","mq_id":"MQ_1712206503932","date_format":false},{"column_name":"RPT_BAL_DATETIME","alias_name":"","mq_id":"MQ_1712206504092","date_format":true}],"joins":[]},"eq_text":"SELECT CREATED_DATE,  REPORT_ID,  NCAR_ID,  IBAN,  ACCOUNT_CURRENCY,  CR_DR_INDICATOR,  RPT_CREATED_DATETIME,  BIC,  HEADER_MSG_ID,  ACCOUNT_NAME,  BALANCE_TYPE_CODE,  BALANCE_AMOUNT,  RPT_BAL_DATETIME,  MESSAGE_DATA,  PROCESS_STATUS,  STATUS,  DT_CODE,  DTT_CODE,  TENANT_ID,  VERSION_NO FROM  (SELECT A.NCAR_ID,    A.REPORT_ID,    A.RPT_CREATED_DATETIME,    A.IBAN,    A.ACCOUNT_CURRENCY,    A.BIC,    A.CR_DR_INDICATOR,    A.HEADER_MSG_ID,    A.ACCOUNT_NAME,    A.BALANCE_TYPE_CODE,    A.BALANCE_AMOUNT,    A.RPT_BAL_DATETIME,    A.MESSAGE_DATA,    A.PROCESS_STATUS,    A.STATUS,    A.DT_CODE,    A.DTT_CODE,    A.TENANT_ID,    A.CREATED_DATE,    A.VERSION_NO   FROM <TRAN_DB>.NPSS_CAMT_ACCOUNT_REPORT A)V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Liquidity Management camt052 MQ CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Header Msg Id","target_column":"HEADER_MSG_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Report Id","target_column":"REPORT_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Rpt Created Datetime","target_column":"RPT_CREATED_DATETIME","alias_name":"","alignment":"Left","width":"","format":"date:\"dd/MM/yyyy\"","date_format":true},{"header":"Account Number","target_column":"IBAN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Account Currency","target_column":"ACCOUNT_CURRENCY","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Account Name","target_column":"ACCOUNT_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"BIC","target_column":"BIC","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Balance Type Code","target_column":"BALANCE_TYPE_CODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Balance Amount","target_column":"BALANCE_AMOUNT","alias_name":"","alignment":"Right","width":"","format":"CURRENCY:د.إ","date_format":false,"currency_format":true},{"header":"Cr Dr Indicator","target_column":"CR_DR_INDICATOR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Rpt Bal Datetime","target_column":"RPT_BAL_DATETIME","alias_name":"","alignment":"Left","width":"","format":"date:\"dd/MM/yyyy\"","date_format":true}]}}}}}}
+		let data_source={}
 		try {
-			this.handler.select_first_record(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "brfq from list"
+	brfq_from_list__ee_for_excel_btn(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="brfq_from_list"
+		let destn_id="navigation_export_as_excel"
+		let parent_source_id="ssp_from_serach"
+		let event_code="e_1720087344772"
+		let event_params={"caller_name":"brfq_from_list__ee_for_excel_btn","event_desc":"EE For Excel btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"enable_disable_count":"Y","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""},"parent_event_result":"SUCCESS"}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -541,48 +558,6 @@ export class s_liquidity_management_camt052Component implements OnInit,AfterView
 		let data_source={}
 		try {
 			this.handler.create_form(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for SELECTION_CHANGED event of "list"
-	list__ee_for_excel() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="list"
-		let destn_id="navigation_export_as_excel"
-		let parent_source_id=""
-		let event_code="e_1710333142998"
-		let event_params={"caller_name":"list__ee_for_excel","event_desc":"EE For Excel","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
-		let handler_code="enable_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for SELECTION_CHANGED event of "list"
-	list__ee_for_pdf() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="list"
-		let destn_id="navigation_export_as_pdf"
-		let parent_source_id=""
-		let event_code="e_1710333190841"
-		let event_params={"caller_name":"list__ee_for_pdf","event_desc":"EE For Pdf","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
-		let handler_code="enable_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35947 
+Build ID        : 35950 
 Modified By     : Admin 
-Modified Date   : 2024-Jul-04 7:1 AM 
+Modified Date   : 2024-Jul-04 10:19 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_batch_delayed_inward_payment
@@ -213,18 +213,13 @@ export class s_batch_delayed_inward_paymentComponent implements OnInit,AfterView
 
 	//Handler for INTERNAL event of "brfq from list"
 	brfq_from_list__internal(parent_event_result){
-		this.brfq_from_list__sfr_for_list(parent_event_result)
+		this.brfq_from_list__ee_for_pdf_btn(parent_event_result)
+		this.brfq_from_list__ee_for_excel_btn(parent_event_result)
 	}
 
 	//Handler for INTERNAL event of "e 1708425960961"
 	e_1708425960961__internal(parent_event_result){
 		this.e_1708425960961__e_1708425977969(parent_event_result)
-	}
-
-	//Handler for SELECTION_CHANGED event of "list"
-	list__selection_changed(){
-		this.list__ee_for_excel()
-		this.list__ee_for_pdf()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation search"
@@ -408,7 +403,7 @@ export class s_batch_delayed_inward_paymentComponent implements OnInit,AfterView
 		let event_code="e_1710480399724"
 		let event_params={"caller_name":"ssp_from_serach__brfq_from_list","event_desc":"BRFQ from List","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N","avoid_key_column_filter":"N"},"parent_event_result":"SUCCESS"}
 		let handler_code="bind_record_from_query"
-		let internals="brfq_from_list__sfr_for_list,"
+		let internals="brfq_from_list__ee_for_pdf_btn,brfq_from_list__ee_for_excel_btn,"
 		let event_data={}
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1712206366458","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"Batch Delayed Inward Payment MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"uetr","alias_name":"","mq_id":"MQ_1712152391564","date_format":false},{"column_name":"cdtr_iban","alias_name":"","mq_id":"MQ_1712152428195","date_format":false},{"column_name":"cdtr_acct_name","alias_name":"","mq_id":"MQ_1712152444060","date_format":false},{"column_name":"cr_sort_code","alias_name":"","mq_id":"MQ_1712152460716","date_format":false},{"column_name":"start_date","alias_name":"","mq_id":"MQ_1712152478196","date_format":false},{"column_name":"end_date","alias_name":"","mq_id":"MQ_1712152493428","date_format":false},{"column_name":"Difference","alias_name":"","mq_id":"MQ_1712152501860","date_format":false},{"column_name":"dbtr_iban","alias_name":"","mq_id":"MQ_1712152518076","date_format":false},{"column_name":"dbtr_acct_name","alias_name":"","mq_id":"MQ_1712152549068","date_format":false},{"column_name":"dr_sort_code","alias_name":"","mq_id":"MQ_1712152549467","date_format":false},{"column_name":"clrsysref","alias_name":"","mq_id":"MQ_1712152587931","date_format":false},{"column_name":"intrbk_sttlm_amnt","alias_name":"","mq_id":"MQ_1712152600923","date_format":false,"currency_format":true}],"joins":[]},"eq_text":"select  UETR,  CDTR_IBAN,  CDTR_ACCT_NAME,  CR_SORT_CODE,  DBTR_IBAN,  DBTR_ACCT_NAME,  DR_SORT_CODE,  CLRSYSREF,  INTRBK_STTLM_AMNT,  PROCESS_TYPE,  PAYMENT_TYPE,  START_DATE,  END_DATE,  D_SECONDS,  D_MINUTES,  D_HOURS,  DIFFERENCE,  DEPARTMENT_CODE,  NT_RULE_GROUP,  PROCESSED_DATE,  TAT_EXPECTED from  (  select   UETR,   CDTR_IBAN,   CDTR_ACCT_NAME,   CR_SORT_CODE,   DBTR_IBAN,   DBTR_ACCT_NAME,   DR_SORT_CODE,   V.TENANT_ID,   CLRSYSREF,   INTRBK_STTLM_AMNT,   PROCESS_TYPE,   PROCESS_GROUP,   DEPARTMENT_CODE,   PAYMENT_TYPE,   START_DATE,   END_DATE,   D_SECONDS,   D_MINUTES,   D_HOURS,   case    when RB.TAT_FREQUENCY = UPPER('Seconds') then ROUND(V.D_SECONDS)    when RB.TAT_FREQUENCY = UPPER('Minutes') then ROUND(V.D_MINUTES)    when RB.TAT_FREQUENCY = UPPER('Hours') then ROUND(V.D_HOURS)   end as DIFFERENCE,   NT_RULE_GROUP,   RB.TAT_EXPECTED,   PROCESSED_DATE  from   (   select    NT.UETR,    NT.CDTR_IBAN,    NT.CDTR_ACCT_NAME,    NT.CR_SORT_CODE,    NT.DBTR_IBAN,    NT.DBTR_ACCT_NAME,    NT.DR_SORT_CODE,    NT.CLRSYSREF,    NT.INTRBK_STTLM_AMNT,    NT.TENANT_ID,    NT.PRODUCT_CODE,    NT.PROCESS_TYPE,    NT.PROCESS_GROUP,    NT.DEPARTMENT_CODE,    case     when NT.EXHF_ID is null then UPPER('RCT')     else UPPER('BCT')    end as PAYMENT_TYPE,    PL.CREATED_DATE as PL_CREATED_DATE,    TO_CHAR(PL1.CREATED_DATE,    'YYYY-MM-DD HH:MI:SS:MS AM') as START_DATE,    TO_CHAR(PL.CREATED_DATE,    'YYYY-MM-DD HH:MI:SS:MS AM') as END_DATE,    extract(EPOCH   from    (PL.CREATED_DATE - PL1.CREATED_DATE)) as D_SECONDS,    extract(EPOCH   from    (PL.CREATED_DATE - PL1.CREATED_DATE)) / 60 as D_MINUTES,    extract(EPOCH   from    (PL.CREATED_DATE - PL1.CREATED_DATE)) / (60 * 60) as D_HOURS,    NT.CREATED_DATE as PROCESSED_DATE,    'BCT_INWARD_PROCESS_SLA' as NT_RULE_GROUP   from    NPSS_TRANSACTIONS NT   inner join (    select     PLR.NPSSTPL_ID,     PLR.UETR,     PLR.CREATED_DATE,     PLR.ROW_NUM    from     (     select      A.NPSSTPL_ID,      A.UETR,      A.CREATED_DATE,      row_number() over(partition by A.UETR     order by      A.NPSSTPL_ID desc) as ROW_NUM     from      NPSS_TRN_PROCESS_LOG A) PLR    where     PLR.ROW_NUM = 1) PL on    PL.UETR = NT.UETR   inner join (    select     PLR1.NPSSTPL_ID,     PLR1.UETR,     PLR1.CREATED_DATE,     PLR1.ROW_NUM    from     (     select      A1.NPSSTPL_ID,      A1.UETR,      A1.CREATED_DATE,      row_number() over(partition by A1.UETR     order by      A1.NPSSTPL_ID asc) as ROW_NUM     from      NPSS_TRN_PROCESS_LOG A1) PLR1    where     PLR1.ROW_NUM = 1) PL1 on    PL1.UETR = NT.UETR) V  inner join CORE_NC_RULE_BOOK_SETUP RB on   RB.RULE_CODE = V.NT_RULE_GROUP   and RB.RULE_CODE = 'BCT_INWARD_PROCESS_SLA'   and RB.NEED_SYNC = 'Y')V1 where  PROCESS_TYPE = 'IP'  and PROCESS_GROUP = UPPER('bct')  and DIFFERENCE > TAT_EXPECTED::INT $AND"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"Batch Delayed Inward Payment","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"UETR","target_column":"uetr","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Payee IBAN","target_column":"cdtr_iban","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Payee Name","target_column":"cdtr_acct_name","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Payee BIC","target_column":"cr_sort_code","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Start Time","target_column":"start_date","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"End Time","target_column":"end_date","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Difference (Min)","target_column":"Difference","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Payer IBAN","target_column":"dbtr_iban","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Payer Name","target_column":"dbtr_acct_name","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Payer BIC","target_column":"dr_sort_code","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Clearing Sys Ref","target_column":"clrsysref","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Amount","target_column":"intrbk_sttlm_amnt","alias_name":"","alignment":"Right","width":"","format":"CURRENCY:د.إ","date_format":false,"currency_format":true}]}}}}}}
 		try {
@@ -420,21 +415,43 @@ export class s_batch_delayed_inward_paymentComponent implements OnInit,AfterView
 	} 
 
 	//Handler for INTERNAL event of "brfq from list"
-	brfq_from_list__sfr_for_list(parent_event_result) { 
+	brfq_from_list__ee_for_pdf_btn(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="brfq_from_list"
-		let destn_id="list"
+		let destn_id="navigation_export_as_pdf"
 		let parent_source_id="ssp_from_serach"
-		let event_code="e_1720072600131"
-		let event_params={"caller_name":"brfq_from_list__sfr_for_list","event_desc":"SFR For List","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{},"parent_event_result":"SUCCESS"}
-		let handler_code="select_first_record"
+		let event_code="e_1720087292021"
+		let event_params={"caller_name":"brfq_from_list__ee_for_pdf_btn","event_desc":"EE For PDF btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"enable_disable_count":"Y","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""},"parent_event_result":"SUCCESS"}
+		let handler_code="enable_element"
 		let internals=""
 		let event_data={}
-		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1712206366458","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"Batch Delayed Inward Payment MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"uetr","alias_name":"","mq_id":"MQ_1712152391564","date_format":false},{"column_name":"cdtr_iban","alias_name":"","mq_id":"MQ_1712152428195","date_format":false},{"column_name":"cdtr_acct_name","alias_name":"","mq_id":"MQ_1712152444060","date_format":false},{"column_name":"cr_sort_code","alias_name":"","mq_id":"MQ_1712152460716","date_format":false},{"column_name":"start_date","alias_name":"","mq_id":"MQ_1712152478196","date_format":false},{"column_name":"end_date","alias_name":"","mq_id":"MQ_1712152493428","date_format":false},{"column_name":"Difference","alias_name":"","mq_id":"MQ_1712152501860","date_format":false},{"column_name":"dbtr_iban","alias_name":"","mq_id":"MQ_1712152518076","date_format":false},{"column_name":"dbtr_acct_name","alias_name":"","mq_id":"MQ_1712152549068","date_format":false},{"column_name":"dr_sort_code","alias_name":"","mq_id":"MQ_1712152549467","date_format":false},{"column_name":"clrsysref","alias_name":"","mq_id":"MQ_1712152587931","date_format":false},{"column_name":"intrbk_sttlm_amnt","alias_name":"","mq_id":"MQ_1712152600923","date_format":false,"currency_format":true}],"joins":[]},"eq_text":"select  UETR,  CDTR_IBAN,  CDTR_ACCT_NAME,  CR_SORT_CODE,  DBTR_IBAN,  DBTR_ACCT_NAME,  DR_SORT_CODE,  CLRSYSREF,  INTRBK_STTLM_AMNT,  PROCESS_TYPE,  PAYMENT_TYPE,  START_DATE,  END_DATE,  D_SECONDS,  D_MINUTES,  D_HOURS,  DIFFERENCE,  DEPARTMENT_CODE,  NT_RULE_GROUP,  PROCESSED_DATE,  TAT_EXPECTED from  (  select   UETR,   CDTR_IBAN,   CDTR_ACCT_NAME,   CR_SORT_CODE,   DBTR_IBAN,   DBTR_ACCT_NAME,   DR_SORT_CODE,   V.TENANT_ID,   CLRSYSREF,   INTRBK_STTLM_AMNT,   PROCESS_TYPE,   PROCESS_GROUP,   DEPARTMENT_CODE,   PAYMENT_TYPE,   START_DATE,   END_DATE,   D_SECONDS,   D_MINUTES,   D_HOURS,   case    when RB.TAT_FREQUENCY = UPPER('Seconds') then ROUND(V.D_SECONDS)    when RB.TAT_FREQUENCY = UPPER('Minutes') then ROUND(V.D_MINUTES)    when RB.TAT_FREQUENCY = UPPER('Hours') then ROUND(V.D_HOURS)   end as DIFFERENCE,   NT_RULE_GROUP,   RB.TAT_EXPECTED,   PROCESSED_DATE  from   (   select    NT.UETR,    NT.CDTR_IBAN,    NT.CDTR_ACCT_NAME,    NT.CR_SORT_CODE,    NT.DBTR_IBAN,    NT.DBTR_ACCT_NAME,    NT.DR_SORT_CODE,    NT.CLRSYSREF,    NT.INTRBK_STTLM_AMNT,    NT.TENANT_ID,    NT.PRODUCT_CODE,    NT.PROCESS_TYPE,    NT.PROCESS_GROUP,    NT.DEPARTMENT_CODE,    case     when NT.EXHF_ID is null then UPPER('RCT')     else UPPER('BCT')    end as PAYMENT_TYPE,    PL.CREATED_DATE as PL_CREATED_DATE,    TO_CHAR(PL1.CREATED_DATE,    'YYYY-MM-DD HH:MI:SS:MS AM') as START_DATE,    TO_CHAR(PL.CREATED_DATE,    'YYYY-MM-DD HH:MI:SS:MS AM') as END_DATE,    extract(EPOCH   from    (PL.CREATED_DATE - PL1.CREATED_DATE)) as D_SECONDS,    extract(EPOCH   from    (PL.CREATED_DATE - PL1.CREATED_DATE)) / 60 as D_MINUTES,    extract(EPOCH   from    (PL.CREATED_DATE - PL1.CREATED_DATE)) / (60 * 60) as D_HOURS,    NT.CREATED_DATE as PROCESSED_DATE,    'BCT_INWARD_PROCESS_SLA' as NT_RULE_GROUP   from    NPSS_TRANSACTIONS NT   inner join (    select     PLR.NPSSTPL_ID,     PLR.UETR,     PLR.CREATED_DATE,     PLR.ROW_NUM    from     (     select      A.NPSSTPL_ID,      A.UETR,      A.CREATED_DATE,      row_number() over(partition by A.UETR     order by      A.NPSSTPL_ID desc) as ROW_NUM     from      NPSS_TRN_PROCESS_LOG A) PLR    where     PLR.ROW_NUM = 1) PL on    PL.UETR = NT.UETR   inner join (    select     PLR1.NPSSTPL_ID,     PLR1.UETR,     PLR1.CREATED_DATE,     PLR1.ROW_NUM    from     (     select      A1.NPSSTPL_ID,      A1.UETR,      A1.CREATED_DATE,      row_number() over(partition by A1.UETR     order by      A1.NPSSTPL_ID asc) as ROW_NUM     from      NPSS_TRN_PROCESS_LOG A1) PLR1    where     PLR1.ROW_NUM = 1) PL1 on    PL1.UETR = NT.UETR) V  inner join CORE_NC_RULE_BOOK_SETUP RB on   RB.RULE_CODE = V.NT_RULE_GROUP   and RB.RULE_CODE = 'BCT_INWARD_PROCESS_SLA'   and RB.NEED_SYNC = 'Y')V1 where  PROCESS_TYPE = 'IP'  and PROCESS_GROUP = UPPER('bct')  and DIFFERENCE > TAT_EXPECTED::INT $AND"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"Batch Delayed Inward Payment","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"UETR","target_column":"uetr","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Payee IBAN","target_column":"cdtr_iban","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Payee Name","target_column":"cdtr_acct_name","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Payee BIC","target_column":"cr_sort_code","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Start Time","target_column":"start_date","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"End Time","target_column":"end_date","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Difference (Min)","target_column":"Difference","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Payer IBAN","target_column":"dbtr_iban","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Payer Name","target_column":"dbtr_acct_name","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Payer BIC","target_column":"dr_sort_code","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Clearing Sys Ref","target_column":"clrsysref","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Amount","target_column":"intrbk_sttlm_amnt","alias_name":"","alignment":"Right","width":"","format":"CURRENCY:د.إ","date_format":false,"currency_format":true}]}}}}}}
+		let data_source={}
 		try {
-			this.handler.select_first_record(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "brfq from list"
+	brfq_from_list__ee_for_excel_btn(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="brfq_from_list"
+		let destn_id="navigation_export_as_excel"
+		let parent_source_id="ssp_from_serach"
+		let event_code="e_1720087344772"
+		let event_params={"caller_name":"brfq_from_list__ee_for_excel_btn","event_desc":"EE For Excel btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"enable_disable_count":"Y","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""},"parent_event_result":"SUCCESS"}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -541,48 +558,6 @@ export class s_batch_delayed_inward_paymentComponent implements OnInit,AfterView
 		let data_source={}
 		try {
 			this.handler.create_form(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for SELECTION_CHANGED event of "list"
-	list__ee_for_excel() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="list"
-		let destn_id="navigation_export_as_excel"
-		let parent_source_id=""
-		let event_code="e_1710333142998"
-		let event_params={"caller_name":"list__ee_for_excel","event_desc":"EE For Excel","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
-		let handler_code="enable_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for SELECTION_CHANGED event of "list"
-	list__ee_for_pdf() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="list"
-		let destn_id="navigation_export_as_pdf"
-		let parent_source_id=""
-		let event_code="e_1710333190841"
-		let event_params={"caller_name":"list__ee_for_pdf","event_desc":"EE For Pdf","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
-		let handler_code="enable_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

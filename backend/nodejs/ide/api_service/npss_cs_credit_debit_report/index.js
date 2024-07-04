@@ -270,7 +270,7 @@ WHERE PROCESS_TYPE = 'IP' ${cond_params}`
 
                             if(params.department_code!='' && params.department_code!=null && params.department_code!=undefined)
                                 {
-                                   Taketran+=`and DEPARTMENT_NAME='${params.department_code}'`
+                                   Taketran+=`and DEPARTMENT_CODE='${params.department_code}'`
                                 }
        
                             ExecuteQuery1(Taketran, function (arrdata) {

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35947 
+Build ID        : 35950 
 Modified By     : Admin 
-Modified Date   : 2024-Jul-04 7:2 AM 
+Modified Date   : 2024-Jul-04 10:19 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_user_menu_access_report
@@ -213,18 +213,13 @@ export class s_user_menu_access_reportComponent implements OnInit,AfterViewInit 
 
 	//Handler for INTERNAL event of "brfq from list"
 	brfq_from_list__internal(parent_event_result){
-		this.brfq_from_list__sfr_for_list(parent_event_result)
+		this.brfq_from_list__ee_for_pdf_btn(parent_event_result)
+		this.brfq_from_list__ee_for_excel_btn(parent_event_result)
 	}
 
 	//Handler for INTERNAL event of "e 1708425960961"
 	e_1708425960961__internal(parent_event_result){
 		this.e_1708425960961__e_1708425977969(parent_event_result)
-	}
-
-	//Handler for SELECTION_CHANGED event of "list"
-	list__selection_changed(){
-		this.list__ee_for_excel()
-		this.list__ee_for_pdf()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation search"
@@ -408,7 +403,7 @@ export class s_user_menu_access_reportComponent implements OnInit,AfterViewInit 
 		let event_code="e_1710480399724"
 		let event_params={"caller_name":"ssp_from_serach__brfq_from_list","event_desc":"BRFQ from List","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N","avoid_key_column_filter":"N"},"parent_event_result":"SUCCESS"}
 		let handler_code="bind_record_from_query"
-		let internals="brfq_from_list__sfr_for_list,"
+		let internals="brfq_from_list__ee_for_pdf_btn,brfq_from_list__ee_for_excel_btn,"
 		let event_data={}
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1719224763748","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS User Menu Access Report MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"APP_DESCRIPTION","alias_name":"","mq_id":"MQ_1719223592579","date_format":false},{"column_name":"LOGIN_NAME","alias_name":"","mq_id":"MQ_1719223803169","date_format":false},{"column_name":"CREATED_DATE","alias_name":"","mq_id":"MQ_1719223871490","date_format":true},{"column_name":"MODULE_NAME","alias_name":"","mq_id":"MQ_1719223907153","date_format":false},{"column_name":"MENU_GROUP","alias_name":"","mq_id":"MQ_1719223917929","date_format":false},{"column_name":"MENU_DESC","alias_name":"","mq_id":"MQ_1719223927265","date_format":false}],"joins":[]},"eq_text":"select  LOGIN_NAME,  U_ID,  CREATED_DATE,  APP_CODE,  APP_DESCRIPTION,  MODULE_NAME,  MENU_GROUP,  MENU_DESC from  (  select   L.LOGIN_NAME,   L.U_ID,   L.CREATED_DATE,   A.APP_ID,   A.APP_CODE,   A.APP_DESCRIPTION,   L.MODULE_NAME,   L.MENU_GROUP,   L.MENU_DESC  from   <CLT_CAS>.USER_MENU_ACCESS_LOG L  inner join <CLT_CAS>.APPLICATIONS A on   A.APP_ID = L.APP_ID)V where  APP_ID in ('210', '215') $AND group by  CREATED_DATE,  APP_CODE,  APP_DESCRIPTION,  LOGIN_NAME,  U_ID,  MODULE_NAME,  MENU_GROUP,  MENU_DESC order by  CREATED_DATE desc"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS User Menu Access Report MQ CCD","filter":[],"databinding":[{"header":"App Name","target_column":"APP_DESCRIPTION","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"User Name","target_column":"LOGIN_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Accessed Date","target_column":"CREATED_DATE","alias_name":"","alignment":"Left","width":"","format":"date:\"dd/MM/yyyy\"","date_format":true},{"header":"Module","target_column":"MODULE_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Menu Group","target_column":"MENU_GROUP","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Screen Name","target_column":"MENU_DESC","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
@@ -420,21 +415,43 @@ export class s_user_menu_access_reportComponent implements OnInit,AfterViewInit 
 	} 
 
 	//Handler for INTERNAL event of "brfq from list"
-	brfq_from_list__sfr_for_list(parent_event_result) { 
+	brfq_from_list__ee_for_pdf_btn(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="brfq_from_list"
-		let destn_id="list"
+		let destn_id="navigation_export_as_pdf"
 		let parent_source_id="ssp_from_serach"
-		let event_code="e_1720072600131"
-		let event_params={"caller_name":"brfq_from_list__sfr_for_list","event_desc":"SFR For List","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{},"parent_event_result":"SUCCESS"}
-		let handler_code="select_first_record"
+		let event_code="e_1720087292021"
+		let event_params={"caller_name":"brfq_from_list__ee_for_pdf_btn","event_desc":"EE For PDF btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"enable_disable_count":"Y","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""},"parent_event_result":"SUCCESS"}
+		let handler_code="enable_element"
 		let internals=""
 		let event_data={}
-		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1719224763748","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS User Menu Access Report MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"APP_DESCRIPTION","alias_name":"","mq_id":"MQ_1719223592579","date_format":false},{"column_name":"LOGIN_NAME","alias_name":"","mq_id":"MQ_1719223803169","date_format":false},{"column_name":"CREATED_DATE","alias_name":"","mq_id":"MQ_1719223871490","date_format":true},{"column_name":"MODULE_NAME","alias_name":"","mq_id":"MQ_1719223907153","date_format":false},{"column_name":"MENU_GROUP","alias_name":"","mq_id":"MQ_1719223917929","date_format":false},{"column_name":"MENU_DESC","alias_name":"","mq_id":"MQ_1719223927265","date_format":false}],"joins":[]},"eq_text":"select  LOGIN_NAME,  U_ID,  CREATED_DATE,  APP_CODE,  APP_DESCRIPTION,  MODULE_NAME,  MENU_GROUP,  MENU_DESC from  (  select   L.LOGIN_NAME,   L.U_ID,   L.CREATED_DATE,   A.APP_ID,   A.APP_CODE,   A.APP_DESCRIPTION,   L.MODULE_NAME,   L.MENU_GROUP,   L.MENU_DESC  from   <CLT_CAS>.USER_MENU_ACCESS_LOG L  inner join <CLT_CAS>.APPLICATIONS A on   A.APP_ID = L.APP_ID)V where  APP_ID in ('210', '215') $AND group by  CREATED_DATE,  APP_CODE,  APP_DESCRIPTION,  LOGIN_NAME,  U_ID,  MODULE_NAME,  MENU_GROUP,  MENU_DESC order by  CREATED_DATE desc"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS User Menu Access Report MQ CCD","filter":[],"databinding":[{"header":"App Name","target_column":"APP_DESCRIPTION","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"User Name","target_column":"LOGIN_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Accessed Date","target_column":"CREATED_DATE","alias_name":"","alignment":"Left","width":"","format":"date:\"dd/MM/yyyy\"","date_format":true},{"header":"Module","target_column":"MODULE_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Menu Group","target_column":"MENU_GROUP","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Screen Name","target_column":"MENU_DESC","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		let data_source={}
 		try {
-			this.handler.select_first_record(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "brfq from list"
+	brfq_from_list__ee_for_excel_btn(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="brfq_from_list"
+		let destn_id="navigation_export_as_excel"
+		let parent_source_id="ssp_from_serach"
+		let event_code="e_1720087344772"
+		let event_params={"caller_name":"brfq_from_list__ee_for_excel_btn","event_desc":"EE For Excel btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"enable_disable_count":"Y","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""},"parent_event_result":"SUCCESS"}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -541,48 +558,6 @@ export class s_user_menu_access_reportComponent implements OnInit,AfterViewInit 
 		let data_source={}
 		try {
 			this.handler.create_form(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for SELECTION_CHANGED event of "list"
-	list__ee_for_excel() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="list"
-		let destn_id="navigation_export_as_excel"
-		let parent_source_id=""
-		let event_code="e_1710333142998"
-		let event_params={"caller_name":"list__ee_for_excel","event_desc":"EE For Excel","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
-		let handler_code="enable_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for SELECTION_CHANGED event of "list"
-	list__ee_for_pdf() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="list"
-		let destn_id="navigation_export_as_pdf"
-		let parent_source_id=""
-		let event_code="e_1710333190841"
-		let event_params={"caller_name":"list__ee_for_pdf","event_desc":"EE For Pdf","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
-		let handler_code="enable_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

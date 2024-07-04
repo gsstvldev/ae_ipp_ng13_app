@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35947 
+Build ID        : 35950 
 Modified By     : Admin 
-Modified Date   : 2024-Jul-04 7:1 AM 
+Modified Date   : 2024-Jul-04 10:19 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_outward_transactions_details
@@ -228,23 +228,19 @@ export class s_outward_transactions_detailsComponent implements OnInit,AfterView
 
 	//Handler for INTERNAL event of "brfq from manager"
 	brfq_from_manager__internal(parent_event_result){
-		this.brfq_from_manager__sfr_from_manager(parent_event_result)
+		this.brfq_from_manager__ee_from_manager_to_excel_btn(parent_event_result)
+		this.brfq_from_manager__ee_from_manager_to_pdf_btn(parent_event_result)
 	}
 
 	//Handler for INTERNAL event of "brfq from maker checker"
 	brfq_from_maker_checker__internal(parent_event_result){
-		this.brfq_from_maker_checker__sfr_from_maker_checker(parent_event_result)
+		this.brfq_from_maker_checker__ee_from_maker_checker_to_excel_btn(parent_event_result)
+		this.brfq_from_maker_checker__ee_from_maker_checker_to_pdf_btn(parent_event_result)
 	}
 
 	//Handler for INTERNAL event of "e 1708425960961"
 	e_1708425960961__internal(parent_event_result){
 		this.e_1708425960961__e_1708425977969(parent_event_result)
-	}
-
-	//Handler for SELECTION_CHANGED event of "list"
-	list__selection_changed(){
-		this.list__ee_for_excel()
-		this.list__ee_for_pdf()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "navigation search"
@@ -472,7 +468,7 @@ export class s_outward_transactions_detailsComponent implements OnInit,AfterView
 		let event_code="e_1710480399724"
 		let event_params={"caller_name":"ssp_from_serach__brfq_from_manager","event_desc":"BRFQ from Manager","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N","avoid_key_column_filter":"N"},"parent_event_result":"SUCCESS"}
 		let handler_code="bind_record_from_query"
-		let internals="brfq_from_manager__sfr_from_manager,"
+		let internals="brfq_from_manager__ee_from_manager_to_excel_btn,brfq_from_manager__ee_from_manager_to_pdf_btn,"
 		let event_data={}
 		let data_source={"e_1710480399724":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"E_1710480399724","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1719920037744","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Outward Transaction Details Manager Report List MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"DEPARTMENT_CODE","alias_name":"","mq_id":"MQ_1719914777207","date_format":false},{"column_name":"INTRBK_STTLM_AMNT","alias_name":"","mq_id":"MQ_1719914777692","date_format":false,"currency_format":true},{"column_name":"CREATED_DATE","alias_name":"","mq_id":"MQ_1719914777868","date_format":true},{"column_name":"PURPOSE_CODES","alias_name":"","mq_id":"MQ_1719914778020","date_format":false},{"column_name":"CHANNEL_REFNO","alias_name":"","mq_id":"MQ_1719914778188","date_format":false},{"column_name":"DBTR_IBAN","alias_name":"","mq_id":"MQ_1719914778628","date_format":false},{"column_name":"DBTR_ACCT_NAME","alias_name":"","mq_id":"MQ_1719914830908","date_format":false},{"column_name":"CDTR_IBAN","alias_name":"","mq_id":"MQ_1719914831195","date_format":false},{"column_name":"CR_ACCT_IDENTIFICATION","alias_name":"","mq_id":"MQ_1719914831380","date_format":false},{"column_name":"CDTR_ACCT_NAME","alias_name":"","mq_id":"MQ_1719914831548","date_format":false},{"column_name":"BENEFICIARY_BANK","alias_name":"","mq_id":"MQ_1719914831739","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1719914874020","date_format":false},{"column_name":"CHANNEL_ID","alias_name":"","mq_id":"MQ_1719914874211","date_format":false},{"column_name":"VALUE_DATE","alias_name":"","mq_id":"MQ_1719914874371","date_format":true},{"column_name":"UETR","alias_name":"","mq_id":"MQ_1719914874547","date_format":false},{"column_name":"CORE_BANK_ERRORS","alias_name":"","mq_id":"MQ_1719914874707","date_format":false},{"column_name":"CB_ERRORS","alias_name":"","mq_id":"MQ_1719914920453","date_format":false},{"column_name":"PAYMENT_ENDTOEND_ID","alias_name":"","mq_id":"MQ_1719914920643","date_format":false},{"column_name":"TRANSACTION_ID","alias_name":"","mq_id":"MQ_1719914920811","date_format":false},{"column_name":"FT_CI_REFERENCE_NUMBER","alias_name":"","mq_id":"MQ_1719914921083","date_format":false},{"column_name":"CLRSYSREF","alias_name":"","mq_id":"MQ_1719914921276","date_format":false},{"column_name":"CATEGORY_PURPOSE","alias_name":"","mq_id":"MQ_1719914921467","date_format":false},{"column_name":"MAKER","alias_name":"","mq_id":"MQ_1719914973316","date_format":false},{"column_name":"CHECKER","alias_name":"","mq_id":"MQ_1719914973532","date_format":false},{"column_name":"DBTR_ACCT_NO","alias_name":"","mq_id":"MQ_1719914973715","date_format":false},{"column_name":"Batch_Payment_Flag","alias_name":"","mq_id":"MQ_1719914973867","date_format":false},{"column_name":"OUTWARD_FILE_NAME","alias_name":"","mq_id":"MQ_1719914974051","date_format":false},{"column_name":"VALUEDATE","alias_name":"","mq_id":"MQ_1719915030309","date_format":false}],"joins":[]},"eq_text":"select  distinct UETR,  PROCESS_STATUS,  STATUS,  CREATED_DATE,  VALUE_DATE,  VALUEDATE,  DEPARTMENT_CODE,  DBTR_IBAN,  DBTR_ACCT_NAME,  CDTR_IBAN,  CDTR_ACCT_NAME,  CR_SORT_CODE,  CHANNEL_ID,  BENEFICIARY_BANK,  API_SUCCESS_FAILURE,  INTRBK_STTLM_AMNT,  PURPOSE_CODES,  CHANNEL_REFNO,  fn_pcidss_decrypt(CR_ACCT_IDENTIFICATION,'Pc!Nps$Key7') as CR_ACCT_IDENTIFICATION,  FN_CARD_DECRYPT_AND_MASK_RPT(DBTR_ACCT_NO) as DBTR_ACCT_NO,  CB_ERRORS,  CORE_BANK_ERRORS,  MAKER,  CHECKER,  PROCESS_GROUP,  TRANSACTION_ID,  CATEGORY_PURPOSE,  FT_CI_REFERENCE_NUMBER,  PROCESS_TYPE,  CLRSYSREF,  PAYMENT_ENDTOEND_ID,  Batch_Payment_Flag,  OUTWARD_FILE_NAME from  (  select   NTPL.UETR,   NT.PROCESS_STATUS,   NT.STATUS,   NT.CREATED_DATE,   NT.VALUE_DATE,   to_char(NT.VALUE_DATE,   'DD/MM/YYYY') as VALUEDATE,   NT.DEPARTMENT_CODE,   NT.OUTWARD_FILE_NAME,   case    when NT.process_group = 'BCT' then 'Y'    else 'N'   end as Batch_Payment_Flag,   case    when NT.PROCESS_GROUP = 'IBAN' then 'WEBI'    when NT.PROCESS_GROUP = 'P2P' then 'MP2P'    when NT.PROCESS_GROUP = 'P2B' then 'MP2B'    when NT.PROCESS_GROUP = 'MANUAL' then 'WEBI'   end as PURPOSE_CODES,   NT.PAYMENT_ENDTOEND_ID,   NT.DBTR_IBAN,   NT.DBTR_ACCT_NAME,   NT.CDTR_IBAN,   NT.CDTR_ACCT_NAME,   NT.CR_SORT_CODE,   NT.CHANNEL_ID,   NT.CHANNEL_REFNO,   NT.PROCESS_TYPE,   NT.TENANT_ID,   NT.DT_CODE,   NT.DTT_CODE,   NT.MAKER,   NT.CHECKER,   NT.CR_ACCT_IDENTIFICATION,   NT.DBTR_ACCT_NO,   NT.PROCESS_GROUP,   NT.CATEGORY_PURPOSE,   NT.INTRBK_STTLM_AMNT,   A13.CBUAERETURNCODE as CB_ERRORS,   A11.T24RETURNCODE as CORE_BANK_ERRORS,   A15.PROCESS_REF_NO as CLRSYSREF,   CMB.BANK_NAME as BENEFICIARY_BANK,   CSE.S_DESCRIPTION,   NTPL.PROCESS_NAME,   case    when NT.PROCESS_GROUP in ('P2B', 'P2P') then NT.TRAN_REF_ID    when NT.PROCESS_GROUP in ('IBAN') then NT.MIDDLEWARE_REF_NO   end as TRANSACTION_ID,   case    when NT.PROCESS_GROUP in ('IBAN') then NT.TRAN_REF_ID    when NT.PROCESS_GROUP in ('P2B', 'P2P') then NT.PAYMENT_ENDTOEND_ID   end as FT_CI_REFERENCE_NUMBER,   case    when NT.PROCESS_STATUS not in ('RCTRejected') then 'Success'    when NT.PROCESS_STATUS = 'RCTRejected' then 'Failure'   end as API_SUCCESS_FAILURE  from   <TRAN_DB>.NPSS_TRANSACTIONS NT  inner join <TRAN_DB>.NPSS_TRN_PROCESS_LOG NTPL on   NT.UETR = NTPL.UETR  left join (   select    NPSSTPL_ID,    UETR,    CBUAERETURNCODE   from    (    select     A3.NPSSTPL_ID,     A3.UETR,     A3.STATUS,     A3.CBUAE_RETURN_CODE,     CONCAT(A3.CBUAE_RETURN_CODE,     '-',     CNEC1.ERROR_DESCRIPTION) as CBUAERETURNCODE    from     (     select      NPSSTPL_ID,      STATUS,      UETR,      CBUAE_RETURN_CODE,      ROW_NUM     from      (      select       NPSSTPL_ID,       UETR,       STATUS,       CBUAE_RETURN_CODE,       row_number() over (partition by UETR      order by       NPSSTPL_ID desc) as ROW_NUM      from       <TRAN_DB>.NPSS_TRN_PROCESS_LOG A01) F     where      ROW_NUM = 1 ) A3    left join CORE_NC_ERROR_CODES CNEC1 on     CNEC1.ERROR_CODE = A3.CBUAE_RETURN_CODE     and CNEC1.PROCESSING_SYSTEM = 'CBUAE'    where     A3.STATUS in ('OP_AC_REV_POSTING_FAILURE', 'OP_P2P_REV_POSTING_FAILURE', 'OP_P2B_REV_POSTING_FAILURE', 'OP_AC_STATUS_REJECTED', 'OP_P2P_STATUS_REJECTED', 'OP_P2B_STATUS_REJECTED', 'OP_AC_RET_POSTING_FAILURE')    order by     NPSSTPL_ID desc) A13) A13 on   A13.UETR = NT.UETR  left join (   select    NPSSTPL_ID,    UETR,    T24RETURNCODE   from    (    select     A2.NPSSTPL_ID,     A2.UETR,     A2.T24_RETURN_CODE,     CONCAT(A2.T24_RETURN_CODE,     '-',     CNEC.ERROR_DESCRIPTION) as T24RETURNCODE    from     (     select      NPSSTPL_ID,      UETR,      T24_RETURN_CODE,      ROW_NUM     from      (      select       NPSSTPL_ID,       UETR,       T24_RETURN_CODE,       row_number() over (partition by UETR      order by       NPSSTPL_ID desc) as ROW_NUM      from       <TRAN_DB>.NPSS_TRN_PROCESS_LOG A1) F     where      ROW_NUM = 1 ) A2    left join CORE_NC_ERROR_CODES CNEC on     CNEC.ERROR_CODE = A2.T24_RETURN_CODE    where     A2.T24_RETURN_CODE is not null    order by     NPSSTPL_ID desc) A12) A11 on   A11.UETR = NT.UETR  left join CORE_MEMBER_BANKS CMB on   CMB.BIC_CODE = NT.CR_SORT_CODE   and CMB.NEED_SYNC = 'Y'  left join (   select    A15.NPSSTPL_ID,    A15.UETR,    A15.PROCESS_REF_NO   from    (    select     A5.NPSSTPL_ID,     A5.UETR,     A5.PROCESS_REF_NO    from     (     select      NPSSTPL_ID,      UETR,      PROCESS_REF_NO,      ROW_NUM     from      (      select       NPSSTPL_ID,       UETR,       PROCESS_REF_NO,       row_number() over (partition by UETR      order by       NPSSTPL_ID desc) as ROW_NUM      from       <TRAN_DB>.NPSS_TRN_PROCESS_LOG A05      where       A05.PROCESS_NAME = 'Receive Pacs002'       and A05.PROCESS_TYPE = 'OP' ) F     where      F.ROW_NUM = 1 ) A5    order by     A5.NPSSTPL_ID desc) A15) A15 on   A15.UETR = NT.UETR  inner join CORE_SYSTEM_EXTN CSE on   CSE.DEPARTMENT_CODE = NT.DEPARTMENT_CODE) V1 where  PROCESS_TYPE = 'OP' $AND"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Outward Transaction Details Manager Report List MQ CCD","filter":[{"filter_name":"DEPARTMENT_CODE","binding_name":"DEPARTMENT_CODE","binding_value":"","source_name":"SYSTEM_EXTENDED_INFO.department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"IN","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Department Name","target_column":"DEPARTMENT_CODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Transaction Amount Range","target_column":"INTRBK_STTLM_AMNT","alias_name":"","alignment":"Right","width":"","format":"CURRENCY:د.إ","date_format":false,"currency_format":true},{"header":"Transaction Date Range","target_column":"CREATED_DATE","alias_name":"","alignment":"Left","width":"","format":"date:\"dd-MM-yyyy HH:mm:ss\"","date_format":true},{"header":"Purpose Code","target_column":"PURPOSE_CODES","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Sender Reference Number","target_column":"CHANNEL_REFNO","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Debtor Account","target_column":"DBTR_IBAN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Debtor Card Number","target_column":"DBTR_ACCT_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Creditor Account","target_column":"CDTR_IBAN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Creditor Card Number","target_column":"CR_ACCT_IDENTIFICATION","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Creditor Name","target_column":"CDTR_ACCT_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Beneficiary Bank","target_column":"BENEFICIARY_BANK","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Transaction Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Source Channel","target_column":"CHANNEL_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Transaction Date","target_column":"VALUEDATE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"UETR","target_column":"UETR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Core bank Error","target_column":"CORE_BANK_ERRORS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CB Error","target_column":"CB_ERRORS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"End to End ID","target_column":"PAYMENT_ENDTOEND_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Transaction ID","target_column":"TRANSACTION_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"T24 FT Reference Number","target_column":"FT_CI_REFERENCE_NUMBER","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Clrsysrefno","target_column":"CLRSYSREF","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Category Purpose Code","target_column":"CATEGORY_PURPOSE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Maker","target_column":"MAKER","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Checker","target_column":"CHECKER","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"DBTR_ACCT_NO","target_column":"DBTR_ACCT_NO","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Batch Payment Flag","target_column":"Batch_Payment_Flag","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Outward File Name","target_column":"OUTWARD_FILE_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
@@ -538,7 +534,7 @@ export class s_outward_transactions_detailsComponent implements OnInit,AfterView
 		let event_code="e_1719906878272"
 		let event_params={"caller_name":"ssp_from_cc__brfq_from_maker_checker","event_desc":"BRFQ From Maker checker","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N","avoid_key_column_filter":"N"},"parent_event_result":"SUCCESS"}
 		let handler_code="bind_record_from_query"
-		let internals="brfq_from_maker_checker__sfr_from_maker_checker,"
+		let internals="brfq_from_maker_checker__ee_from_maker_checker_to_excel_btn,brfq_from_maker_checker__ee_from_maker_checker_to_pdf_btn,"
 		let event_data={}
 		let data_source={"e_1719906878272":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"E_1719906878272","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1719914263086","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Outward Transaction Details Report List MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"DEPARTMENT_CODE","alias_name":"","mq_id":"MQ_1708334553388","date_format":false},{"column_name":"INTRBK_STTLM_AMNT","alias_name":"","mq_id":"MQ_1708334553890","date_format":false,"currency_format":true},{"column_name":"CREATED_DATE","alias_name":"","mq_id":"MQ_1708334554074","date_format":true},{"column_name":"PURPOSE_CODES","alias_name":"","mq_id":"MQ_1708334554274","date_format":false},{"column_name":"CHANNEL_REFNO","alias_name":"","mq_id":"MQ_1708334554586","date_format":false},{"column_name":"DBTR_IBAN","alias_name":"","mq_id":"MQ_1708334554946","date_format":false},{"column_name":"DBTR_ACCT_NAME","alias_name":"","mq_id":"MQ_1708334879289","date_format":false},{"column_name":"CDTR_IBAN","alias_name":"","mq_id":"MQ_1708334879448","date_format":false},{"column_name":"CR_ACCT_IDENTIFICATION","alias_name":"","mq_id":"MQ_1708334879680","date_format":false},{"column_name":"CDTR_ACCT_NAME","alias_name":"","mq_id":"MQ_1708334909545","date_format":false},{"column_name":"BENEFICIARY_BANK","alias_name":"","mq_id":"MQ_1708334909744","date_format":false},{"column_name":"STATUS","alias_name":"","mq_id":"MQ_1708335021968","date_format":false},{"column_name":"CHANNEL_ID","alias_name":"","mq_id":"MQ_1708335022144","date_format":false},{"column_name":"VALUE_DATE","alias_name":"","mq_id":"MQ_1708335064236","date_format":true},{"column_name":"UETR","alias_name":"","mq_id":"MQ_1708335064436","date_format":false},{"column_name":"CORE_BANK_ERRORS","alias_name":"","mq_id":"MQ_1708335130844","date_format":false},{"column_name":"CB_ERRORS","alias_name":"","mq_id":"MQ_1708335131019","date_format":false},{"column_name":"PAYMENT_ENDTOEND_ID","alias_name":"","mq_id":"MQ_1708335131219","date_format":false},{"column_name":"TRANSACTION_ID","alias_name":"","mq_id":"MQ_1708335168236","date_format":false},{"column_name":"FT_CI_REFERENCE_NUMBER","alias_name":"","mq_id":"MQ_1708335168419","date_format":false},{"column_name":"CLRSYSREF","alias_name":"","mq_id":"MQ_1708335168587","date_format":false},{"column_name":"CATEGORY_PURPOSE","alias_name":"","mq_id":"MQ_1708335168771","date_format":false},{"column_name":"MAKER","alias_name":"","mq_id":"MQ_1708335503113","date_format":false},{"column_name":"CHECKER","alias_name":"","mq_id":"MQ_1708335514633","date_format":false},{"column_name":"DBTR_ACCT_NO","alias_name":"","mq_id":"MQ_1708668593867","date_format":false},{"column_name":"Batch_Payment_Flag","alias_name":"","mq_id":"MQ_1710402693707","date_format":false},{"column_name":"OUTWARD_FILE_NAME","alias_name":"","mq_id":"MQ_1710402694033","date_format":false},{"column_name":"VALUEDATE","alias_name":"","mq_id":"MQ_1719482074257","date_format":false}],"joins":[]},"eq_text":"select  distinct UETR,  PROCESS_STATUS,  STATUS,  CREATED_DATE,  VALUE_DATE,  VALUEDATE,  DEPARTMENT_CODE,  DBTR_IBAN,  DBTR_ACCT_NAME,  CDTR_IBAN,  CDTR_ACCT_NAME,  CR_SORT_CODE,  CHANNEL_ID,  BENEFICIARY_BANK,  API_SUCCESS_FAILURE,  INTRBK_STTLM_AMNT,  PURPOSE_CODES,  CHANNEL_REFNO,  FN_CARD_DECRYPT_AND_MASK_RPT(CR_ACCT_IDENTIFICATION) as CR_ACCT_IDENTIFICATION,  FN_CARD_DECRYPT_AND_MASK_RPT(DBTR_ACCT_NO) as DBTR_ACCT_NO,  CB_ERRORS,  CORE_BANK_ERRORS,  MAKER,  CHECKER,  PROCESS_GROUP,  TRANSACTION_ID,  CATEGORY_PURPOSE,  FT_CI_REFERENCE_NUMBER,  PROCESS_TYPE,  CLRSYSREF,  PAYMENT_ENDTOEND_ID,  Batch_Payment_Flag,  OUTWARD_FILE_NAME from  (  select   NTPL.UETR,   NT.PROCESS_STATUS,   NT.STATUS,   NT.CREATED_DATE,   NT.VALUE_DATE,   to_char(NT.VALUE_DATE, 'DD/MM/YYYY') as VALUEDATE,   NT.DEPARTMENT_CODE,   NT.OUTWARD_FILE_NAME,   case    when NT.process_group = 'BCT' then 'Y'    else 'N'   end as Batch_Payment_Flag,   case    when NT.PROCESS_GROUP = 'IBAN' then 'WEBI'    when NT.PROCESS_GROUP = 'P2P' then 'MP2P'    when NT.PROCESS_GROUP = 'P2B' then 'MP2B'    when NT.PROCESS_GROUP = 'MANUAL' then 'WEBI'   end as PURPOSE_CODES,   NT.PAYMENT_ENDTOEND_ID,   NT.DBTR_IBAN,   NT.DBTR_ACCT_NAME,   NT.CDTR_IBAN,   NT.CDTR_ACCT_NAME,   NT.CR_SORT_CODE,   NT.CHANNEL_ID,   NT.CHANNEL_REFNO,   NT.PROCESS_TYPE,   NT.TENANT_ID,   NT.DT_CODE,   NT.DTT_CODE,   NT.MAKER,   NT.CHECKER,   NT.CR_ACCT_IDENTIFICATION,   NT.DBTR_ACCT_NO,   NT.PROCESS_GROUP,   NT.CATEGORY_PURPOSE,   NT.INTRBK_STTLM_AMNT,   A13.CBUAERETURNCODE as CB_ERRORS,   A11.T24RETURNCODE as CORE_BANK_ERRORS,   A15.PROCESS_REF_NO as CLRSYSREF,   CMB.BANK_NAME as BENEFICIARY_BANK,   CSE.S_DESCRIPTION,   NTPL.PROCESS_NAME,   case    when NT.PROCESS_GROUP in ('P2B', 'P2P') then NT.TRAN_REF_ID    when NT.PROCESS_GROUP in ('IBAN') then NT.MIDDLEWARE_REF_NO   end as TRANSACTION_ID,   case    when NT.PROCESS_GROUP in ('IBAN') then NT.TRAN_REF_ID    when NT.PROCESS_GROUP in ('P2B', 'P2P') then NT.PAYMENT_ENDTOEND_ID   end as FT_CI_REFERENCE_NUMBER,   case    when NT.PROCESS_STATUS not in ('RCTRejected') then 'Success'    when NT.PROCESS_STATUS = 'RCTRejected' then 'Failure'   end as API_SUCCESS_FAILURE  from   <TRAN_DB>.NPSS_TRANSACTIONS NT  inner join <TRAN_DB>.NPSS_TRN_PROCESS_LOG NTPL on   NT.UETR = NTPL.UETR  left join (   select    NPSSTPL_ID,    UETR,    CBUAERETURNCODE   from    (    select     A3.NPSSTPL_ID,     A3.UETR,     A3.STATUS,     A3.CBUAE_RETURN_CODE,     CONCAT(A3.CBUAE_RETURN_CODE,     '-',     CNEC1.ERROR_DESCRIPTION) as CBUAERETURNCODE    from     (     select      NPSSTPL_ID,      STATUS,      UETR,      CBUAE_RETURN_CODE,      ROW_NUM     from      (      select       NPSSTPL_ID,       UETR,       STATUS,       CBUAE_RETURN_CODE,       row_number() over (partition by UETR      order by       NPSSTPL_ID desc) as ROW_NUM      from       <TRAN_DB>.NPSS_TRN_PROCESS_LOG A01) F     where      ROW_NUM = 1 ) A3    left join CORE_NC_ERROR_CODES CNEC1 on     CNEC1.ERROR_CODE = A3.CBUAE_RETURN_CODE     and CNEC1.PROCESSING_SYSTEM = 'CBUAE'    where     A3.STATUS in ('OP_AC_REV_POSTING_FAILURE', 'OP_P2P_REV_POSTING_FAILURE', 'OP_P2B_REV_POSTING_FAILURE', 'OP_AC_STATUS_REJECTED', 'OP_P2P_STATUS_REJECTED', 'OP_P2B_STATUS_REJECTED', 'OP_AC_RET_POSTING_FAILURE')    order by     NPSSTPL_ID desc) A13) A13 on   A13.UETR = NT.UETR  left join (   select    NPSSTPL_ID,    UETR,    T24RETURNCODE   from    (    select     A2.NPSSTPL_ID,     A2.UETR,     A2.T24_RETURN_CODE,     CONCAT(A2.T24_RETURN_CODE,     '-',     CNEC.ERROR_DESCRIPTION) as T24RETURNCODE    from     (     select      NPSSTPL_ID,      UETR,      T24_RETURN_CODE,      ROW_NUM     from      (      select       NPSSTPL_ID,       UETR,       T24_RETURN_CODE,       row_number() over (partition by UETR      order by       NPSSTPL_ID desc) as ROW_NUM      from       <TRAN_DB>.NPSS_TRN_PROCESS_LOG A1) F     where      ROW_NUM = 1 ) A2    left join CORE_NC_ERROR_CODES CNEC on     CNEC.ERROR_CODE = A2.T24_RETURN_CODE    where     A2.T24_RETURN_CODE is not null    order by     NPSSTPL_ID desc) A12) A11 on   A11.UETR = NT.UETR  left join CORE_MEMBER_BANKS CMB on   CMB.BIC_CODE = NT.CR_SORT_CODE   and CMB.NEED_SYNC = 'Y'  left join (   select    A15.NPSSTPL_ID,    A15.UETR,    A15.PROCESS_REF_NO   from    (    select     A5.NPSSTPL_ID,     A5.UETR,     A5.PROCESS_REF_NO    from     (     select      NPSSTPL_ID,      UETR,      PROCESS_REF_NO,      ROW_NUM     from      (      select       NPSSTPL_ID,       UETR,       PROCESS_REF_NO,       row_number() over (partition by UETR      order by       NPSSTPL_ID desc) as ROW_NUM      from       <TRAN_DB>.NPSS_TRN_PROCESS_LOG A05      where       A05.PROCESS_NAME = 'Receive Pacs002'       and A05.PROCESS_TYPE = 'OP' ) F     where      F.ROW_NUM = 1 ) A5    order by     A5.NPSSTPL_ID desc) A15) A15 on   A15.UETR = NT.UETR  inner join CORE_SYSTEM_EXTN CSE on   CSE.DEPARTMENT_CODE = NT.DEPARTMENT_CODE) V1 where  PROCESS_TYPE = 'OP' $AND"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Outward Transaction Details Report List MQ CCD","filter":[{"filter_name":"DEPARTMENT_CODE","binding_name":"DEPARTMENT_CODE","binding_value":"","source_name":"SYSTEM_EXTENDED_INFO.department_code","source_value":"","source_type":"SESSION_LEVEL","oprtr":"IN","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Department Name","target_column":"DEPARTMENT_CODE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Transaction Amount Range","target_column":"INTRBK_STTLM_AMNT","alias_name":"","alignment":"Right","width":"","format":"CURRENCY:د.إ","date_format":false,"currency_format":true},{"header":"Transaction Date Range","target_column":"CREATED_DATE","alias_name":"","alignment":"Left","width":"","format":"date:\"dd-MM-yyyy HH:mm:ss\"","date_format":true},{"header":"Purpose Code","target_column":"PURPOSE_CODES","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Sender Reference Number","target_column":"CHANNEL_REFNO","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Debtor Account","target_column":"DBTR_IBAN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Debtor Card Number","target_column":"DBTR_ACCT_NO","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Debtor Name","target_column":"DBTR_ACCT_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Creditor Account","target_column":"CDTR_IBAN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Creditor Card Number","target_column":"CR_ACCT_IDENTIFICATION","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Creditor Name","target_column":"CDTR_ACCT_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Beneficiary Bank","target_column":"BENEFICIARY_BANK","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Transaction Status","target_column":"STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Source Channel","target_column":"CHANNEL_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Transaction Date","target_column":"VALUEDATE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"UETR","target_column":"UETR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Core bank Error","target_column":"CORE_BANK_ERRORS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CB Error","target_column":"CB_ERRORS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"End to End ID","target_column":"PAYMENT_ENDTOEND_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Transaction ID","target_column":"TRANSACTION_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"T24 FT Reference Number","target_column":"FT_CI_REFERENCE_NUMBER","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Clrsysrefno","target_column":"CLRSYSREF","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Category Purpose Code","target_column":"CATEGORY_PURPOSE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Maker","target_column":"MAKER","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Checker","target_column":"CHECKER","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Batch Payment Flag","target_column":"Batch_Payment_Flag","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Outward File Name","target_column":"OUTWARD_FILE_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
@@ -550,21 +546,43 @@ export class s_outward_transactions_detailsComponent implements OnInit,AfterView
 	} 
 
 	//Handler for INTERNAL event of "brfq from manager"
-	brfq_from_manager__sfr_from_manager(parent_event_result) { 
+	brfq_from_manager__ee_from_manager_to_excel_btn(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="brfq_from_manager"
-		let destn_id="list"
+		let destn_id="navigation_export_as_excel"
 		let parent_source_id="ssp_from_serach"
-		let event_code="e_1720072657474"
-		let event_params={"caller_name":"brfq_from_manager__sfr_from_manager","event_desc":"SFR From Manager","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{},"parent_event_result":"SUCCESS"}
-		let handler_code="select_first_record"
+		let event_code="e_1720087846443"
+		let event_params={"caller_name":"brfq_from_manager__ee_from_manager_to_excel_btn","event_desc":"EE From Manager to Excel btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"enable_disable_count":"Y","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""},"parent_event_result":"SUCCESS"}
+		let handler_code="enable_element"
 		let internals=""
 		let event_data={}
 		let data_source={}
 		try {
-			this.handler.select_first_record(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "brfq from manager"
+	brfq_from_manager__ee_from_manager_to_pdf_btn(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="brfq_from_manager"
+		let destn_id="navigation_export_as_pdf"
+		let parent_source_id="ssp_from_serach"
+		let event_code="e_1720087907232"
+		let event_params={"caller_name":"brfq_from_manager__ee_from_manager_to_pdf_btn","event_desc":"EE From manager to PDF btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"enable_disable_count":"Y","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""},"parent_event_result":"SUCCESS"}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -572,21 +590,43 @@ export class s_outward_transactions_detailsComponent implements OnInit,AfterView
 	} 
 
 	//Handler for INTERNAL event of "brfq from maker checker"
-	brfq_from_maker_checker__sfr_from_maker_checker(parent_event_result) { 
+	brfq_from_maker_checker__ee_from_maker_checker_to_excel_btn(parent_event_result) { 
 		let Dest_Is_ctrl=true
 		let parentEventResult ="SUCCESS"
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="brfq_from_maker_checker"
-		let destn_id="list"
+		let destn_id="navigation_export_as_excel"
 		let parent_source_id="ssp_from_cc"
-		let event_code="e_1720072703649"
-		let event_params={"caller_name":"brfq_from_maker_checker__sfr_from_maker_checker","event_desc":"SFR From Maker checker","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{},"parent_event_result":"SUCCESS"}
-		let handler_code="select_first_record"
+		let event_code="e_1720087969067"
+		let event_params={"caller_name":"brfq_from_maker_checker__ee_from_maker_checker_to_excel_btn","event_desc":"EE From Maker Checker to Excel Btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"enable_disable_count":"Y","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""},"parent_event_result":"SUCCESS"}
+		let handler_code="enable_element"
 		let internals=""
 		let event_data={}
 		let data_source={}
 		try {
-			this.handler.select_first_record(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "brfq from maker checker"
+	brfq_from_maker_checker__ee_from_maker_checker_to_pdf_btn(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="brfq_from_maker_checker"
+		let destn_id="navigation_export_as_pdf"
+		let parent_source_id="ssp_from_cc"
+		let event_code="e_1720088020601"
+		let event_params={"caller_name":"brfq_from_maker_checker__ee_from_maker_checker_to_pdf_btn","event_desc":"EE From Maker Checker to Pdf Btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"enable_disable_count":"Y","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""},"parent_event_result":"SUCCESS"}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -693,48 +733,6 @@ export class s_outward_transactions_detailsComponent implements OnInit,AfterView
 		let data_source={}
 		try {
 			this.handler.create_form(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for SELECTION_CHANGED event of "list"
-	list__ee_for_excel() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="list"
-		let destn_id="navigation_export_as_excel"
-		let parent_source_id=""
-		let event_code="e_1710333142998"
-		let event_params={"caller_name":"list__ee_for_excel","event_desc":"EE For Excel","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
-		let handler_code="enable_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
-		} catch(e) {
- 			console.log("Handler Error");
-			console.log(e); 
- 		} 
-	} 
-
-	//Handler for SELECTION_CHANGED event of "list"
-	list__ee_for_pdf() { 
-		let Dest_Is_ctrl=true
-		
-		let source_id="list"
-		let destn_id="navigation_export_as_pdf"
-		let parent_source_id=""
-		let event_code="e_1710333190841"
-		let event_params={"caller_name":"list__ee_for_pdf","event_desc":"EE For Pdf","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
-		let handler_code="enable_element"
-		let internals=""
-		let event_data={}
-		let data_source={}
-		try {
-			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

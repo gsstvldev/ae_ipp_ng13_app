@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35865 
+Build ID        : 35947 
 Modified By     : Admin 
-Modified Date   : 2024-Jun-27 7:12 AM 
+Modified Date   : 2024-Jul-04 7:1 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_liquidity_management_camt054
@@ -211,6 +211,11 @@ export class s_liquidity_management_camt054Component implements OnInit,AfterView
 		this.ssp_from_serach__brfq_from_list(parent_event_result)
 	}
 
+	//Handler for INTERNAL event of "brfq from list"
+	brfq_from_list__internal(parent_event_result){
+		this.brfq_from_list__sfr_for_list(parent_event_result)
+	}
+
 	//Handler for INTERNAL event of "e 1708425960961"
 	e_1708425960961__internal(parent_event_result){
 		this.e_1708425960961__e_1708425977969(parent_event_result)
@@ -403,11 +408,33 @@ export class s_liquidity_management_camt054Component implements OnInit,AfterView
 		let event_code="e_1710480399724"
 		let event_params={"caller_name":"ssp_from_serach__brfq_from_list","event_desc":"BRFQ from List","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N","avoid_key_column_filter":"N"},"parent_event_result":"SUCCESS"}
 		let handler_code="bind_record_from_query"
-		let internals=""
+		let internals="brfq_from_list__sfr_for_list,"
 		let event_data={}
 		let data_source={"default":{"dt_1304_1672471156312":{"dtt_1304_1672471952205":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1672471156312","dt_desc":"NPSS Liquidity Management Group","dtt_code":"DTT_1304_1672471952205","dtt_desc":"NPSS CAMT Acc Crdr Ntfn","ds_eligible":"DS_1712207823500","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Liquidity Management Camt054 MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"HEADER_MSG_ID","alias_name":"","mq_id":"MQ_1712207320552","date_format":false},{"column_name":"NOTIFICATION_ID","alias_name":"","mq_id":"MQ_1712207320720","date_format":false},{"column_name":"NTFN_CREATED_DATETIME","alias_name":"","mq_id":"MQ_1712207320904","date_format":true},{"column_name":"IBAN","alias_name":"","mq_id":"MQ_1712207321128","date_format":false},{"column_name":"CURRENCY","alias_name":"","mq_id":"MQ_1712207374168","date_format":false},{"column_name":"LIMIT_AMOUNT","alias_name":"","mq_id":"MQ_1712207374351","date_format":false,"currency_format":true},{"column_name":"CR_DR_INDICATOR","alias_name":"","mq_id":"MQ_1712207394520","date_format":false},{"column_name":"NTFN_STATUS","alias_name":"","mq_id":"MQ_1712207394680","date_format":false},{"column_name":"BOOKING_DATETIME","alias_name":"","mq_id":"MQ_1712207417424","date_format":true},{"column_name":"END_TO_END_ID","alias_name":"","mq_id":"MQ_1712207417576","date_format":false}],"joins":[]},"eq_text":"SELECT CREATED_DATE,  NOTIFICATION_ID,  NCACN_ID,  IBAN,  CURRENCY,  CR_DR_INDICATOR,  NTFN_CREATED_DATETIME,  HEADER_MSG_ID,  BOOKING_DATETIME,  END_TO_END_ID,  LIMIT_AMOUNT,  NTFN_STATUS,  MESSAGE_DATA,  PROCESS_STATUS,  STATUS,  DT_CODE,  DTT_CODE,  TENANT_ID,  VERSION_NO FROM  (SELECT A.NCACN_ID,    A.NOTIFICATION_ID,    A.NTFN_CREATED_DATETIME,    A.IBAN,    A.CURRENCY,    A.CR_DR_INDICATOR,    A.HEADER_MSG_ID,    A.BOOKING_DATETIME,    A.END_TO_END_ID,    A.LIMIT_AMOUNT,    A.NTFN_STATUS,    A.MESSAGE_DATA,    A.PROCESS_STATUS,    A.STATUS,    A.DT_CODE,    A.DTT_CODE,    A.TENANT_ID,    A.CREATED_DATE,    A.VERSION_NO   FROM <TRAN_DB>.NPSS_CAMT_ACC_CRDR_NTFN A)V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Liquidity Management Camt054 MQ CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Header Msg Id","target_column":"HEADER_MSG_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Notification Id","target_column":"NOTIFICATION_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Ntfn Created Datetime","target_column":"NTFN_CREATED_DATETIME","alias_name":"","alignment":"Left","width":"","format":"date:\"dd/MM/yyyy\"","date_format":true},{"header":"Account Number","target_column":"IBAN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Currency","target_column":"CURRENCY","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Limit Amount","target_column":"LIMIT_AMOUNT","alias_name":"","alignment":"Right","width":"","format":"CURRENCY:د.إ","date_format":false,"currency_format":true},{"header":"Cr Dr Indicator","target_column":"CR_DR_INDICATOR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Ntfn Status","target_column":"NTFN_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Booking Datetime","target_column":"BOOKING_DATETIME","alias_name":"","alignment":"Left","width":"","format":"date:\"dd/MM/yyyy\"","date_format":true},{"header":"End To End Id","target_column":"END_TO_END_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "brfq from list"
+	brfq_from_list__sfr_for_list(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="brfq_from_list"
+		let destn_id="list"
+		let parent_source_id="ssp_from_serach"
+		let event_code="e_1720072600131"
+		let event_params={"caller_name":"brfq_from_list__sfr_for_list","event_desc":"SFR For List","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="select_first_record"
+		let internals=""
+		let event_data={}
+		let data_source={"default":{"dt_1304_1672471156312":{"dtt_1304_1672471952205":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1672471156312","dt_desc":"NPSS Liquidity Management Group","dtt_code":"DTT_1304_1672471952205","dtt_desc":"NPSS CAMT Acc Crdr Ntfn","ds_eligible":"DS_1712207823500","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Liquidity Management Camt054 MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"HEADER_MSG_ID","alias_name":"","mq_id":"MQ_1712207320552","date_format":false},{"column_name":"NOTIFICATION_ID","alias_name":"","mq_id":"MQ_1712207320720","date_format":false},{"column_name":"NTFN_CREATED_DATETIME","alias_name":"","mq_id":"MQ_1712207320904","date_format":true},{"column_name":"IBAN","alias_name":"","mq_id":"MQ_1712207321128","date_format":false},{"column_name":"CURRENCY","alias_name":"","mq_id":"MQ_1712207374168","date_format":false},{"column_name":"LIMIT_AMOUNT","alias_name":"","mq_id":"MQ_1712207374351","date_format":false,"currency_format":true},{"column_name":"CR_DR_INDICATOR","alias_name":"","mq_id":"MQ_1712207394520","date_format":false},{"column_name":"NTFN_STATUS","alias_name":"","mq_id":"MQ_1712207394680","date_format":false},{"column_name":"BOOKING_DATETIME","alias_name":"","mq_id":"MQ_1712207417424","date_format":true},{"column_name":"END_TO_END_ID","alias_name":"","mq_id":"MQ_1712207417576","date_format":false}],"joins":[]},"eq_text":"SELECT CREATED_DATE,  NOTIFICATION_ID,  NCACN_ID,  IBAN,  CURRENCY,  CR_DR_INDICATOR,  NTFN_CREATED_DATETIME,  HEADER_MSG_ID,  BOOKING_DATETIME,  END_TO_END_ID,  LIMIT_AMOUNT,  NTFN_STATUS,  MESSAGE_DATA,  PROCESS_STATUS,  STATUS,  DT_CODE,  DTT_CODE,  TENANT_ID,  VERSION_NO FROM  (SELECT A.NCACN_ID,    A.NOTIFICATION_ID,    A.NTFN_CREATED_DATETIME,    A.IBAN,    A.CURRENCY,    A.CR_DR_INDICATOR,    A.HEADER_MSG_ID,    A.BOOKING_DATETIME,    A.END_TO_END_ID,    A.LIMIT_AMOUNT,    A.NTFN_STATUS,    A.MESSAGE_DATA,    A.PROCESS_STATUS,    A.STATUS,    A.DT_CODE,    A.DTT_CODE,    A.TENANT_ID,    A.CREATED_DATE,    A.VERSION_NO   FROM <TRAN_DB>.NPSS_CAMT_ACC_CRDR_NTFN A)V $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Liquidity Management Camt054 MQ CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Header Msg Id","target_column":"HEADER_MSG_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Notification Id","target_column":"NOTIFICATION_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Ntfn Created Datetime","target_column":"NTFN_CREATED_DATETIME","alias_name":"","alignment":"Left","width":"","format":"date:\"dd/MM/yyyy\"","date_format":true},{"header":"Account Number","target_column":"IBAN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Currency","target_column":"CURRENCY","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Limit Amount","target_column":"LIMIT_AMOUNT","alias_name":"","alignment":"Right","width":"","format":"CURRENCY:د.إ","date_format":false,"currency_format":true},{"header":"Cr Dr Indicator","target_column":"CR_DR_INDICATOR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Ntfn Status","target_column":"NTFN_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Booking Datetime","target_column":"BOOKING_DATETIME","alias_name":"","alignment":"Left","width":"","format":"date:\"dd/MM/yyyy\"","date_format":true},{"header":"End To End Id","target_column":"END_TO_END_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		try {
+			this.handler.select_first_record(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

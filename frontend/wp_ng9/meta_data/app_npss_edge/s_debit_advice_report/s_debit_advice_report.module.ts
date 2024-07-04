@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35364 
+Build ID        : 35919 
 Modified By     : Admin 
-Modified Date   : 2024-May-13 11:2 AM 
+Modified Date   : 2024-Jul-04 7:6 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_debit_advice_report

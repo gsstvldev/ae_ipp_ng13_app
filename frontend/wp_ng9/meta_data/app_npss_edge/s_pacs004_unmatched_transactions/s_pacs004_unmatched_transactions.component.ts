@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35865 
+Build ID        : 35947 
 Modified By     : Admin 
-Modified Date   : 2024-Jun-27 7:12 AM 
+Modified Date   : 2024-Jul-04 7:1 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_pacs004_unmatched_transactions
@@ -211,6 +211,11 @@ export class s_pacs004_unmatched_transactionsComponent implements OnInit,AfterVi
 		this.ssp_from_serach__brfq_from_list(parent_event_result)
 	}
 
+	//Handler for INTERNAL event of "brfq from list"
+	brfq_from_list__internal(parent_event_result){
+		this.brfq_from_list__sfr_for_list(parent_event_result)
+	}
+
 	//Handler for INTERNAL event of "e 1708425960961"
 	e_1708425960961__internal(parent_event_result){
 		this.e_1708425960961__e_1708425977969(parent_event_result)
@@ -403,11 +408,33 @@ export class s_pacs004_unmatched_transactionsComponent implements OnInit,AfterVi
 		let event_code="e_1710480399724"
 		let event_params={"caller_name":"ssp_from_serach__brfq_from_list","event_desc":"BRFQ from List","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N","avoid_key_column_filter":"N"},"parent_event_result":"SUCCESS"}
 		let handler_code="bind_record_from_query"
-		let internals=""
+		let internals="brfq_from_list__sfr_for_list,"
 		let event_data={}
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1712211281387","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"Pacs004 Unmatched Transactions MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"created_date","alias_name":"","mq_id":"MQ_1712210728947","date_format":false},{"column_name":"dbtr_iban","alias_name":"","mq_id":"MQ_1712210729554","date_format":false},{"column_name":"cdtr_iban","alias_name":"","mq_id":"MQ_1712210729746","date_format":false},{"column_name":"dr_sort_code","alias_name":"","mq_id":"MQ_1712210729899","date_format":false},{"column_name":"cr_sort_code","alias_name":"","mq_id":"MQ_1712210730067","date_format":false},{"column_name":"bank_name","alias_name":"","mq_id":"MQ_1712210730226","date_format":false},{"column_name":"uetr","alias_name":"","mq_id":"MQ_1712210730658","date_format":false},{"column_name":"tran_ref_id","alias_name":"","mq_id":"MQ_1712210832732","date_format":false},{"column_name":"clrsysref","alias_name":"","mq_id":"MQ_1712210833171","date_format":false},{"column_name":"cbuae_return_code","alias_name":"","mq_id":"MQ_1712210855244","date_format":false},{"column_name":"intrbk_sttlm_amnt","alias_name":"","mq_id":"MQ_1712210879748","date_format":false,"currency_format":true}],"joins":[]},"eq_text":"select  created_date,  dbtr_iban,  cdtr_iban,  dr_sort_code,  cr_sort_code,  bank_name,  uetr,  tran_ref_id,  clrsysref,  cbuae_return_code,  intrbk_sttlm_amnt,  payment_endtoend_id,  TENANT_ID from  (  select   NT.created_date,   NT.dbtr_iban,   NT.cdtr_iban,   NT.dr_sort_code,   NT.cr_sort_code,   NT.uetr,   NT.tran_ref_id,   NT.clrsysref,   NT.intrbk_sttlm_amnt,   CMB.bank_name,   NTPL.cbuae_return_code,   NT.TENANT_ID,   NT.status,   NT.process_group,   NT.process_status,   NT.process_type,   NT.payment_endtoend_id  from   npss_transactions NT  inner join core_member_banks CMB on   CMB.bic_code = NT.cr_sort_code  inner join npss_trn_process_log NTPL on   NTPL.uetr = NT.uetr   and NT.status = NTPL.status)VW where  status = 'OR_BCT_UNMATCHED'  and process_status = 'BCTUnMatched'  and process_type = 'OP'  and process_group = 'BCT' $AND"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"Pacs004 Unmatched Transactions CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Transaction Date","target_column":"created_date","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Debtor Account","target_column":"dbtr_iban","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Creditor Account","target_column":"cdtr_iban","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Debtor BIC","target_column":"dr_sort_code","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Creditor BIC","target_column":"cr_sort_code","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Beneficiary Bank","target_column":"bank_name","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Original UETR","target_column":"uetr","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Original Tran ID","target_column":"tran_ref_id","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Original Clr Sys Ref No","target_column":"clrsysref","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CBUAE Return Code","target_column":"cbuae_return_code","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Transaction Amount","target_column":"intrbk_sttlm_amnt","alias_name":"","alignment":"Right","width":"","format":"CURRENCY:د.إ","date_format":false,"currency_format":true}]}}}}}}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "brfq from list"
+	brfq_from_list__sfr_for_list(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="brfq_from_list"
+		let destn_id="list"
+		let parent_source_id="ssp_from_serach"
+		let event_code="e_1720072600131"
+		let event_params={"caller_name":"brfq_from_list__sfr_for_list","event_desc":"SFR For List","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="select_first_record"
+		let internals=""
+		let event_data={}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1712211281387","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"Pacs004 Unmatched Transactions MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"created_date","alias_name":"","mq_id":"MQ_1712210728947","date_format":false},{"column_name":"dbtr_iban","alias_name":"","mq_id":"MQ_1712210729554","date_format":false},{"column_name":"cdtr_iban","alias_name":"","mq_id":"MQ_1712210729746","date_format":false},{"column_name":"dr_sort_code","alias_name":"","mq_id":"MQ_1712210729899","date_format":false},{"column_name":"cr_sort_code","alias_name":"","mq_id":"MQ_1712210730067","date_format":false},{"column_name":"bank_name","alias_name":"","mq_id":"MQ_1712210730226","date_format":false},{"column_name":"uetr","alias_name":"","mq_id":"MQ_1712210730658","date_format":false},{"column_name":"tran_ref_id","alias_name":"","mq_id":"MQ_1712210832732","date_format":false},{"column_name":"clrsysref","alias_name":"","mq_id":"MQ_1712210833171","date_format":false},{"column_name":"cbuae_return_code","alias_name":"","mq_id":"MQ_1712210855244","date_format":false},{"column_name":"intrbk_sttlm_amnt","alias_name":"","mq_id":"MQ_1712210879748","date_format":false,"currency_format":true}],"joins":[]},"eq_text":"select  created_date,  dbtr_iban,  cdtr_iban,  dr_sort_code,  cr_sort_code,  bank_name,  uetr,  tran_ref_id,  clrsysref,  cbuae_return_code,  intrbk_sttlm_amnt,  payment_endtoend_id,  TENANT_ID from  (  select   NT.created_date,   NT.dbtr_iban,   NT.cdtr_iban,   NT.dr_sort_code,   NT.cr_sort_code,   NT.uetr,   NT.tran_ref_id,   NT.clrsysref,   NT.intrbk_sttlm_amnt,   CMB.bank_name,   NTPL.cbuae_return_code,   NT.TENANT_ID,   NT.status,   NT.process_group,   NT.process_status,   NT.process_type,   NT.payment_endtoend_id  from   npss_transactions NT  inner join core_member_banks CMB on   CMB.bic_code = NT.cr_sort_code  inner join npss_trn_process_log NTPL on   NTPL.uetr = NT.uetr   and NT.status = NTPL.status)VW where  status = 'OR_BCT_UNMATCHED'  and process_status = 'BCTUnMatched'  and process_type = 'OP'  and process_group = 'BCT' $AND"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"Pacs004 Unmatched Transactions CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Transaction Date","target_column":"created_date","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Debtor Account","target_column":"dbtr_iban","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Creditor Account","target_column":"cdtr_iban","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Debtor BIC","target_column":"dr_sort_code","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Creditor BIC","target_column":"cr_sort_code","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Beneficiary Bank","target_column":"bank_name","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Original UETR","target_column":"uetr","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Original Tran ID","target_column":"tran_ref_id","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Original Clr Sys Ref No","target_column":"clrsysref","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"CBUAE Return Code","target_column":"cbuae_return_code","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Transaction Amount","target_column":"intrbk_sttlm_amnt","alias_name":"","alignment":"Right","width":"","format":"CURRENCY:د.إ","date_format":false,"currency_format":true}]}}}}}}
+		try {
+			this.handler.select_first_record(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

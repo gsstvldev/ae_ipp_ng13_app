@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35865 
+Build ID        : 35947 
 Modified By     : Admin 
-Modified Date   : 2024-Jun-27 7:13 AM 
+Modified Date   : 2024-Jul-04 7:2 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_inward_cpr_report
@@ -211,6 +211,11 @@ export class s_inward_cpr_reportComponent implements OnInit,AfterViewInit {
 		this.ssp_from_serach__brfq_from_list(parent_event_result)
 	}
 
+	//Handler for INTERNAL event of "brfq from list"
+	brfq_from_list__internal(parent_event_result){
+		this.brfq_from_list__sfr_for_list(parent_event_result)
+	}
+
 	//Handler for INTERNAL event of "e 1708425960961"
 	e_1708425960961__internal(parent_event_result){
 		this.e_1708425960961__e_1708425977969(parent_event_result)
@@ -403,11 +408,33 @@ export class s_inward_cpr_reportComponent implements OnInit,AfterViewInit {
 		let event_code="e_1710480399724"
 		let event_params={"caller_name":"ssp_from_serach__brfq_from_list","event_desc":"BRFQ from List","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N","avoid_key_column_filter":"N"},"parent_event_result":"SUCCESS"}
 		let handler_code="bind_record_from_query"
-		let internals=""
+		let internals="brfq_from_list__sfr_for_list,"
 		let event_data={}
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1712208732334","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Inward CPR Report MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"DBTR_IBAN","alias_name":"","mq_id":"MQ_1712208181217","date_format":false},{"column_name":"CDTR_IBAN","alias_name":"","mq_id":"MQ_1712208189383","date_format":false},{"column_name":"CDTR_ACCT_NO","alias_name":"","mq_id":"MQ_1712208201559","date_format":false},{"column_name":"CDTR_DOCUMENT_ID","alias_name":"","mq_id":"MQ_1712208235646","date_format":false},{"column_name":"INTRBK_STTLM_CUR","alias_name":"","mq_id":"MQ_1712208265022","date_format":false},{"column_name":"INTRBK_STTLM_AMNT","alias_name":"","mq_id":"MQ_1712208281822","date_format":false,"currency_format":true},{"column_name":"UETR","alias_name":"","mq_id":"MQ_1712208305038","date_format":false},{"column_name":"CLRSYSREF","alias_name":"","mq_id":"MQ_1712208314062","date_format":false},{"column_name":"TRAN_REF_ID","alias_name":"","mq_id":"MQ_1712208324190","date_format":false},{"column_name":"CPR_DW_FILE_NAME","alias_name":"","mq_id":"MQ_1712208334982","date_format":false},{"column_name":"CPR_REJECT_REASON","alias_name":"","mq_id":"MQ_1712208347709","date_format":false}],"joins":[]},"eq_text":"select  DBTR_IBAN,  CDTR_IBAN,  CDTR_ACCT_NO,  CDTR_DOCUMENT_ID,  INTRBK_STTLM_CUR,  INTRBK_STTLM_AMNT,  UETR,  CLRSYSREF,  TRAN_REF_ID,  CPR_DW_FILE_NAME,  CPRDWFLAG,  CPR_REJECT_REASON from  (  select   A.NPSST_ID,   A.DBTR_IBAN,   A.CDTR_IBAN,   A.CDTR_ACCT_NO,   A.CDTR_DOCUMENT_ID,   A.INTRBK_STTLM_CUR,   A.INTRBK_STTLM_AMNT,   A.UETR,   A.CLRSYSREF,   A.TRAN_REF_ID,   A.CPR_CR_FILE_NAME,   A.CPR_DW_FILE_NAME,   A.CPR_REJECT_REASON,   A.CPR_DW_FLAG,   case    when A.CPR_DW_FLAG = 'A' then INITCAP('Accepted')    when A.CPR_DW_FLAG = 'R' then INITCAP('Rejected')   end as CPRDWFLAG,   A.CPR_CR_FLAG,   A.MODIFIED_DATE,   A.CREATED_DATE,   A.DT_CODE,   A.DTT_CODE,   A.TENANT_ID,   A.VERSION_NO  from   <TRAN_DB>.NPSS_TRANSACTIONS A  where   A.CPR_DW_FLAG in('A', 'R') )v $WHERE order by  CPRDWFLAG"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Inward CPR Report MQ CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Sender BIC","target_column":"DBTR_IBAN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Receiver BIC","target_column":"CDTR_IBAN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Cr Account","target_column":"CDTR_ACCT_NO","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Customer Id Doc","target_column":"CDTR_DOCUMENT_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Currency","target_column":"INTRBK_STTLM_CUR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Amount","target_column":"INTRBK_STTLM_AMNT","alias_name":"","alignment":"Right","width":"","format":"CURRENCY:د.إ","date_format":false,"currency_format":true},{"header":"UETR","target_column":"UETR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"UAEIPP ID","target_column":"CLRSYSREF","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Tran Ref No","target_column":"TRAN_REF_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"File Name","target_column":"CPR_DW_FILE_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Return Reason","target_column":"CPR_REJECT_REASON","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "brfq from list"
+	brfq_from_list__sfr_for_list(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="brfq_from_list"
+		let destn_id="list"
+		let parent_source_id="ssp_from_serach"
+		let event_code="e_1720072600131"
+		let event_params={"caller_name":"brfq_from_list__sfr_for_list","event_desc":"SFR For List","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="select_first_record"
+		let internals=""
+		let event_data={}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1712208732334","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Inward CPR Report MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"DBTR_IBAN","alias_name":"","mq_id":"MQ_1712208181217","date_format":false},{"column_name":"CDTR_IBAN","alias_name":"","mq_id":"MQ_1712208189383","date_format":false},{"column_name":"CDTR_ACCT_NO","alias_name":"","mq_id":"MQ_1712208201559","date_format":false},{"column_name":"CDTR_DOCUMENT_ID","alias_name":"","mq_id":"MQ_1712208235646","date_format":false},{"column_name":"INTRBK_STTLM_CUR","alias_name":"","mq_id":"MQ_1712208265022","date_format":false},{"column_name":"INTRBK_STTLM_AMNT","alias_name":"","mq_id":"MQ_1712208281822","date_format":false,"currency_format":true},{"column_name":"UETR","alias_name":"","mq_id":"MQ_1712208305038","date_format":false},{"column_name":"CLRSYSREF","alias_name":"","mq_id":"MQ_1712208314062","date_format":false},{"column_name":"TRAN_REF_ID","alias_name":"","mq_id":"MQ_1712208324190","date_format":false},{"column_name":"CPR_DW_FILE_NAME","alias_name":"","mq_id":"MQ_1712208334982","date_format":false},{"column_name":"CPR_REJECT_REASON","alias_name":"","mq_id":"MQ_1712208347709","date_format":false}],"joins":[]},"eq_text":"select  DBTR_IBAN,  CDTR_IBAN,  CDTR_ACCT_NO,  CDTR_DOCUMENT_ID,  INTRBK_STTLM_CUR,  INTRBK_STTLM_AMNT,  UETR,  CLRSYSREF,  TRAN_REF_ID,  CPR_DW_FILE_NAME,  CPRDWFLAG,  CPR_REJECT_REASON from  (  select   A.NPSST_ID,   A.DBTR_IBAN,   A.CDTR_IBAN,   A.CDTR_ACCT_NO,   A.CDTR_DOCUMENT_ID,   A.INTRBK_STTLM_CUR,   A.INTRBK_STTLM_AMNT,   A.UETR,   A.CLRSYSREF,   A.TRAN_REF_ID,   A.CPR_CR_FILE_NAME,   A.CPR_DW_FILE_NAME,   A.CPR_REJECT_REASON,   A.CPR_DW_FLAG,   case    when A.CPR_DW_FLAG = 'A' then INITCAP('Accepted')    when A.CPR_DW_FLAG = 'R' then INITCAP('Rejected')   end as CPRDWFLAG,   A.CPR_CR_FLAG,   A.MODIFIED_DATE,   A.CREATED_DATE,   A.DT_CODE,   A.DTT_CODE,   A.TENANT_ID,   A.VERSION_NO  from   <TRAN_DB>.NPSS_TRANSACTIONS A  where   A.CPR_DW_FLAG in('A', 'R') )v $WHERE order by  CPRDWFLAG"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Inward CPR Report MQ CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Sender BIC","target_column":"DBTR_IBAN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Receiver BIC","target_column":"CDTR_IBAN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Cr Account","target_column":"CDTR_ACCT_NO","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Customer Id Doc","target_column":"CDTR_DOCUMENT_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Currency","target_column":"INTRBK_STTLM_CUR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Amount","target_column":"INTRBK_STTLM_AMNT","alias_name":"","alignment":"Right","width":"","format":"CURRENCY:د.إ","date_format":false,"currency_format":true},{"header":"UETR","target_column":"UETR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"UAEIPP ID","target_column":"CLRSYSREF","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Tran Ref No","target_column":"TRAN_REF_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"File Name","target_column":"CPR_DW_FILE_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Return Reason","target_column":"CPR_REJECT_REASON","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		try {
+			this.handler.select_first_record(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

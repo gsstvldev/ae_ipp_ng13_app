@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35364 
+Build ID        : 35919 
 Modified By     : Admin 
-Modified Date   : 2024-May-13 11:2 AM 
+Modified Date   : 2024-Jul-04 7:6 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_debit_advice_report
@@ -168,9 +168,9 @@ focustoelement(){
 		//Properties of channel_refno
 		this.ctrl.channel_refno = {}
 		this.ctrl.channel_refno.id = "RN11CN4"
-		this.ctrl.channel_refno.desc = "Sender Reference number"
+		this.ctrl.channel_refno.desc = "Sender/Originator Ref Number"
 		this.ctrl.channel_refno.visible = true
-		this.ctrl.channel_refno.label_name = "Sender Reference number"
+		this.ctrl.channel_refno.label_name = "Sender/Originator Ref Number"
 		this.ctrl.channel_refno.df_code = "DF_1304_1665901396659"
 		this.ctrl.channel_refno.df_description = "Column Group 1"
 		this.ctrl.channel_refno.uictrl_code = "CDN_CTRL"

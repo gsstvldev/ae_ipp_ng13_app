@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35865 
+Build ID        : 35947 
 Modified By     : Admin 
-Modified Date   : 2024-Jun-27 7:13 AM 
+Modified Date   : 2024-Jul-04 7:1 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_user_access_matrix_report
@@ -211,6 +211,11 @@ export class s_user_access_matrix_reportComponent implements OnInit,AfterViewIni
 		this.ssp_from_serach__brfq_from_list(parent_event_result)
 	}
 
+	//Handler for INTERNAL event of "brfq from list"
+	brfq_from_list__internal(parent_event_result){
+		this.brfq_from_list__sfr_for_list(parent_event_result)
+	}
+
 	//Handler for INTERNAL event of "e 1708425960961"
 	e_1708425960961__internal(parent_event_result){
 		this.e_1708425960961__e_1708425977969(parent_event_result)
@@ -403,11 +408,33 @@ export class s_user_access_matrix_reportComponent implements OnInit,AfterViewIni
 		let event_code="e_1710480399724"
 		let event_params={"caller_name":"ssp_from_serach__brfq_from_list","event_desc":"BRFQ from List","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N","avoid_key_column_filter":"N"},"parent_event_result":"SUCCESS"}
 		let handler_code="bind_record_from_query"
-		let internals=""
+		let internals="brfq_from_list__sfr_for_list,"
 		let event_data={}
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1712295271212","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"User Access Matrix Report MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"app_description","alias_name":"","mq_id":"MQ_1712215333863","date_format":false},{"column_name":"user_name","alias_name":"","mq_id":"MQ_1712215334205","date_format":false},{"column_name":"ROLE_DESCRIPTION","alias_name":"","mq_id":"MQ_1712215334373","date_format":false},{"column_name":"MODULE_NAME","alias_name":"","mq_id":"MQ_1712215334509","date_format":false},{"column_name":"MENU_GROUP_NAME","alias_name":"","mq_id":"MQ_1712215334653","date_format":false},{"column_name":"MENU_ITEM_NAME","alias_name":"","mq_id":"MQ_1712215334829","date_format":false}],"joins":[]},"eq_text":"select   APP_CODE,  app_description,  user_name,  appr_id,  ROLE_DESCRIPTION,  MODULE_NAME,  MENU_GROUP_NAME,  MENU_ITEM_NAME from (select  APP_CODE,  app_description,  user_name,  appr_id,  ROLE_DESCRIPTION,  MODULE_NAME,  MENU_GROUP_NAME,  MENU_ITEM_NAME from vw_user_access_matrix  where appr_id not in ('697','709','731','711','710','681','679'))v $WHERE group by  APP_CODE, app_description, user_name, ROLE_DESCRIPTION, appr_id, MODULE_NAME, MENU_GROUP_NAME, MENU_ITEM_NAME"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"User Access Matrix Report CCD","filter":[],"databinding":[{"header":"App Name","target_column":"app_description","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"User Name","target_column":"user_name","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Role Name","target_column":"ROLE_DESCRIPTION","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Module Name","target_column":"MODULE_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Menu Group Name","target_column":"MENU_GROUP_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Menu Item Name","target_column":"MENU_ITEM_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "brfq from list"
+	brfq_from_list__sfr_for_list(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="brfq_from_list"
+		let destn_id="list"
+		let parent_source_id="ssp_from_serach"
+		let event_code="e_1720072600131"
+		let event_params={"caller_name":"brfq_from_list__sfr_for_list","event_desc":"SFR For List","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="select_first_record"
+		let internals=""
+		let event_data={}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1712295271212","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"User Access Matrix Report MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"app_description","alias_name":"","mq_id":"MQ_1712215333863","date_format":false},{"column_name":"user_name","alias_name":"","mq_id":"MQ_1712215334205","date_format":false},{"column_name":"ROLE_DESCRIPTION","alias_name":"","mq_id":"MQ_1712215334373","date_format":false},{"column_name":"MODULE_NAME","alias_name":"","mq_id":"MQ_1712215334509","date_format":false},{"column_name":"MENU_GROUP_NAME","alias_name":"","mq_id":"MQ_1712215334653","date_format":false},{"column_name":"MENU_ITEM_NAME","alias_name":"","mq_id":"MQ_1712215334829","date_format":false}],"joins":[]},"eq_text":"select   APP_CODE,  app_description,  user_name,  appr_id,  ROLE_DESCRIPTION,  MODULE_NAME,  MENU_GROUP_NAME,  MENU_ITEM_NAME from (select  APP_CODE,  app_description,  user_name,  appr_id,  ROLE_DESCRIPTION,  MODULE_NAME,  MENU_GROUP_NAME,  MENU_ITEM_NAME from vw_user_access_matrix  where appr_id not in ('697','709','731','711','710','681','679'))v $WHERE group by  APP_CODE, app_description, user_name, ROLE_DESCRIPTION, appr_id, MODULE_NAME, MENU_GROUP_NAME, MENU_ITEM_NAME"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"User Access Matrix Report CCD","filter":[],"databinding":[{"header":"App Name","target_column":"app_description","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"User Name","target_column":"user_name","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Role Name","target_column":"ROLE_DESCRIPTION","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Module Name","target_column":"MODULE_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Menu Group Name","target_column":"MENU_GROUP_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Menu Item Name","target_column":"MENU_ITEM_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		try {
+			this.handler.select_first_record(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

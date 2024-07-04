@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35865 
+Build ID        : 35947 
 Modified By     : Admin 
-Modified Date   : 2024-Jun-27 7:13 AM 
+Modified Date   : 2024-Jul-04 7:2 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_user_activity_report
@@ -211,6 +211,11 @@ export class s_user_activity_reportComponent implements OnInit,AfterViewInit {
 		this.ssp_from_serach__brfq_from_list(parent_event_result)
 	}
 
+	//Handler for INTERNAL event of "brfq from list"
+	brfq_from_list__internal(parent_event_result){
+		this.brfq_from_list__sfr_for_list(parent_event_result)
+	}
+
 	//Handler for INTERNAL event of "e 1708425960961"
 	e_1708425960961__internal(parent_event_result){
 		this.e_1708425960961__e_1708425977969(parent_event_result)
@@ -403,11 +408,33 @@ export class s_user_activity_reportComponent implements OnInit,AfterViewInit {
 		let event_code="e_1710480399724"
 		let event_params={"caller_name":"ssp_from_serach__brfq_from_list","event_desc":"BRFQ from List","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N","avoid_key_column_filter":"N"},"parent_event_result":"SUCCESS"}
 		let handler_code="bind_record_from_query"
-		let internals=""
+		let internals="brfq_from_list__sfr_for_list,"
 		let event_data={}
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1712295394766","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"User Activity Report MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"APP_DESCRIPTION","alias_name":"","mq_id":"MQ_1712223435151","date_format":false},{"column_name":"USER_NAME","alias_name":"","mq_id":"MQ_1712223435502","date_format":false},{"column_name":"ACTIVITY_DATE","alias_name":"","mq_id":"MQ_1712223435669","date_format":false},{"column_name":"MODULE","alias_name":"","mq_id":"MQ_1712223436022","date_format":false},{"column_name":"MENU_GROUP","alias_name":"","mq_id":"MQ_1712223436214","date_format":false},{"column_name":"MENU_ITEM","alias_name":"","mq_id":"MQ_1712223492293","date_format":false},{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1712223492533","date_format":false},{"column_name":"CLIENTIP","alias_name":"","mq_id":"MQ_1712223492757","date_format":false},{"column_name":"SESSIONID","alias_name":"","mq_id":"MQ_1712223532903","date_format":false}],"joins":[]},"eq_text":"SELECT U_ID,  APP_CODE,  APP_DESCRIPTION,  MODULE,  MENU_GROUP,  MENU_ITEM,  PROCESS_NAME,  TENANT_ID,  ACTIVITY_DATE,  USER_NAME,  CLIENTIP,  SESSIONID FROM  (SELECT U.U_ID,    A.APP_ID,    A.APP_CODE,    A.APP_DESCRIPTION,    T.MODULE,    T.MENU_GROUP,    T.MENU_ITEM,    T.PROCESS_NAME,    T.TENANT_ID,    T.CREATED_DATE as ACTIVITY_DATE,    U.LOGIN_NAME as USER_NAME,     T.CREATED_CLIENTIP as CLIENTIP,     T.CREATED_BY_SESSIONID as SESSIONID   FROM PRC_TOKENS T   INNER JOIN <CLT_CAS>.USERS U ON T.CREATED_BY = U.U_ID   INNER JOIN <CLT_CAS>.APPLICATIONS A ON A.APP_ID = T.APP_ID  AND A.APP_ID IN ('210','215')  )V $WHERE   GROUP BY    ACTIVITY_DATE,  APP_DESCRIPTION,  APP_CODE,  USER_NAME,  U_ID,  MODULE,  MENU_GROUP,  MENU_ITEM,  PROCESS_NAME,  TENANT_ID,  CLIENTIP,  SESSIONID ORDER BY ACTIVITY_DATE DESC"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"User Activity Report","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"App Desc","target_column":"APP_DESCRIPTION","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"User Name","target_column":"USER_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Activity Date","target_column":"ACTIVITY_DATE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Module","target_column":"MODULE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Menu Group","target_column":"MENU_GROUP","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Screen Name","target_column":"MENU_ITEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Activity Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Client IP","target_column":"CLIENTIP","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Session ID","target_column":"SESSIONID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "brfq from list"
+	brfq_from_list__sfr_for_list(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="brfq_from_list"
+		let destn_id="list"
+		let parent_source_id="ssp_from_serach"
+		let event_code="e_1720072600131"
+		let event_params={"caller_name":"brfq_from_list__sfr_for_list","event_desc":"SFR For List","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="select_first_record"
+		let internals=""
+		let event_data={}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1712295394766","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"User Activity Report MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"APP_DESCRIPTION","alias_name":"","mq_id":"MQ_1712223435151","date_format":false},{"column_name":"USER_NAME","alias_name":"","mq_id":"MQ_1712223435502","date_format":false},{"column_name":"ACTIVITY_DATE","alias_name":"","mq_id":"MQ_1712223435669","date_format":false},{"column_name":"MODULE","alias_name":"","mq_id":"MQ_1712223436022","date_format":false},{"column_name":"MENU_GROUP","alias_name":"","mq_id":"MQ_1712223436214","date_format":false},{"column_name":"MENU_ITEM","alias_name":"","mq_id":"MQ_1712223492293","date_format":false},{"column_name":"PROCESS_NAME","alias_name":"","mq_id":"MQ_1712223492533","date_format":false},{"column_name":"CLIENTIP","alias_name":"","mq_id":"MQ_1712223492757","date_format":false},{"column_name":"SESSIONID","alias_name":"","mq_id":"MQ_1712223532903","date_format":false}],"joins":[]},"eq_text":"SELECT U_ID,  APP_CODE,  APP_DESCRIPTION,  MODULE,  MENU_GROUP,  MENU_ITEM,  PROCESS_NAME,  TENANT_ID,  ACTIVITY_DATE,  USER_NAME,  CLIENTIP,  SESSIONID FROM  (SELECT U.U_ID,    A.APP_ID,    A.APP_CODE,    A.APP_DESCRIPTION,    T.MODULE,    T.MENU_GROUP,    T.MENU_ITEM,    T.PROCESS_NAME,    T.TENANT_ID,    T.CREATED_DATE as ACTIVITY_DATE,    U.LOGIN_NAME as USER_NAME,     T.CREATED_CLIENTIP as CLIENTIP,     T.CREATED_BY_SESSIONID as SESSIONID   FROM PRC_TOKENS T   INNER JOIN <CLT_CAS>.USERS U ON T.CREATED_BY = U.U_ID   INNER JOIN <CLT_CAS>.APPLICATIONS A ON A.APP_ID = T.APP_ID  AND A.APP_ID IN ('210','215')  )V $WHERE   GROUP BY    ACTIVITY_DATE,  APP_DESCRIPTION,  APP_CODE,  USER_NAME,  U_ID,  MODULE,  MENU_GROUP,  MENU_ITEM,  PROCESS_NAME,  TENANT_ID,  CLIENTIP,  SESSIONID ORDER BY ACTIVITY_DATE DESC"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"User Activity Report","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"App Desc","target_column":"APP_DESCRIPTION","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"User Name","target_column":"USER_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Activity Date","target_column":"ACTIVITY_DATE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Module","target_column":"MODULE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Menu Group","target_column":"MENU_GROUP","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Screen Name","target_column":"MENU_ITEM","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Activity Name","target_column":"PROCESS_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Client IP","target_column":"CLIENTIP","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Session ID","target_column":"SESSIONID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		try {
+			this.handler.select_first_record(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

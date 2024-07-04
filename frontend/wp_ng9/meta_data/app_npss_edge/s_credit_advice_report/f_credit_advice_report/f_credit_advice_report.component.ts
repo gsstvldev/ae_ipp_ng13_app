@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35868 
+Build ID        : 35919 
 Modified By     : Admin 
-Modified Date   : 2024-Jul-02 10:45 AM 
+Modified Date   : 2024-Jul-04 7:6 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_credit_advice_report
@@ -51,9 +51,9 @@ focustoelement(){
 		//Properties of uetr
 		this.ctrl.uetr = {}
 		this.ctrl.uetr.id = "RN01CN1"
-		this.ctrl.uetr.desc = "IPP Reference Number"
+		this.ctrl.uetr.desc = "UETR"
 		this.ctrl.uetr.visible = true
-		this.ctrl.uetr.label_name = "IPP Reference Number"
+		this.ctrl.uetr.label_name = "UETR"
 		this.ctrl.uetr.df_code = "DF_1304_1665901396659"
 		this.ctrl.uetr.df_description = "Column Group 1"
 		this.ctrl.uetr.uictrl_code = "CDN_CTRL"
@@ -129,9 +129,9 @@ focustoelement(){
 		//Properties of payment_endtoend_id
 		this.ctrl.payment_endtoend_id = {}
 		this.ctrl.payment_endtoend_id.id = "RN11CN3"
-		this.ctrl.payment_endtoend_id.desc = "E2E Reference Number"
+		this.ctrl.payment_endtoend_id.desc = "End to End Id"
 		this.ctrl.payment_endtoend_id.visible = false
-		this.ctrl.payment_endtoend_id.label_name = "E2E Reference Number"
+		this.ctrl.payment_endtoend_id.label_name = "End to End Id"
 		this.ctrl.payment_endtoend_id.df_code = "DF_1304_1665901396659"
 		this.ctrl.payment_endtoend_id.df_description = "Column Group 1"
 		this.ctrl.payment_endtoend_id.uictrl_code = "CDN_CTRL"

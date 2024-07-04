@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35865 
+Build ID        : 35947 
 Modified By     : Admin 
-Modified Date   : 2024-Jun-27 7:12 AM 
+Modified Date   : 2024-Jul-04 7:1 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_user_authentication_history_report
@@ -211,6 +211,11 @@ export class s_user_authentication_history_reportComponent implements OnInit,Aft
 		this.ssp_from_serach__brfq_from_list(parent_event_result)
 	}
 
+	//Handler for INTERNAL event of "brfq from list"
+	brfq_from_list__internal(parent_event_result){
+		this.brfq_from_list__sfr_for_list(parent_event_result)
+	}
+
 	//Handler for INTERNAL event of "e 1708425960961"
 	e_1708425960961__internal(parent_event_result){
 		this.e_1708425960961__e_1708425977969(parent_event_result)
@@ -403,11 +408,33 @@ export class s_user_authentication_history_reportComponent implements OnInit,Aft
 		let event_code="e_1710480399724"
 		let event_params={"caller_name":"ssp_from_serach__brfq_from_list","event_desc":"BRFQ from List","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N","avoid_key_column_filter":"N"},"parent_event_result":"SUCCESS"}
 		let handler_code="bind_record_from_query"
-		let internals=""
+		let internals="brfq_from_list__sfr_for_list,"
 		let event_data={}
 		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1712216165120","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS User Authentication History Report MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"USER_NAME","alias_name":"","mq_id":"MQ_1712211126903","date_format":false},{"column_name":"LOGIN_STATUS","alias_name":"","mq_id":"MQ_1712211127134","date_format":false},{"column_name":"REMARKS","alias_name":"","mq_id":"MQ_1712212324631","date_format":false}],"joins":[]},"eq_text":"SELECT LOGIN_STATUS,  REMARKS,  U_ID, DATE, USER_NAME,  TENANT_ID FROM  (SELECT U.U_ID,    UAL.LOGIN_NAME AS USER_NAME,    UAL.REMARKS,    UAL.TENANT_ID,    UAL.LOGIN_STATUS,    UAL.CREATED_DATE AS DATE   FROM CLT_TRAN.USER_AUTHENTICATION_LOG UAL   INNER JOIN CLT_TRAN.USERS U ON UAL.LOGIN_NAME = U.LOGIN_NAME) V $WHERE GROUP BY DATE, USER_NAME,  U_ID,  LOGIN_STATUS,  REMARKS,  TENANT_ID ORDER BY DATE DESC"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS User Authentication History Report MQ CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"User Name","target_column":"USER_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Login Status","target_column":"LOGIN_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Remark","target_column":"REMARKS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.bind_record_from_query(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "brfq from list"
+	brfq_from_list__sfr_for_list(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="brfq_from_list"
+		let destn_id="list"
+		let parent_source_id="ssp_from_serach"
+		let event_code="e_1720072600131"
+		let event_params={"caller_name":"brfq_from_list__sfr_for_list","event_desc":"SFR For List","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let handler_code="select_first_record"
+		let internals=""
+		let event_data={}
+		let data_source={"default":{"dt_1304_1665901130705":{"dtt_1304_1665901217208":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1665901130705","dt_desc":"NPSS EDGE Transactions Group","dtt_code":"DTT_1304_1665901217208","dtt_desc":"NPSS Transactions","ds_eligible":"DS_1712216165120","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS User Authentication History Report MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"USER_NAME","alias_name":"","mq_id":"MQ_1712211126903","date_format":false},{"column_name":"LOGIN_STATUS","alias_name":"","mq_id":"MQ_1712211127134","date_format":false},{"column_name":"REMARKS","alias_name":"","mq_id":"MQ_1712212324631","date_format":false}],"joins":[]},"eq_text":"SELECT LOGIN_STATUS,  REMARKS,  U_ID, DATE, USER_NAME,  TENANT_ID FROM  (SELECT U.U_ID,    UAL.LOGIN_NAME AS USER_NAME,    UAL.REMARKS,    UAL.TENANT_ID,    UAL.LOGIN_STATUS,    UAL.CREATED_DATE AS DATE   FROM CLT_TRAN.USER_AUTHENTICATION_LOG UAL   INNER JOIN CLT_TRAN.USERS U ON UAL.LOGIN_NAME = U.LOGIN_NAME) V $WHERE GROUP BY DATE, USER_NAME,  U_ID,  LOGIN_STATUS,  REMARKS,  TENANT_ID ORDER BY DATE DESC"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS User Authentication History Report MQ CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"User Name","target_column":"USER_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Login Status","target_column":"LOGIN_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Remark","target_column":"REMARKS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
+		try {
+			this.handler.select_first_record(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

@@ -59,13 +59,13 @@ app.post('/', function (appRequest, appResponse, next) {
                                 arrTranID = [params.Tran_Id.toString()];
                             }
                             TempTranID = '(' + "'" + arrTranID.toString().split(',').join("','") + "'" + ')';
-                            //  TempTranID = '242033'
+                            //TempTranID = '5318331'
                             var PRCT_ID = prct_id
                             var final_status
                             var final_process_status
                             var TakeStsPsts = `select success_process_status,success_status from core_nc_workflow_setup where rule_code = 'RCT_OP_POSTING_FAIL_REPOST'  and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}' and product_code='${params.PROD_CODE}'`
-                            var take_api_params = `select ns.account_currency,ns.department_code,ns.channel_refno,ns.channel_id,ns.middleware_ref_no,ns.cbs_ref_no,ns.reversal_amount,ns.npsst_id,fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,fn_pcidss_decrypt(ns.dbtr_acct_no,$PCIDSS_KEY ) as dbtr_acct_no,ns.dbtr_cust_type,ns.ext_acct_id_code,ns.intrbk_sttlm_amnt,ns.instrument_type,ns.instruction_id,ns.hdr_msg_id,ns.hdr_clearing_system,ns.dbtr_other_issuer,ns.ext_person_id_code,ns.dbtr_country,ns.dbtr_city_birth,ns.dbtr_birth_date,ns.dbtr_document_id,ns.issuer_type_code,ns.dbtr_prvt_id,ns.remittance_info,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method, ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty, ns.clrsysref, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,ns.reversal_amount,ns.intrbk_sttlm_amnt, ns.process_type,ns.status,ns.process_status,ns.tran_ref_id, ns.value_date,ns.ext_org_id_code,ns.accp_date_time as accp_dt_tm from npss_transactions ns where npsst_id in ${TempTranID}`;
-                            //var take_api_params = `select * from npss_transactions where npsst_id in (${TempTranID})`;
+                            var take_api_params = `select ns.account_currency,ns.department_code,ns.channel_refno,ns.channel_id,ns.middleware_ref_no,ns.cbs_ref_no,ns.reversal_amount,ns.npsst_id,fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,fn_pcidss_decrypt(ns.dbtr_acct_no,$PCIDSS_KEY ) as dbtr_acct_no,ns.dbtr_cust_type,ns.ext_acct_id_code,ns.intrbk_sttlm_amnt,ns.instrument_type,ns.instruction_id,ns.hdr_msg_id,ns.hdr_clearing_system,ns.dbtr_other_issuer,ns.ext_person_id_code,ns.dbtr_country,ns.dbtr_city_birth,ns.dbtr_birth_date,ns.dbtr_document_id,ns.issuer_type_code,ns.dbtr_prvt_id,ns.remittance_info,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method, ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty, ns.clrsysref, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,ns.message_data,ns.reversal_amount,ns.intrbk_sttlm_amnt, ns.process_type,ns.status,ns.process_status,ns.tran_ref_id, ns.value_date,ns.ext_org_id_code,ns.accp_date_time as accp_dt_tm from npss_transactions ns where npsst_id in ${TempTranID} and process_type='OP'`;
+                            // var take_api_params = `select * from npss_transactions where npsst_id in (${TempTranID}) and process_type ='OP'`;
                             var Takekafkaurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_CC_POSTING' and param_code='URL' and need_sync = 'Y'`
                             ExecuteQuery1(TakeStsPsts, async function (arrurlResult) {
                                 if (arrurlResult.length) {
@@ -91,11 +91,20 @@ app.post('/', function (appRequest, appResponse, next) {
                                                             let uetr = arrTranparams[0].uetr
                                                             reqInstanceHelper.PrintInfo.uetr = arrTranparams[0].uetr
                                                             console.log(uetr)
-                                                            var takecbreturncode = `Select * from Npss_trn_process_log where  uetr ='${uetr}'`
+                                                            var takecbreturncode = `Select * from Npss_trn_process_log where  uetr ='${uetr}' and status ='OP_AC_STATUS_REJECTED'`
                                                             let arrreturncode = await select(takecbreturncode)
                                                             if (arrreturncode.length > 0) {
+                                                                let returncode
                                                                 let c_return_code = arrreturncode[0].cbuae_return_code
-                                                                Apicalls = await CallORRAPI(arrTranparams, failcountobj, failcount, arrurl, c_return_code)
+                                                                let index = c_return_code.indexOf('-');
+
+                                                                if (index !== -1) {
+                                                                    returncode = c_return_code.substring(0, index);
+                                                                    console.log(returncode);
+                                                                } else {
+                                                                    returncode = arrreturncode[0].cbuae_return_code
+                                                                }
+                                                                Apicalls = await CallORRAPI(arrTranparams, failcountobj, failcount, arrurl, returncode)
                                                             }
                                                             else {
                                                                 objresponse.status = "FAILURE"
@@ -193,6 +202,7 @@ app.post('/', function (appRequest, appResponse, next) {
                         }
 
                         _BulkInsertProcessItem(arrCusTranInst, 'npss_trn_process_log', function callbackInsert(CusTranInsertRes) {
+                            reqInstanceHelper.PrintInfo('------------Process log table insert success-------' + CusTranInsertRes);
                             if (CusTranInsertRes.length > 0) {
                                 var UpdateTrnTbl
                                 if (params.Roleid == 705 || params.Roleid == '705' || params.Roleid == 737 || params.Roleid == '737') {
@@ -214,7 +224,7 @@ app.post('/', function (appRequest, appResponse, next) {
                             }
                         })
                     }
-                    function CallORRAPI(arrTranparams, failcountobj, failcount, arrurl, c_return_code) {
+                    function CallORRAPI(arrTranparams, failcountobj, failcount, arrurl, returncode) {
                         return new Promise((resolve, reject) => {
                             var reason_code
                             var npsst_refno
@@ -239,7 +249,7 @@ app.post('/', function (appRequest, appResponse, next) {
                                                     "channel_id": arrTranparamsObj.channel_id || '',
                                                     "dbtr_iban": arrTranparamsObj.dbtr_iban || '',
                                                     "process_type": 'ORR',
-                                                    "cbuae_return_code": c_return_code,
+                                                    "cbuae_return_code": returncode,
                                                     "account_currency": arrTranparamsObj.account_currency || '',
                                                     "intrbk_sttlm_amnt": arrTranparamsObj.intrbk_sttlm_amnt || '',
                                                     "cdtr_acct_name": arrTranparamsObj.cdtr_acct_name || '',
@@ -269,8 +279,6 @@ app.post('/', function (appRequest, appResponse, next) {
                                     PrintInfo.url = arrurl[0].param_detail
                                     PrintInfo.uetr = arrTranparamsObj.uetr || ''
                                     PrintInfo.npsst_id = arrTranparamsObj.npsst_id || ''
-
-
                                     reqInstanceHelper.PrintInfo(serviceName, '------------ORR API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
                                     request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                                         if (error) {
@@ -292,9 +300,6 @@ app.post('/', function (appRequest, appResponse, next) {
                         return new Promise((resolve, reject) => {
                             reqAsync.forEachOfSeries(arrTranparams, function (arrTranparamsObj, i, nextobjctfunc) {
                                 var runapifun = async () => {
-
-
-
                                     var request = require('request');
                                     var options = {
                                         url: arrurl[0].param_detail,

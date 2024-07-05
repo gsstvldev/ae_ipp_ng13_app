@@ -62,6 +62,7 @@ app.post('/', function (appRequest, appResponse, next) {
                                                         objCusTranInst.NPSSTRRD_REFNO = arrdata[0].tran_ref_id;
                                                         objCusTranInst.PROCESS_NAME = 'Manual Statue Update API Call'
                                                         objCusTranInst.PROCESSING_SYSTEM = 'NPSS';
+                                                        objCusTranInst.PROCESS_TIME = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
                                                         objCusTranInst.PROCESS_TYPE = 'OP';
                                                         objCusTranInst.PROCESS_STATUS = 'RCTNotification';
                                                         objCusTranInst.STATUS = 'OP_NOTIFIED';

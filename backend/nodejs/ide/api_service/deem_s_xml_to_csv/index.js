@@ -2,15 +2,11 @@ var $MODULEPATH = '../../node_modules/';
 var express = require('express');
 var Path = require('path');
 var $REFPATH = Path.join(__dirname, '../../torus-references/');
-
 var app = express.Router();
-
 app.post('/', function (appRequest, appResponse, next) {
-
     /*  Created By :   Suresh
     Created Date : 30/05/2024
-    Reason :XML TO CSV WI:3837
-    */
+    Reason :XML TO CSV WI:3837 */
     var serviceName = 'DEEM XML TO CSV';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
     var reqTranDBInstance = require($REFPATH + "instance/TranDBInstance.js"); /// postgres & oracle DB pointing        
@@ -32,7 +28,6 @@ app.post('/', function (appRequest, appResponse, next) {
         'data': '',
         'msg': ''
     }; // Response to Client
-
     // Assign function for loginformation and session info
     reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInformation) {
         try {
@@ -45,36 +40,62 @@ app.post('/', function (appRequest, appResponse, next) {
             reqTranDBInstance.GetTranDBConn(headers, false, async function (pSession) {
                 mTranConn = pSession; //  assign connection    
                 try {
-                    let takedata = await FTPcnt()
-                    const xml = takedata
-                    if (takedata.length) {
-                        let json_parsed = JSON.parse(xml2json.toJson(xml));
-                        delete json_parsed['Document']['Signature']
-                        console.log(json_parsed)
-                        let call_From_rec = false, key_pair = []
-                        console.log(Traverse(json_parsed, call_From_rec))
-                        // let alldata = [key_pair]
-                        var alldata = Traverse(json_parsed);
-                        var objkeys = Object.keys(alldata[0])
-                        let Header = await findHeader(objkeys)
-                        console.log(Header)
-                        let data = alldata
-                        let csvContent = await getCSVStream(data, Header)
-                        //console.log(csvContent)
-                        // console.log(csvContent)
-                        let takecvsdata = await FTPconnection(csvContent)
-                        if (takecvsdata == 'SUCCESS') {
-                            objresponse.status = 'SUCCESS'
-                            sendResponse(null, objresponse)
-                        }
-                        else {
-                            objresponse.status = 'FAILURE'
-                            sendResponse(null, objresponse)
-                        }
+                    let takecsvfiles = await takecsv()
+                    let allcnvrtcsv = [];
+                    for (let i = 0; i < takecsvfiles.length; i++) {
+                        let takexl = takecsvfiles[i].name;
+                        removecsv = takexl.replace(".csv", "");
+                        allcnvrtcsv.push(removecsv);
                     }
-                    else {
-                        objresponse.status = 'NO DATA FOUND'
-                        sendResponse(null, objresponse)
+                    console.log(allcnvrtcsv)
+                    let takedata = await FTPcnt()
+                    if (takedata.length > 0) {
+                        if (takedata.length > 0) {
+                            let names = takedata.map(item => item.name.replace(".xml", ""));
+                            let filteredData = takedata.filter(item => !allcnvrtcsv.includes(item.name.replace(".xml", "")));
+                            if (filteredData.length > 0) {
+                                console.log(filteredData)
+                                for (let i = 0; i < filteredData.length; i++) {
+                                    let xml = filteredData[i].data;
+                                    let name = filteredData[i].name;
+                                    currentfile = name.replace(".xml", "");
+                                    let json_parsed = JSON.parse(xml2json.toJson(xml));
+                                    if (json_parsed['Document'] && json_parsed['Document']['Signature']) {
+                                        delete json_parsed['Document']['Signature'];
+                                    }
+                                    console.log(json_parsed);
+                                    let alldata = Traverse(json_parsed);
+                                    if (alldata.length > 0) {
+                                        let objkeys = Object.keys(alldata[0]);
+                                        let Header = await findHeader(objkeys);
+                                        console.log(Header);
+                                        let csvContent = await getCSVStream(alldata, Header);
+                                        let takecvsdata = await FTPconnection(csvContent, currentfile);
+                                        if (takecvsdata === 'SUCCESS') {
+                                            objresponse.status = 'SUCCESS';
+                                            sendResponse(null, objresponse);
+                                        } else {
+                                            objresponse.status = 'FAILURE';
+                                            sendResponse(null, objresponse);
+                                        }
+                                    } else {
+                                        objresponse.status = 'NO DATA FOUND';
+                                        sendResponse(null, objresponse);
+                                    }
+                                }
+                            } else {
+                                let objresponse = { status: 'NO NEW FILE FOUND' };
+                                sendResponse(null, objresponse);
+                            }
+                        } else {
+                            let objresponse = { status: 'NO DATA FOUND' };
+                            sendResponse(null, objresponse);
+                        }
+
+
+                    } else {
+                        objresponse.status = 'NO DATA FOUND';
+                        sendResponse(null, objresponse);
                     }
                     async function findHeader(arr) {
                         return new Promise((resolve, reject) => {
@@ -112,18 +133,18 @@ app.post('/', function (appRequest, appResponse, next) {
                             } catch (err) {
                                 reqInstanceHelper.PrintInfo(serviceName, "........................Error in csv content preparation..............." + err, objSessionLogInfo);
                                 reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN CSV FILE Creation ', error);
-
                             }
 
                         })
                     }
-                    async function FTPconnection(csvContent) {
+                    async function FTPconnection(csvContent, currentfile) {
                         return new Promise((resolve, reject) => {
                             try {
                                 var ip = params.sftp_ip;
                                 var port = params.sftp_port;
                                 var username = params.sftp_username;
-                                var filepath = params.sftp_path.trim() + params.sftp_filename + moment().format('DDMMYYYY_HHMMSS') + '.csv'
+                                //  var filepath = params.sftp_path.trim() + params.sftp_filename + moment().format('DDMMYYYY_HHMMSS') + '.csv'
+                                var filepath = params.sftp_read_path.trim() + "/" + currentfile + '.csv'
                                 //  var filename = filepassword[0].sftp_filename.trim();
                                 var file_content = csvContent
                                 console.log('............................', filepath)
@@ -146,43 +167,122 @@ app.post('/', function (appRequest, appResponse, next) {
                                         //* /   nextobjctfunc(); */
                                     }).catch(err => {
                                         console.log(err, 'Error in file upload for the file ' + filename);
-
                                     });
-
-
                                 });
                             } catch (error) {
                                 reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN FILE UPLOAD ', error);
                             }
                         })
-
                     }
                     async function FTPcnt() {
                         try {
-                            var ip = params.sftp_ip;
-                            var port = params.sftp_port;
-                            var username = params.sftp_username;
-                            var filepath = params.sftp_path + 'readsample.xml'
-                            //params.sftp_path.trim() + params.sftp_filename + moment().format('DDMMYYYY_HHMMSS') + '.xml';
-                            console.log('............................', filepath);
-                            var connectObj = {
-                                "host": ip,
-                                "port": port,
-                                "username": username,
-                                "password": params.sftp_password,
-                                "passphrase": params.sftp_passphrase
+                            const modelfile = 'camt.053';  // File name pattern to look for
+                            const ip = params.sftp_ip;  // SFTP server IP address
+                            const port = params.sftp_port;  // SFTP port
+                            const username = params.sftp_username;  // SFTP username
+                            const sftpPath = params.sftp_path;  // Path on the SFTP server where the files might exist
+                            const connectObj = {
+                                host: ip,
+                                port: port,
+                                username: username,
+                                password: params.sftp_password,
+                                passphrase: params.sftp_passphrase
                             };
-                            var sftp = new Client();
+                            const sftp = new Client();
                             await sftp.connect(connectObj);
-                            var fileData = await sftp.get(filepath);
-                            console.log('File downloaded successfully.');
+                            const fileList = await sftp.list(sftpPath);
+                            let downloadedFiles = [];
+                            for (const file of fileList) {
+                                if (file.name.includes(modelfile)) {
+                                    const filePath = `${sftpPath}/${file.name}`;
+                                    const fileData = await sftp.get(filePath);
+                                    console.log(`File '${file.name}' downloaded successfully from ${sftpPath}.`);
+                                    downloadedFiles.push({ name: file.name, data: fileData.toString() });
+                                }
+                            }
+
                             sftp.end();
-                            return fileData.toString();
+                            return downloadedFiles;
+
                         } catch (error) {
                             console.error('Error in FTP connection:', error);
                             throw error;
                         }
                     }
+                    async function takecsv() {
+                        try {
+                            const ip = params.sftp_ip;  // SFTP server IP address
+                            const port = params.sftp_port;  // SFTP port
+                            const username = params.sftp_username;  // SFTP username
+                            const sftpPath = params.sftp_read_path;  // Path on the SFTP server where the files might exist
+                            const connectObj = {
+                                host: ip,
+                                port: port,
+                                username: username,
+                                password: params.sftp_password,
+                                passphrase: params.sftp_passphrase
+                            };
+                            const sftp = new Client();
+                            await sftp.connect(connectObj);
+                            const fileList = await sftp.list(sftpPath);
+                            sftp.end();
+                            return fileList;
+
+                        } catch (error) {
+                            console.error('Error in FTP connection:', error);
+                            throw error;
+                        }
+                    }
+                    async function takexml() {
+                        try {
+                            const ip = params.sftp_ip;  // SFTP server IP address
+                            const port = params.sftp_port;  // SFTP port
+                            const username = params.sftp_username;  // SFTP username
+                            const sftpPath = params.sftp_path;  // Path on the SFTP server where the files might exist
+                            const connectObj = {
+                                host: ip,
+                                port: port,
+                                username: username,
+                                password: params.sftp_password,
+                                passphrase: params.sftp_passphrase
+                            };
+                            const sftp = new Client();
+                            await sftp.connect(connectObj);
+                            const fileList = await sftp.list(sftpPath);
+                            sftp.end();
+                            return fileList;
+
+                        } catch (error) {
+                            console.error('Error in FTP connection:', error);
+                            throw error;
+                        }
+                    }
+                    // async function FTPcnt() {
+                    //     try {
+                    //         modelfile = 'camt.053'
+                    //         var ip = params.sftp_ip;
+                    //         var port = params.sftp_port;
+                    //         var username = params.sftp_username;
+                    //         var filepath = params.sftp_path + modelfile
+                    //         console.log('............................', filepath);
+                    //         var connectObj = {
+                    //             "host": ip,
+                    //             "port": port,
+                    //             "username": username,
+                    //             "password": params.sftp_password,
+                    //             "passphrase": params.sftp_passphrase
+                    //         };
+                    //         var sftp = new Client();
+                    //         await sftp.connect(connectObj);
+                    //         var fileData = await sftp.get(filepath);
+                    //         console.log('File downloaded successfully.');
+                    //         sftp.end();
+                    //         return fileData.toString();
+                    //     } catch (error) {
+                    //         console.error('Error in FTP connection:', error);
+                    //         throw error;
+                    //     }
+                    // }
 
                     // first letter capital for header data              
                     function convertCapital(b) {
@@ -197,7 +297,6 @@ app.post('/', function (appRequest, appResponse, next) {
                         })
                     }
                     function Traverse(json_parsed) {
-
                         let key_list = []
                         key_list = Object.keys(json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'])
                         let ntry_length = Object.keys(json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'])
@@ -225,10 +324,8 @@ app.post('/', function (appRequest, appResponse, next) {
                                     key_pair[i]['Amt'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Bal'][i]['Amt']['$t'])
                                 if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Bal'][i]['Amt']['Ccy'])
                                     key_pair[i]['Ccy'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Bal'][i]['Amt']['Ccy'])
-
                                 if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Bal'][i]['CdtDbtInd'])
                                     key_pair[i]['CdtDbtInd'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Bal'][i]['CdtDbtInd'])
-
                                 if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Bal'][i]['Dt']['Dt'])
                                     key_pair[i]['Dt'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Bal'][i]['Dt']['Dt'])
                                 if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Bal'][i]['Dt']['DtTm'])
@@ -271,7 +368,6 @@ app.post('/', function (appRequest, appResponse, next) {
                             /* key_list=Object.keys(json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'])
                             for(let i in key_list)
                             { */
-
                             if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]) {
                                 if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['AcctSvcrRef']) {
                                     key_pair[i]['NtryRef'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['AcctSvcrRef'])
@@ -412,7 +508,6 @@ app.post('/', function (appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
-
 });
 
 module.exports = app;

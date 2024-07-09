@@ -26,9 +26,15 @@ export class npss_cs_export_excel_for_reportService {
         let searchParam: any = []
         let wftrpDesc = screenInstance.wftpa_description
 
-        databinding = JSON.stringify(screenInstance.list.bind_param.dsInfo.databinding),
-            searchParam =JSON.stringify(screenInstance.cc_for_control.search_params),
-            filter = JSON.stringify(screenInstance.list.bind_param.dsInfo.filter)
+        databinding = JSON.stringify(screenInstance.list.bind_param.dsInfo.databinding)
+        if (screenInstance.cc_for_control) {
+            searchParam = JSON.stringify(screenInstance.cc_for_control.search_params)
+        }
+        else {
+            searchParam = JSON.stringify(screenInstance.cc_from_search.search_params)
+        }
+        //searchParam =JSON.stringify(screenInstance.cc_for_control.search_params)
+        filter = JSON.stringify(screenInstance.list.bind_param.dsInfo.filter)
 
         let params = {
             "ACTION_DESC": screenInstance.wftpa_description.toUpperCase(),
@@ -134,7 +140,7 @@ export class npss_cs_export_excel_for_reportService {
                     ws.getRow(1).font = { bold: true };
                     ws.mergeCells('A1:E1');
 
-                 
+
 
                     // Set the value and styling for the merged cell
                     //ws.getCell('A1').value = 'NPSS Report';
@@ -156,7 +162,7 @@ export class npss_cs_export_excel_for_reportService {
             });
 
     }
-      
+
     //Custom validation logics
     //Uncomment below lines when validation is required
     //fn_customValidation(projName,screenInstance,message,callback){

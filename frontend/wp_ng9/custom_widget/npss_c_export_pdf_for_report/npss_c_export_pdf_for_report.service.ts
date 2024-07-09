@@ -35,9 +35,15 @@ export class npss_c_export_pdf_for_reportService {
         let Databinding: any = []
         let Searchparam: any = []
         let Filter: any = []
-        Databinding = JSON.stringify(screenInstance.list.bind_param.dsInfo.databinding),
-            Searchparam = JSON.stringify(screenInstance.cc_for_control.search_params),
-            Filter = JSON.stringify(screenInstance.list.bind_param.dsInfo.filter)
+        Databinding = JSON.stringify(screenInstance.list.bind_param.dsInfo.databinding)
+        if (screenInstance.cc_for_control) {
+            Searchparam = JSON.stringify(screenInstance.cc_for_control.search_params)
+        }
+        else {
+            Searchparam = JSON.stringify(screenInstance.cc_from_search.search_params)
+        }
+
+        Filter = JSON.stringify(screenInstance.list.bind_param.dsInfo.filter)
 
 
         let params = {
@@ -80,19 +86,21 @@ export class npss_c_export_pdf_for_reportService {
                         PagingData: result.data.PagingData || ""
                     }
                     let dataBind = JSON.parse(params.DATA_BINDINGS)
-                    let header: any = [{col:'NO',alignment:'right'}]
+                    let header: any = [{ col: 'NO', alignment: 'right' }]
                     let bodyContent: any = []
                     let Header = JSON.parse(result.data.RowData)
-                let k=1;
-                    Header.forEach((c)=>{c.NO=k;
-                        k++;})
-                    let Headersvalue: any = [{text:'NO',style:'tableheader'}]
+                    let k = 1;
+                    Header.forEach((c) => {
+                        c.NO = k;
+                        k++;
+                    })
+                    let Headersvalue: any = [{ text: 'NO', style: 'tableheader' }]
                     for (let k = 0; k < dataBind.length; k++) {
                         let headerCol: any = {}
                         headerCol.text = dataBind[k]['header'].toUpperCase()
                         headerCol.style = 'tableheader'
                         Headersvalue.push(headerCol)
-                        header.push({col:dataBind[k]['target_column'].toLowerCase(),alignment:dataBind[k]['alignment'].toLowerCase()})
+                        header.push({ col: dataBind[k]['target_column'].toLowerCase(), alignment: dataBind[k]['alignment'].toLowerCase() })
                     }
                     bodyContent.push(Headersvalue)
                     //console.log(Headersvalue.length)
@@ -116,7 +124,7 @@ export class npss_c_export_pdf_for_reportService {
                         },
                         content: [
                             {
-                                text:params.ACTION_DESC.split('_').slice(1).join(' '),
+                                text: params.ACTION_DESC.split('_').slice(1).join(' '),
                                 style: 'header'
                             },
                             {
@@ -144,7 +152,7 @@ export class npss_c_export_pdf_for_reportService {
                             }, left: {
                                 bold: true,
                                 fontSize: 15,
-                            },right: {
+                            }, right: {
                                 bold: true,
                                 fontSize: 15,
                                 alignment: 'right'
@@ -152,7 +160,7 @@ export class npss_c_export_pdf_for_reportService {
                         }
 
                     }
-                    let screenName =params.ACTION_DESC.toLowerCase().split('_').slice(1).join('_')+ '_' + moment().format('DDMMYYYY') + '_' + moment().format('HHMMSS')
+                    let screenName = params.ACTION_DESC.toLowerCase().split('_').slice(1).join('_') + '_' + moment().format('DDMMYYYY') + '_' + moment().format('HHMMSS')
                     pdfmake.createPdf(dd).download(screenName);
                 } else {
 
@@ -160,7 +168,7 @@ export class npss_c_export_pdf_for_reportService {
                 }
             });
     }
-  
+
     //Custom validation logics
     //Uncomment below lines when validation is required
     //fn_customValidation(projName,screenInstance,message,callback){

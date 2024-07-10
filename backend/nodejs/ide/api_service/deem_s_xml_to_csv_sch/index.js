@@ -21,7 +21,9 @@ app.post('/', function (appRequest, appResponse, next) {
     var reqAsync = require('async');
     var Client = require('ssh2-sftp-client');
     var mTranConn = "";
+    reqInstanceHelper.PrintInfo(serviceName, "........................ api requestbefore  body..............." + JSON.stringify(params), objSessionLogInfo);
     var xml2json = require('xml2json');
+    reqInstanceHelper.PrintInfo(serviceName, "........................ api request body..............." + JSON.stringify(params), objSessionLogInfo);
     var moment = require('moment');
     const { createObjectCsvStringifier } = require('csv-writer');
     const { Writable } = require('stream');

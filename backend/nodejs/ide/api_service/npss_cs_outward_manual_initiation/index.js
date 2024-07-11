@@ -50,7 +50,7 @@ app.post('/', function(appRequest, appResponse, next) {
   Reason for : CHECK BIRTHDATE IN CDTR_IBAN INCLUDE 564 LOGIC CHANGE   WI 3848  -- RENGA --7/06/2024
     Reason for : Checked iban taken from core_nc_System_setup table for birth date and acct_name wi 3771 5/2/2024:-- subramanian
     Reason for : Added Rule code based state change for final UPDATION IN TRANSACTION TABLE   WI 3898  -- subramanian --7/01/2024
-    Reason for : Merged Elp code with master   WI 3926  -- subramanian --7/11/2024
+    Reason for : Merged Elp code with master    WI 3926  -- subramanian --7/11/2024
     
      
     */

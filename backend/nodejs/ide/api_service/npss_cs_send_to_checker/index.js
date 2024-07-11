@@ -35,6 +35,7 @@ app.post('/', function(appRequest, appResponse, next) {
             reason for: Mandatory field validation done for prepaid posting api calls 15-5-2024 wi:3811 - subramani
             reason for : check prepaid card logic change for iban -- renga WI : 3771 15-04-2024
                  reason for : check prepaid card validation check  -- renga WI : 3811 16-05-2024
+                 reason for : Merged elp code with master  -- subramanian WI : 3926 11-07-2024
       */
       var serviceName = 'NPSS (CS) Send To Checker';
       var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        

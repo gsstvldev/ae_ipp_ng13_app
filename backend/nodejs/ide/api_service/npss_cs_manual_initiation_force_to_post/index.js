@@ -23,6 +23,7 @@ app.post('/', function(appRequest, appResponse, next) {
             Reason for:Validate api before posting payload change on  26/03/2024
             Reason for:Validation for certain values like send to checker for prepaid transactions wi:3771 on  27/05/2024
             Reason for:tAKING IBAN  values from table like send to checker,replaced wuith hard coded value for prepaid transactions wi:3771 on  29/05/2024
+            Reason :CODE MERGED ON 11-07-2024 by Daseen
       */
       var serviceName = 'NPSS (CS) Manual Initiation Force to Post';
       var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        

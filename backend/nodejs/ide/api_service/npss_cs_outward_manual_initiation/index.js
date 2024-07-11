@@ -16,659 +16,686 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
-  /*  Created By :sIVA hARISH
-  Created Date : 31-12-2022
-  Modified By : Siva Harish
-  Modified Date : 24/01/2023
-  Modified By : Siva Harish
-  Modified Date : 25/01/2023
-   Modified By : Siva Harish
-  Modified Date : 26/01/2023
-   Modified By : Siva Harish
-  Modified Date : 14/03/2023
-   Modified By : Siva Harish
-  Modified Date : 17/03/2023
-    Modified By : Renga
-  Modified Date : 25/03/2024
-    Modified By : Renga
-  Modified Date : 02/04/2024
-  Reason for : Adding new function for paymentendtoendId 11/04/2023
-  Reason for : brithdate take from cbs acct table 25/4/2023
-  Reason for : Including Sell margin and sell rate 28/4/2023
-  Reason for : Handling Dbtr birth date 8/5/2023
-  Reason for : Changing query 16/6/2023
-    Reason for : Changing query 22/6/2023
-    Reason for : changes on DBTR NAME from ACCT table  11/01/2024 by Daseen
-    Reason for : changes on DBTR NAME,dob from given tran where cdtr_iban= null 19/01/2024 by Daseen
-    Reason for : changes on instruction_id insert  23/01/2024 by Daseen
-    Reason for : changes on PAYMENT END TO END  ID insert for bct  01/03/2024 by  Daseen
-    Reason for : Reverted changes on PAYMENT END TO END  ID for bct insert  01/03/2024 by  Daseen WI  3553
-    Reason for : channel cut off time checking for BCT  22/03/2024 by  Daseen WI  3553
-     Reason for : channel cut off time checking for BCT  
-  Reason for : SCHEMA DEFINED BASED ON THE LIVE OR ARCHIVAL WI 3683 -- renga
-  Reason for : Checked iban taken from core_nc_System_setup table for birth date and acct_name wi 3771 5/2/2024:-- subramanian
-  Reason for : Added Rule code based state change for final UPDATION IN TRANSACTION TABLE   WI 3898  -- subramanian --7/01/2024
-  
-   
-  */
-  var serviceName = ' NPSS (CS) Outward Manual Initiation ';
-  var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
-  var reqTranDBInstance = require($REFPATH + "instance/TranDBInstance.js"); /// postgres & oracle DB pointing        
-  var reqLogInfo = require($REFPATH + 'log/trace/LogInfo'); /// Log information Detail 
-  var reqAuditLog = require($REFPATH + 'log/audit/AuditLog');
-  var reqDateFormatter = require($REFPATH + 'common/dateconverter/DateFormatter');
-  var params = appRequest.body.PARAMS; //  Client input fromm Server
-  var headers = appRequest.headers; // header details 
-  var objSessionLogInfo = null; // set value is null
-  var reqAsync = require('async');
-  var mTranConn = "";
-  var Payment_Id
-  var uetr
-  var moment = require('moment')
-  var objresponse = {
-    'status': 'FAILURE',
-    'data': {},
-    'msg': ''
-  }; // Response to Client
-  // Assign function for loginformation and session info
-  reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInformation) {
-    try {
-      objSessionLogInfo = objLogInfo; // Assing log information
-      // Log Viewer Setup
-      objSessionLogInfo.HANDLER_CODE = ' NPSS (CS) Outward Manual Initiation ';
-      objSessionLogInfo.ACTION = 'ACTION';
-      objSessionLogInfo.PROCESS = ' NPSS (CS) Outward Manual Initiation ';
-      // Get DB Connection 
-      reqTranDBInstance.GetTranDBConn(headers, false, function (pSession) {
-        mTranConn = pSession; //  assign connection     
-        reqAuditLog.GetProcessToken(pSession, objLogInfo, async function prct(error, prct_id) {
-          if (error) {
-            sendResponse(error);
-          } else {
-            var PRCT_ID = prct_id
-            var success_process_status
-            var success_status
-            var schema;
-            if (params.DB_TYPE == 'LIVE') {
-              schema = '<tran_db>'
-            } else if (params.DB_TYPE == 'ARCHIVAL') {
-              schema = '<arc_tran_db>'
-            }
-            try {
-              var ruleqry = `select success_process_status,success_status  from core_nc_workflow_setup where rule_code='${params.RULE_CODE}'  and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
-              let eligibleChkRes = await checkEligible()
+    /*  Created By :sIVA hARISH
+    Created Date : 31-12-2022
+    Modified By : Siva Harish
+    Modified Date : 24/01/2023
+    Modified By : Siva Harish
+    Modified Date : 25/01/2023
+     Modified By : Siva Harish
+    Modified Date : 26/01/2023
+     Modified By : Siva Harish
+    Modified Date : 14/03/2023
+     Modified By : Siva Harish
+    Modified Date : 17/03/2023
+      Modified By : Renga
+    Modified Date : 25/03/2024
+      Modified By : Renga
+    Modified Date : 02/04/2024
+    Reason for : Adding new function for paymentendtoendId 11/04/2023
+    Reason for : brithdate take from cbs acct table 25/4/2023
+    Reason for : Including Sell margin and sell rate 28/4/2023
+    Reason for : Handling Dbtr birth date 8/5/2023
+    Reason for : Changing query 16/6/2023
+      Reason for : Changing query 22/6/2023
+      Reason for : changes on DBTR NAME from ACCT table  11/01/2024 by Daseen
+      Reason for : changes on DBTR NAME,dob from given tran where cdtr_iban= null 19/01/2024 by Daseen
+      Reason for : changes on instruction_id insert  23/01/2024 by Daseen
+      Reason for : changes on PAYMENT END TO END  ID insert for bct  01/03/2024 by  Daseen
+      Reason for : Reverted changes on PAYMENT END TO END  ID for bct insert  01/03/2024 by  Daseen WI  3553
+      Reason for : channel cut off time checking for BCT  22/03/2024 by  Daseen WI  3553
+       Reason for : channel cut off time checking for BCT  
+    Reason for : SCHEMA DEFINED BASED ON THE LIVE OR ARCHIVAL WI 3683 -- renga
+     Reason for : inserted new column fx_resv_text with created_date npss_transactions  WI 3818  -- subramanian
+  Reason for : CHECK BIRTHDATE IN CDTR_IBAN INCLUDE 564 LOGIC CHANGE   WI 3848  -- RENGA --7/06/2024
+    Reason for : Checked iban taken from core_nc_System_setup table for birth date and acct_name wi 3771 5/2/2024:-- subramanian
+    Reason for : Added Rule code based state change for final UPDATION IN TRANSACTION TABLE   WI 3898  -- subramanian --7/01/2024
+    Reason for : Merged Elp code with master   WI 3926  -- subramanian --7/11/2024
+    
+     
+    */
+    var serviceName = ' NPSS (CS) Outward Manual Initiation ';
+    var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
+    var reqTranDBInstance = require($REFPATH + "instance/TranDBInstance.js"); /// postgres & oracle DB pointing        
+    var reqLogInfo = require($REFPATH + 'log/trace/LogInfo'); /// Log information Detail 
+    var reqAuditLog = require($REFPATH + 'log/audit/AuditLog');
+    var reqDateFormatter = require($REFPATH + 'common/dateconverter/DateFormatter');
+    var params = appRequest.body.PARAMS; //  Client input fromm Server
+    var headers = appRequest.headers; // header details 
+    var objSessionLogInfo = null; // set value is null
+    var reqAsync = require('async');
+    var mTranConn = "";
+    var Payment_Id
+    var uetr
+    var moment = require('moment')
+    var objresponse = {
+        'status': 'FAILURE',
+        'data': {},
+        'msg': ''
+    }; // Response to Client
+    // Assign function for loginformation and session info
+    reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInformation) {
+        try {
+            objSessionLogInfo = objLogInfo; // Assing log information
+            // Log Viewer Setup
+            objSessionLogInfo.HANDLER_CODE = ' NPSS (CS) Outward Manual Initiation ';
+            objSessionLogInfo.ACTION = 'ACTION';
+            objSessionLogInfo.PROCESS = ' NPSS (CS) Outward Manual Initiation ';
+            // Get DB Connection 
+            reqTranDBInstance.GetTranDBConn(headers, false, function (pSession) {
+                mTranConn = pSession; //  assign connection     
+                reqAuditLog.GetProcessToken(pSession, objLogInfo, async function prct(error, prct_id) {
+                    if (error) {
+                        sendResponse(error);
+                    } else {
+                        var PRCT_ID = prct_id
+                        var success_process_status
+                        var success_status
+                        var schema;
+                        if (params.DB_TYPE == 'LIVE') {
+                            schema = '<tran_db>'
+                        } else if (params.DB_TYPE == 'ARCHIVAL') {
+                            schema = '<arc_tran_db>'
+                        }
+                        try {
+                            var ruleqry = `select success_process_status,success_status  from core_nc_workflow_setup where rule_code='${params.RULE_CODE}'  and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
+                            let eligibleChkRes = await checkEligible()
 
-              if (eligibleChkRes == 'SUCCESS') {
-                ExecuteQuery1(ruleqry, function (arrrule) {
-                  try {
-                    if (arrrule.length > 0) {
-                      success_process_status = arrrule[0].success_process_status;
-                      success_status = arrrule[0].success_status;
-                      var TakedatafrmTrn = `select fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY) as cr_acct_iden,fn_pcidss_decrypt(ns.dbtr_acct_no,$PCIDSS_KEY) as dbtr_account_no,* from ${schema}.npss_transactions ns where npsst_id = '${params.Tran_Id}'`
-                      ExecuteQuery1(TakedatafrmTrn, async function (arrdata) {
-                        var takeUetr = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_GET_UETR' and param_code='URL' and NEED_SYNC = 'Y'`
-                        ExecuteQuery1(takeUetr, async function (arruetr) {
-                          if (arruetr.length > 0) {
+                            if (eligibleChkRes == 'SUCCESS') {
+                                ExecuteQuery1(ruleqry, function (arrrule) {
+                                    try {
+                                        if (arrrule.length > 0) {
+                                            success_process_status = arrrule[0].success_process_status;
+                                            success_status = arrrule[0].success_status;
+                                            var TakedatafrmTrn = `select fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY) as cr_acct_iden,fn_pcidss_decrypt(ns.dbtr_acct_no,$PCIDSS_KEY) as dbtr_account_no,* from ${schema}.npss_transactions ns where npsst_id = '${params.Tran_Id}'`
+                                            ExecuteQuery1(TakedatafrmTrn, async function (arrdata) {
+                                                var takeUetr = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_GET_UETR' and param_code='URL' and NEED_SYNC = 'Y'`
+                                                ExecuteQuery1(takeUetr, async function (arruetr) {
+                                                    if (arruetr.length > 0) {
 
-                            //  var acctDetails = await getAcctData(arrdata)
-                            var orgfiledata = await Getorgdata(arrdata)
+                                                        //  var acctDetails = await getAcctData(arrdata)
+                                                        var orgfiledata = await Getorgdata(arrdata)
 
-                            uetr = await GetUetr(arruetr)
-                            // if(params.eligible_status=='IP_BCT_POSTING_SUCCESS'|| params.eligible_status=='IP_BCT_PC_T24_POSTING_SUCCESS'|| params.eligible_status=='IP_BCT_CC_T24_POSTING_SUCCESS'){
-                            //     Payment_Id= arrdata[0].payment_endtoend_id
-                            //}else{
-                            Payment_Id = await Getuuid()
-                            // }
+                                                        uetr = await GetUetr(arruetr)
+                                                        // if(params.eligible_status=='IP_BCT_POSTING_SUCCESS'|| params.eligible_status=='IP_BCT_PC_T24_POSTING_SUCCESS'|| params.eligible_status=='IP_BCT_CC_T24_POSTING_SUCCESS'){
+                                                        //     Payment_Id= arrdata[0].payment_endtoend_id
+                                                        //}else{
+                                                        Payment_Id = await Getuuid()
+                                                        // }
 
-                            if (arrdata.length > 0) {
-                              let selIbanParamQry = `select * from core_nc_system_setup where param_category='ELPASO_PREPAID_CARD' and param_Code='BRANCH_CODES'`
-                              TakeBrithdate = await BirthDate(await getIbanParams(selIbanParamQry), arrdata[0].uetr, arrdata[0].cdtr_iban, arrdata[0].cdtr_acct_name)
-                              let chkCreditPredpaid = await chkccpcc(arrdata)
-                              var arrCusTranInst = [];
-                              var objCusTranInst = {};
-                              objCusTranInst.FX_RESV_TEXT2 = orgfiledata
-                              objCusTranInst.CR_SORT_CODE = arrdata[0].dr_sort_code;
-                              objCusTranInst.PRCT_ID = PRCT_ID;
-                              objCusTranInst.DR_SORT_CODE = arrdata[0].cr_sort_code;
-                              objCusTranInst.HDR_MSG_ID = arrdata[0].hdr_msg_id;
-                              objCusTranInst.UETR = uetr;
-                              objCusTranInst.PROCESS_TYPE = 'OP';
-                              objCusTranInst.DBTR_IBAN = arrdata[0].cdtr_iban;
-                              objCusTranInst.CDTR_IBAN = arrdata[0].dbtr_iban
-                              objCusTranInst.DBTR_ACCT_NAME = TakeBrithdate.account_name
-                              objCusTranInst.CDTR_ACCT_NAME = arrdata[0].dbtr_acct_name
-                              objCusTranInst.DBTR_PHONE_NO = arrdata[0].cdtr_phone_no
-                              objCusTranInst.CDTR_PHONE_NO = arrdata[0].dbtr_phone_no
-                              objCusTranInst.DBTR_EMAIL_ID = arrdata[0].cdtr_email_id
-                              objCusTranInst.CDTR_EMAIL_ID = arrdata[0].dbtr_email_id
-                              objCusTranInst.DBTR_DOCUMENT_ID = arrdata[0].dbtr_document_id
-                              objCusTranInst.CDTR_DOCUMENT_ID = arrdata[0].cdtr_document_id
-                              objCusTranInst.TRAN_INFO = params.Tran_Id
-                              objCusTranInst.PROCESS_STATUS = success_process_status;
-                              objCusTranInst.STATUS = success_status;
-                              objCusTranInst.TENANT_ID = params.TENANT_ID;
-                              objCusTranInst.APP_ID = '215'
-                              objCusTranInst.DT_CODE = 'DT_1304_1665901130705'
-                              objCusTranInst.DTT_CODE = 'DTT_1304_1665901217208'
-                              objCusTranInst.DT_DESCRIPTION = 'transaction_group'
-                              objCusTranInst.DTT_DESCRIPTION = 'Transaction'
-                              objCusTranInst.CREATED_BY = params.CREATED_BY;
-                              objCusTranInst.CREATED_BY_NAME = params.CREATED_BY_NAME;
-                              objCusTranInst.CREATED_DATE = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
-                              objCusTranInst.MODIFIED_BY = "";
-                              objCusTranInst.MODIFIED_BY_NAME = "";
-                              objCusTranInst.MODIFIED_DATE = null;
-                              objCusTranInst.SYSTEM_ID = params.SYSTEM_ID || null;
-                              objCusTranInst.SYSTEM_NAME = params.SYSTEM_NAME || null;
-                              objCusTranInst.CREATED_BY_STS_ID = "";
-                              objCusTranInst.MODIFIED_BY_STS_ID = "";
-                              objCusTranInst.created_clientip = objSessionLogInfo.CLIENTIP;
-                              objCusTranInst.created_tz = objSessionLogInfo.CLIENTTZ;
-                              objCusTranInst.created_tz_offset = objSessionLogInfo.CLIENTTZ_OFFSET;
-                              objCusTranInst.created_date_utc = reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo);
-                              objCusTranInst.created_by_sessionid = objSessionLogInfo.SESSION_ID;
-                              objCusTranInst.routingkey = headers.routingkey;
-                              objCusTranInst.INTRBK_STTLM_AMNT = params.INTRBK_STTLM_AMNT || null
-                              objCusTranInst.INTRBK_STTLM_CUR = params.INTRBK_STTLM_CUR || null
-                              objCusTranInst.VALUE_DATE = reqDateFormatter.GetDateAt12AM(headers, objSessionLogInfo, params.VALUE_DATE)
-                              objCusTranInst.DBTR_ACCT_NO = chkCreditPredpaid ? chkCreditPredpaid == 'IBAN' ? arrdata[0].cdtr_acct_no : arrdata[0].cr_acct_iden : null
-                              objCusTranInst.CDTR_ACCT_NO = arrdata[0].dbtr_acct_no || null
-                              objCusTranInst.BASE_AMOUNT = arrdata[0].base_amount
-                              objCusTranInst.SELL_MARGIN = params.SELL_MARGIN || 0
-                              objCusTranInst.SELL_RATE = params.SELL_RATE || 0
-                              objCusTranInst.HDR_CREATED_DATE = arrdata[0].hdr_created_date
-                              objCusTranInst.HDR_TOTAL_RECORDS = arrdata[0].hdr_total_records
-                              objCusTranInst.RATE_CODE = arrdata[0].rate_code
-                              objCusTranInst.BUY_RATE = params.BUY_RATE || null
-                              objCusTranInst.HDR_TOTAL_AMOUNT = arrdata[0].hdr_total_amount
-                              objCusTranInst.CATEGORY_PURPOSE = arrdata[0].category_purpose
-                              objCusTranInst.HDR_SETTLEMENT_DATE = arrdata[0].hdr_settlement_date
-                              objCusTranInst.HDR_CLEARING_SYSTEM = arrdata[0].hdr_clearing_system
-                              objCusTranInst.PAYMENT_ENDTOEND_ID = Payment_Id || ''
-                              objCusTranInst.ORG_PAY_ENDTOEND_ID = arrdata[0].payment_endtoend_id
-                              objCusTranInst.INSTRUCTION_ID = arrdata[0].payment_endtoend_id
-                              objCusTranInst.INSTRUMENT_TYPE = arrdata[0].instrument_type
-                              objCusTranInst.CHARGE_BEARER = arrdata[0].charge_bearer
-                              objCusTranInst.EXHF_ID = arrdata[0].exhf_id
-                              objCusTranInst.DBTR_CUST_TYPE = arrdata[0].dbtr_cust_type
-                              objCusTranInst.CHANNEL_ID = arrdata[0].channel_id
-                              objCusTranInst.CHANNEL_REFNO = arrdata[0].channel_refno
-                              objCusTranInst.CHANNEL_USERID = arrdata[0].channel_userid
-                              objCusTranInst.CHANNEL_PRODUCT = arrdata[0].channel_product
-                              objCusTranInst.CHANNEL_SUB_PRODUCT = arrdata[0].channel_sub_product
-                              objCusTranInst.CHANNEL_TRAN_CODE = arrdata[0].channel_tran_code
-                              objCusTranInst.TRAN_REF_ID = arrdata[0].tran_ref_id
-                              objCusTranInst.CATEGORY_PURPOSE_PRTY = arrdata[0].category_purpose_prty
-                              objCusTranInst.EXT_ORG_ID_CODE = arrdata[0].ext_org_id_code
-                              objCusTranInst.ISSUER_TYPE_CODE = arrdata[0].issuer_type_code
-                              objCusTranInst.DBTR_BIRTH_DATE = TakeBrithdate.date
-                              objCusTranInst.DBTR_CITY_BIRTH = arrdata[0].dbtr_city_birth
-                              objCusTranInst.DBTR_COUNTRY = arrdata[0].dbtr_country
-                              objCusTranInst.EXT_PERSON_ID_CODE = arrdata[0].ext_person_id_code
-                              objCusTranInst.CR_ACCT_IDENTIFICATION = arrdata[0].cr_acct_iden
-                              objCusTranInst.CR_ACCT_ID_CODE = arrdata[0].cr_acct_id_code
-                              objCusTranInst.EXT_PURPOSE_PRTY = arrdata[0].ext_purpose_prty
-                              objCusTranInst.EXT_PURPOSE_CODE = arrdata[0].ext_purpose_code
-                              objCusTranInst.REMITTANCE_INFO = arrdata[0].remittance_info
-                              objCusTranInst.INWARD_FILE_NAME = arrdata[0].inward_file_name
-                              objCusTranInst.CLRSYSREF = arrdata[0].clrsysref
-                              objCusTranInst.ACCP_DATE_TIME = arrdata[0].accp_date_time
-                              objCusTranInst.DEPARTMENT_CODE = arrdata[0].department_code || 'DEFAULT'
-                              objCusTranInst.CBS_REF_NO = arrdata[0].cbs_ref_no
-                              objCusTranInst.DBTR_PRVT_ID = arrdata[0].dbtr_prvt_id
-                              objCusTranInst.DBTR_OTHER_ISSUER = arrdata[0].dbtr_other_issuer
-                              objCusTranInst.MIDDLEWARE_REF_NO = arrdata[0].middleware_ref_no
-                              objCusTranInst.CBS_POSTING_FLAG = arrdata[0].cbs_posting_flag
-                              objCusTranInst.ACCOUNT_CURRENCY = arrdata[0].account_currency
-                              objCusTranInst.CPR_STATUS = arrdata[0].cpr_status
-                              objCusTranInst.PROCESSING_SYSTEM = arrdata[0].processing_system
-                              objCusTranInst.CPR_CR_FLAG = arrdata[0].cpr_cr_flag
-                              objCusTranInst.CPR_DW_FLAG = arrdata[0].cpr_dw_flag
-                              objCusTranInst.CPR_CR_FILE_NAME = arrdata[0].cpr_cr_file_name
-                              objCusTranInst.CPR_DW_FILE_NAME = arrdata[0].cpr_dw_file_name
-                              objCusTranInst.CPR_REJECT_REASON = arrdata[0].cpr_reject_reason
-                              objCusTranInst.REMARKS = arrdata[0].remarks
-                              objCusTranInst.DISPUTE_REF_NO = params.DISPUTE_REF_NO || null
-                              objCusTranInst.BUY_MARGIN = params.BUY_MARGIN || null
-                              objCusTranInst.REVERSAL_AMOUNT = arrdata[0].reversal_amount
-                              objCusTranInst.CHARGE_AMOUNT = params.CHARGE_AMOUNT || null
-                              objCusTranInst.AMOUNT_CREDITED_LOC_CUR = arrdata[0].amount_credited_loc_cur || null
-                              objCusTranInst.PROCESS_GROUP = params.process_group || 'MANUAL'
-                              objCusTranInst.CUST_SPLRATE_FLAG = 'N'
+                                                        if (arrdata.length > 0) {
+                                                            let selIbanParamQry = `select * from core_nc_system_setup where param_category='ELPASO_PREPAID_CARD' and param_Code='BRANCH_CODES'`
+                                                            TakeBrithdate = await BirthDate(await getIbanParams(selIbanParamQry), arrdata[0].uetr, arrdata[0].cdtr_iban, arrdata[0].cdtr_acct_name)
+                                                            let chkCreditPredpaid = await chkccpcc(arrdata)
+                                                            var arrCusTranInst = [];
+                                                            var objCusTranInst = {};
+                                                            objCusTranInst.FX_RESV_TEXT2 = orgfiledata
+                                                            objCusTranInst.CR_SORT_CODE = arrdata[0].dr_sort_code;
+                                                            objCusTranInst.PRCT_ID = PRCT_ID;
+                                                            objCusTranInst.DR_SORT_CODE = arrdata[0].cr_sort_code;
+                                                            objCusTranInst.HDR_MSG_ID = arrdata[0].hdr_msg_id;
+                                                            objCusTranInst.UETR = uetr;
+                                                            objCusTranInst.PROCESS_TYPE = 'OP';
+                                                            objCusTranInst.DBTR_IBAN = arrdata[0].cdtr_iban;
+                                                            objCusTranInst.CDTR_IBAN = arrdata[0].dbtr_iban
+                                                            objCusTranInst.DBTR_ACCT_NAME = TakeBrithdate.account_name
+                                                            objCusTranInst.CDTR_ACCT_NAME = arrdata[0].dbtr_acct_name
+                                                            objCusTranInst.DBTR_PHONE_NO = arrdata[0].cdtr_phone_no
+                                                            objCusTranInst.CDTR_PHONE_NO = arrdata[0].dbtr_phone_no
+                                                            objCusTranInst.DBTR_EMAIL_ID = arrdata[0].cdtr_email_id
+                                                            objCusTranInst.CDTR_EMAIL_ID = arrdata[0].dbtr_email_id
+                                                            objCusTranInst.DBTR_DOCUMENT_ID = arrdata[0].dbtr_document_id
+                                                            objCusTranInst.CDTR_DOCUMENT_ID = arrdata[0].cdtr_document_id
+                                                            objCusTranInst.TRAN_INFO = params.Tran_Id
+                                                            objCusTranInst.PROCESS_STATUS = success_process_status;
+                                                            objCusTranInst.STATUS = success_status;
+                                                            objCusTranInst.TENANT_ID = params.TENANT_ID;
+                                                            objCusTranInst.APP_ID = '215'
+                                                            objCusTranInst.DT_CODE = 'DT_1304_1665901130705'
+                                                            objCusTranInst.DTT_CODE = 'DTT_1304_1665901217208'
+                                                            objCusTranInst.DT_DESCRIPTION = 'transaction_group'
+                                                            objCusTranInst.DTT_DESCRIPTION = 'Transaction'
+                                                            objCusTranInst.CREATED_BY = params.CREATED_BY;
+                                                            objCusTranInst.CREATED_BY_NAME = params.CREATED_BY_NAME;
+                                                            objCusTranInst.CREATED_DATE = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
+                                                            objCusTranInst.MODIFIED_BY = "";
+                                                            objCusTranInst.MODIFIED_BY_NAME = "";
+                                                            objCusTranInst.MODIFIED_DATE = null;
+                                                            objCusTranInst.SYSTEM_ID = params.SYSTEM_ID || null;
+                                                            objCusTranInst.SYSTEM_NAME = params.SYSTEM_NAME || null;
+                                                            objCusTranInst.CREATED_BY_STS_ID = "";
+                                                            objCusTranInst.MODIFIED_BY_STS_ID = "";
+                                                            objCusTranInst.created_clientip = objSessionLogInfo.CLIENTIP;
+                                                            objCusTranInst.created_tz = objSessionLogInfo.CLIENTTZ;
+                                                            objCusTranInst.created_tz_offset = objSessionLogInfo.CLIENTTZ_OFFSET;
+                                                            objCusTranInst.created_date_utc = reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo);
+                                                            objCusTranInst.created_by_sessionid = objSessionLogInfo.SESSION_ID;
+                                                            objCusTranInst.routingkey = headers.routingkey;
+                                                            objCusTranInst.INTRBK_STTLM_AMNT = params.INTRBK_STTLM_AMNT || null
+                                                            objCusTranInst.INTRBK_STTLM_CUR = params.INTRBK_STTLM_CUR || null
+                                                            objCusTranInst.VALUE_DATE = reqDateFormatter.GetDateAt12AM(headers, objSessionLogInfo, params.VALUE_DATE)
+                                                            objCusTranInst.DBTR_ACCT_NO = chkCreditPredpaid ? chkCreditPredpaid == 'IBAN' ? arrdata[0].cdtr_acct_no : arrdata[0].cr_acct_iden : null
+                                                            objCusTranInst.CDTR_ACCT_NO = arrdata[0].dbtr_acct_no || null
+                                                            objCusTranInst.BASE_AMOUNT = arrdata[0].base_amount
+                                                            objCusTranInst.SELL_MARGIN = params.SELL_MARGIN || 0
+                                                            objCusTranInst.SELL_RATE = params.SELL_RATE || 0
+                                                            objCusTranInst.HDR_CREATED_DATE = arrdata[0].hdr_created_date
+                                                            objCusTranInst.HDR_TOTAL_RECORDS = arrdata[0].hdr_total_records
+                                                            objCusTranInst.RATE_CODE = arrdata[0].rate_code
+                                                            objCusTranInst.BUY_RATE = params.BUY_RATE || null
+                                                            objCusTranInst.HDR_TOTAL_AMOUNT = arrdata[0].hdr_total_amount
+                                                            objCusTranInst.CATEGORY_PURPOSE = arrdata[0].category_purpose
+                                                            objCusTranInst.HDR_SETTLEMENT_DATE = arrdata[0].hdr_settlement_date
+                                                            objCusTranInst.HDR_CLEARING_SYSTEM = arrdata[0].hdr_clearing_system
+                                                            objCusTranInst.PAYMENT_ENDTOEND_ID = Payment_Id || ''
+                                                            objCusTranInst.ORG_PAY_ENDTOEND_ID = arrdata[0].payment_endtoend_id
+                                                            objCusTranInst.INSTRUCTION_ID = arrdata[0].payment_endtoend_id
+                                                            objCusTranInst.INSTRUMENT_TYPE = arrdata[0].instrument_type
+                                                            objCusTranInst.CHARGE_BEARER = arrdata[0].charge_bearer
+                                                            objCusTranInst.EXHF_ID = arrdata[0].exhf_id
+                                                            objCusTranInst.DBTR_CUST_TYPE = arrdata[0].dbtr_cust_type
+                                                            objCusTranInst.CHANNEL_ID = arrdata[0].channel_id
+                                                            objCusTranInst.CHANNEL_REFNO = arrdata[0].channel_refno
+                                                            objCusTranInst.CHANNEL_USERID = arrdata[0].channel_userid
+                                                            objCusTranInst.CHANNEL_PRODUCT = arrdata[0].channel_product
+                                                            objCusTranInst.CHANNEL_SUB_PRODUCT = arrdata[0].channel_sub_product
+                                                            objCusTranInst.CHANNEL_TRAN_CODE = arrdata[0].channel_tran_code
+                                                            objCusTranInst.TRAN_REF_ID = arrdata[0].tran_ref_id
+                                                            objCusTranInst.CATEGORY_PURPOSE_PRTY = arrdata[0].category_purpose_prty
+                                                            objCusTranInst.EXT_ORG_ID_CODE = arrdata[0].ext_org_id_code
+                                                            objCusTranInst.ISSUER_TYPE_CODE = arrdata[0].issuer_type_code
+                                                            objCusTranInst.DBTR_BIRTH_DATE = TakeBrithdate.date
+                                                            objCusTranInst.DBTR_CITY_BIRTH = arrdata[0].dbtr_city_birth
+                                                            objCusTranInst.DBTR_COUNTRY = arrdata[0].dbtr_country
+                                                            objCusTranInst.EXT_PERSON_ID_CODE = arrdata[0].ext_person_id_code
+                                                            objCusTranInst.CR_ACCT_IDENTIFICATION = arrdata[0].cr_acct_iden
+                                                            objCusTranInst.CR_ACCT_ID_CODE = arrdata[0].cr_acct_id_code
+                                                            objCusTranInst.EXT_PURPOSE_PRTY = arrdata[0].ext_purpose_prty
+                                                            objCusTranInst.EXT_PURPOSE_CODE = arrdata[0].ext_purpose_code
+                                                            objCusTranInst.REMITTANCE_INFO = arrdata[0].remittance_info
+                                                            objCusTranInst.INWARD_FILE_NAME = arrdata[0].inward_file_name
+                                                            objCusTranInst.CLRSYSREF = arrdata[0].clrsysref
+                                                            objCusTranInst.ACCP_DATE_TIME = arrdata[0].accp_date_time
+                                                            objCusTranInst.DEPARTMENT_CODE = arrdata[0].department_code || 'DEFAULT'
+                                                            objCusTranInst.CBS_REF_NO = arrdata[0].cbs_ref_no
+                                                            objCusTranInst.DBTR_PRVT_ID = arrdata[0].dbtr_prvt_id
+                                                            objCusTranInst.DBTR_OTHER_ISSUER = arrdata[0].dbtr_other_issuer
+                                                            objCusTranInst.MIDDLEWARE_REF_NO = arrdata[0].middleware_ref_no
+                                                            objCusTranInst.CBS_POSTING_FLAG = arrdata[0].cbs_posting_flag
+                                                            objCusTranInst.ACCOUNT_CURRENCY = arrdata[0].account_currency
+                                                            objCusTranInst.CPR_STATUS = arrdata[0].cpr_status
+                                                            objCusTranInst.PROCESSING_SYSTEM = arrdata[0].processing_system
+                                                            objCusTranInst.FX_RESV_TEXT4 = arrdata[0].created_date
+                                                            objCusTranInst.CPR_CR_FLAG = arrdata[0].cpr_cr_flag
+                                                            objCusTranInst.CPR_DW_FLAG = arrdata[0].cpr_dw_flag
+                                                            objCusTranInst.CPR_CR_FILE_NAME = arrdata[0].cpr_cr_file_name
+                                                            objCusTranInst.CPR_DW_FILE_NAME = arrdata[0].cpr_dw_file_name
+                                                            objCusTranInst.CPR_REJECT_REASON = arrdata[0].cpr_reject_reason
+                                                            objCusTranInst.REMARKS = arrdata[0].remarks
+                                                            objCusTranInst.DISPUTE_REF_NO = params.DISPUTE_REF_NO || null
+                                                            objCusTranInst.BUY_MARGIN = params.BUY_MARGIN || null
+                                                            objCusTranInst.REVERSAL_AMOUNT = arrdata[0].reversal_amount
+                                                            objCusTranInst.CHARGE_AMOUNT = params.CHARGE_AMOUNT || null
+                                                            objCusTranInst.AMOUNT_CREDITED_LOC_CUR = arrdata[0].amount_credited_loc_cur || null
+                                                            objCusTranInst.PROCESS_GROUP = params.process_group || 'MANUAL'
+                                                            objCusTranInst.CUST_SPLRATE_FLAG = 'N'
 
-                              if (params.roleId == 705 || params.roleId == '705' || params.roleId == 737 || params.roleId == '737') {
-                                objCusTranInst.MAKER = params.CREATED_BY_NAME
-                              } else {
-                                objCusTranInst.CHECKER = params.CREATED_BY_NAME
-                              }
-                              arrCusTranInst.push(objCusTranInst)
-                              _BulkInsertProcessItem(arrCusTranInst, 'NPSS_TRANSACTIONS', function callbackInsert(CusTranInsertRes) {
-                                if (CusTranInsertRes.length > 0) {
-                                  var arrTrnPrslog = [];
-                                  var objcusTranprslog = {};
-                                  objcusTranprslog.MSG_ID = arrdata[0].hdr_msg_id;
-                                  objcusTranprslog.PRCT_ID = PRCT_ID;
-                                  objcusTranprslog.UETR = uetr;
-                                  objcusTranprslog.NPSSTRRD_REFNO = arrdata[0].tran_ref_id;
-                                  objcusTranprslog.PROCESS_NAME = 'Initiate Dispute Tran'
-                                  objcusTranprslog.PROCESSING_SYSTEM = 'NPSS';
-                                  objcusTranprslog.PROCESS_STATUS = success_process_status;
-                                  objcusTranprslog.STATUS = success_status;
-                                  objcusTranprslog.TENANT_ID = params.TENANT_ID;
-                                  objcusTranprslog.APP_ID = '215'
-                                  objcusTranprslog.DT_CODE = 'DT_1304_1665901130705'
-                                  objcusTranprslog.DTT_CODE = 'DTT_1304_1665901217208'
-                                  objcusTranprslog.DT_DESCRIPTION = 'transaction_group'
-                                  objcusTranprslog.DTT_DESCRIPTION = 'Transaction'
-                                  objcusTranprslog.CREATED_BY = params.CREATED_BY;
-                                  objcusTranprslog.CREATED_BY_NAME = params.CREATED_BY_NAME;
-                                  objcusTranprslog.CREATED_DATE = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
-                                  objcusTranprslog.MODIFIED_BY = "";
-                                  objcusTranprslog.MODIFIED_BY_NAME = "";
-                                  objcusTranprslog.MODIFIED_DATE = null;
-                                  objcusTranprslog.SYSTEM_ID = params.SYSTEM_ID || null;
-                                  objcusTranprslog.SYSTEM_NAME = params.SYSTEM_NAME || null;
-                                  objcusTranprslog.CREATED_BY_STS_ID = "";
-                                  objcusTranprslog.MODIFIED_BY_STS_ID = "";
-                                  objcusTranprslog.created_clientip = objSessionLogInfo.CLIENTIP;
-                                  objcusTranprslog.created_tz = objSessionLogInfo.CLIENTTZ;
-                                  objcusTranprslog.ADDITIONAL_INFO = arrdata[0].uetr || ''
-                                  objcusTranprslog.created_tz_offset = objSessionLogInfo.CLIENTTZ_OFFSET;
-                                  objcusTranprslog.created_date_utc = reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo);
-                                  objcusTranprslog.created_by_sessionid = objSessionLogInfo.SESSION_ID;
-                                  objcusTranprslog.routingkey = headers.routingkey;
-                                  arrTrnPrslog.push(objcusTranprslog)
-                                  _BulkInsertProcessItem(arrTrnPrslog, 'NPSS_TRN_PROCESS_LOG', function callbackInsert(CusTrnPrslog) {
-                                    if (CusTrnPrslog.length > 0) {
-                                      var ruleqry = `select success_process_status,success_status  from core_nc_workflow_setup where rule_code='OUTWARD_MANUAL_INITIATION_UPDATE'  and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
+                                                            if (params.roleId == 705 || params.roleId == '705' || params.roleId == 737 || params.roleId == '737') {
+                                                                objCusTranInst.MAKER = params.CREATED_BY_NAME
+                                                            } else {
+                                                                objCusTranInst.CHECKER = params.CREATED_BY_NAME
+                                                            }
+                                                            arrCusTranInst.push(objCusTranInst)
+                                                            _BulkInsertProcessItem(arrCusTranInst, 'NPSS_TRANSACTIONS', function callbackInsert(CusTranInsertRes) {
+                                                                if (CusTranInsertRes.length > 0) {
+                                                                    var arrTrnPrslog = [];
+                                                                    var objcusTranprslog = {};
+                                                                    objcusTranprslog.MSG_ID = arrdata[0].hdr_msg_id;
+                                                                    objcusTranprslog.PRCT_ID = PRCT_ID;
+                                                                    objcusTranprslog.UETR = uetr;
+                                                                    objcusTranprslog.NPSSTRRD_REFNO = arrdata[0].tran_ref_id;
+                                                                    objcusTranprslog.PROCESS_NAME = 'Initiate Dispute Tran'
+                                                                    objcusTranprslog.PROCESSING_SYSTEM = 'NPSS';
+                                                                    objcusTranprslog.PROCESS_STATUS = success_process_status;
+                                                                    objcusTranprslog.STATUS = success_status;
+                                                                    objcusTranprslog.TENANT_ID = params.TENANT_ID;
+                                                                    objcusTranprslog.APP_ID = '215'
+                                                                    objcusTranprslog.DT_CODE = 'DT_1304_1665901130705'
+                                                                    objcusTranprslog.DTT_CODE = 'DTT_1304_1665901217208'
+                                                                    objcusTranprslog.DT_DESCRIPTION = 'transaction_group'
+                                                                    objcusTranprslog.DTT_DESCRIPTION = 'Transaction'
+                                                                    objcusTranprslog.CREATED_BY = params.CREATED_BY;
+                                                                    objcusTranprslog.CREATED_BY_NAME = params.CREATED_BY_NAME;
+                                                                    objcusTranprslog.CREATED_DATE = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
+                                                                    objcusTranprslog.MODIFIED_BY = "";
+                                                                    objcusTranprslog.MODIFIED_BY_NAME = "";
+                                                                    objcusTranprslog.MODIFIED_DATE = null;
+                                                                    objcusTranprslog.SYSTEM_ID = params.SYSTEM_ID || null;
+                                                                    objcusTranprslog.SYSTEM_NAME = params.SYSTEM_NAME || null;
+                                                                    objcusTranprslog.CREATED_BY_STS_ID = "";
+                                                                    objcusTranprslog.MODIFIED_BY_STS_ID = "";
+                                                                    objcusTranprslog.created_clientip = objSessionLogInfo.CLIENTIP;
+                                                                    objcusTranprslog.created_tz = objSessionLogInfo.CLIENTTZ;
+                                                                    objcusTranprslog.ADDITIONAL_INFO = arrdata[0].uetr || ''
+                                                                    objcusTranprslog.created_tz_offset = objSessionLogInfo.CLIENTTZ_OFFSET;
+                                                                    objcusTranprslog.created_date_utc = reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo);
+                                                                    objcusTranprslog.created_by_sessionid = objSessionLogInfo.SESSION_ID;
+                                                                    objcusTranprslog.routingkey = headers.routingkey;
+                                                                    arrTrnPrslog.push(objcusTranprslog)
+                                                                    _BulkInsertProcessItem(arrTrnPrslog, 'NPSS_TRN_PROCESS_LOG', function callbackInsert(CusTrnPrslog) {
+                                                                        if (CusTrnPrslog.length > 0) {
+                                                                            var ruleqry = `select success_process_status,success_status  from core_nc_workflow_setup where rule_code='OUTWARD_MANUAL_INITIATION_UPDATE'  and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
 
 
 
-                                      ExecuteQuery1(ruleqry, function (arrrule) {
-                                        try {
-                                          if (arrrule.length > 0) {
-                                            // var UpdateTrnProcessLog = `Update ${schema}.npss_transactions set status ='IP_RCT_MANUAL_RETURNED',process_status = 'RCTCompleted',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
-                                            var UpdateTrnProcessLog = `Update ${schema}.npss_transactions set status ='${arrrule[0].success_status}',process_status = '${arrrule[0].success_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
-                                            /* 
-                                            // var UpdateTrnProcessLog = `Update ${schema}.npss_transactions set status ='IP_RCT_MANUAL_RETURNED',process_status = 'RCTCompleted',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
-                                            var UpdateTrnProcessLog = `Update ${schema}.npss_transactions set status ='${success_status}',process_status = '${success_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'` */
-                                            ExecuteQuery(UpdateTrnProcessLog, function (arrUpdPrsLog) {
-                                              if (arrUpdPrsLog == 'SUCCESS') {
-                                                objresponse.status = 'SUCCESS';
-                                                sendResponse(null, objresponse);
-                                              } else {
-                                                objresponse.status = 'No Data Updated in TranProcessLog Table';
-                                                sendResponse(null, objresponse);
-                                              }
+                                                                            ExecuteQuery1(ruleqry, function (arrrule) {
+                                                                                try {
+                                                                                    if (arrrule.length > 0) {
+                                                                                        // var UpdateTrnProcessLog = `Update ${schema}.npss_transactions set status ='IP_RCT_MANUAL_RETURNED',process_status = 'RCTCompleted',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'
+                                                                                        // var UpdateTrnProcessLog = `Update ${schema}.npss_transactions set status ='IP_RCT_MANUAL_RETURNED',process_status = 'RCTCompleted',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
+                                                                                        var UpdateTrnProcessLog = `Update ${schema}.npss_transactions set status ='${arrrule[0].success_status}',process_status = '${arrrule[0].success_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'`
+                                                                                        /* 
+                                                                                        
+                                                                                        var UpdateTrnProcessLog = `Update ${schema}.npss_transactions set status ='${success_status}',process_status = '${success_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}' where npsst_id = '${params.Tran_Id}'` */
+                                                                                        ExecuteQuery(UpdateTrnProcessLog, function (arrUpdPrsLog) {
+                                                                                            if (arrUpdPrsLog == 'SUCCESS') {
+                                                                                                objresponse.status = 'SUCCESS';
+                                                                                                sendResponse(null, objresponse);
+                                                                                            } else {
+                                                                                                objresponse.status = 'No Data Updated in TranProcessLog Table';
+                                                                                                sendResponse(null, objresponse);
+                                                                                            }
+                                                                                        })
+                                                                                    }
+                                                                                    else {
+                                                                                        objresponse.status = 'No Eligible found for given rule code in wflow setup';
+                                                                                        sendResponse(null, objresponse);
+
+                                                                                    }
+                                                                                } catch (error) {
+                                                                                    reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Unknown error", error);
+                                                                                    objresponse.status = 'Get Uetr Api Url Not Found'
+                                                                                    sendResponse(null, objresponse)
+                                                                                }
+                                                                            })
+                                                                        } else {
+                                                                            objresponse.status = 'Data not insert in trn process log';
+                                                                            reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Insert not succes", result);
+                                                                            sendResponse(null, objresponse)
+                                                                        }
+                                                                    })
+                                                                } else {
+                                                                    objresponse.status = 'Failure in Tran Table Insert';
+                                                                    reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Insert not succes", result);
+                                                                    sendResponse(null, objresponse)
+                                                                }
+
+                                                            })
+
+                                                        } else {
+                                                            objresponse.status = 'No data found in npss tran table'
+                                                            sendResponse(null, objresponse)
+                                                        }
+                                                    } else {
+                                                        objresponse.status = 'Get Uetr Api Url Not Found'
+                                                        sendResponse(null, objresponse)
+                                                    }
+
+                                                })
+
+
                                             })
-                                          }
-                                          else {
-                                            objresponse.status = 'No Eligible found for given rule code in wflow setup';
-                                            sendResponse(null, objresponse);
 
-                                          }
-                                        } catch (error) {
-                                          reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Unknown error", error);
-                                          objresponse.status = 'Get Uetr Api Url Not Found'
-                                          sendResponse(null, objresponse)
+
+                                        } else {
+
+                                            objresponse.data.status = 'No data found in core_nc_workflow_setup'
+                                            sendResponse(null, objresponse)
                                         }
-                                      })
-                                    } else {
-                                      objresponse.status = 'Data not insert in trn process log';
-                                      reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Insert not succes", result);
-                                      sendResponse(null, objresponse)
+
+                                    } catch (error) {
+                                        sendResponse(error)
                                     }
-                                  })
-                                } else {
-                                  objresponse.status = 'Failure in Tran Table Insert';
-                                  reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Insert not succes", result);
-                                  sendResponse(null, objresponse)
+                                });
+                            }
+
+
+                            function ExecuteQuery1(query, callback) {
+                                reqTranDBInstance.ExecuteSQLQuery(mTranConn, query, objSessionLogInfo, function (result, error) {
+                                    try {
+                                        if (error) {
+                                            sendResponse(error)
+                                        } else {
+                                            if (result.rows.length > 0) {
+                                                callback(result.rows);
+                                            } else {
+                                                callback([]);
+                                            }
+                                        }
+                                    } catch (error) {
+                                        sendResponse(error)
+                                    }
+                                });
+                            }
+                            function checkEligible() {
+                                return new Promise((resolve, reject) => {
+                                    if (params.eligible_status == 'IP_BCT_POSTING_SUCCESS' || params.eligible_status == 'IP_BCT_CC_T24_POSTING_SUCCESS' || params.eligible_status == 'IP_BCT_PC_T24_POSTING_SUCCESS') {
+                                        var Taketime = `select param_category,param_code,param_detail from Core_nc_system_setup where param_category='CUTOFF_SETUP' and  param_code in('CHANNEL_END_TIME','CB_START_TIME') order by param_code`
+
+                                        ExecuteQuery1(Taketime, function (arrtakeTime) {
+
+                                            if (arrtakeTime.length == 2) {
+                                                let specifiedTime = moment().format('hh:mm A').replace(":", ".")
+                                                let starttime = arrtakeTime[1].param_detail
+                                                let endtime = arrtakeTime[0].param_detail
+                                                function isTimeInRange(starttime, endtime, specifiedTime) {
+
+                                                    const start = moment(starttime, 'h:mm A');
+                                                    const end = moment(endtime, 'h:mm A');
+                                                    const specified = moment(specifiedTime, 'h:mm A');
+
+                                                    if (end.isBefore(start)) {
+                                                        end.add(1, 'day');
+                                                    }
+
+                                                    // If specified time is between start and end time or between end and start time on the next day
+                                                    return specified.isBetween(start, end, null, '[]') ||
+                                                        specified.isBetween(end, start, null, '[]');
+                                                }
+
+                                                var timerange = isTimeInRange(starttime, endtime, specifiedTime)
+                                                if (timerange) {
+                                                    objresponse.data.status = 'The Channel cutoff time is passed, please initiate the payment by next day.'
+                                                    sendResponse(null, objresponse)
+                                                } else {
+                                                    resolve('SUCCESS')
+                                                }
+
+                                            }
+                                            else {
+                                                objresponse.data.status = 'No data found in Core_nc_system_setup'
+                                                sendResponse(null, objresponse)
+                                            }
+
+                                        })
+                                    } else {
+                                        resolve('SUCCESS')
+                                    }
+                                })
+                            }
+
+                            //Execute Query for common
+                            function ExecuteQuery(query, callback) {
+                                reqTranDBInstance.ExecuteSQLQuery(mTranConn, query, objSessionLogInfo, function (result, error) {
+                                    try {
+                                        if (error) {
+                                            sendResponse(error)
+                                        } else {
+                                            callback("SUCCESS");
+
+                                        }
+                                    } catch (error) {
+                                        sendResponse(error)
+                                    }
+                                });
+                            }
+
+                            function _BulkInsertProcessItem(insertarr, strTrnTableName, callbackInsert) {
+                                try {
+                                    reqTranDBInstance.InsertBulkTranDB(mTranConn, strTrnTableName, insertarr, objSessionLogInfo, 300, function callbackInsertBulk(result, error) {
+                                        try {
+                                            if (error) {
+                                                reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10049', 'ERROR IN BULK INSERT FUNCTION', error);
+                                                sendResponse(error)
+                                            } else {
+                                                if (result.length > 0) {
+                                                    callbackInsert(result);
+                                                } else {
+                                                    callbackInsert([]);
+                                                }
+                                            }
+                                        } catch (error) {
+                                            reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10048', 'ERROR IN BULK INSERT FUNCTION', error);
+                                            sendResponse(error)
+                                        }
+                                    });
+                                } catch (error) {
+                                    reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10047', 'ERROR IN BULK INSERT FUNCTION', error);
+                                    sendResponse(error)
+                                }
+                            }
+
+                        } catch (error) {
+                            sendResponse(error)
+                        }
+                    }
+
+
+                    function GetUetr(arruetr) {
+                        return new Promise((resolve, reject) => {
+                            try {
+                                var apiName = 'Get Uetr'
+                                var request = require('request');
+                                var apiURL =
+                                    apiURL = arruetr[0].param_detail // apiURL + apiName
+                                var options = {
+                                    url: apiURL,
+                                    timeout: 18000000,
+                                    method: 'GET',
+                                    json: {},
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    }
                                 }
 
-                              })
+                                reqInstanceHelper.PrintInfo(serviceName, '------------Calling Get Uetr Api-------', objSessionLogInfo);
+                                request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
+                                    if (error) {
+                                        reqInstanceHelper.PrintInfo(serviceName, '------------' + apiName + ' API ERROR-------' + error, objSessionLogInfo);
+                                        sendResponse(error, null);
 
-                            } else {
-                              objresponse.status = 'No data found in npss tran table'
-                              sendResponse(null, objresponse)
+                                    } else {
+
+                                        reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
+
+                                        resolve(responseBodyFromImagingService)
+                                    }
+                                });
+
+                            } catch (error) {
+                                reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_004", "ERROR IN API CALL FUNCTION", error);
+                                sendResponse(error, null);
                             }
-                          } else {
-                            objresponse.status = 'Get Uetr Api Url Not Found'
-                            sendResponse(null, objresponse)
-                          }
 
                         })
+                    }
+                    function getIbanParams(selIbanParamQry) {
+                        return new Promise((resolve, reject) => {
+                            ExecuteQuery1(selIbanParamQry, (arresult) => {
+                                resolve(arresult)
+                            })
+                        })
+                    }
+                    function BirthDate(arrIbanParams, uetr, cdtr_iban, cdtr_acct_name) {
+                        return new Promise(async (resolve, reject) => {
+                            try {
+                                if (arrIbanParams.length > 0) {
 
 
-                      })
+                                    if (cdtr_iban != '' && cdtr_iban != undefined && cdtr_iban != null) {
 
+                                        let Iban = cdtr_iban.slice(-16)//await getIbanParams(selIbanParamQry)
+                                        let FrmIban = Iban.substring(0, 3)
+                                        if ((arrIbanParams.filter((val) => {
+                                            return val.param_detail == FrmIban
+                                        })).length > 0) {
+                                            let selBdateQry = `select * from ${schema}.npss_trn_process_log where  uetr = '${uetr}' and process_name='Prepaid Card Validation'`
+                                            let bdateObj = await getIbanParams(selBdateQry)
+                                            try {
+                                                let obj = {}
+                                                obj.date = bdateObj[0].dateofbirth || null//arrbdate[0].birthdate ? moment(arrbdate[0].birthdate, "YYYYMMDD").format("YYYY-MM-DD") : null
+                                                obj.account_name = bdateObj[0].customername || cdtr_acct_name
+                                                resolve(obj)
+                                            }
+                                            catch (error) {
+                                                reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_004", "ERROR IN Get Birth Dare function from process log query", error);
+                                                //sendResponse(null, { status: "Failure", data: error, errdata: "Error occured while Getting BirthDate" })
+                                                let obj = {}
+                                                obj.date = null//arrbdate[0].birthdate ? moment(arrbdate[0].birthdate, "YYYYMMDD").format("YYYY-MM-DD") : null
+                                                obj.account_name = cdtr_acct_name
+                                                resolve(obj)
+                                            }
+                                        }
+                                        else {
+                                            var Tkbddate = `select birthdate,account_name from core_nc_cbs_accounts where alternate_account_id ='${cdtr_iban}'`
+                                            ExecuteQuery1(Tkbddate, async function (arrbdate) {
 
-                    } else {
+                                                if (arrbdate.length > 0) {
+                                                    let obj = {}
+                                                    obj.date = arrbdate[0].birthdate ? moment(arrbdate[0].birthdate, "YYYYMMDD").format("YYYY-MM-DD") : null
+                                                    obj.account_name = arrbdate[0].account_name
+                                                    resolve(obj)
+                                                } else {
+                                                    objresponse.data.status = 'No data found in core_nc_cbs_accounts'
+                                                    sendResponse(null, objresponse)
+                                                }
+                                            })
+                                        }
+                                    } else {
+                                        var Takebirthdata = `select * from npss_trn_process_log  where process_name='Prepaid Card Validation' and uetr = '${uetr}'`
+                                        ExecuteQuery1(Takebirthdata, async function (arrbdate) {
+                                            if (arrbdate.length > 0) {
+                                                let obj = {}
+                                                obj.date = arrbdate[0].dateofbirth ? moment(arrbdate[0].dateofbirth, "YYYYMMDD").format("YYYY-MM-DD") : null
+                                                obj.account_name = arrbdate[0].customername
+                                                resolve(obj)
+                                            } else {
+                                                objresponse.data.status = ' birthdate,customer data not found in log table'
+                                                sendResponse(null, objresponse)
+                                            }
+                                        })
 
-                      objresponse.data.status = 'No data found in core_nc_workflow_setup'
-                      sendResponse(null, objresponse)
+                                    }/*  else {
+                                    let obj = {}
+                                    obj.date = null
+                                    obj.account_name = cdtr_acct_name
+                                    resolve(obj)
+                                } */
+                                }
+                                else {
+                                    objresponse.data.status = ' Iban param detail not found in core system table'
+                                    sendResponse(null, objresponse)
+                                }
+                            }
+                            catch (error) {
+                                reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_004", "ERROR IN Get Birth Dare function", error);
+                                sendResponse(null, { status: "Failure", data: error, errdata: "Error occured while Getting BirthDate" })
+                            }
+
+                        })
                     }
 
-                  } catch (error) {
-                    sendResponse(error)
-                  }
-                });
-              }
+                    function Getuuid() {
+                        return new Promise((resolve, reject) => {
+                            try {
+                                var Takeuuid = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_GET_UUID' and param_code='URL' and NEED_SYNC = 'Y'`
+                                ExecuteQuery1(Takeuuid, async function (arruuid) {
+                                    if (arruuid.length > 0) {
+                                        var apiName = 'Get UUID'
+                                        var request = require('request');
+                                        var apiURL =
+                                            apiURL = arruuid[0].param_detail // apiURL + apiName
+                                        var options = {
+                                            url: apiURL,
+                                            timeout: 18000000,
+                                            method: 'GET',
+                                            json: {},
+                                            headers: {
+                                                'Content-Type': 'application/json'
+                                            }
+                                        }
+                                        reqInstanceHelper.PrintInfo(serviceName, '------------Calling Get UUID Api-------', objSessionLogInfo);
+                                        request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
+                                            if (error) {
+                                                reqInstanceHelper.PrintInfo(serviceName, '------------' + apiName + ' API ERROR-------' + error, objSessionLogInfo);
+                                                sendResponse(error, null);
+
+                                            } else {
+                                                reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
+                                                resolve(responseBodyFromImagingService)
+                                            }
+                                        });
+                                    } else {
+                                        objresponse.status = 'UUID Api Url not found'
+                                        sendResponse(null, objresponse)
+                                    }
+
+                                })
 
 
-              function ExecuteQuery1(query, callback) {
-                reqTranDBInstance.ExecuteSQLQuery(mTranConn, query, objSessionLogInfo, function (result, error) {
-                  try {
-                    if (error) {
-                      sendResponse(error)
-                    } else {
-                      if (result.rows.length > 0) {
-                        callback(result.rows);
-                      } else {
-                        callback([]);
-                      }
+                            } catch (error) {
+                                reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_004", "ERROR IN API CALL FUNCTION", error);
+                                sendResponse(error, null);
+                            }
+
+                        })
                     }
-                  } catch (error) {
-                    sendResponse(error)
-                  }
-                });
-              }
-              function checkEligible() {
-                return new Promise((resolve, reject) => {
-                  if (params.eligible_status == 'IP_BCT_POSTING_SUCCESS' || params.eligible_status == 'IP_BCT_CC_T24_POSTING_SUCCESS' || params.eligible_status == 'IP_BCT_PC_T24_POSTING_SUCCESS') {
-                    var Taketime = `select param_category,param_code,param_detail from Core_nc_system_setup where param_category='CUTOFF_SETUP' and  param_code in('CHANNEL_END_TIME','CB_START_TIME') order by param_code`
 
-                    ExecuteQuery1(Taketime, function (arrtakeTime) {
 
-                      if (arrtakeTime.length == 2) {
-                        let specifiedTime = moment().format('hh:mm A').replace(":", ".")
-                        let starttime = arrtakeTime[1].param_detail
-                        let endtime = arrtakeTime[0].param_detail
-                        function isTimeInRange(starttime, endtime, specifiedTime) {
 
-                          const start = moment(starttime, 'h:mm A');
-                          const end = moment(endtime, 'h:mm A');
-                          const specified = moment(specifiedTime, 'h:mm A');
+                    function Getorgdata(arrprocesslog) {
+                        return new Promise((resolve, reject) => {
+                            //var orgflddata = `select process_ref_no from npss_trn_process_log where process_name = 'Inward Credit Posting' and uetr = '${arrprocesslog[0].uetr}' and status = 'IP_RCT_POSTING_SUCCESS'`
+                            // var orgflddata = `select process_ref_no from npss_trn_process_log where process_name in ('Inward Credit Posting','Prepaid Card Ac Posting','Credit Card Pool Ac Posting') and uetr = '${arrprocesslog[0].uetr}' and status in ('IP_RCT_POSTING_SUCCESS','IP_RCT_PC_T24_POSTING_SUCCESS','IP_RCT_CC_T24_POSTING_SUCCESS')`
+                            var orgflddata = `select process_ref_no from ${schema}.npss_trn_process_log where  uetr = '${arrprocesslog[0].uetr}' and status in ('IP_RCT_POSTING_SUCCESS','IP_RCT_PC_T24_POSTING_SUCCESS','IP_RCT_CC_T24_POSTING_SUCCESS','IP_BCT_POSTING_SUCCESS','IP_BCT_CC_T24_POSTING_SUCCESS','IP_BCT_PC_T24_POSTING_SUCCESS')`
+                            ExecuteQuery1(orgflddata, function (arrflddata) {
+                                if (arrflddata.length > 0) {
+                                    resolve(arrflddata[0].process_ref_no)
+                                } else {
+                                    objresponse.status = "ORG Field Data is Not Found"
+                                    sendResponse(null, objresponse)
+                                }
 
-                          if (end.isBefore(start)) {
-                            end.add(1, 'day');
-                          }
+                            })
+                        })
+                    }
 
-                          // If specified time is between start and end time or between end and start time on the next day
-                          return specified.isBetween(start, end, null, '[]') ||
-                            specified.isBetween(end, start, null, '[]');
+
+                    function chkccpcc(arrdata) {
+                        return new Promise((resolve, reject) => {
+                            if ((arrdata[0].cr_acct_identification != '' && arrdata[0].cr_acct_identification != null) && arrdata[0].cr_acct_id_code == 'AIIN') {
+                                resolve('Credit_Or_Prepaid')
+                            } else {
+                                resolve('IBAN')
+                            }
+                        })
+                    }
+
+
+
+
+                    //Send Response Function Definition
+                    function sendResponse(error, response) {
+                        try {
+                            if (error) {
+
+                                reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10005', '', error);
+
+                            } else {
+
+                                reqInstanceHelper.SendResponse(serviceName, appResponse, response, objSessionLogInfo)
+
+                            }
+                        } catch (error) {
+                            reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10004', 'ERROR IN SEND RESPONSE FUNCTION : ', error);
                         }
-
-                        var timerange = isTimeInRange(starttime, endtime, specifiedTime)
-                        if (timerange) {
-                          objresponse.data.status = 'The Channel cutoff time is passed, please initiate the payment by next day.'
-                          sendResponse(null, objresponse)
-                        } else {
-                          resolve('SUCCESS')
-                        }
-
-                      }
-                      else {
-                        objresponse.data.status = 'No data found in Core_nc_system_setup'
-                        sendResponse(null, objresponse)
-                      }
-
-                    })
-                  } else {
-                    resolve('SUCCESS')
-                  }
+                    }
                 })
-              }
-
-              //Execute Query for common
-              function ExecuteQuery(query, callback) {
-                reqTranDBInstance.ExecuteSQLQuery(mTranConn, query, objSessionLogInfo, function (result, error) {
-                  try {
-                    if (error) {
-                      sendResponse(error)
-                    } else {
-                      callback("SUCCESS");
-
-                    }
-                  } catch (error) {
-                    sendResponse(error)
-                  }
-                });
-              }
-
-              function _BulkInsertProcessItem(insertarr, strTrnTableName, callbackInsert) {
-                try {
-                  reqTranDBInstance.InsertBulkTranDB(mTranConn, strTrnTableName, insertarr, objSessionLogInfo, 300, function callbackInsertBulk(result, error) {
-                    try {
-                      if (error) {
-                        reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10049', 'ERROR IN BULK INSERT FUNCTION', error);
-                        sendResponse(error)
-                      } else {
-                        if (result.length > 0) {
-                          callbackInsert(result);
-                        } else {
-                          callbackInsert([]);
-                        }
-                      }
-                    } catch (error) {
-                      reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10048', 'ERROR IN BULK INSERT FUNCTION', error);
-                      sendResponse(error)
-                    }
-                  });
-                } catch (error) {
-                  reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, 'IDE_SERVICE_10047', 'ERROR IN BULK INSERT FUNCTION', error);
-                  sendResponse(error)
-                }
-              }
-
-            } catch (error) {
-              sendResponse(error)
-            }
-          }
-
-
-          function GetUetr(arruetr) {
-            return new Promise((resolve, reject) => {
-              try {
-                var apiName = 'Get Uetr'
-                var request = require('request');
-                var apiURL =
-                  apiURL = arruetr[0].param_detail // apiURL + apiName
-                var options = {
-                  url: apiURL,
-                  timeout: 18000000,
-                  method: 'GET',
-                  json: {},
-                  headers: {
-                    'Content-Type': 'application/json'
-                  }
-                }
-
-                reqInstanceHelper.PrintInfo(serviceName, '------------Calling Get Uetr Api-------', objSessionLogInfo);
-                request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
-                  if (error) {
-                    reqInstanceHelper.PrintInfo(serviceName, '------------' + apiName + ' API ERROR-------' + error, objSessionLogInfo);
-                    sendResponse(error, null);
-
-                  } else {
-
-                    reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
-
-                    resolve(responseBodyFromImagingService)
-                  }
-                });
-
-              } catch (error) {
-                reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_004", "ERROR IN API CALL FUNCTION", error);
-                sendResponse(error, null);
-              }
-
             })
-          }
-          function getIbanParams(selIbanParamQry) {
-            return new Promise((resolve, reject) => {
-              ExecuteQuery1(selIbanParamQry, (arresult) => {
-                resolve(arresult)
-              })
-            })
-          }
-          function BirthDate(arrIbanParams, uetr, cdtr_iban, cdtr_acct_name) {
-            return new Promise(async (resolve, reject) => {
-              try {
-                if (cdtr_iban != '' && cdtr_iban != undefined && cdtr_iban != null) {
-
-                  let Iban = cdtr_iban.slice(-16)//await getIbanParams(selIbanParamQry)
-                  let FrmIban = Iban.substring(0, 3)
-                  if ((arrIbanParams.filter((val) => {
-                    return val.param_detail == FrmIban
-                  })).length > 0) {
-                    let selBdateQry = `select * from ${schema}.npss_trn_process_log where  uetr = '${uetr}' and process_name='Prepaid Card Validation'`
-                    let bdateObj = await getIbanParams(selBdateQry)
-                    try {
-                      let obj = {}
-                      obj.date = bdateObj[0].dateofbirth || null//arrbdate[0].birthdate ? moment(arrbdate[0].birthdate, "YYYYMMDD").format("YYYY-MM-DD") : null
-                      obj.account_name = bdateObj[0].customername || cdtr_acct_name
-                      resolve(obj)
-                    }
-                    catch (error) {
-                      reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_004", "ERROR IN Get Birth Dare function from process log query", error);
-                      //sendResponse(null, { status: "Failure", data: error, errdata: "Error occured while Getting BirthDate" })
-                      let obj = {}
-                      obj.date = null//arrbdate[0].birthdate ? moment(arrbdate[0].birthdate, "YYYYMMDD").format("YYYY-MM-DD") : null
-                      obj.account_name = cdtr_acct_name
-                      resolve(obj)
-                    }
-                  }
-                  else {
-                    var Tkbddate = `select birthdate,account_name from core_nc_cbs_accounts where alternate_account_id ='${cdtr_iban}'`
-                    ExecuteQuery1(Tkbddate, async function (arrbdate) {
-
-                      if (arrbdate.length > 0) {
-                        let obj = {}
-                        obj.date = arrbdate[0].birthdate ? moment(arrbdate[0].birthdate, "YYYYMMDD").format("YYYY-MM-DD") : null
-                        obj.account_name = arrbdate[0].account_name
-                        resolve(obj)
-                      } else {
-                        objresponse.data.status = 'No data found in core_nc_cbs_accounts'
-                        sendResponse(null, objresponse)
-                      }
-                    })
-                  }
-                } else {
-                  let obj = {}
-                  obj.date = null
-                  obj.account_name = cdtr_acct_name
-                  resolve(obj)
-                }
-              }
-              catch (error) {
-                reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_004", "ERROR IN Get Birth Dare function", error);
-                sendResponse(null, { status: "Failure", data: error, errdata: "Error occured while Getting BirthDate" })
-              }
-
-            })
-          }
-
-          function Getuuid() {
-            return new Promise((resolve, reject) => {
-              try {
-                var Takeuuid = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_GET_UUID' and param_code='URL' and NEED_SYNC = 'Y'`
-                ExecuteQuery1(Takeuuid, async function (arruuid) {
-                  if (arruuid.length > 0) {
-                    var apiName = 'Get UUID'
-                    var request = require('request');
-                    var apiURL =
-                      apiURL = arruuid[0].param_detail // apiURL + apiName
-                    var options = {
-                      url: apiURL,
-                      timeout: 18000000,
-                      method: 'GET',
-                      json: {},
-                      headers: {
-                        'Content-Type': 'application/json'
-                      }
-                    }
-                    reqInstanceHelper.PrintInfo(serviceName, '------------Calling Get UUID Api-------', objSessionLogInfo);
-                    request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
-                      if (error) {
-                        reqInstanceHelper.PrintInfo(serviceName, '------------' + apiName + ' API ERROR-------' + error, objSessionLogInfo);
-                        sendResponse(error, null);
-
-                      } else {
-                        reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
-                        resolve(responseBodyFromImagingService)
-                      }
-                    });
-                  } else {
-                    objresponse.status = 'UUID Api Url not found'
-                    sendResponse(null, objresponse)
-                  }
-
-                })
-
-
-              } catch (error) {
-                reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_004", "ERROR IN API CALL FUNCTION", error);
-                sendResponse(error, null);
-              }
-
-            })
-          }
-
-
-
-          function Getorgdata(arrprocesslog) {
-            return new Promise((resolve, reject) => {
-              //var orgflddata = `select process_ref_no from npss_trn_process_log where process_name = 'Inward Credit Posting' and uetr = '${arrprocesslog[0].uetr}' and status = 'IP_RCT_POSTING_SUCCESS'`
-              // var orgflddata = `select process_ref_no from npss_trn_process_log where process_name in ('Inward Credit Posting','Prepaid Card Ac Posting','Credit Card Pool Ac Posting') and uetr = '${arrprocesslog[0].uetr}' and status in ('IP_RCT_POSTING_SUCCESS','IP_RCT_PC_T24_POSTING_SUCCESS','IP_RCT_CC_T24_POSTING_SUCCESS')`
-              var orgflddata = `select process_ref_no from ${schema}.npss_trn_process_log where  uetr = '${arrprocesslog[0].uetr}' and status in ('IP_RCT_POSTING_SUCCESS','IP_RCT_PC_T24_POSTING_SUCCESS','IP_RCT_CC_T24_POSTING_SUCCESS','IP_BCT_POSTING_SUCCESS','IP_BCT_CC_T24_POSTING_SUCCESS','IP_BCT_PC_T24_POSTING_SUCCESS')`
-              ExecuteQuery1(orgflddata, function (arrflddata) {
-                if (arrflddata.length > 0) {
-                  resolve(arrflddata[0].process_ref_no)
-                } else {
-                  objresponse.status = "ORG Field Data is Not Found"
-                  sendResponse(null, objresponse)
-                }
-
-              })
-            })
-          }
-
-
-          function chkccpcc(arrdata) {
-            return new Promise((resolve, reject) => {
-              if ((arrdata[0].cr_acct_identification != '' && arrdata[0].cr_acct_identification != null) && arrdata[0].cr_acct_id_code == 'AIIN') {
-                resolve('Credit_Or_Prepaid')
-              } else {
-                resolve('IBAN')
-              }
-            })
-          }
-
-
-
-
-          //Send Response Function Definition
-          function sendResponse(error, response) {
-            try {
-              if (error) {
-
-                reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10005', '', error);
-
-              } else {
-
-                reqInstanceHelper.SendResponse(serviceName, appResponse, response, objSessionLogInfo)
-
-              }
-            } catch (error) {
-              reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10004', 'ERROR IN SEND RESPONSE FUNCTION : ', error);
-            }
-          }
-        })
-      })
-    } catch (error) {
-      reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
-    }
-  })
+        } catch (error) {
+            reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
+        }
+    })
 
 
 

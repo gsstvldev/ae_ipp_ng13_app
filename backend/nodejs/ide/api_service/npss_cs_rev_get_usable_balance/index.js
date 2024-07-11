@@ -9,6 +9,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
+
     try {
         /*   Created By :Daseen
         Created Date :16-12-2022
@@ -22,8 +23,10 @@ app.post('/', function(appRequest, appResponse, next) {
          Reason for Handle Rectibi Changes 30/10/2023
          Reason for Handle Rectibi FOR CDTR iban Changes 02/11/2023
          reason for eligible tran based on the schema 8-04-24
-         reason for eligible prepaid iban checking condn change not 564 -renga 14-05-2024 WI 3771
-         reason for bug fixing iban checking condn change not 564 -subramanian 21-05-2024 WI 3771
+      reason for eligible prepaid iban checking condn change not 564 -renga 14-05-2024 WI 3771
+           reason for bug fixing iban checking condn change not 564 -subramanian 21-05-2024 WI 3771
+  
+           reason : ELP master code merging  11-07-2024 --renga
         */
         var serviceName = 'NPSS Get Usable Amount';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -91,7 +94,11 @@ app.post('/', function(appRequest, appResponse, next) {
                                     else {
                                         lclinstrm = ""
                                     }
-                                    if (arrprocesslog[0].dbtr_iban == null || arrprocesslog[0].dbtr_iban == '') {
+                                    if (arrprocesslog[0].cdtr_iban == null || arrprocesslog[0].cdtr_iban == '') {
+                                        objresponse.status = 'CreditPrepaidTran';
+                                        objresponse.data = 'Credit or Prepaid Tran';
+                                        sendResponse(null, objresponse);
+                                    } else if (arrprocesslog[0].dbtr_iban == null || arrprocesslog[0].dbtr_iban == '') {
                                         objresponse.status = 'Prepaid Tran';
                                         objresponse.data = 'Prepaid Tran';
                                         sendResponse(null, objresponse);
@@ -102,14 +109,13 @@ app.post('/', function(appRequest, appResponse, next) {
                                         if (params.screenName == 's_rct_manual_verification') {
                                             IBAN = arrprocesslog[0].dbtr_iban
                                             type = 'dbtr'
+
+
                                         } else {
                                             if (arrprocesslog[0].cdtr_iban != null && arrprocesslog[0].cdtr_iban != '') {
                                                 IBAN = arrprocesslog[0].cdtr_iban
                                                 type = 'cdtr'
                                             }
-
-
-
                                         }
                                         if (type == 'cdtr' || type == 'dbtr') {
                                             var result = await CheckIban(IBAN, PrepaidIban, type)
@@ -123,9 +129,13 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                 fn_doapicall(url, arrprocesslog, arrActInf, lclinstrm, function (result) {
                                                                     if (result) {
                                                                         objresponse.status = 'SUCCESS';
+
                                                                         objresponse.data = result;
                                                                         sendResponse(null, objresponse);
+
+
                                                                     }
+
                                                                     else {
                                                                         reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Data not received from service", result);
                                                                         objresponse.status = 'FAILURE';
@@ -148,13 +158,16 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         sendResponse(null, objresponse)
                                                     }
                                                 })
-
                                             }
                                         }
                                         else {
                                             objresponse.status = 'Prepaid Tran';
                                             objresponse.data = 'Prepaid Tran';
                                             sendResponse(null, objresponse);
+
+
+
+
 
                                         }
 
@@ -167,6 +180,9 @@ app.post('/', function(appRequest, appResponse, next) {
                                 }
 
                             })
+
+
+
 
                         }
                         catch (error) {
@@ -201,6 +217,9 @@ app.post('/', function(appRequest, appResponse, next) {
                     }
 
 
+
+
+
                     //check elpaso prepaid iban 
                     function PrePaidIbanQry(qry) {
                         return new Promise((resolve, reject) => {
@@ -209,8 +228,6 @@ app.post('/', function(appRequest, appResponse, next) {
                             })
                         })
                     }
-
-
                     // Do API Call for Service 
                     function fn_doapicall(url, arrprocesslog, arrActInf, lclinstrm, callbackapi) {
                         try {
@@ -223,6 +240,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                 timeout: 18000000,
                                 method: 'POST',
                                 json: {
+
 
                                     "payload": {
                                         "hdr_msg_id": arrprocesslog[0].hdr_msg_id || '',
@@ -262,6 +280,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                         "process": "",
                                         "remittance_information": arrprocesslog[0].remittance_info || ''
 
+
+
                                     },
                                     "AccountInformation": {
                                         "account_number": arrActInf[0].account_number || '',
@@ -277,6 +297,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                     'Content-Type': 'application/json'
                                 }
                             }
+
+
 
                             var PrintInfo = {}
                             PrintInfo.url = url || ''
@@ -347,6 +369,32 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

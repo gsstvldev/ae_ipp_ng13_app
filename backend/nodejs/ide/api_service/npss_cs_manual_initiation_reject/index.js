@@ -94,7 +94,7 @@ Reason for: Prepaid or credit tran Update  status & insert in log table  -- reng
                                                                 var TakeAcctInf = `select alternate_account_type,currency,account_number,alternate_account_id,inactive_marker,company_code,curr_rate_segment,customer_id,account_officer,ac.created_Date as acct_created_date,ac.modified_date as acct_modified_date,ac.issuer_type_code as acct_issuer_type_code,ac.* from core_nc_cbs_accounts ac where alternate_account_id= '${arrdata[0].dbtr_iban}'`
                                                                 ExecuteQuery1(TakeAcctInf, function (arrcbsact) {
                                                                     if (arrcbsact.length > 0) {
-                                                                        var Takepostrefno = `select * from npss_trn_process_log where status = 'OP_RCT_MAN_INAU_POSTING_SUCCESS' and uetr = '${arrdata[0].uetr}'`
+                                                                        var Takepostrefno = `select * from npss_trn_process_log where status = 'OP_RCT_MAN_INAU_POSTING_SUCCESS' and uetr = '${arrdata[0].uetr}'   order by npsstpl_id desc`
                                                                         ExecuteQuery1(Takepostrefno, function (arrpostno) {
                                                                             if (arrpostno.length > 0) {
                                                                                 fn_DoAPI(arrdata, arrUrl, arrcbsact, arrpostno, extend_retry_value, function (apiresult) {

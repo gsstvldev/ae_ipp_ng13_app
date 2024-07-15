@@ -562,25 +562,11 @@ app.post('/', function(appRequest, appResponse, next) {
                                             })
                                         }
                                     } else {
-                                        var Takebirthdata = `select * from npss_trn_process_log  where process_name='Prepaid Card Validation' and uetr = '${uetr}'`
-                                        ExecuteQuery1(Takebirthdata, async function (arrbdate) {
-                                            if (arrbdate.length > 0) {
-                                                let obj = {}
-                                                obj.date = arrbdate[0].dateofbirth ? moment(arrbdate[0].dateofbirth, "YYYYMMDD").format("YYYY-MM-DD") : null
-                                                obj.account_name = arrbdate[0].customername
-                                                resolve(obj)
-                                            } else {
-                                                objresponse.data.status = ' birthdate,customer data not found in log table'
-                                                sendResponse(null, objresponse)
-                                            }
-                                        })
-
-                                    }/*  else {
                                     let obj = {}
                                     obj.date = null
                                     obj.account_name = cdtr_acct_name
                                     resolve(obj)
-                                } */
+                                } 
                                 }
                                 else {
                                     objresponse.data.status = ' Iban param detail not found in core system table'

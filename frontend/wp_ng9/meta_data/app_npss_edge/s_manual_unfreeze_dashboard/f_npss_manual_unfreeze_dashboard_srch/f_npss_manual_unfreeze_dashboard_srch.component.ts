@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 36031 
+Build ID        : 36033 
 Modified By     : Admin 
-Modified Date   : 2024-Jul-12 10:40 AM 
+Modified Date   : 2024-Jul-15 4:44 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_manual_unfreeze_dashboard
@@ -61,7 +61,7 @@ focustoelement(){
 		this.ctrl.memory9.data_type = "DATETIME"
 		this.ctrl.memory9.data_length = 0
 		this.ctrl.memory9.zone_df_code = "DF_1304_1665905157963"
-		this.ctrl.memory9.default_value = ""
+		this.ctrl.memory9.default_value = "setcurrentdate(),{}"
 		this.ctrl.memory9.is_memory_ctrl = "Y"
 		this.ctrl.memory9.field_coordinates = ""
 		this.ctrl.memory9.sub_details = ""
@@ -242,7 +242,7 @@ focustoelement(){
 		this.ctrl.amount.ctrl_id = "npss_manual_unfreeze_dashboard_srch_amount"
 		this.ctrl.npss_manual_unfreeze_dashboard_srch_amount = {}
 		this.ctrl.npss_manual_unfreeze_dashboard_srch_amount.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_manual_unfreeze_dashboard_srch.model = {"MEMORY9":"","UETR":"","DBTR_IBAN":"","MSG_ID":"","AMOUNT":""}
+		this.screen_instance[this.comp_id].f_npss_manual_unfreeze_dashboard_srch.model = {"MEMORY9":"setcurrentdate(),{}","UETR":"","DBTR_IBAN":"","MSG_ID":"","AMOUNT":""}
 		this.screen_instance[this.comp_id].f_npss_manual_unfreeze_dashboard_srch.Meta = [{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"DBTR_IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"MSG_ID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"NUMBER","TARGET_COLUMN":"AMOUNT"}]
 		this.screen_instance[this.comp_id].f_npss_manual_unfreeze_dashboard_srch.dt_code = "dt_1304_1665901130705"
 		this.screen_instance[this.comp_id].f_npss_manual_unfreeze_dashboard_srch.dtt_code = "dtt_1304_1665905039255"

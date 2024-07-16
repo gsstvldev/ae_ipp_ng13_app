@@ -16,6 +16,7 @@ app.post('/', function (appRequest, appResponse, next) {
     Created Date : 8/4/2024
     For: Credit Debit jasper report replacement
     for query change 04-07-2024 by renga
+    Modifeid date 16/7/2024 by Subramanian Wi:3956 Fab debit and credit advice screen report bug fixed
     
      
     */

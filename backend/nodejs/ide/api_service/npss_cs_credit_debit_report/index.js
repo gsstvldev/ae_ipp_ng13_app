@@ -5,7 +5,7 @@ var $REFPATH = Path.join(__dirname, '../../torus-references/');
 
 var app = express.Router();
 
-app.post('/', function(appRequest, appResponse, next) {
+app.post('/', function (appRequest, appResponse, next) {
 
 
 
@@ -91,24 +91,27 @@ app.post('/', function(appRequest, appResponse, next) {
                             if (params.screenName.includes('debit')) {
 
                                 Taketran = `select
-	distinct uetr,
-	Debtor_Name,
-	 Debtor_Account,
-	 Creditor_Name,
-	 Creditor_Account,
-	 dr_sort_code,
-	 cr_sort_code,
-	 TRANSACTION_AMOUNT_RANGE,
-	 categorypurpose,
-	 created_date,
-	 CREATEDDATE,
-	payment_endtoend_id,
+	distinct uetr as UETR,
+	Debtor_Name as  ordering_customer_name,
+     account_number as  ordering_account,
+ 	 Debtor_Account as  Ordering_Customer_IBAN,
+	 Creditor_Name as  Beneficiary_Customer_Name   , 
+	 Creditor_Account as  Beneficiary_Customer_IBAN,
+	 
+	 cr_sort_code as  Beneficiary_Bank_Code,
+	T24_FT_REFERENCE_NUMBER as  Transaction_Ref,
+	 TRANSACTION_AMOUNT_RANGE as  Amount_AED,
+	 categorypurpose as  Transaction_Code,
+	 created_date as  Received_Time,
+STATUS,
+	payment_endtoend_id as  End_to_End_ID,
+    tran_ref_id as  Transaction_Reference,
+clrsysref as  Clearing_Reference,
+    otherreference as  Other_Reference,
 	SOURCE_CHANNEL,
-	tran_ref_id,
-	STATUS,
-	otherreference,
+    
 	clrsysref,
-	BENEFICIARY_BANK,
+    BENEFICIARY_BANK
 	End_to_End_ID,
 	T24_FT_REFERENCE_NUMBER,
 	process_type,
@@ -193,25 +196,28 @@ where
 	process_type = 'OP'  ${cond_params}`
                             }
                             else {
-                                Taketran = ` SELECT DISTINCT UETR,
-	CREDITOR_NAME,
-	CREDITOR_ACCOUNT,
-	DEBTOR_NAME,
-	DR_SORT_CODE,
-	DEBTOR_ACCOUNT,
-	TRANSACTION_AMOUNT_RANGE,
-	CATEGORY_PURPOSE_PRTY,
-	CREATED_DATE,
-	CREATEDDATE,
+                                Taketran = ` SELECT DISTINCT UETR as UETR,
+	CREDITOR_NAME as  Beneficiary_Customer_Name, 
+    account_number as  Benificiary_Account,
+ CREDITOR_ACCOUNT as  Beneficiary_Customer_IBAN,
+	DEBTOR_NAME as  Ordering_Customer_Name,
+	DR_SORT_CODE as  Ordering_Bank_Code,
+	DEBTOR_ACCOUNT as Ordering_Customer_IBAN,
+    tran_ref_id as Transaction_ref,
+	TRANSACTION_AMOUNT_RANGE as Amount_Aed,
+	CATEGORY_PURPOSE_PRTY as Transaction_code,
+	CREATED_DATE as  Received_Time,
+    status as  Status,
+                            payment_endtoend_id as end_to_end_id,
+                            tran_ref_id as  Transaction_Reference,
+                            clrsysref as  Clearing_Reference,
+    remittance_info as  Other_Reference,
 	SENDER_BANK,
 	REMITTANCE_INFO,
 	TRAN_REF_ID,
-	CLRSYSREF,
-	STATUS,
 	PROCESS_TYPE,
 	DEPARTMENT_CODE,
 	T24_FT_REFERENCE_NUMBER,
-	ACCOUNT_NUMBER,
 	COALESCE(SPLIT_PART(REPORT_ICON_DATA,'base64',2),'') REPORT_ICON_DATA
 FROM
 	(SELECT NT.CDTR_ACCT_NAME AS CREDITOR_NAME,
@@ -267,11 +273,10 @@ FROM
 WHERE PROCESS_TYPE = 'IP' ${cond_params}`
                             }
 
-                            if(params.department_code!='' && params.department_code!=null && params.department_code!=undefined)
-                                {
-                                   Taketran+=`and DEPARTMENT_CODE='${params.department_code}'`
-                                }
-       
+                            if (params.department_code != '' && params.department_code != null && params.department_code != undefined) {
+                                Taketran += `and DEPARTMENT_CODE='${params.department_code}'`
+                            }
+
                             ExecuteQuery1(Taketran, function (arrdata) {
                                 if (arrdata.length) {
 

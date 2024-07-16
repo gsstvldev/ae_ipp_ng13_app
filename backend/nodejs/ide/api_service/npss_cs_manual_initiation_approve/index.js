@@ -9,6 +9,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
+
     try {
         /*   Created By : Siva  Harish
         Created Date :02-01-2023
@@ -41,7 +42,8 @@ app.post('/', function(appRequest, appResponse, next) {
                reason:for credit pacs 008 coutry of birth on 11-06-2024 by daseen
                reason:for changing private id for iban case and private organization wi:3906 by subramanian
                reason for :  credit org /pvt for  pacs008--Daseen  Wi 3771 23-05-24  in elp
-               Reason :CODE MERGED ON 11-07-2024 by Daseen
+               Reason :CODE MERGED ON 11-07-2024 by Daseen 
+               reason : after merged  remove logic WI 3906 only change in function PreparePVTcode new WI: 3949  -- renga 16-07-2024
         */
         var serviceName = 'NPSS (CS) Manual Initiation Approve';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -96,7 +98,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             var take_return_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_RETURN_PACK004' and param_code='URL' and need_sync = 'Y'`;
                             var TakeStsPsts = `select success_process_status,success_status from core_nc_workflow_setup where rule_code = '${params.RULE_CODE}'  and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
                             var take_api_params = `select   ns.dbtr_acct_no,fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,ns.process_group,fn_pcidss_decrypt(ns.dbtr_acct_no,$PCIDSS_KEY) as dbtr_account_no,ns.force_post_flag,ns.channel_id,ns.channel_refno,ns.fx_resv_text3,ns.amount_credited_loc_cur,ns.buy_margin,ns.buy_rate,ns.department_code,ns.fx_resv_text2,ns.account_currency,ns.org_pay_endtoend_id, ns.dbtr_other_issuer,ns.ext_person_id_code,ns.dbtr_country,ns.dbtr_city_birth,ns.dbtr_birth_date,ns.dbtr_document_id,ns.issuer_type_code,ns.dbtr_prvt_id,ns.remittance_info,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method, ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty, ns.clrsysref, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,fn_pcidss_decrypt(ns.message_data,$PCIDSS_KEY ) as message_data,ns.reversal_amount,ns.intrbk_sttlm_amnt, ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, ns.value_date,ns.ext_org_id_code,process_type,accp_date_time as accp_dt_tm from npss_transactions ns where npsst_id = '${params.Tran_Id}'`;
-                           // var take_api_params = `select   ns.dbtr_acct_no,fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,ns.process_group,ns.force_post_flag,ns.channel_id,ns.channel_refno,ns.fx_resv_text3,ns.amount_credited_loc_cur,ns.buy_margin,ns.buy_rate,ns.department_code,ns.fx_resv_text2,ns.account_currency,ns.org_pay_endtoend_id, ns.dbtr_other_issuer,ns.ext_person_id_code,ns.dbtr_country,ns.dbtr_city_birth,ns.dbtr_birth_date,ns.dbtr_document_id,ns.issuer_type_code,ns.dbtr_prvt_id,ns.remittance_info,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method, ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty, ns.clrsysref, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,fn_pcidss_decrypt(ns.message_data,$PCIDSS_KEY ) as message_data,ns.reversal_amount,ns.intrbk_sttlm_amnt, ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, ns.value_date,ns.ext_org_id_code,process_type,accp_date_time as accp_dt_tm from npss_transactions ns where npsst_id = '${params.Tran_Id}'`;
+                            // var take_api_params = `select   ns.dbtr_acct_no,fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,ns.process_group,ns.force_post_flag,ns.channel_id,ns.channel_refno,ns.fx_resv_text3,ns.amount_credited_loc_cur,ns.buy_margin,ns.buy_rate,ns.department_code,ns.fx_resv_text2,ns.account_currency,ns.org_pay_endtoend_id, ns.dbtr_other_issuer,ns.ext_person_id_code,ns.dbtr_country,ns.dbtr_city_birth,ns.dbtr_birth_date,ns.dbtr_document_id,ns.issuer_type_code,ns.dbtr_prvt_id,ns.remittance_info,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method, ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty, ns.clrsysref, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,fn_pcidss_decrypt(ns.message_data,$PCIDSS_KEY ) as message_data,ns.reversal_amount,ns.intrbk_sttlm_amnt, ns.process_type,ns.status,ns.process_status,ns.tran_ref_id txid,ns.tran_ref_id, ns.value_date,ns.ext_org_id_code,process_type,accp_date_time as accp_dt_tm from npss_transactions ns where npsst_id = '${params.Tran_Id}'`;
                             if (params.PROD_CODE == 'NPSS_AEFAB') {
                                 ExecuteQuery1(TakeStsPsts, function (arrurlResult) {
                                     if (arrurlResult.length) {
@@ -1814,83 +1816,184 @@ app.post('/', function(appRequest, appResponse, next) {
                             })
                         })
                     }
+
+
+
+                    // function PreparePVTcode  after merging && after logic change WI : 3906
+
+                    // function PreparePVTcode(arrcbsAct, arrprocesslog) {
+                    //     return new Promise(async (resolve, reject) => {
+                    //         let PvtParam = {}
+
+                    //         if (arrcbsAct[0].resident_flag == 'Y') {
+                    //             if ((arrcbsAct[0].national_id != '' && arrcbsAct[0].national_id != null) || (arrcbsAct[0].legal_id != '' && arrcbsAct[0].legal_id != null)) {
+                    //                 if (arrcbsAct[0].national_id != '' && arrcbsAct[0].national_id != null) {
+                    //                     IDcode = arrcbsAct[0].national_id
+                    //                     extpersonidcode = 'NIDN'
+                    //                     issrtype = 'AE'
+                    //                 } else {
+                    //                     if (arrcbsAct[0].nationality_country_code != '' && arrcbsAct[0].nationality_country_code != null && arrcbsAct[0].nationality_country_code != undefined) {
+                    //                         IDcode = arrcbsAct[0].legal_id
+                    //                         extpersonidcode = 'CCPT'
+                    //                         issrtype = arrcbsAct[0].nationality_country_code || ''
+                    //                     } else {
+                    //                         objresponse.status = "FAILURE"
+                    //                         objresponse.errdata = "nationality_country_code is Missing"
+                    //                         sendResponse(null, objresponse)
+                    //                     }
+
+                    //                 }
+                    //             } else {
+                    //                 objresponse.status = "FAILURE"
+                    //                 objresponse.errdata = "National ID or Legal ID is Missing"
+                    //                 sendResponse(null, objresponse)
+                    //             }
+
+                    //         } else {
+                    //             if (arrcbsAct[0].legal_id != '' && arrcbsAct[0].legal_id != null) {
+                    //                 if (arrcbsAct[0].nationality_country_code != '' && arrcbsAct[0].nationality_country_code != null && arrcbsAct[0].nationality_country_code != undefined) {
+                    //                     IDcode = arrcbsAct[0].legal_id
+                    //                     extpersonidcode = 'CCPT'
+                    //                     issrtype = arrcbsAct[0].nationality_country_code || ''
+                    //                 } else {
+                    //                     objresponse.status = "FAILURE"
+                    //                     objresponse.errdata = "nationality_country_code is Missing"
+                    //                     sendResponse(null, objresponse)
+                    //                 }
+                    //             } else {
+                    //                 objresponse.status = "FAILURE"
+                    //                 objresponse.errdata = "Legal ID is Missing"
+                    //                 sendResponse(null, objresponse)
+                    //             }
+
+                    //         }
+
+
+                    //         let Params = {}
+
+                    //         /*  else {
+                    //              //Params.FormPvtid = IDcode + '-' + destination_economic_activity_code
+                    //              let selectParamsQry = `select param_detail from core_nc_system_setup where param_category='NPSS_EAC_PRIVATE_CUST' and param_code='DEFAULT'`
+                    //              let param_detail_arr = await getParamSetup(selectParamsQry)
+                    //              Params.FormPvtid = param_detail_arr[0].param_detail
+                    //          } */
+                    //         let selectParamsQry = `select param_detail from core_nc_system_setup where param_category='NPSS_EAC_PRIVATE_CUST' and param_code='DEFAULT'`
+                    //         let param_detail_arr = await getParamSetup(selectParamsQry)
+                    //         if (param_detail_arr.length > 0) {
+                    //             Params.FormPvtid = IDcode + '-' + param_detail_arr[0].param_detail
+                    //             Params.extpersonidcode = extpersonidcode
+                    //             Params.issrtype = issrtype || ''
+                    //             resolve(Params)
+                    //         }
+                    //         else {
+                    //             reqInstanceHelper.PrintInfo(serviceName, 'Param detail not found in core_nc__system_setup table', objSessionLogInfo)
+                    //             sendResponse(null, { status: "Failure", errdata: "Param detail not found in core_nc__system_setup table" })
+                    //             //  Params.FormPvtid=""
+
+
+                    //         }
+
+
+
+                    //         //}
+                    //         /* let TakeEconCode = `select destination_economic_activity_code from core_nc_eco_actvty_mapping where source_economic_activity_code = '${arrcbsAct[0].industry}'`
+                    //         ExecuteQuery1(TakeEconCode, async function (economiccode) {
+                    //             if (economiccode.length > 0 && (economiccode[0].destination_economic_activity_code != null || economiccode[0].destination_economic_activity_code != undefined || economiccode[0].destination_economic_activity_code != '')) {
+                    //                 let destination_economic_activity_code = economiccode[0].destination_economic_activity_code
+                    //                 let IDcode
+                    //                 let extpersonidcode
+                    //                 let issrtype
+                    //                 //  if (arrcbsAct[0].resident_flag == 'Y') {
+                    //                 //if (arrcbsAct[0].national_id != '' && arrcbsAct[0].national_id != null) {
+                    //                 // IDcode = arrcbsAct[0].national_id
+                    //                 // extpersonidcode = 'NIDN'
+                    //                 //  issrtype = 'AE'
+                    //                 // } else {
+                    //                 //  IDcode = arrcbsAct[0].legal_id
+                    //                 // extpersonidcode = 'CCPT'
+                    //                 //  issrtype = arrcbsAct[0].nationality_country_code || ''
+                    //                 //  }
+                    //                 //  } else {
+                    //                 //  IDcode = arrcbsAct[0].legal_id
+                    //                 //  extpersonidcode = 'CCPT'
+                    //                 // issrtype = arrcbsAct[0].nationality_country_code || ''
+                    //                 //}
+
+
+                    //                 if (arrcbsAct[0].resident_flag == 'Y') {
+                    //                     if ((arrcbsAct[0].national_id != '' && arrcbsAct[0].national_id != null) || (arrcbsAct[0].legal_id != '' && arrcbsAct[0].legal_id != null)) {
+                    //                         if (arrcbsAct[0].national_id != '' && arrcbsAct[0].national_id != null) {
+                    //                             IDcode = arrcbsAct[0].national_id
+                    //                             extpersonidcode = 'NIDN'
+                    //                             issrtype = 'AE'
+                    //                         } else {
+                    //                             if (arrcbsAct[0].nationality_country_code != '' && arrcbsAct[0].nationality_country_code != null && arrcbsAct[0].nationality_country_code != undefined) {
+                    //                                 IDcode = arrcbsAct[0].legal_id
+                    //                                 extpersonidcode = 'CCPT'
+                    //                                 issrtype = arrcbsAct[0].nationality_country_code || ''
+                    //                             } else {
+                    //                                 objresponse.status = "FAILURE"
+                    //                                 objresponse.errdata = "nationality_country_code is Missing"
+                    //                                 sendResponse(null, objresponse)
+                    //                             }
+
+                    //                         }
+                    //                     } else {
+                    //                         objresponse.status = "FAILURE"
+                    //                         objresponse.errdata = "National ID or Legal ID is Missing"
+                    //                         sendResponse(null, objresponse)
+                    //                     }
+
+                    //                 } else {
+                    //                     if (arrcbsAct[0].legal_id != '' && arrcbsAct[0].legal_id != null) {
+                    //                         if (arrcbsAct[0].nationality_country_code != '' && arrcbsAct[0].nationality_country_code != null && arrcbsAct[0].nationality_country_code != undefined) {
+                    //                             IDcode = arrcbsAct[0].legal_id
+                    //                             extpersonidcode = 'CCPT'
+                    //                             issrtype = arrcbsAct[0].nationality_country_code || ''
+                    //                         } else {
+                    //                             objresponse.status = "FAILURE"
+                    //                             objresponse.errdata = "nationality_country_code is Missing"
+                    //                             sendResponse(null, objresponse)
+                    //                         }
+                    //                     } else {
+                    //                         objresponse.status = "FAILURE"
+                    //                         objresponse.errdata = "Legal ID is Missing"
+                    //                         sendResponse(null, objresponse)
+                    //                     }
+
+                    //                 }
+
+
+                    //                 let Params = {}
+
+                    //                /*  else {
+                    //                     //Params.FormPvtid = IDcode + '-' + destination_economic_activity_code
+                    //                     let selectParamsQry = `select param_detail from core_nc_system_setup where param_category='NPSS_EAC_PRIVATE_CUST' and param_code='DEFAULT'`
+                    //                     let param_detail_arr = await getParamSetup(selectParamsQry)
+                    //                     Params.FormPvtid = param_detail_arr[0].param_detail
+                    //                 } 
+
+                    //                 Params.extpersonidcode = extpersonidcode
+                    //                 Params.issrtype = issrtype || ''
+                    //                 resolve(Params)
+                    //             } else {
+                    //                 objresponse.status = "FAILURE"
+                    //                 objresponse.errdata = "destination_economic_activity_code not found"
+                    //                 sendResponse(null, objresponse)
+                    //             }
+                    //         }) */
+                    //     })
+                    // }
+
+
+
+
+                    // function PreparePVTcode from old master code before merging && before logic change WI : 3906
                     function PreparePVTcode(arrcbsAct, arrprocesslog) {
-                        return new Promise(async (resolve, reject) => {
+                        return new Promise((resolve, reject) => {
                             let PvtParam = {}
-
-                            if (arrcbsAct[0].resident_flag == 'Y') {
-                                if ((arrcbsAct[0].national_id != '' && arrcbsAct[0].national_id != null) || (arrcbsAct[0].legal_id != '' && arrcbsAct[0].legal_id != null)) {
-                                    if (arrcbsAct[0].national_id != '' && arrcbsAct[0].national_id != null) {
-                                        IDcode = arrcbsAct[0].national_id
-                                        extpersonidcode = 'NIDN'
-                                        issrtype = 'AE'
-                                    } else {
-                                        if (arrcbsAct[0].nationality_country_code != '' && arrcbsAct[0].nationality_country_code != null && arrcbsAct[0].nationality_country_code != undefined) {
-                                            IDcode = arrcbsAct[0].legal_id
-                                            extpersonidcode = 'CCPT'
-                                            issrtype = arrcbsAct[0].nationality_country_code || ''
-                                        } else {
-                                            objresponse.status = "FAILURE"
-                                            objresponse.errdata = "nationality_country_code is Missing"
-                                            sendResponse(null, objresponse)
-                                        }
-
-                                    }
-                                } else {
-                                    objresponse.status = "FAILURE"
-                                    objresponse.errdata = "National ID or Legal ID is Missing"
-                                    sendResponse(null, objresponse)
-                                }
-
-                            } else {
-                                if (arrcbsAct[0].legal_id != '' && arrcbsAct[0].legal_id != null) {
-                                    if (arrcbsAct[0].nationality_country_code != '' && arrcbsAct[0].nationality_country_code != null && arrcbsAct[0].nationality_country_code != undefined) {
-                                        IDcode = arrcbsAct[0].legal_id
-                                        extpersonidcode = 'CCPT'
-                                        issrtype = arrcbsAct[0].nationality_country_code || ''
-                                    } else {
-                                        objresponse.status = "FAILURE"
-                                        objresponse.errdata = "nationality_country_code is Missing"
-                                        sendResponse(null, objresponse)
-                                    }
-                                } else {
-                                    objresponse.status = "FAILURE"
-                                    objresponse.errdata = "Legal ID is Missing"
-                                    sendResponse(null, objresponse)
-                                }
-
-                            }
-
-
-                            let Params = {}
-
-                            /*  else {
-                                 //Params.FormPvtid = IDcode + '-' + destination_economic_activity_code
-                                 let selectParamsQry = `select param_detail from core_nc_system_setup where param_category='NPSS_EAC_PRIVATE_CUST' and param_code='DEFAULT'`
-                                 let param_detail_arr = await getParamSetup(selectParamsQry)
-                                 Params.FormPvtid = param_detail_arr[0].param_detail
-                             } */
-                            let selectParamsQry = `select param_detail from core_nc_system_setup where param_category='NPSS_EAC_PRIVATE_CUST' and param_code='DEFAULT'`
-                            let param_detail_arr = await getParamSetup(selectParamsQry)
-                            if (param_detail_arr.length > 0) {
-                                Params.FormPvtid = IDcode + '-' + param_detail_arr[0].param_detail
-                                Params.extpersonidcode = extpersonidcode
-                                Params.issrtype = issrtype || ''
-                                resolve(Params)
-                            }
-                            else {
-                                reqInstanceHelper.PrintInfo(serviceName, 'Param detail not found in core_nc__system_setup table', objSessionLogInfo)
-                                sendResponse(null, { status: "Failure", errdata: "Param detail not found in core_nc__system_setup table" })
-                                //  Params.FormPvtid=""
-
-
-                            }
-
-
-
-                            //}
-                            /* let TakeEconCode = `select destination_economic_activity_code from core_nc_eco_actvty_mapping where source_economic_activity_code = '${arrcbsAct[0].industry}'`
-                            ExecuteQuery1(TakeEconCode, async function (economiccode) {
+                            let TakeEconCode = `select destination_economic_activity_code from core_nc_eco_actvty_mapping where source_economic_activity_code = '${arrcbsAct[0].industry}'`
+                            ExecuteQuery1(TakeEconCode, function (economiccode) {
                                 if (economiccode.length > 0 && (economiccode[0].destination_economic_activity_code != null || economiccode[0].destination_economic_activity_code != undefined || economiccode[0].destination_economic_activity_code != '')) {
                                     let destination_economic_activity_code = economiccode[0].destination_economic_activity_code
                                     let IDcode
@@ -1911,8 +2014,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                     //  extpersonidcode = 'CCPT'
                                     // issrtype = arrcbsAct[0].nationality_country_code || ''
                                     //}
-    
-    
+
+
                                     if (arrcbsAct[0].resident_flag == 'Y') {
                                         if ((arrcbsAct[0].national_id != '' && arrcbsAct[0].national_id != null) || (arrcbsAct[0].legal_id != '' && arrcbsAct[0].legal_id != null)) {
                                             if (arrcbsAct[0].national_id != '' && arrcbsAct[0].national_id != null) {
@@ -1929,14 +2032,14 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     objresponse.errdata = "nationality_country_code is Missing"
                                                     sendResponse(null, objresponse)
                                                 }
-    
+
                                             }
                                         } else {
                                             objresponse.status = "FAILURE"
                                             objresponse.errdata = "National ID or Legal ID is Missing"
                                             sendResponse(null, objresponse)
                                         }
-    
+
                                     } else {
                                         if (arrcbsAct[0].legal_id != '' && arrcbsAct[0].legal_id != null) {
                                             if (arrcbsAct[0].nationality_country_code != '' && arrcbsAct[0].nationality_country_code != null && arrcbsAct[0].nationality_country_code != undefined) {
@@ -1953,19 +2056,12 @@ app.post('/', function(appRequest, appResponse, next) {
                                             objresponse.errdata = "Legal ID is Missing"
                                             sendResponse(null, objresponse)
                                         }
-    
+
                                     }
-    
-    
+
+
                                     let Params = {}
-                                    
-                                   /*  else {
-                                        //Params.FormPvtid = IDcode + '-' + destination_economic_activity_code
-                                        let selectParamsQry = `select param_detail from core_nc_system_setup where param_category='NPSS_EAC_PRIVATE_CUST' and param_code='DEFAULT'`
-                                        let param_detail_arr = await getParamSetup(selectParamsQry)
-                                        Params.FormPvtid = param_detail_arr[0].param_detail
-                                    } 
-    
+                                    Params.FormPvtid = IDcode + '-' + destination_economic_activity_code
                                     Params.extpersonidcode = extpersonidcode
                                     Params.issrtype = issrtype || ''
                                     resolve(Params)
@@ -1974,9 +2070,11 @@ app.post('/', function(appRequest, appResponse, next) {
                                     objresponse.errdata = "destination_economic_activity_code not found"
                                     sendResponse(null, objresponse)
                                 }
-                            }) */
+                            })
                         })
                     }
+
+
 
 
                     function getParamSetup(selectParamsQry) {
@@ -2541,6 +2639,8 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
+
 
 
 

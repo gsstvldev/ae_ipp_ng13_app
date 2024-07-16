@@ -8,21 +8,39 @@ app.post('/', function (appRequest, appResponse, next) {
     Created Date : 30/05/2024
     Reason :XML TO CSV WI:3837 */
     var serviceName = 'DEEM XML TO CSV';
+    const { Writable } = require('stream');
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
-    var reqTranDBInstance = require($REFPATH + "instance/TranDBInstance.js"); /// postgres & oracle DB pointing        
+    var reqTranDBInstance = require($REFPATH + "instance/TranDBInstance.js"); /// postgres & oracle DB pointing    
+    const { createObjectCsvStringifier } = require('csv-writer');
     var reqLogInfo = require($REFPATH + 'log/trace/LogInfo'); /// Log information Detail
     var reqAuditLog = require($REFPATH + 'log/audit/AuditLog');
     var reqDateFormatter = require($REFPATH + 'common/dateconverter/DateFormatter');
     var params = appRequest.body.PARAMS; //  Client input fromm Server
     var headers = appRequest.headers; // header details
     var objSessionLogInfo = null; // set value is null
-    var reqAsync = require('async');
-    var Client = require('ssh2-sftp-client');
+    try {
+        //   const xml2js= require('xml2js');
+        const { createObjectCsvStringifier } = require('csv-writer');
+        var reqAsync = require('async');
+        var Client = require('ssh2-sftp-client');
+        console.log(`ssh modules-` + typeof (Client))
+        console.log(`csv modules-` + typeof (createObjectCsvStringifier))
+        var moment = require('moment');
+        //const { Writable } = require('stream');
+        console.log(`csv modules-` + typeof (Writable))
+        console.log('writable next line')
+        //var xml2json = require('xml2json');
+        console.log('xml2json' + typeof (xml2json))
+        console.log('after xml2json')
+
+    } catch (error) {
+        console.log(' inside catch xml2json' + typeof (xml2json))
+
+        console.log(`in catch`)
+        console.log(`in catch-`)
+        console.error('Error loading csv-writer module:', error);
+    }
     var mTranConn = "";
-    var xml2json = require('xml2json');
-    var moment = require('moment');
-    const { createObjectCsvStringifier } = require('csv-writer');
-    const { Writable } = require('stream');
     var objresponse = {
         'status': 'FAILURE',
         'data': '',
@@ -47,23 +65,46 @@ app.post('/', function (appRequest, appResponse, next) {
                         removecsv = takexl.replace(".csv", "");
                         allcnvrtcsv.push(removecsv);
                     }
-                    console.log(allcnvrtcsv)
+                    //  console.log(allcnvrtcsv)
                     let takedata = await FTPcnt()
                     if (takedata.length > 0) {
                         if (takedata.length > 0) {
                             let names = takedata.map(item => item.name.replace(".xml", ""));
                             let filteredData = takedata.filter(item => !allcnvrtcsv.includes(item.name.replace(".xml", "")));
                             if (filteredData.length > 0) {
-                                console.log(filteredData)
+                                // console.log(filteredData)
                                 for (let i = 0; i < filteredData.length; i++) {
                                     let xml = filteredData[i].data;
                                     let name = filteredData[i].name;
                                     currentfile = name.replace(".xml", "");
-                                    let json_parsed = JSON.parse(xml2json.toJson(xml));
-                                    if (json_parsed['Document'] && json_parsed['Document']['Signature']) {
-                                        delete json_parsed['Document']['Signature'];
+                                    let json_parsed;
+                                    var xml2js = require('xml2js');
+                                    var parser = new xml2js.Parser({ strict: false, trim: true });
+                                    parser.parseString(xml, function (err, result) {
+                                        json_parsed = result
+                                    });
+                                    if (json_parsed['DOCUMENT'] && json_parsed['DOCUMENT']['SIGNATURE']) {
+                                        delete json_parsed['DOCUMENT']['SIGNATURE'];
                                     }
-                                    console.log(json_parsed);
+                                    // let alldata = Traverse(json_parsed);
+                                    // if (alldata.length > 0) {
+                                    //     let objkeys = Object.keys(alldata[0]);
+                                    //     let Header = await findHeader(objkeys);
+                                    //     console.log(Header);
+                                    //     let csvContent = await getCSVStream(alldata, Header);
+                                    //     let takecvsdata = await FTPconnection(csvContent, currentfile);
+                                    //     if (takecvsdata === 'SUCCESS') {
+                                    //         objresponse.status = 'SUCCESS';
+                                    //         sendResponse(null, objresponse);
+                                    //     } else {
+                                    //         objresponse.status = 'FAILURE';
+                                    //         sendResponse(null, objresponse);
+                                    //     }
+                                    // } 
+                                    // else {
+                                    //     objresponse.status = 'NO DATA FOUND';
+                                    //     sendResponse(null, objresponse);
+                                    // }
                                     let alldata = Traverse(json_parsed);
                                     if (alldata.length > 0) {
                                         let objkeys = Object.keys(alldata[0]);
@@ -73,6 +114,7 @@ app.post('/', function (appRequest, appResponse, next) {
                                         let takecvsdata = await FTPconnection(csvContent, currentfile);
                                         if (takecvsdata === 'SUCCESS') {
                                             objresponse.status = 'SUCCESS';
+                                            objresponse.data = 'SUCCESS';
                                             sendResponse(null, objresponse);
                                         } else {
                                             objresponse.status = 'FAILURE';
@@ -91,8 +133,6 @@ app.post('/', function (appRequest, appResponse, next) {
                             let objresponse = { status: 'NO DATA FOUND' };
                             sendResponse(null, objresponse);
                         }
-
-
                     } else {
                         objresponse.status = 'NO DATA FOUND';
                         sendResponse(null, objresponse);
@@ -147,7 +187,7 @@ app.post('/', function (appRequest, appResponse, next) {
                                 var filepath = params.sftp_read_path.trim() + "/" + currentfile + '.csv'
                                 //  var filename = filepassword[0].sftp_filename.trim();
                                 var file_content = csvContent
-                                console.log('............................', filepath)
+                                // console.log('............................', filepath)
                                 var connectObj = {
                                     "host": ip,
                                     "port": port,
@@ -226,6 +266,7 @@ app.post('/', function (appRequest, appResponse, next) {
                             await sftp.connect(connectObj);
                             const fileList = await sftp.list(sftpPath);
                             sftp.end();
+                            reqInstanceHelper.PrintInfo(serviceName, "........................sftp file list..............." + fileList, objSessionLogInfo);
                             return fileList;
 
                         } catch (error) {
@@ -298,185 +339,187 @@ app.post('/', function (appRequest, appResponse, next) {
                     }
                     function Traverse(json_parsed) {
                         let key_list = []
-                        key_list = Object.keys(json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'])
-                        let ntry_length = Object.keys(json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'])
+
+                        key_list = Object.keys(json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'])
+                        //key_list = Object.keys(json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT']['NTRY'])
+                        let NTRY_length = Object.keys(json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'])
                         let key_pair = []
-                        for (let i = 0; i < ntry_length.length; i++) {
-                            key_pair.push({ ['MsgId']: json_parsed['Document']['BkToCstmrStmt']['GrpHdr']['MsgId'] })
-                            key_pair[i]['CreDtm'] = json_parsed['Document']['BkToCstmrStmt']['GrpHdr']['CreDtTm']
-                            key_pair[i]['Nm'] = json_parsed['Document']['BkToCstmrStmt']['GrpHdr']['MsgRcpt']['Nm']
-                            key_pair[i]['AnyBic'] = json_parsed['Document']['BkToCstmrStmt']['GrpHdr']['MsgRcpt']['Id']['OrgId']['AnyBIC']
-                            key_pair[i]['PgNb'] = json_parsed['Document']['BkToCstmrStmt']['GrpHdr']['MsgPgntn']['PgNb']
-                            key_pair[i]['LastPgInd'] = json_parsed['Document']['BkToCstmrStmt']['GrpHdr']['MsgPgntn']['LastPgInd']
-                            key_pair[i]['Id'] = json_parsed['Document']['BkToCstmrStmt']['Stmt']['Id']
-                            key_pair[i]['ElctrncSeqNb'] = json_parsed['Document']['BkToCstmrStmt']['Stmt']['ElctrncSeqNb']
-                            key_pair[i]['CredDtTm2'] = json_parsed['Document']['BkToCstmrStmt']['Stmt']['CreDtTm']
-                            key_pair[i]['FrdDtTm'] = json_parsed['Document']['BkToCstmrStmt']['Stmt']['FrToDt']['FrDtTm']
-                            key_pair[i]['ToDtTm'] = json_parsed['Document']['BkToCstmrStmt']['Stmt']['FrToDt']['ToDtTm']
-                            key_pair[i]['Id2'] = json_parsed['Document']['BkToCstmrStmt']['Stmt']['Acct']['Id']['Othr']['Id']
-                            key_pair[i]['Id3'] = json_parsed['Document']['BkToCstmrStmt']['Stmt']['RltdAcct']['Id']['Othr']['Id']
-                            if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Bal'][i]) {
+                        for (let i = 0; i < NTRY_length.length; i++) {
+                            key_pair.push({ ['MSGID']: json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['GRPHDR'][0]['MSGID'][0] })
+                            key_pair[i]['CREDTM'] = json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['GRPHDR'][0]['CREDTTM'][0]
+                            key_pair[i]['NM'] = json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['GRPHDR'][0]['MSGRCPT'][0]['NM'][0]
+                            key_pair[i]['ANYBIC'] = json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['GRPHDR'][0]['MSGRCPT'][0]['ID'][0]['ORGID'][0]['ANYBIC'][0]
+                            key_pair[i]['PGNB'] = json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['GRPHDR'][0]['MSGPGNTN'][0]['PGNB'][0]
+                            key_pair[i]['LASTPGIND'] = json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['GRPHDR'][0]['MSGPGNTN'][0]['LASTPGIND'][0]
+                            key_pair[i]['ID'] = json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['ID'][0]
+                            key_pair[i]['ELCTRNCSEQNB'] = json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['ELCTRNCSEQNB'][0]
+                            key_pair[i]['CREDDTTM2'] = json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['CREDTTM'][0]
+                            key_pair[i]['FRDDTTM'] = json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['FRTODT'][0]['FRDTTM'][0]
+                            key_pair[i]['TODTTM'] = json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['FRTODT'][0]['TODTTM'][0]
+                            key_pair[i]['ID2'] = json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['ACCT'][0]['ID'][0]['OTHR'][0]['ID'][0]
+                            key_pair[i]['ID3'] = json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['RLTDACCT'][0]['ID'][0]['OTHR'][0]['ID'][0]
+                            if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['BAL'][i]) {
                                 //  }
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Bal'][i]['Tp']['CdOrPrtry']['Prtry']) {
-                                    key_pair[i]['Prtry'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Bal'][i]['Tp']['CdOrPrtry']['Prtry'])
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['BAL'][i]['TP'][0]['CDORPRTRY'][0]['PRTRY'][0]) {
+                                    key_pair[i]['PRTRY'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['BAL'][i]['TP'][0]['CDORPRTRY'][0]['PRTRY'][0])
                                 }
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Bal'][i]['Amt']['$t'])
-                                    key_pair[i]['Amt'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Bal'][i]['Amt']['$t'])
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Bal'][i]['Amt']['Ccy'])
-                                    key_pair[i]['Ccy'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Bal'][i]['Amt']['Ccy'])
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Bal'][i]['CdtDbtInd'])
-                                    key_pair[i]['CdtDbtInd'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Bal'][i]['CdtDbtInd'])
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Bal'][i]['Dt']['Dt'])
-                                    key_pair[i]['Dt'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Bal'][i]['Dt']['Dt'])
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Bal'][i]['Dt']['DtTm'])
-                                    key_pair[i]['DtTm'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Bal'][i]['Dt']['DtTm'])
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['BAL'][i]['AMT'][0]['_'])
+                                    key_pair[i]['AMT'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['BAL'][i]['AMT'][0]['_'])
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['BAL'][i]['AMT'][0]['$']['CCY'])
+                                    key_pair[i]['CCY'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['BAL'][i]['AMT'][0]['$']['CCY'])
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['BAL'][i]['CDTDBTIND'][0])
+                                    key_pair[i]['CDTDBTIND'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['BAL'][i]['CDTDBTIND'][0])
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['BAL'][i]['DT'][0]['DT'][0])
+                                    key_pair[i]['DT'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['BAL'][i]['DT'][0]['DT'][0])
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['BAL'][i]['DT'][0]['DTTM'][0])
+                                    key_pair[i]['DTTM'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['BAL'][i]['DT'][0]['DTTM'][0])
                             }
-                            key_pair[i]['NbOfNtries'] = json_parsed['Document']['BkToCstmrStmt']['Stmt']['TxsSummry']['TtlNtries']['NbOfNtries']
-                            key_pair[i]['Sum'] = json_parsed['Document']['BkToCstmrStmt']['Stmt']['TxsSummry']['TtlNtries']['Sum']
-                            key_pair[i]['CdtDbtInd2'] = json_parsed['Document']['BkToCstmrStmt']['Stmt']['TxsSummry']['TtlNtries']['TtlNetNtry']['CdtDbtInd']
-                            key_pair[i]['NbOfNtries2'] = json_parsed['Document']['BkToCstmrStmt']['Stmt']['TxsSummry']['TtlCdtNtries']['NbOfNtries']
-                            key_pair[i]['Sum2'] = json_parsed['Document']['BkToCstmrStmt']['Stmt']['TxsSummry']['TtlCdtNtries']['Sum']
-                            key_pair[i]['NbOfNtries3'] = json_parsed['Document']['BkToCstmrStmt']['Stmt']['TxsSummry']['TtlDbtNtries']['NbOfNtries']
-                            key_pair[i]['Sum3'] = json_parsed['Document']['BkToCstmrStmt']['Stmt']['TxsSummry']['TtlDbtNtries']['Sum']
-                            if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Bal'][i]) {
+                            key_pair[i]['NBOFNTRIES'] = json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['TXSSUMMRY'][0]['TTLNTRIES'][0]['NBOFNTRIES'][0]
+                            key_pair[i]['SUM'] = json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['TXSSUMMRY'][0]['TTLNTRIES'][0]['SUM'][0]
+                            key_pair[i]['CDTDBTIND2'] = json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['TXSSUMMRY'][0]['TTLNTRIES'][0]['TTLNETNTRY'][0]['CDTDBTIND'][0]
+                            key_pair[i]['NBOFNTRIES2'] = json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['TXSSUMMRY'][0]['TTLCDTNTRIES'][0]['NBOFNTRIES'][0]
+                            key_pair[i]['SUM2'] = json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['TXSSUMMRY'][0]['TTLCDTNTRIES'][0]['SUM'][0]
+                            key_pair[i]['NBOFNTRIES3'] = json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['TXSSUMMRY'][0]['TTLDBTNTRIES'][0]['NBOFNTRIES'][0]
+                            key_pair[i]['SUM3'] = json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['TXSSUMMRY'][0]['TTLDBTNTRIES'][0]['SUM'][0]
+                            if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['BAL'][i]) {
 
                                 //  }
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Bal'][i]['Tp']['CdOrPrtry']['Prtry']) {
-                                    key_pair[i]['Prtry'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Bal'][i]['Tp']['CdOrPrtry']['Prtry'])
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['BAL'][i]['TP'][0]['CDORPRTRY'][0]['PRTRY'][0]) {
+                                    key_pair[i]['PRTRY'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['BAL'][i]['TP'][0]['CDORPRTRY'][0]['PRTRY'][0])
                                 }
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Bal'][i]['Amt']['$t'])
-                                    key_pair[i]['Amt'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Bal'][i]['Amt']['$t'])
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Bal'][i]['Amt']['Ccy'])
-                                    key_pair[i]['Ccy'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Bal'][i]['Amt']['Ccy'])
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['BAL'][i]['AMT'][0]['_'])
+                                    key_pair[i]['AMT'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['BAL'][i]['AMT'][0]['_'])
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['BAL'][i]['AMT'][0]['$']['CCY'])
+                                    key_pair[i]['CCY'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['BAL'][i]['AMT'][0]['$']['CCY'])
 
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Bal'][i]['CdtDbtInd'])
-                                    key_pair[i]['CdtDbtInd'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Bal'][i]['CdtDbtInd'])
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['BAL'][i]['CDTDBTIND'][0])
+                                    key_pair[i]['CDTDBTIND'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['BAL'][i]['CDTDBTIND'][0])
 
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Bal'][i]['Dt']['Dt'])
-                                    key_pair[i]['Dt'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Bal'][i]['Dt']['Dt'])
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Bal'][i]['Dt']['DtTm'])
-                                    key_pair[i]['DtTm'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Bal'][i]['Dt']['DtTm'])
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['BAL'][i]['DT'][0]['DT'][0])
+                                    key_pair[i]['DT'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['BAL'][i]['DT'][0]['DT'][0])
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['BAL'][i]['DT'][0]['DTTM'][0])
+                                    key_pair[i]['DTTM'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['BAL'][i]['DT'][0]['DTTM'][0])
                                 // }
                             }
-                            key_pair[i]['NbOfNtries'] = json_parsed['Document']['BkToCstmrStmt']['Stmt']['TxsSummry']['TtlNtries']['NbOfNtries']
-                            key_pair[i]['Sum'] = json_parsed['Document']['BkToCstmrStmt']['Stmt']['TxsSummry']['TtlNtries']['Sum']
-                            key_pair[i]['CdtDbtInd2'] = json_parsed['Document']['BkToCstmrStmt']['Stmt']['TxsSummry']['TtlNtries']['TtlNetNtry']['CdtDbtInd']
-                            key_pair[i]['NbOfNtries2'] = json_parsed['Document']['BkToCstmrStmt']['Stmt']['TxsSummry']['TtlCdtNtries']['NbOfNtries']
-                            key_pair[i]['Sum2'] = json_parsed['Document']['BkToCstmrStmt']['Stmt']['TxsSummry']['TtlCdtNtries']['Sum']
-                            key_pair[i]['NbOfNtries3'] = json_parsed['Document']['BkToCstmrStmt']['Stmt']['TxsSummry']['TtlDbtNtries']['NbOfNtries']
-                            key_pair[i]['Sum3'] = json_parsed['Document']['BkToCstmrStmt']['Stmt']['TxsSummry']['TtlDbtNtries']['Sum']
-                            /* key_list=Object.keys(json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'])
+                            key_pair[i]['NBOFNTRIES'] = json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['TXSSUMMRY'][0]['TTLNTRIES'][0]['NBOFNTRIES'][0]
+                            key_pair[i]['SUM'] = json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['TXSSUMMRY'][0]['TTLNTRIES'][0]['SUM'][0]
+                            key_pair[i]['CDTDBTIND2'] = json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['TXSSUMMRY'][0]['TTLNTRIES'][0]['TTLNETNTRY'][0]['CDTDBTIND'][0]
+                            key_pair[i]['NBOFNTRIES2'] = json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['TXSSUMMRY'][0]['TTLCDTNTRIES'][0]['NBOFNTRIES'][0]
+                            key_pair[i]['SUM2'] = json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['TXSSUMMRY'][0]['TTLCDTNTRIES'][0]['SUM'][0]
+                            key_pair[i]['NBOFNTRIES3'] = json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['TXSSUMMRY'][0]['TTLDBTNTRIES'][0]['NBOFNTRIES'][0]
+                            key_pair[i]['SUM3'] = json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['TXSSUMMRY'][0]['TTLDBTNTRIES'][0]['SUM'][0]
+                            /* key_list=Object.keys(json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT']['NTRY'])
                             for(let i in key_list)
                             { */
-                            if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]) {
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['AcctSvcrRef']) {
-                                    key_pair[i]['NtryRef'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['AcctSvcrRef'])
+                            if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]) {
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['ACCTSVCRREF'][0]) {
+                                    key_pair[i]['NTRYREF'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['ACCTSVCRREF'][0])
                                 }
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['Amt']['$t']) {
-                                    key_pair[i]['Amt2'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['Amt']['$t'])
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['AMT'][0]['_']) {
+                                    key_pair[i]['AMT2'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['AMT'][0]['_'])
                                 }
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['Amt']['Ccy']) {
-                                    key_pair[i]['Ccy2'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['Amt']['Ccy'])
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['AMT'][0]['$']['CCY']) {
+                                    key_pair[i]['CCY2'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['AMT'][0]['$']['CCY'])
                                 }
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['CdtDbtInd'])
-                                    key_pair[i]['CdtDbtInd3'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['CdtDbtInd'])
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['CDTDBTIND'][0])
+                                    key_pair[i]['CDTDBTIND3'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['CDTDBTIND'][0])
 
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['Sts']['Cd'])
-                                    key_pair[i]['Cd'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['Sts']['Cd'])
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['STS'][0]['CD'][0])
+                                    key_pair[i]['CD'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['STS'][0]['CD'][0])
 
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['BookgDt']['Dt'])
-                                    key_pair[i]['Dt2'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['BookgDt']['Dt'])
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['BOOKGDT'][0]['DT'][0])
+                                    key_pair[i]['DT2'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['BOOKGDT'][0]['DT'][0])
 
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['BookgDt']['DtTm'])
-                                    key_pair[i]['DtTm2'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['BookgDt']['DtTm'])
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['BOOKGDT'][0]['DTTM'][0])
+                                    key_pair[i]['DTTM2'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['BOOKGDT'][0]['DTTM'][0])
 
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['ValDt']['Dt'])
-                                    key_pair[i]['Dt3'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['ValDt']['Dt'])
-                                if (
-                                    json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['ValDt']['DtTm'])
-                                    key_pair[i]['DtTm3'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['ValDt']['DtTm'])
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['VALDT'][0]['DT'][0])
+                                    key_pair[i]['DT3'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['VALDT'][0]['DT'][0])
 
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['NtryRef']) {
-                                    key_pair[i]['AcctSvcrRef'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['NtryRef'])
-                                }
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['VALDT'][0]['DTTM'][0])
+                                    key_pair[i]['DTTM3'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['VALDT'][0]['DTTM'][0])
 
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['BkTxCd']['Prtry']['Cd']) {
-                                    key_pair[i]['Cd2'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['BkTxCd']['Prtry']['Cd'])
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['NTRYREF'][0]) {
+                                    key_pair[i]['ACCTSVCRREF'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['NTRYREF'][0])
                                 }
 
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['AmtDtls']['InstdAmt']['Amt']['$t']) {
-                                    key_pair[i]['Amt4'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['AmtDtls']['InstdAmt']['Amt']['$t'])
-                                }
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['AmtDtls']['TxAmt']['Amt']['$t']) {
-                                    key_pair[i]['Amt3'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['AmtDtls']['TxAmt']['Amt']['$t'])
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['BKTXCD'][0]['PRTRY'][0]['CD'][0]) {
+                                    key_pair[i]['CD2'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['BKTXCD'][0]['PRTRY'][0]['CD'][0])
                                 }
 
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['AmtDtls']['TxAmt']['Amt']['Ccy']) {
-                                    key_pair[i]['Ccy3'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['AmtDtls']['TxAmt']['Amt']['Ccy'])
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['AMTDTLS'][0]['INSTDAMT'][0]['AMT'][0]['_']) {
+                                    key_pair[i]['AMT4'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['AMTDTLS'][0]['INSTDAMT'][0]['AMT'][0]['_'])
+                                }
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['AMTDTLS'][0]['TXAMT'][0]['AMT'][0]['_']) {
+                                    key_pair[i]['AMT3'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['AMTDTLS'][0]['TXAMT'][0]['AMT'][0]['_'])
                                 }
 
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['AmtDtls']['TxAmt']['Amt']['$t']) {
-                                    key_pair[i]['Amt5'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['AmtDtls']['TxAmt']['Amt']['$t'])
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['AMTDTLS'][0]['TXAMT'][0]['AMT'][0]['$']['CCY']) {
+                                    key_pair[i]['CCY3'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['AMTDTLS'][0]['TXAMT'][0]['AMT'][0]['$']['CCY'])
                                 }
 
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['AmtDtls']['InstdAmt']['Amt']['$t']) {
-                                    key_pair[i]['Ccy4'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['AmtDtls']['InstdAmt']['Amt']['$t'])
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['AMTDTLS'][0]['TXAMT'][0]['AMT'][0]['_']) {
+                                    key_pair[i]['AMT5'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['AMTDTLS'][0]['TXAMT'][0]['AMT'][0]['_'])
                                 }
 
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['NtryDtls']['TxDtls']['Refs']['MsgId']) {
-                                    key_pair[i]['MsgId2'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['NtryDtls']['TxDtls']['Refs']['MsgId'])
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['AMTDTLS'][0]['INSTDAMT'][0]['AMT'][0]['_']) {
+                                    key_pair[i]['CCY4'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['AMTDTLS'][0]['INSTDAMT'][0]['AMT'][0]['_'])
                                 }
 
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['NtryDtls']['TxDtls']['Refs']['AcctSvcrRef']) {
-                                    key_pair[i]['AcctSvcrRef2'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['NtryDtls']['TxDtls']['Refs']['AcctSvcrRef'])
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['NTRYDTLS'][0]['TXDTLS'][0]['REFS'][0]['MSGID'][0]) {
+                                    key_pair[i]['MSGID2'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['NTRYDTLS'][0]['TXDTLS'][0]['REFS'][0]['MSGID'][0])
                                 }
 
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['NtryDtls']['TxDtls']['Refs']['PmtInfId']) {
-                                    key_pair[i]['PmtInfId'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['NtryDtls']['TxDtls']['Refs']['PmtInfId'])
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['NTRYDTLS'][0]['TXDTLS'][0]['REFS'][0]['ACCTSVCRREF'][0]) {
+                                    key_pair[i]['ACCTSVCRREF2'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['NTRYDTLS'][0]['TXDTLS'][0]['REFS'][0]['ACCTSVCRREF'][0])
                                 }
 
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['NtryRef'])
-                                    key_pair[i]['InstrId'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['NtryRef'])
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['NtryDtls']['TxDtls']['Refs']['EndToEndId']) {
-                                    key_pair[i]['EndToEndId'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['NtryDtls']['TxDtls']['Refs']['EndToEndId'])
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['NTRYDTLS'][0]['TXDTLS'][0]['REFS'][0]['PMTINFID'][0]) {
+                                    key_pair[i]['PMTINFID'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['NTRYDTLS'][0]['TXDTLS'][0]['REFS'][0]['PMTINFID'][0])
                                 }
 
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['NtryDtls']['TxDtls']['Refs']['TxId']) {
-                                    key_pair[i]['TxId'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['NtryDtls']['TxDtls']['Refs']['TxId'])
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['NTRYREF'][0])
+                                    key_pair[i]['INSTRD'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['NTRYREF'][0])
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['NTRYDTLS'][0]['TXDTLS'][0]['REFS'][0]['ENDTOENDID'][0]) {
+                                    key_pair[i]['ENDTOENDID'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['NTRYDTLS'][0]['TXDTLS'][0]['REFS'][0]['ENDTOENDID'][0])
                                 }
 
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['NtryDtls']['TxDtls']['Refs']['ClrSysRef']) {
-                                    key_pair[i]['ClrSysRef'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['NtryDtls']['TxDtls']['Refs']['ClrSysRef'])
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['NTRYDTLS'][0]['TXDTLS'][0]['REFS'][0]['TXID'][0]) {
+                                    key_pair[i]['TXID'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['NTRYDTLS'][0]['TXDTLS'][0]['REFS'][0]['TXID'][0])
                                 }
 
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['NtryDtls']['TxDtls']['Refs']['UETR']) {
-                                    key_pair[i]['UETR'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['NtryDtls']['TxDtls']['Refs']['UETR'])
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['NTRYDTLS'][0]['TXDTLS'][0]['REFS'][0]['CLRSYSREF'][0]) {
+                                    key_pair[i]['CLRSYSREF'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['NTRYDTLS'][0]['TXDTLS'][0]['REFS'][0]['CLRSYSREF'][0])
                                 }
 
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['NtryDtls']['TxDtls']['Amt']['$t']) {
-                                    key_pair[i]['Amt6'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['NtryDtls']['TxDtls']['Amt']['$t'])
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['NTRYDTLS'][0]['TXDTLS'][0]['REFS'][0]['UETR']) {
+                                    key_pair[i]['UETR'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['NTRYDTLS'][0]['TXDTLS'][0]['REFS'][0]['UETR'])
                                 }
 
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['NtryDtls']['TxDtls']['Amt']['Ccy']) {
-                                    key_pair[i]['Ccy5'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['NtryDtls']['TxDtls']['Amt']['Ccy'])
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['NTRYDTLS'][0]['TXDTLS'][0]['AMT'][0]['_']) {
+                                    key_pair[i]['AMT6'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['NTRYDTLS'][0]['TXDTLS'][0]['AMT'][0]['_'])
                                 }
 
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['NtryDtls']['TxDtls']['CdtDbtInd']) {
-                                    key_pair[i]['CdtDbtInd4'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['NtryDtls']['TxDtls']['CdtDbtInd'])
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['NTRYDTLS'][0]['TXDTLS'][0]['AMT'][0]['$']['CCY']) {
+                                    key_pair[i]['CCYS'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['NTRYDTLS'][0]['TXDTLS'][0]['AMT'][0]['$']['CCY'])
                                 }
 
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['NtryDtls']['TxDtls']['RltdAgts']['CdtrAgt']['FinInstnId']['BICFI']) {
-                                    key_pair[i]['BICFI'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['NtryDtls']['TxDtls']['RltdAgts']['CdtrAgt']['FinInstnId']['BICFI'])
-                                }
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['NtryDtls']['TxDtls']['RltdAgts']['DbtrAgt']['FinInstnId']['BICFI']) {
-                                    key_pair[i]['BICFI2'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['NtryDtls']['TxDtls']['RltdAgts']['DbtrAgt']['FinInstnId']['BICFI'])
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['NTRYDTLS'][0]['TXDTLS'][0]['CDTDBTIND'][0]) {
+                                    key_pair[i]['CDTDBTIND4'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['NTRYDTLS'][0]['TXDTLS'][0]['CDTDBTIND'][0])
                                 }
 
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['NtryDtls']['TxDtls']['RltdAgts']['InstdAgt']['FinInstnId']['BICFI']) {
-                                    key_pair[i]['BICFI3'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['NtryDtls']['TxDtls']['RltdAgts']['InstdAgt']['FinInstnId']['BICFI'])
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['NTRYDTLS'][0]['TXDTLS'][0]['RLTDAGTS'][0]['CDTRAGT'][0]['FININSTNID'][0]['BICFI'][0]) {
+                                    key_pair[i]['BICFI'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['NTRYDTLS'][0]['TXDTLS'][0]['RLTDAGTS'][0]['CDTRAGT'][0]['FININSTNID'][0]['BICFI'][0])
                                 }
-                                if (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['NtryDtls']['TxDtls']['RltdAgts']['InstgAgt']['FinInstnId']['BICFI']) {
-                                    key_pair[i]['BICFI4'] = (json_parsed['Document']['BkToCstmrStmt']['Stmt']['Ntry'][i]['NtryDtls']['TxDtls']['RltdAgts']['InstgAgt']['FinInstnId']['BICFI'])
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['NTRYDTLS'][0]['TXDTLS'][0]['RLTDAGTS'][0]['DBTRAGT'][0]['FININSTNID'][0]['BICFI'][0]) {
+                                    key_pair[i]['BICFI2'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['NTRYDTLS'][0]['TXDTLS'][0]['RLTDAGTS'][0]['DBTRAGT'][0]['FININSTNID'][0]['BICFI'][0])
+                                }
+
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['NTRYDTLS'][0]['TXDTLS'][0]['RLTDAGTS'][0]['INSTDAGT'][0]['FININSTNID'][0]['BICFI'][0]) {
+                                    key_pair[i]['BICFI3'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['NTRYDTLS'][0]['TXDTLS'][0]['RLTDAGTS'][0]['INSTDAGT'][0]['FININSTNID'][0]['BICFI'][0])
+                                }
+                                if (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['NTRYDTLS'][0]['TXDTLS'][0]['RLTDAGTS'][0]['INSTGAGT'][0]['FININSTNID'][0]['BICFI'][0]) {
+                                    key_pair[i]['BICFI4'] = (json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'][i]['NTRYDTLS'][0]['TXDTLS'][0]['RLTDAGTS'][0]['INSTGAGT'][0]['FININSTNID'][0]['BICFI'][0])
                                 }
                             }
 

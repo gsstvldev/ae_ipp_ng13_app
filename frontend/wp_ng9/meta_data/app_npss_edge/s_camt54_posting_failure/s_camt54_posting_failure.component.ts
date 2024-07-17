@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 36059 
+Build ID        : 36062 
 Modified By     : Admin 
-Modified Date   : 2024-Jul-17 7:20 AM 
+Modified Date   : 2024-Jul-17 11:24 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_camt54_posting_failure
@@ -739,15 +739,11 @@ export class s_camt54_posting_failureComponent implements OnInit,AfterViewInit {
 		this.transaction_list__svm_for_tl()
 		this.transaction_list__ee_for_back_in_vertical_tran()
 		this.transaction_list__ee_for_retry_button()
+		this.transaction_list__ee_for_already_posted()
 		this.transaction_list__cc_for_disable()
 		this.transaction_list__ee_for_repost_btn()
 		this.transaction_list__ee_for_close_btn()
 		this.transaction_list__e_1679920022772()
-	}
-
-	//Handler for SELECTION_CHANGED event of "transaction list"
-	transaction_list__selection_changed(){
-		this.transaction_list__ee_for_already_posted()
 	}
 
 	//Handler for INTERNAL event of "svm for tl"
@@ -1477,7 +1473,7 @@ export class s_camt54_posting_failureComponent implements OnInit,AfterViewInit {
 		let event_params={"caller_name":"transaction_list__svm_for_tl","event_desc":"SVM for TL","event_type":"CHECKED_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{}}
 		let handler_code="set_value_to_memory"
 		let internals="svm_for_tl__show_hide_ide_link,svm_for_tl__cc_for_check_uetr_ide,"
-		let event_data={"transaction_list":{"e_1666857595507":{"dts":{"dt_1304_1672471156312":{"dtts":{"":{"uicgc_code":"UICGC_2","event_code":"E_1666857595507","dt_code":"DT_1304_1672471156312","dtt_code":"","dt_desc":"NPSS Liquidity Management Group","dtt_desc":"NPSS Camt Process Log","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"HARDCODED","column_name":"SELECT","level":"MI_LEVEL","name":"MI_LEVEL_ACTION_MODE","setd3name":"ACTION_MODE"},{"type":"MULTI","column_name":"END_TO_END_ID","level":"MI_LEVEL","name":"MI_LEVEL_END_TO_END_ID","setd3name":"END_TO_END_ID"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
+		let event_data={"transaction_list":{"e_1666857595507":{"dts":{"dt_1304_1672471156312":{"dtts":{"":{"uicgc_code":"UICGC_2","event_code":"E_1666857595507","dt_code":"DT_1304_1672471156312","dtt_code":"","dt_desc":"NPSS Liquidity Management Group","dtt_desc":"NPSS Camt Process Log","eventdata":{"override_dt":"","dt_value":{"type":"","value":""},"override_dtt":"","dtt_value":{"type":"","value":""},"override_keycolumn":"","keycolumn":{"type":"","column_name":"","column_value":""},"override_keyvalue":"","keyvalue":{"type":"","column_value":""},"set_to_memory":[{"type":"HARDCODED","column_name":"SELECT","level":"MI_LEVEL","name":"MI_LEVEL_ACTION_MODE","setd3name":"ACTION_MODE"},{"type":"MULTI","column_name":"END_TO_END_ID","level":"MI_LEVEL","name":"MI_LEVEL_END_TO_END_ID","setd3name":"END_TO_END_ID"},{"type":"MULTI","column_name":"NCACN_ID","level":"MI_LEVEL","name":"MI_LEVEL_NCACN_ID","setd3name":"NCACN_ID"}],"get_from_memory":[],"set_event_context":null,"sec_value":null}}}}}}}}
 		let data_source={"default":{"dt_1304_1672471156312":{"dtt_1304_1672471952205":{"st_ds":{"default":{"uicgc_code":"UICGC_2","event_code":"DEFAULT","dt_code":"DT_1304_1672471156312","dt_desc":"NPSS Liquidity Management Group","dtt_code":"DTT_1304_1672471952205","dtt_desc":"NPSS Camt Process Log","ds_eligible":"DS_1721195309084","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS Camt54 Posting Failure Tran MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"NCACN_ID","alias_name":"","mq_id":"MQ_1721192986872","date_format":false},{"column_name":"HEADER_MSG_ID","alias_name":"","mq_id":"MQ_1721192987208","date_format":false},{"column_name":"NOTIFICATION_ID","alias_name":"","mq_id":"MQ_1721192987376","date_format":false},{"column_name":"END_TO_END_ID","alias_name":"","mq_id":"MQ_1721192987808","date_format":false},{"column_name":"NTFN_CREATED_DATETIME","alias_name":"","mq_id":"MQ_1721193041288","date_format":true},{"column_name":"BOOKING_DATETIME","alias_name":"","mq_id":"MQ_1721193041608","date_format":true},{"column_name":"IBAN","alias_name":"","mq_id":"MQ_1721193041824","date_format":false},{"column_name":"CURRENCY","alias_name":"","mq_id":"MQ_1721193091231","date_format":false,"currency_format":false},{"column_name":"LIMIT_AMOUNT","alias_name":"","mq_id":"MQ_1721193091463","date_format":false},{"column_name":"CR_DR_INDICATOR","alias_name":"","mq_id":"MQ_1721193091687","date_format":false},{"column_name":"NTFN_STATUS","alias_name":"","mq_id":"MQ_1721193152550","date_format":false},{"column_name":"MESSAGE_DATA","alias_name":"","mq_id":"MQ_1721193152758","date_format":false}],"joins":[]},"eq_text":"select  NCACN_ID,  NOTIFICATION_ID,  NTFN_CREATED_DATETIME,  IBAN,  CURRENCY,  CR_DR_INDICATOR,  END_TO_END_ID,  HEADER_MSG_ID,  LIMIT_AMOUNT,  NTFN_STATUS,  BOOKING_DATETIME,  MESSAGE_DATA,  CREATED_DATE,  STATUS,  PROCESS_STATUS,  TENANT_ID,  MODIFIED_DATE,  MODIFIED_DATE_UTC,  CREATED_BY,  CREATED_BY_NAME,  SYSTEM_ID from  (  select   NCACN.NCACN_ID,   NCACN.CREATED_DATE,   NCACN.STATUS,   NCACN.PROCESS_STATUS,   NCACN.TENANT_ID,   NCACN.MODIFIED_DATE,   NCACN.MODIFIED_DATE_UTC,   NCACN.CREATED_BY,   NCACN.CREATED_BY_NAME,   NCACN.SYSTEM_ID,   NCACN.NOTIFICATION_ID,   NCACN.NTFN_CREATED_DATETIME,   NCACN.IBAN,   NCACN.CURRENCY,   NCACN.CR_DR_INDICATOR,   NCACN.END_TO_END_ID,   NCACN.HEADER_MSG_ID,   NCACN.LIMIT_AMOUNT,   NCACN.NTFN_STATUS,   NCACN.BOOKING_DATETIME,   NCACN.MESSAGE_DATA  from   NPSS_CAMT_ACC_CRDR_NTFN NCACN  order by   NCACN.NCACN_ID desc) VW $WHERE"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS Camt54 Posting Failure Tran MQ","filter":[{"filter_name":"PROCESS_STATUS","binding_name":"PROCESS_STATUS","binding_value":"","source_name":"MI_LEVEL_PROCESS_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""},{"filter_name":"STATUS","binding_name":"STATUS","binding_value":"","source_name":"MI_LEVEL_STATUS","source_value":"","source_type":"MI_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""},{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"AND","group_no":""}],"databinding":[{"header":"Tran ID","target_column":"NCACN_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Header Msg Id","target_column":"HEADER_MSG_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Notification Id","target_column":"NOTIFICATION_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"End To End Id","target_column":"END_TO_END_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Ntfn Created Datetime","target_column":"NTFN_CREATED_DATETIME","alias_name":"","alignment":"Left","width":"","format":"date:\"dd/MM/yyyy\"","date_format":true},{"header":"Booking Datetime","target_column":"BOOKING_DATETIME","alias_name":"","alignment":"Left","width":"","format":"date:\"dd/MM/yyyy\"","date_format":true},{"header":"Iban","target_column":"IBAN","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Currency","target_column":"CURRENCY","alias_name":"","alignment":"Left","width":"","format":"","date_format":false,"currency_format":false},{"header":"Limit Amount","target_column":"LIMIT_AMOUNT","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Cr Dr Indicator","target_column":"CR_DR_INDICATOR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Ntfn Status","target_column":"NTFN_STATUS","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Message Data","target_column":"MESSAGE_DATA","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.set_value_to_memory(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
@@ -1516,7 +1512,7 @@ export class s_camt54_posting_failureComponent implements OnInit,AfterViewInit {
 		let destn_id="navigation_ui_retry"
 		let parent_source_id=""
 		let event_code="e_1675418635971"
-		let event_params={"caller_name":"transaction_list__ee_for_retry_button","event_desc":"EE for retry button","event_type":"CHECKED_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"Y","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let event_params={"caller_name":"transaction_list__ee_for_retry_button","event_desc":"EE for retry button","event_type":"CHECKED_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
 		let handler_code="enable_element"
 		let internals=""
 		let event_data={}
@@ -1529,7 +1525,7 @@ export class s_camt54_posting_failureComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for SELECTION_CHANGED event of "transaction list"
+	//Handler for CHECKED_CHANGED event of "transaction list"
 	transaction_list__ee_for_already_posted() { 
 		let Dest_Is_ctrl=true
 		
@@ -1537,7 +1533,7 @@ export class s_camt54_posting_failureComponent implements OnInit,AfterViewInit {
 		let destn_id="navigation_ui_already_posted"
 		let parent_source_id=""
 		let event_code="e_1678348349789"
-		let event_params={"caller_name":"transaction_list__ee_for_already_posted","event_desc":"EE FOR ALREADY POSTED","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"Y","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let event_params={"caller_name":"transaction_list__ee_for_already_posted","event_desc":"EE FOR ALREADY POSTED","event_type":"CHECKED_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
 		let handler_code="enable_element"
 		let internals=""
 		let event_data={}
@@ -1579,7 +1575,7 @@ export class s_camt54_posting_failureComponent implements OnInit,AfterViewInit {
 		let destn_id="navigation_ui_repost"
 		let parent_source_id=""
 		let event_code="e_1676439284146"
-		let event_params={"caller_name":"transaction_list__ee_for_repost_btn","event_desc":"EE for Repost btn","event_type":"CHECKED_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"Y","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let event_params={"caller_name":"transaction_list__ee_for_repost_btn","event_desc":"EE for Repost btn","event_type":"CHECKED_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
 		let handler_code="enable_element"
 		let internals=""
 		let event_data={}
@@ -1600,7 +1596,7 @@ export class s_camt54_posting_failureComponent implements OnInit,AfterViewInit {
 		let destn_id="navigation_ui_close"
 		let parent_source_id=""
 		let event_code="e_1676439375606"
-		let event_params={"caller_name":"transaction_list__ee_for_close_btn","event_desc":"EE for close btn","event_type":"CHECKED_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"Y","disable_for":"","disable_except":"","disable_column":"","expression":""}}
+		let event_params={"caller_name":"transaction_list__ee_for_close_btn","event_desc":"EE for close btn","event_type":"CHECKED_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
 		let handler_code="enable_element"
 		let internals=""
 		let event_data={}

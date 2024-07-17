@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 36059 
+Build ID        : 36062 
 Modified By     : Admin 
-Modified Date   : 2024-Jul-17 7:20 AM 
+Modified Date   : 2024-Jul-17 11:24 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_camt54_posting_failure
@@ -26,7 +26,7 @@ export class f_npss_camt54_posting_failure_srchComponent implements OnInit {
   hasHeader:boolean;
   component_header:string;
   @ViewChild('f_npss_camt54_posting_failure_srch') form;
-  @ViewChild('npss_camt54_posting_failure_srch_end_to_end_id') element: ElementRef;
+  @ViewChild('npss_camt54_posting_failure_srch_memory12') element: ElementRef;
   // Variables 
   show:boolean  
   profile_name
@@ -48,6 +48,45 @@ focustoelement(){
     this.screen_instance[this.comp_id].form_instance = this;
 
   
+		//Properties of memory12
+		this.ctrl.memory12 = {}
+		this.ctrl.memory12.id = "RN31CN7"
+		this.ctrl.memory12.desc = "Created Date"
+		this.ctrl.memory12.visible = false
+		this.ctrl.memory12.label_name = "Created Date"
+		this.ctrl.memory12.df_code = "DF_1304_1672472068656"
+		this.ctrl.memory12.df_description = "Column Group 1"
+		this.ctrl.memory12.uictrl_code = "CDN_DATE"
+		this.ctrl.memory12.target_column = "memory12"
+		this.ctrl.memory12.data_type = "DATETIME"
+		this.ctrl.memory12.data_length = 0
+		this.ctrl.memory12.zone_df_code = "DF_1304_1672472068656"
+		this.ctrl.memory12.default_value = "setcurrentdate(),{}"
+		this.ctrl.memory12.is_memory_ctrl = "Y"
+		this.ctrl.memory12.field_coordinates = ""
+		this.ctrl.memory12.sub_details = ""
+		this.ctrl.memory12.accept_char = ""
+		this.ctrl.memory12.currency_format = ""
+		this.ctrl.memory12.data_scale = ""
+		this.ctrl.memory12.binding_name = "CREATED_DATE"
+		this.ctrl.memory12.hide_label = false
+		this.ctrl.memory12.depends_on = ""
+		this.ctrl.memory12.placeholder = ""
+		this.ctrl.memory12.dynamic_param = ""
+		this.ctrl.memory12.style_code = ""
+		this.ctrl.memory12.data_source = ""
+		this.ctrl.memory12.image_association = ""
+		this.ctrl.memory12.show = true
+		this.ctrl.memory12.sub_content = ""
+		this.ctrl.memory12.required = false
+		this.ctrl.memory12.vld_rules = []
+		this.ctrl.memory12.targetcolumn_lower = "memory12"
+		this.ctrl.memory12.disabled = false
+		this.ctrl.memory12.view_name = "f_npss_camt54_posting_failure_srch"
+		this.ctrl.memory12.ctrl_id = "npss_camt54_posting_failure_srch_memory12"
+		this.ctrl.npss_camt54_posting_failure_srch_memory12 = {}
+		this.ctrl.npss_camt54_posting_failure_srch_memory12.onChangecomponent = new EventEmitter<any>()
+	
 		//Properties of end_to_end_id
 		this.ctrl.end_to_end_id = {}
 		this.ctrl.end_to_end_id.id = "457dd887-1439-455a-8e39-748e419c1d44_1721190644568"
@@ -279,7 +318,7 @@ focustoelement(){
 		this.ctrl.booking_datetime.ctrl_id = "npss_camt54_posting_failure_srch_booking_datetime"
 		this.ctrl.npss_camt54_posting_failure_srch_booking_datetime = {}
 		this.ctrl.npss_camt54_posting_failure_srch_booking_datetime.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_camt54_posting_failure_srch.model = {"END_TO_END_ID":"","IBAN":"","NTFN_CREATED_DATETIME":"","CR_DR_INDICATOR":"","NTFN_STATUS":"","BOOKING_DATETIME":""}
+		this.screen_instance[this.comp_id].f_npss_camt54_posting_failure_srch.model = {"MEMORY12":"setcurrentdate(),{}","END_TO_END_ID":"","IBAN":"","NTFN_CREATED_DATETIME":"","CR_DR_INDICATOR":"","NTFN_STATUS":"","BOOKING_DATETIME":""}
 		this.screen_instance[this.comp_id].f_npss_camt54_posting_failure_srch.Meta = [{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"END_TO_END_ID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"IBAN"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"NTFN_CREATED_DATETIME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"CR_DR_INDICATOR"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"NTFN_STATUS"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"BOOKING_DATETIME"}]
 		this.screen_instance[this.comp_id].f_npss_camt54_posting_failure_srch.dt_code = "dt_1304_1672471156312"
 		this.screen_instance[this.comp_id].f_npss_camt54_posting_failure_srch.dtt_code = "dtt_1304_1672471952205"

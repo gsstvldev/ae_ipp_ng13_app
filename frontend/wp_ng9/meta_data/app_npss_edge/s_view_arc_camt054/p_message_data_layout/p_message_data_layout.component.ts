@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 30160 
+Build ID        : 36052 
 Modified By     : Admin 
-Modified Date   : 2023-Jun-14 10:38 AM 
+Modified Date   : 2024-Jul-17 7:20 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_arc_camt054

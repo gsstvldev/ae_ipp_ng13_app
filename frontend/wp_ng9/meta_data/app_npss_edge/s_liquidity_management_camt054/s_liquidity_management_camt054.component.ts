@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35950 
+Build ID        : 36052 
 Modified By     : Admin 
-Modified Date   : 2024-Jul-04 10:19 AM 
+Modified Date   : 2024-Jul-17 7:20 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_liquidity_management_camt054
@@ -31,7 +31,7 @@ export class s_liquidity_management_camt054Component implements OnInit,AfterView
   	wftpa_description : string = "s_liquidity_management_camt054"
 	wftpa_id : string = "WFT_NPSS_P_1304_1712205828867_0"
 	cg_code : string = "CG_1304_1708326278471"
-	key_column : any = {"dtt_1304_1672471459948":"NCAR_ID","dtt_1304_1672471952205":"NCACN_ID"}
+	key_column : any = {"dtt_1304_1672471459948":"NCAR_ID","dtt_1304_1672471952205":"NCACN_ID","dtt_1304_1721132786653":"NPSSCPL_ID"}
 	show_info_dialog : boolean = false
 	show_confirm_dialog : boolean = false
 	components : any = []

@@ -1,0 +1,40 @@
+<div class="dynamic-ui">
+	
+<fieldset [disabled]="isFormDisabled()" [hidden]="isFormHidden()">
+	<h2 class="need-header" [hidden]="hasHeader">{{component_header | translate}}</h2>	<form #f_npss_camt54_posting_failure_srch="ngForm">
+<div id="r0" class="row">
+	<div #npss_camt54_posting_failure_srch_end_to_end_id id="457dd887-1439-455a-8e39-748e419c1d44_1721190644568" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('end_to_end_id')" >
+				<cdn_ctrl [ctrl_id]="'npss_camt54_posting_failure_srch_end_to_end_id'" [comp_id]="comp_id" [ctrl]="ctrl.end_to_end_id" [model]="screen_instance[this.comp_id].f_npss_camt54_posting_failure_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+	<div  id="5d573529-a919-46af-938c-ee850e3f3942_1721190644568" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('iban')" >
+				<cdn_ctrl [ctrl_id]="'npss_camt54_posting_failure_srch_iban'" [comp_id]="comp_id" [ctrl]="ctrl.iban" [model]="screen_instance[this.comp_id].f_npss_camt54_posting_failure_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+</div>
+<div id="r1" class="row">
+	<div  id="0854ca76-4604-4741-b2fb-7d869c1afb6b_1721190644568" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('ntfn_created_datetime')" >
+				<cdn_ctrl [ctrl_id]="'npss_camt54_posting_failure_srch_ntfn_created_datetime'" [comp_id]="comp_id" [ctrl]="ctrl.ntfn_created_datetime" [model]="screen_instance[this.comp_id].f_npss_camt54_posting_failure_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+	<div  id="a3eace85-775b-459e-bf70-34472089f4fe_1721190644568" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('cr_dr_indicator')" >
+				<cdn_ctrl [ctrl_id]="'npss_camt54_posting_failure_srch_cr_dr_indicator'" [comp_id]="comp_id" [ctrl]="ctrl.cr_dr_indicator" [model]="screen_instance[this.comp_id].f_npss_camt54_posting_failure_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+</div>
+<div id="1721190644568" class="row">
+	<div  id="9838a79c-02c6-40ee-83c3-2f1b719b8603_1721190644568" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('ntfn_status')" >
+				<cdn_ctrl [ctrl_id]="'npss_camt54_posting_failure_srch_ntfn_status'" [comp_id]="comp_id" [ctrl]="ctrl.ntfn_status" [model]="screen_instance[this.comp_id].f_npss_camt54_posting_failure_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+	<div  id="b0d79d50-a208-47e6-b558-716e78e2a5e7_1721190644568" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('booking_datetime')" >
+				<cdn_ctrl [ctrl_id]="'npss_camt54_posting_failure_srch_booking_datetime'" [comp_id]="comp_id" [ctrl]="ctrl.booking_datetime" [model]="screen_instance[this.comp_id].f_npss_camt54_posting_failure_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+</div>
+	</form>
+</fieldset >
+	<div class="row dynamic_action_btn">
+ 		<div class="col-md-2 col-sm-6 col-xs-6 col-md-offset-8 col-sm-offset-0 col-xs-offset-0 bootstrap_button_layout " [hidden]="!screen_instance.search_search.show" >
+			<btn [ctrl_id]="'search_search'" [comp_id]="comp_id" [ctrl]="screen_instance.search_search" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.search_search.show"></btn>
+		</div>
+		<div class="col-md-2 col-sm-6 col-xs-6 col-md-offset-0 col-sm-offset-0 col-xs-offset-0 bootstrap_button_layout " [hidden]="!screen_instance.search_clear.show" >
+			<btn [ctrl_id]="'search_clear'" [comp_id]="comp_id" [ctrl]="screen_instance.search_clear" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.search_clear.show"></btn>
+		</div>
+	</div>
+
+</div>

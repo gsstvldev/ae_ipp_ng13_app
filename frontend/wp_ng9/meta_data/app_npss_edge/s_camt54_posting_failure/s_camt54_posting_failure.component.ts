@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 36072 
+Build ID        : 36078 
 Modified By     : Admin 
-Modified Date   : 2024-Jul-18 7:7 AM 
+Modified Date   : 2024-Jul-18 12:55 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_camt54_posting_failure
@@ -17,7 +17,7 @@ import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hi
 import {npss_c_disable_action_by_multiselectService} from '../../../custom_widget/npss_c_disable_action_by_multiselect/npss_c_disable_action_by_multiselect.service'
 import {npss_cs_check_uetrService} from '../../../custom_widget/npss_cs_check_uetr/npss_cs_check_uetr.service'
 import {npss_amb_cs_camt54_posting_failre_retryService} from '../../../custom_widget/npss_amb_cs_camt54_posting_failre_retry/npss_amb_cs_camt54_posting_failre_retry.service'
-import {npss_cs_rct_inward_posting_failure_closeService} from '../../../custom_widget/npss_cs_rct_inward_posting_failure_close/npss_cs_rct_inward_posting_failure_close.service'
+import {npss_amb_cs_posting_failure_closeService} from '../../../custom_widget/npss_amb_cs_posting_failure_close/npss_amb_cs_posting_failure_close.service'
 import {npss_cs_rct_inward_posting_failure_retry_repostService} from '../../../custom_widget/npss_cs_rct_inward_posting_failure_retry_repost/npss_cs_rct_inward_posting_failure_retry_repost.service'
 import {npss_cs_rct_already_postingService} from '../../../custom_widget/npss_cs_rct_already_posting/npss_cs_rct_already_posting.service'
 import {npss_cs_inward_posting_failure_force_to_postService} from '../../../custom_widget/npss_cs_inward_posting_failure_force_to_post/npss_cs_inward_posting_failure_force_to_post.service'
@@ -27,7 +27,7 @@ import {npss_cs_outward_posting_failure_send_to_checkerService} from '../../../c
 	selector: 's_camt54_posting_failure',
 	templateUrl: './s_camt54_posting_failure.component.html',
 	styleUrls: ['./s_camt54_posting_failure.component.css'],
-	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_c_disable_action_by_multiselectService,npss_cs_check_uetrService,npss_amb_cs_camt54_posting_failre_retryService,npss_cs_rct_inward_posting_failure_closeService,npss_cs_rct_inward_posting_failure_retry_repostService,npss_cs_rct_already_postingService,npss_cs_inward_posting_failure_force_to_postService,npss_cs_outward_posting_failure_send_to_checkerService]
+	providers:[torus_cs_change_routingkeyService,torus_cs_show_hideService,npss_c_disable_action_by_multiselectService,npss_cs_check_uetrService,npss_amb_cs_camt54_posting_failre_retryService,npss_amb_cs_posting_failure_closeService,npss_cs_rct_inward_posting_failure_retry_repostService,npss_cs_rct_already_postingService,npss_cs_inward_posting_failure_force_to_postService,npss_cs_outward_posting_failure_send_to_checkerService]
 })
     
 // Start of class 
@@ -88,13 +88,13 @@ export class s_camt54_posting_failureComponent implements OnInit,AfterViewInit {
 	navigation_ui_view_message_logss : any = {}
 	navigation_ui_retry : any = {}
 	navigation_ui_close : any = {}
-	navigation_ui_repostss : any = {}
-	navigation_ui_already_postedss : any = {}
-	navigation_ui_force_postss : any = {}
+	navigation_ui_repost : any = {}
+	navigation_ui_already_posted : any = {}
+	navigation_ui_force_post : any = {}
 	navigation_ui_view_tran : any = {}
-	navigation_ui_send_to_makerss : any = {}
+	navigation_ui_send_to_maker : any = {}
 	navigation_ui_trg_btn : any = {}
-	navigation_ui_returnss : any = {}
+	navigation_ui_return : any = {}
 	search : any = {}
 	search_search : any = {}
 	search_clear : any = {}
@@ -131,7 +131,7 @@ export class s_camt54_posting_failureComponent implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_c_disable_action_by_multiselectService:npss_c_disable_action_by_multiselectService,private npss_cs_check_uetrService:npss_cs_check_uetrService,private npss_amb_cs_camt54_posting_failre_retryService:npss_amb_cs_camt54_posting_failre_retryService,private npss_cs_rct_inward_posting_failure_closeService:npss_cs_rct_inward_posting_failure_closeService,private npss_cs_rct_inward_posting_failure_retry_repostService:npss_cs_rct_inward_posting_failure_retry_repostService,private npss_cs_rct_already_postingService:npss_cs_rct_already_postingService,private npss_cs_inward_posting_failure_force_to_postService:npss_cs_inward_posting_failure_force_to_postService,private npss_cs_outward_posting_failure_send_to_checkerService:npss_cs_outward_posting_failure_send_to_checkerService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_change_routingkeyService:torus_cs_change_routingkeyService,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_c_disable_action_by_multiselectService:npss_c_disable_action_by_multiselectService,private npss_cs_check_uetrService:npss_cs_check_uetrService,private npss_amb_cs_camt54_posting_failre_retryService:npss_amb_cs_camt54_posting_failre_retryService,private npss_amb_cs_posting_failure_closeService:npss_amb_cs_posting_failure_closeService,private npss_cs_rct_inward_posting_failure_retry_repostService:npss_cs_rct_inward_posting_failure_retry_repostService,private npss_cs_rct_already_postingService:npss_cs_rct_already_postingService,private npss_cs_inward_posting_failure_force_to_postService:npss_cs_inward_posting_failure_force_to_postService,private npss_cs_outward_posting_failure_send_to_checkerService:npss_cs_outward_posting_failure_send_to_checkerService) {
     
 	}
     
@@ -220,32 +220,32 @@ export class s_camt54_posting_failureComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_close.role = []
 		this.navigation_ui_close.action = ""
 		
-		// "Re-Postss" Button of "Navigation UI" component
-		this.navigation_ui_repostss.label_name = "Re-Postss"
-		this.navigation_ui_repostss.show = true
-		this.navigation_ui_repostss.disabled = false
-		this.navigation_ui_repostss.params = {"icon_only":false,"uicgcc_style":"fa fa-exchange"}
-		this.navigation_ui_repostss.dynamic_param = {}
-		this.navigation_ui_repostss.role = []
-		this.navigation_ui_repostss.action = ""
+		// "Re-Post" Button of "Navigation UI" component
+		this.navigation_ui_repost.label_name = "Re-Post"
+		this.navigation_ui_repost.show = true
+		this.navigation_ui_repost.disabled = false
+		this.navigation_ui_repost.params = {"icon_only":false,"uicgcc_style":"fa fa-exchange"}
+		this.navigation_ui_repost.dynamic_param = {}
+		this.navigation_ui_repost.role = []
+		this.navigation_ui_repost.action = ""
 		
-		// "Already Postedss" Button of "Navigation UI" component
-		this.navigation_ui_already_postedss.label_name = "Already Postedss"
-		this.navigation_ui_already_postedss.show = true
-		this.navigation_ui_already_postedss.disabled = false
-		this.navigation_ui_already_postedss.params = {"icon_only":false,"uicgcc_style":"fa fa-gg"}
-		this.navigation_ui_already_postedss.dynamic_param = {}
-		this.navigation_ui_already_postedss.role = []
-		this.navigation_ui_already_postedss.action = ""
+		// "Already Posted" Button of "Navigation UI" component
+		this.navigation_ui_already_posted.label_name = "Already Posted"
+		this.navigation_ui_already_posted.show = true
+		this.navigation_ui_already_posted.disabled = false
+		this.navigation_ui_already_posted.params = {"icon_only":false,"uicgcc_style":"fa fa-gg"}
+		this.navigation_ui_already_posted.dynamic_param = {}
+		this.navigation_ui_already_posted.role = []
+		this.navigation_ui_already_posted.action = ""
 		
-		// "Force Postss" Button of "Navigation UI" component
-		this.navigation_ui_force_postss.label_name = "Force Postss"
-		this.navigation_ui_force_postss.show = true
-		this.navigation_ui_force_postss.disabled = false
-		this.navigation_ui_force_postss.params = {"icon_only":false,"uicgcc_style":"fa fa-dot-circle-o"}
-		this.navigation_ui_force_postss.dynamic_param = {}
-		this.navigation_ui_force_postss.role = []
-		this.navigation_ui_force_postss.action = ""
+		// "Force Post" Button of "Navigation UI" component
+		this.navigation_ui_force_post.label_name = "Force Post"
+		this.navigation_ui_force_post.show = true
+		this.navigation_ui_force_post.disabled = false
+		this.navigation_ui_force_post.params = {"icon_only":false,"uicgcc_style":"fa fa-dot-circle-o"}
+		this.navigation_ui_force_post.dynamic_param = {}
+		this.navigation_ui_force_post.role = []
+		this.navigation_ui_force_post.action = ""
 		
 		// "View Tran" Button of "Navigation UI" component
 		this.navigation_ui_view_tran.label_name = "View Tran"
@@ -256,14 +256,14 @@ export class s_camt54_posting_failureComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_view_tran.role = []
 		this.navigation_ui_view_tran.action = ""
 		
-		// "Send to Makerss" Button of "Navigation UI" component
-		this.navigation_ui_send_to_makerss.label_name = "Send to Makerss"
-		this.navigation_ui_send_to_makerss.show = true
-		this.navigation_ui_send_to_makerss.disabled = false
-		this.navigation_ui_send_to_makerss.params = {"icon_only":false,"uicgcc_style":"fa fa-send"}
-		this.navigation_ui_send_to_makerss.dynamic_param = {}
-		this.navigation_ui_send_to_makerss.role = []
-		this.navigation_ui_send_to_makerss.action = ""
+		// "Send to Maker" Button of "Navigation UI" component
+		this.navigation_ui_send_to_maker.label_name = "Send to Maker"
+		this.navigation_ui_send_to_maker.show = true
+		this.navigation_ui_send_to_maker.disabled = false
+		this.navigation_ui_send_to_maker.params = {"icon_only":false,"uicgcc_style":"fa fa-send"}
+		this.navigation_ui_send_to_maker.dynamic_param = {}
+		this.navigation_ui_send_to_maker.role = []
+		this.navigation_ui_send_to_maker.action = ""
 		
 		// "TRG BTN" Button of "Navigation UI" component
 		this.navigation_ui_trg_btn.label_name = "TRG BTN"
@@ -274,14 +274,14 @@ export class s_camt54_posting_failureComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_trg_btn.role = []
 		this.navigation_ui_trg_btn.action = ""
 		
-		// "Returnss" Button of "Navigation UI" component
-		this.navigation_ui_returnss.label_name = "Returnss"
-		this.navigation_ui_returnss.show = true
-		this.navigation_ui_returnss.disabled = false
-		this.navigation_ui_returnss.params = {"icon_only":false,"uicgcc_style":"fa fa-undo"}
-		this.navigation_ui_returnss.dynamic_param = {}
-		this.navigation_ui_returnss.role = []
-		this.navigation_ui_returnss.action = ""
+		// "Return" Button of "Navigation UI" component
+		this.navigation_ui_return.label_name = "Return"
+		this.navigation_ui_return.show = true
+		this.navigation_ui_return.disabled = false
+		this.navigation_ui_return.params = {"icon_only":false,"uicgcc_style":"fa fa-undo"}
+		this.navigation_ui_return.dynamic_param = {}
+		this.navigation_ui_return.role = []
+		this.navigation_ui_return.action = ""
 	
 		// Component level properties - "Search" 
 		this.search.uictrl_code = "dynamic_form_search"
@@ -914,9 +914,9 @@ export class s_camt54_posting_failureComponent implements OnInit,AfterViewInit {
 		this.im_for_close_btn__rs_for_close_btn(parent_event_result)
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui repostss"
-	navigation_ui_repostss__action_button_click(){
-		this.navigation_ui_repostss__cc_for_repost_btn()
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui repost"
+	navigation_ui_repost__action_button_click(){
+		this.navigation_ui_repost__cc_for_repost_btn()
 	}
 
 	//Handler for INTERNAL event of "cc for repost btn"
@@ -934,9 +934,9 @@ export class s_camt54_posting_failureComponent implements OnInit,AfterViewInit {
 		this.navigation_ui_trg_btn__e_1678111417332()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui already postedss"
-	navigation_ui_already_postedss__action_button_click(){
-		this.navigation_ui_already_postedss__spap_for_cbs_ui()
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui already posted"
+	navigation_ui_already_posted__action_button_click(){
+		this.navigation_ui_already_posted__spap_for_cbs_ui()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "cbs ref ui save"
@@ -954,9 +954,9 @@ export class s_camt54_posting_failureComponent implements OnInit,AfterViewInit {
 		this.info__for_cbs_save__rs_for_cbs_save(parent_event_result)
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui force postss"
-	navigation_ui_force_postss__action_button_click(){
-		this.navigation_ui_force_postss__e_1679903839936()
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui force post"
+	navigation_ui_force_post__action_button_click(){
+		this.navigation_ui_force_post__e_1679903839936()
 	}
 
 	//Handler for INTERNAL event of "e 1679903839936"
@@ -969,9 +969,9 @@ export class s_camt54_posting_failureComponent implements OnInit,AfterViewInit {
 		this.e_1679911453974__e_1679911498910(parent_event_result)
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui send to makerss"
-	navigation_ui_send_to_makerss__action_button_click(){
-		this.navigation_ui_send_to_makerss__spap_has_been_sent_to_maker_successfully()
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui send to maker"
+	navigation_ui_send_to_maker__action_button_click(){
+		this.navigation_ui_send_to_maker__spap_has_been_sent_to_maker_successfully()
 	}
 
 	//Handler for ACTION_BUTTON_CLICK event of "send to maker ui return to maker"
@@ -1083,7 +1083,7 @@ export class s_camt54_posting_failureComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="navigation_ui_force_postss"
+		let destn_id="navigation_ui_force_post"
 		let parent_source_id=""
 		let event_code="e_1679904187027"
 		let event_params={"caller_name":"page_load__e_1679904187027","event_desc":"E_1679904187027","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
@@ -1104,7 +1104,7 @@ export class s_camt54_posting_failureComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="navigation_ui_send_to_makerss"
+		let destn_id="navigation_ui_send_to_maker"
 		let parent_source_id=""
 		let event_code="e_1681388870599"
 		let event_params={"caller_name":"page_load__he_has_been_sent_to_maker_successfully","event_desc":"HE has been sent to maker successfully","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{"visible_collapse_count":"","visible_collapse_locked_by":""}}
@@ -1359,7 +1359,7 @@ export class s_camt54_posting_failureComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="queue"
-		let destn_id="navigation_ui_force_postss"
+		let destn_id="navigation_ui_force_post"
 		let parent_source_id=""
 		let event_code="e_1679904170265"
 		let event_params={"caller_name":"queue__e_1679904170265","event_desc":"E_1679904170265","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"queue","raiseparam":{}}
@@ -1531,7 +1531,7 @@ export class s_camt54_posting_failureComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="transaction_list"
-		let destn_id="navigation_ui_already_postedss"
+		let destn_id="navigation_ui_already_posted"
 		let parent_source_id=""
 		let event_code="e_1678348349789"
 		let event_params={"caller_name":"transaction_list__ee_for_already_posted","event_desc":"EE FOR ALREADY POSTED","event_type":"CHECKED_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -1573,7 +1573,7 @@ export class s_camt54_posting_failureComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="transaction_list"
-		let destn_id="navigation_ui_repostss"
+		let destn_id="navigation_ui_repost"
 		let parent_source_id=""
 		let event_code="e_1676439284146"
 		let event_params={"caller_name":"transaction_list__ee_for_repost_btn","event_desc":"EE for Repost btn","event_type":"CHECKED_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -1615,7 +1615,7 @@ export class s_camt54_posting_failureComponent implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="transaction_list"
-		let destn_id="navigation_ui_force_postss"
+		let destn_id="navigation_ui_force_post"
 		let parent_source_id=""
 		let event_code="e_1679920022772"
 		let event_params={"caller_name":"transaction_list__e_1679920022772","event_desc":"E_1679920022772","event_type":"CHECKED_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -2579,7 +2579,7 @@ export class s_camt54_posting_failureComponent implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.npss_cs_rct_inward_posting_failure_closeService.fn_npss_cs_rct_inward_posting_failure_close(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_amb_cs_posting_failure_closeService.fn_npss_amb_cs_posting_failure_close(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -2630,15 +2630,15 @@ export class s_camt54_posting_failureComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui repostss"
-	navigation_ui_repostss__cc_for_repost_btn() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui repost"
+	navigation_ui_repost__cc_for_repost_btn() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_repostss"
+		let source_id="navigation_ui_repost"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1676292232314"
-		let event_params={"caller_name":"navigation_ui_repostss__cc_for_repost_btn","event_desc":"CC for Re-Post btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_repostss","raiseparam":{}}
+		let event_params={"caller_name":"navigation_ui_repost__cc_for_repost_btn","event_desc":"CC for Re-Post btn","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_repost","raiseparam":{}}
 		let handler_code="custom_connectors"
 		let internals="cc_for_repost_btn__im_for_repost_btn,"
 		let event_data={}
@@ -2658,9 +2658,9 @@ export class s_camt54_posting_failureComponent implements OnInit,AfterViewInit {
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="cc_for_repost_btn"
 		let destn_id=""
-		let parent_source_id="navigation_ui_repostss"
+		let parent_source_id="navigation_ui_repost"
 		let event_code="e_1676292268031"
-		let event_params={"caller_name":"cc_for_repost_btn__im_for_repost_btn","event_desc":"IM for Re-Post btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction(s) has been sent to posting successfully","root_source_id":"navigation_ui_repostss","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"cc_for_repost_btn__im_for_repost_btn","event_desc":"IM for Re-Post btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction(s) has been sent to posting successfully","root_source_id":"navigation_ui_repost","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
 		let handler_code="info_msg"
 		let internals="im_for_repost_btn__rs_for_repost_btn,"
 		let event_data={}
@@ -2682,7 +2682,7 @@ export class s_camt54_posting_failureComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id="cc_for_repost_btn"
 		let event_code="e_1676292275369"
-		let event_params={"caller_name":"im_for_repost_btn__rs_for_repost_btn","event_desc":"Rs for repost btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_repostss","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"im_for_repost_btn__rs_for_repost_btn","event_desc":"Rs for repost btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_repost","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="refresh_screen"
 		let internals=""
 		let event_data={}
@@ -2716,15 +2716,15 @@ export class s_camt54_posting_failureComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui already postedss"
-	navigation_ui_already_postedss__spap_for_cbs_ui() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui already posted"
+	navigation_ui_already_posted__spap_for_cbs_ui() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_already_postedss"
+		let source_id="navigation_ui_already_posted"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1678348063484"
-		let event_params={"caller_name":"navigation_ui_already_postedss__spap_for_cbs_ui","event_desc":"SPAP for CBS UI","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_already_postedss","raiseparam":{"popup_category":"profile","variable":"p_cbs_layout__spap_for_cbs_ui","selector":"p_cbs_layout","profile_code":"BTL_1304_1668850424944","window_title":"","window_height":170,"window_width":"600px","window_close_icon":"Y","eventdes":"spap_for_cbs_ui","eventcode":"E_1678348063484"}}
+		let event_params={"caller_name":"navigation_ui_already_posted__spap_for_cbs_ui","event_desc":"SPAP for CBS UI","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_already_posted","raiseparam":{"popup_category":"profile","variable":"p_cbs_layout__spap_for_cbs_ui","selector":"p_cbs_layout","profile_code":"BTL_1304_1668850424944","window_title":"","window_height":170,"window_width":"600px","window_close_icon":"Y","eventdes":"spap_for_cbs_ui","eventcode":"E_1678348063484"}}
 		let handler_code="show_profile_as_popup"
 		let internals=""
 		let event_data={}
@@ -2802,15 +2802,15 @@ export class s_camt54_posting_failureComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui force postss"
-	navigation_ui_force_postss__e_1679903839936() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui force post"
+	navigation_ui_force_post__e_1679903839936() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_force_postss"
+		let source_id="navigation_ui_force_post"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1679903839936"
-		let event_params={"caller_name":"navigation_ui_force_postss__e_1679903839936","event_desc":"E_1679903839936","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_force_postss","raiseparam":{}}
+		let event_params={"caller_name":"navigation_ui_force_post__e_1679903839936","event_desc":"E_1679903839936","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_force_post","raiseparam":{}}
 		let handler_code="custom_connectors"
 		let internals="e_1679903839936__e_1679911453974,"
 		let event_data={}
@@ -2830,9 +2830,9 @@ export class s_camt54_posting_failureComponent implements OnInit,AfterViewInit {
 	if(parentEventResult!=parent_event_result) return true;
 		let source_id="e_1679903839936"
 		let destn_id=""
-		let parent_source_id="navigation_ui_force_postss"
+		let parent_source_id="navigation_ui_force_post"
 		let event_code="e_1679911453974"
-		let event_params={"caller_name":"e_1679903839936__e_1679911453974","event_desc":"E_1679911453974","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction(s) has been forced to post successfully","root_source_id":"navigation_ui_force_postss","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"e_1679903839936__e_1679911453974","event_desc":"E_1679911453974","event_type":"INTERNAL","caller_event_context":"SUCCESS","message_text":"Transaction(s) has been forced to post successfully","root_source_id":"navigation_ui_force_post","raiseparam":{"info_msg":""},"parent_event_result":"SUCCESS"}
 		let handler_code="info_msg"
 		let internals="e_1679911453974__e_1679911498910,"
 		let event_data={}
@@ -2854,7 +2854,7 @@ export class s_camt54_posting_failureComponent implements OnInit,AfterViewInit {
 		let destn_id=""
 		let parent_source_id="e_1679903839936"
 		let event_code="e_1679911498910"
-		let event_params={"caller_name":"e_1679911453974__e_1679911498910","event_desc":"E_1679911498910","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_force_postss","raiseparam":{},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"e_1679911453974__e_1679911498910","event_desc":"E_1679911498910","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_force_post","raiseparam":{},"parent_event_result":"SUCCESS"}
 		let handler_code="refresh_screen"
 		let internals=""
 		let event_data={}
@@ -2867,15 +2867,15 @@ export class s_camt54_posting_failureComponent implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui send to makerss"
-	navigation_ui_send_to_makerss__spap_has_been_sent_to_maker_successfully() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui send to maker"
+	navigation_ui_send_to_maker__spap_has_been_sent_to_maker_successfully() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_send_to_makerss"
+		let source_id="navigation_ui_send_to_maker"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1681388917649"
-		let event_params={"caller_name":"navigation_ui_send_to_makerss__spap_has_been_sent_to_maker_successfully","event_desc":"SPAP has been sent to maker successfully","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_send_to_makerss","raiseparam":{"popup_category":"profile","variable":"p_send_to_maker_layout__spap_has_been_sent_to_maker_successfully","selector":"p_send_to_maker_layout","profile_code":"BTL_1304_1681388723692","window_title":"","window_height":170,"window_width":"600px","window_close_icon":"Y","eventdes":"spap_has_been_sent_to_maker_successfully","eventcode":"E_1681388917649"}}
+		let event_params={"caller_name":"navigation_ui_send_to_maker__spap_has_been_sent_to_maker_successfully","event_desc":"SPAP has been sent to maker successfully","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_send_to_maker","raiseparam":{"popup_category":"profile","variable":"p_send_to_maker_layout__spap_has_been_sent_to_maker_successfully","selector":"p_send_to_maker_layout","profile_code":"BTL_1304_1681388723692","window_title":"","window_height":170,"window_width":"600px","window_close_icon":"Y","eventdes":"spap_has_been_sent_to_maker_successfully","eventcode":"E_1681388917649"}}
 		let handler_code="show_profile_as_popup"
 		let internals=""
 		let event_data={}

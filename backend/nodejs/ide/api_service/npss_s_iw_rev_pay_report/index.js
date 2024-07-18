@@ -6,7 +6,6 @@ var $REFPATH = Path.join(__dirname, '../../torus-references/');
 var app = express.Router();
 
 app.post('/', function (appRequest, appResponse, next) {
-    
 
 
 
@@ -16,7 +15,8 @@ app.post('/', function (appRequest, appResponse, next) {
 
 
 
-    /*  Created By :   Subramanian
+
+    /*  Created By :   Daseen
     Created Date : 17/07/2024
     Reason :NPSS  AMB Inward Payment Reversal Report  Sftp csv file creations wi:3944
     */
@@ -60,32 +60,31 @@ app.post('/', function (appRequest, appResponse, next) {
                 try {
 
                     var TakeData = `
-select
-	distinct UETR,	
+select DISTINCT UETR,
 	process_status ,
-	status ,
-	created_date ,
-	value_date ,
+	status Transaction_Status,
+	created_date  Transaction_Date_Range,
+	value_date Transaction_Date,
 	DEPARTMENT_NAME ,
 	TRANSACTION_AMOUNT_RANGE ,
 	Purpose_codes,
-	E2E_REFERENCE_NUMBER ,
+	E2E_REFERENCE_NUMBER E2E_Reference_ID,
 	Debtor_Account ,
-	FN_CARD_DECRYPT_AND_MASK_RPT(CR_ACCT_IDENTIFICATION) AS CR_ACCT_IDENTIFICATION,  
-	FN_CARD_DECRYPT_AND_MASK_RPT(DBTR_ACCT_NO) AS DBTR_ACCT_NO,
+	FN_CARD_DECRYPT_AND_MASK_RPT(CR_ACCT_IDENTIFICATION) AS Creditor_Card_Number,  
+	FN_CARD_DECRYPT_AND_MASK_RPT(DBTR_ACCT_NO) AS Debtor_Card_Number,
 	Debtor_Name ,
 	Creditor_Account ,
-	clrsysref,
+	clrsysref Clrsysrefno	,
 	hdr_msg_id,
-	category_purpose_prty,
-	fx_resv_text1,
+	category_purpose_prty Category_Purpose_Code,
+	fx_resv_text1 FT_CI_Reference_Number,
 	Creditor_Name ,
 	dr_sort_code ,
 	SOURCE_CHANNEL,
 	SENDER_BANK,
-	CB_ERRORS,
+	CB_ERRORS Central_Bank,
 	Core_Bank_Errors,
-	tran_ref_id,
+	tran_ref_id Transaction_ID,
 	SENDER_REFERENCE_NUMBER,
 	maker,
 	PROCESS_GROUP,

@@ -65,14 +65,12 @@ app.post('/', function (appRequest, appResponse, next) {
                         removecsv = takexl.replace(".csv", "");
                         allcnvrtcsv.push(removecsv);
                     }
-                    //  console.log(allcnvrtcsv)
                     let takedata = await FTPcnt()
                     if (takedata.length > 0) {
                         if (takedata.length > 0) {
                             let names = takedata.map(item => item.name.replace(".xml", ""));
                             let filteredData = takedata.filter(item => !allcnvrtcsv.includes(item.name.replace(".xml", "")));
                             if (filteredData.length > 0) {
-                                // console.log(filteredData)
                                 for (let i = 0; i < filteredData.length; i++) {
                                     let xml = filteredData[i].data;
                                     let name = filteredData[i].name;
@@ -86,25 +84,6 @@ app.post('/', function (appRequest, appResponse, next) {
                                     if (json_parsed['DOCUMENT'] && json_parsed['DOCUMENT']['SIGNATURE']) {
                                         delete json_parsed['DOCUMENT']['SIGNATURE'];
                                     }
-                                    // let alldata = Traverse(json_parsed);
-                                    // if (alldata.length > 0) {
-                                    //     let objkeys = Object.keys(alldata[0]);
-                                    //     let Header = await findHeader(objkeys);
-                                    //     console.log(Header);
-                                    //     let csvContent = await getCSVStream(alldata, Header);
-                                    //     let takecvsdata = await FTPconnection(csvContent, currentfile);
-                                    //     if (takecvsdata === 'SUCCESS') {
-                                    //         objresponse.status = 'SUCCESS';
-                                    //         sendResponse(null, objresponse);
-                                    //     } else {
-                                    //         objresponse.status = 'FAILURE';
-                                    //         sendResponse(null, objresponse);
-                                    //     }
-                                    // } 
-                                    // else {
-                                    //     objresponse.status = 'NO DATA FOUND';
-                                    //     sendResponse(null, objresponse);
-                                    // }
                                     let alldata = Traverse(json_parsed);
                                     if (alldata.length > 0) {
                                         let objkeys = Object.keys(alldata[0]);
@@ -112,12 +91,13 @@ app.post('/', function (appRequest, appResponse, next) {
                                         console.log(Header);
                                         let csvContent = await getCSVStream(alldata, Header);
                                         let takecvsdata = await FTPconnection(csvContent, currentfile);
-                                        if (takecvsdata === 'SUCCESS') {
-                                            objresponse.status = 'SUCCESS';
-                                            objresponse.data = 'SUCCESS';
-                                            sendResponse(null, objresponse);
+                                        if (takecvsdata == 'SUCCESS') {
+                                            // objresponse.status = 'SUCCESS';
+                                            // objresponse.data = 'SUCCESS';
+                                            // sendResponse(null, objresponse);
+                                            continue
                                         } else {
-                                            objresponse.status = 'FAILURE';
+                                            objresponse.status = 'FAILURE ERROR IN FTP CONNECTION';
                                             sendResponse(null, objresponse);
                                         }
                                     } else {
@@ -125,6 +105,10 @@ app.post('/', function (appRequest, appResponse, next) {
                                         sendResponse(null, objresponse);
                                     }
                                 }
+                                objresponse.status = 'SUCCESS';
+                                objresponse.data = 'SUCCESS';
+                                sendResponse(null, objresponse);
+
                             } else {
                                 let objresponse = { status: 'NO NEW FILE FOUND' };
                                 sendResponse(null, objresponse);

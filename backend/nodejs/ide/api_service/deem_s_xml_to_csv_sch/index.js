@@ -17,27 +17,13 @@ app.post('/', function (appRequest, appResponse, next) {
     var reqDateFormatter = require($REFPATH + 'common/dateconverter/DateFormatter');
     var params = appRequest.body.PARAMS; //  Client input fromm Server
     var headers = appRequest.headers; // header details
+    const reqAsync = require('async');
     var objSessionLogInfo = null; // set value is null
     try {
-        //   const xml2js= require('xml2js');
         const { createObjectCsvStringifier } = require('csv-writer');
-        var reqAsync = require('async');
         var Client = require('ssh2-sftp-client');
-        console.log(`ssh modules-` + typeof (Client))
-        console.log(`csv modules-` + typeof (createObjectCsvStringifier))
         var moment = require('moment');
-        //const { Writable } = require('stream');
-        console.log(`csv modules-` + typeof (Writable))
-        console.log('writable next line')
-        //var xml2json = require('xml2json');
-        console.log('xml2json' + typeof (xml2json))
-        console.log('after xml2json')
-
     } catch (error) {
-        console.log(' inside catch xml2json' + typeof (xml2json))
-
-        console.log(`in catch`)
-        console.log(`in catch-`)
         console.error('Error loading csv-writer module:', error);
     }
     var mTranConn = "";
@@ -71,44 +57,82 @@ app.post('/', function (appRequest, appResponse, next) {
                             let names = takedata.map(item => item.name.replace(".xml", ""));
                             let filteredData = takedata.filter(item => !allcnvrtcsv.includes(item.name.replace(".xml", "")));
                             if (filteredData.length > 0) {
-                                for (let i = 0; i < filteredData.length; i++) {
-                                    let xml = filteredData[i].data;
-                                    let name = filteredData[i].name;
-                                    currentfile = name.replace(".xml", "");
-                                    let json_parsed;
+                                let successfulFiles = [];
+                                let failedFiles = [];
+                                try {
                                     var xml2js = require('xml2js');
-                                    var parser = new xml2js.Parser({ strict: false, trim: true });
-                                    parser.parseString(xml, function (err, result) {
-                                        json_parsed = result
-                                    });
-                                    if (json_parsed['DOCUMENT'] && json_parsed['DOCUMENT']['SIGNATURE']) {
-                                        delete json_parsed['DOCUMENT']['SIGNATURE'];
-                                    }
-                                    let alldata = Traverse(json_parsed);
-                                    if (alldata.length > 0) {
-                                        let objkeys = Object.keys(alldata[0]);
-                                        let Header = await findHeader(objkeys);
-                                        console.log(Header);
-                                        let csvContent = await getCSVStream(alldata, Header);
-                                        let takecvsdata = await FTPconnection(csvContent, currentfile);
-                                        if (takecvsdata == 'SUCCESS') {
-                                            // objresponse.status = 'SUCCESS';
-                                            // objresponse.data = 'SUCCESS';
-                                            // sendResponse(null, objresponse);
-                                            continue
-                                        } else {
-                                            objresponse.status = 'FAILURE ERROR IN FTP CONNECTION';
-                                            sendResponse(null, objresponse);
+                                    await reqAsync.forEachOfSeries(filteredData, async function (item) {
+                                        let xml = item.data;
+                                        let name = item.name;
+                                        let currentfile = name.replace(".xml", "");
+                                        let json_parsed;
+                                        try {
+                                            json_parsed = await new Promise((resolve, reject) => {
+                                                var parser = new xml2js.Parser({ strict: false, trim: true });
+                                                parser.parseString(xml, function (err, result) {
+                                                    if (err) reject(err);
+                                                    else resolve(result);
+                                                });
+                                            });
+                                        } catch (err) {
+                                            console.error('Error parsing XML:', err);
+                                            failedFiles.push(currentfile);
+                                            return;
                                         }
+                                        try {
+                                            if (json_parsed && json_parsed['DOCUMENT'] && json_parsed['DOCUMENT']['SIGNATURE']) {
+                                                delete json_parsed['DOCUMENT']['SIGNATURE'];
+                                            }
+                                            let alldata = Traverse(json_parsed);
+                                            reqInstanceHelper.PrintInfo(currentfile, JSON.stringify(json_parsed));
+                                            if (alldata && alldata.length > 0) {
+                                                let objkeys = Object.keys(alldata[0]);
+                                                let Header;
+                                                try {
+                                                    Header = await findHeader(objkeys);
+                                                    console.log('Header:', Header);
+                                                    let csvContent = await getCSVStream(alldata, Header);
+                                                    let takecvsdata = await FTPconnection(csvContent, currentfile);
+                                                    if (takecvsdata === 'SUCCESS') {
+                                                        successfulFiles.push(currentfile);
+                                                    } else {
+                                                        failedFiles.push(currentfile);
+                                                    }
+                                                } catch (err) {
+                                                    console.error('Error in processing:', err);
+                                                    failedFiles.push(currentfile);
+                                                }
+                                            } else {
+                                                failedFiles.push(currentfile);
+                                            }
+                                        } catch (err) {
+                                            console.error('Error in processing item:', err);
+                                            failedFiles.push(currentfile);
+                                        }
+                                    });
+                                    if (successfulFiles.length > 0 && failedFiles.length == 0) {
+                                        console.log('Successful files:', successfulFiles);
+                                        let objresponse = {
+                                            status: 'SUCCESS',
+                                            data: 'All files processed successfully'
+                                        };
+                                        sendResponse(null, objresponse);
                                     } else {
-                                        objresponse.status = 'NO DATA FOUND';
+                                        console.log('Failed files:', failedFiles);
+                                        let objresponse = {
+                                            status: 'FAILURE',
+                                            data: failedFiles + '  ' + 'Error in this files'
+                                        };
                                         sendResponse(null, objresponse);
                                     }
+                                } catch (err) {
+                                    console.error('Error in async Function:', err);
+                                    let objresponse = {
+                                        status: 'FAILURE',
+                                        data: 'Error in async processing'
+                                    };
+                                    sendResponse(err, objresponse);
                                 }
-                                objresponse.status = 'SUCCESS';
-                                objresponse.data = 'SUCCESS';
-                                sendResponse(null, objresponse);
-
                             } else {
                                 let objresponse = { status: 'NO NEW FILE FOUND' };
                                 sendResponse(null, objresponse);
@@ -143,7 +167,6 @@ app.post('/', function (appRequest, appResponse, next) {
                                 // Create a writable stream to capture CSV content in memory
                                 const writableStream = new Writable();
                                 let csvContent = '';
-
                                 writableStream._write = (chunk, encoding, next) => {
                                     csvContent += chunk.toString();
                                     next();
@@ -158,7 +181,6 @@ app.post('/', function (appRequest, appResponse, next) {
                                 reqInstanceHelper.PrintInfo(serviceName, "........................Error in csv content preparation..............." + err, objSessionLogInfo);
                                 reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN CSV FILE Creation ', error);
                             }
-
                         })
                     }
                     async function FTPconnection(csvContent, currentfile) {
@@ -282,33 +304,6 @@ app.post('/', function (appRequest, appResponse, next) {
                             throw error;
                         }
                     }
-                    // async function FTPcnt() {
-                    //     try {
-                    //         modelfile = 'camt.053'
-                    //         var ip = params.sftp_ip;
-                    //         var port = params.sftp_port;
-                    //         var username = params.sftp_username;
-                    //         var filepath = params.sftp_path + modelfile
-                    //         console.log('............................', filepath);
-                    //         var connectObj = {
-                    //             "host": ip,
-                    //             "port": port,
-                    //             "username": username,
-                    //             "password": params.sftp_password,
-                    //             "passphrase": params.sftp_passphrase
-                    //         };
-                    //         var sftp = new Client();
-                    //         await sftp.connect(connectObj);
-                    //         var fileData = await sftp.get(filepath);
-                    //         console.log('File downloaded successfully.');
-                    //         sftp.end();
-                    //         return fileData.toString();
-                    //     } catch (error) {
-                    //         console.error('Error in FTP connection:', error);
-                    //         throw error;
-                    //     }
-                    // }
-
                     // first letter capital for header data              
                     function convertCapital(b) {
                         return new Promise((resolve, reject) => {
@@ -323,7 +318,6 @@ app.post('/', function (appRequest, appResponse, next) {
                     }
                     function Traverse(json_parsed) {
                         let key_list = []
-
                         key_list = Object.keys(json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'])
                         //key_list = Object.keys(json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT']['NTRY'])
                         let NTRY_length = Object.keys(json_parsed['DOCUMENT']['BKTOCSTMRSTMT'][0]['STMT'][0]['NTRY'])

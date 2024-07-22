@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 36032 
+Build ID        : 36087 
 Modified By     : Admin 
-Modified Date   : 2024-Jul-12 10:46 AM 
+Modified Date   : 2024-Jul-19 13:35 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_reversal_request_details

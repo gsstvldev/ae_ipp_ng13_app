@@ -17,6 +17,8 @@ app.post('/', function(appRequest, appResponse, next) {
     Created Date : 8/4/2024
     For: Credit Debit jasper report replacement
     for query change 04-07-2024 by renga
+    Modifeid date 16/7/2024 by Subramanian Wi:3956 Fab debit and credit advice screen report bug fixed
+    Modifeid date 19/7/2024 by Subramanian Wi:3864 Fab debit and credit advice screen report bug fixed
     
      
     */
@@ -92,25 +94,27 @@ app.post('/', function(appRequest, appResponse, next) {
                             if (params.screenName.includes('debit')) {
 
                                 Taketran = `select
-	distinct uetr,
-	Debtor_Name,
-	 Debtor_Account,
-	 Creditor_Name,
-	 Creditor_Account,
-	 dr_sort_code,
-	 cr_sort_code,
-	 TRANSACTION_AMOUNT_RANGE,
-	 categorypurpose,
-	 created_date,
-	 CREATEDDATE,
-	payment_endtoend_id,
-	SOURCE_CHANNEL,
-	tran_ref_id,
-	STATUS,
-	otherreference,
-	clrsysref,
-	BENEFICIARY_BANK,
+	distinct uetr as UETR,
+	Debtor_Name as  ordering_customer_name,
+     account_number as  ordering_account,
+ 	 Debtor_Account as  Ordering_Customer_IBAN,
+	 Creditor_Name as  Beneficiary_Customer_Name   , 
+	 Creditor_Account as  Beneficiary_Customer_IBAN,
+	 
+	 cr_sort_code as  Beneficiary_Bank_Code,
+	T24_FT_REFERENCE_NUMBER as  Transaction_Ref,
+	 TRANSACTION_AMOUNT_RANGE as  Amount_AED,
+	 categorypurpose as  Transaction_Code,
+	  Received_Time,
+STATUS,
 	End_to_End_ID,
+    tran_ref_id as  Transaction_Reference,
+clrsysref as  Clearing_Reference,
+    otherreference as  Other_Reference,
+	SOURCE_CHANNEL,
+    
+	clrsysref,
+    BENEFICIARY_BANK,
 	T24_FT_REFERENCE_NUMBER,
 	process_type,
 	API_Success_Failure,
@@ -147,16 +151,14 @@ from
 		NT.cdtr_acct_name as Creditor_Name,
 		NT.channel_refno,
 		NT.channel_id as SOURCE_CHANNEL,
-		hdr_created_date as CREATEDDATE,
-		nt.CREATED_DATE,
-		nt.payment_endtoend_id,
+        	NT.hdr_created_date AS Received_Time,
+		nt.payment_endtoend_id as End_to_End_ID,
 		nt.uetr,
 		nt.tran_ref_id,
 		nt.clrsysref,
 		nt.TENANT_ID,
 		cmb.bank_name as BENEFICIARY_BANK,
 		nt.process_type,
-		nt.PAYMENT_ENDTOEND_ID as End_to_End_ID,
 		L.report_icon_data,
 		nt.STATUS,
 		nt.process_status as API_Success_Failure,
@@ -194,25 +196,28 @@ where
 	process_type = 'OP'  ${cond_params}`
                             }
                             else {
-                                Taketran = ` SELECT DISTINCT UETR,
-	CREDITOR_NAME,
-	CREDITOR_ACCOUNT,
-	DEBTOR_NAME,
-	DR_SORT_CODE,
-	DEBTOR_ACCOUNT,
-	TRANSACTION_AMOUNT_RANGE,
-	CATEGORY_PURPOSE_PRTY,
-	CREATED_DATE,
-	CREATEDDATE,
+                                Taketran = ` SELECT DISTINCT UETR as UETR,
+	CREDITOR_NAME as  Beneficiary_Customer_Name, 
+    account_number as  Benificiary_Account,
+ CREDITOR_ACCOUNT as  Beneficiary_Customer_IBAN,
+	DEBTOR_NAME as  Ordering_Customer_Name,
+	DR_SORT_CODE as  Ordering_Bank_Code,
+	DEBTOR_ACCOUNT as Ordering_Customer_IBAN,
+    T24_FT_REFERENCE_NUMBER as Transaction_ref,
+	TRANSACTION_AMOUNT_RANGE as Amount_Aed,
+	CATEGORY_PURPOSE_PRTY as Transaction_code,
+	 Received_Time,
+    status as  Status,
+                            End_to_End_ID,
+                            tran_ref_id as  Transaction_Reference,
+                            clrsysref as  Clearing_Reference,
+    remittance_info as  Other_Reference,
 	SENDER_BANK,
 	REMITTANCE_INFO,
 	TRAN_REF_ID,
-	CLRSYSREF,
-	STATUS,
 	PROCESS_TYPE,
 	DEPARTMENT_CODE,
 	T24_FT_REFERENCE_NUMBER,
-	ACCOUNT_NUMBER,
 	COALESCE(SPLIT_PART(REPORT_ICON_DATA,'base64',2),'') REPORT_ICON_DATA
 FROM
 	(SELECT NT.CDTR_ACCT_NAME AS CREDITOR_NAME,
@@ -224,9 +229,8 @@ FROM
 			NT.DEPARTMENT_CODE,
 			NT.CATEGORY_PURPOSE_PRTY,
 			CMB.BANK_NAME AS SENDER_BANK,
-			HDR_CREATED_DATE AS CREATEDDATE,
-			NT.CREATED_DATE,
-			NT.PAYMENT_ENDTOEND_ID,
+			NT.hdr_created_date  as Received_Time,
+			NT.PAYMENT_ENDTOEND_ID as End_to_End_ID,
 			NT.UETR,
 			NT.TRAN_REF_ID,
 			NT.CLRSYSREF,
@@ -268,11 +272,10 @@ FROM
 WHERE PROCESS_TYPE = 'IP' ${cond_params}`
                             }
 
-                            if(params.department_code!='' && params.department_code!=null && params.department_code!=undefined)
-                                {
-                                   Taketran+=`and DEPARTMENT_CODE='${params.department_code}'`
-                                }
-       
+                            if (params.department_code != '' && params.department_code != null && params.department_code != undefined) {
+                                Taketran += `and DEPARTMENT_CODE='${params.department_code}'`
+                            }
+
                             ExecuteQuery1(Taketran, function (arrdata) {
                                 if (arrdata.length) {
 
@@ -379,7 +382,6 @@ WHERE PROCESS_TYPE = 'IP' ${cond_params}`
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
-
 
 
 

@@ -213,7 +213,7 @@ result.forEach((res)=>
                 //bodyContent.push('References')        
             }
             else if (i == 13) {
-                bodyContent.push([{text:Report_keys[0]?.toUpperCase()?.toString(),style: 'tablcolmn'},{text:res[Report_keys[0]]?.toUpperCase()?.toString(),style: 'tablcolmn'}])
+                bodyContent.push([{text:Report_keys[0]?.toUpperCase()?.toString(),style: 'tablcolmn'},{text:res[Report_keys[0]]?.toString(),style: 'tablcolmn'}])
                 
                     //bodyContent.push()
                     
@@ -225,7 +225,7 @@ result.forEach((res)=>
                     val=(res[Report_keys[i]]?.toString())?res[Report_keys[i]]?.toString():res[Report_keys[i]]
                     bodyContent.push([{text:key,style: 'tablcolmn'},{text:val,style: 'tablcolmn'}])
                 }
-           else if(Report_keys[i].includes('end_to'))
+           else if(Report_keys[i].toLowerCase().includes('end_to'))
                 {
                     let key:any='End-to-End ID'
                     let val:any=(res[Report_keys[i]]?.toString())?res[Report_keys[i]]?.toString():res[Report_keys[i]]

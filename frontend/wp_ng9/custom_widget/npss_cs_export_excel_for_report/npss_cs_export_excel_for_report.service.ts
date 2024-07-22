@@ -17,18 +17,29 @@ import * as ExcelJS from 'exceljs/dist/exceljs.min.js';
 
 @Injectable()
 export class npss_cs_export_excel_for_reportService {
-    constructor(private httpHelper: HttphelperService, private dialogHelper: DialogService, private apphandler: AppHandlerService) { }
+    constructor(private httpHelper: HttphelperService,   private sessionHelper: SessionService, private dialogHelper: DialogService, private apphandler: AppHandlerService) { }
     //Default calling function
     fn_npss_cs_export_excel_for_report(source_id, destn_id, parent_source_id, event_code, event_params, screenInstance, internals, handler_code, event_data, data_source) {
+        let roleId = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "APP_USER_ROLES");
         let databinding: any = []
         let filter: any = []
         let search: any
         let searchParam: any = []
         let wftrpDesc = screenInstance.wftpa_description
+        let eventCode:string;
 
-        databinding = JSON.stringify(screenInstance.list.bind_param.dsInfo.databinding),
-            searchParam =JSON.stringify(screenInstance.cc_for_control.search_params),
-            filter = JSON.stringify(screenInstance.list.bind_param.dsInfo.filter)
+        databinding = JSON.stringify(screenInstance.list.bind_param.dsInfo.databinding)
+        if (roleId!="730" &&(screenInstance.wftpa_description=='s_outward_transactions_details' || screenInstance.wftpa_description=='s_inward_transactions_details' )) {//Manager
+            searchParam = JSON.stringify(screenInstance.cc_from_search.search_params)
+            eventCode=  Object.keys( screenInstance.list['datasource'])[1].toUpperCase()
+          
+        }
+        else {
+            searchParam = JSON.stringify(screenInstance.cc_for_control.search_params)
+            eventCode=  Object.keys( screenInstance.list['datasource'])[0].toUpperCase()
+        }
+        //searchParam =JSON.stringify(screenInstance.cc_for_control.search_params)
+        filter = JSON.stringify(screenInstance.list.bind_param.dsInfo.filter)
 
         let params = {
             "ACTION_DESC": screenInstance.wftpa_description.toUpperCase(),
@@ -38,7 +49,7 @@ export class npss_cs_export_excel_for_reportService {
             "DTT_CODE": screenInstance.list.bind_param.dsInfo.dtt_code,
             "DT_CATEGORY": "",
             "DT_CODE": screenInstance.list.bind_param.dsInfo.dt_code,
-            "EVENT_CODE": event_code,
+            "EVENT_CODE": eventCode,
             "FILTERS": filter,
             "HANDLER_CODE": handler_code,
             "IS_TREEVIEW": "",
@@ -134,7 +145,7 @@ export class npss_cs_export_excel_for_reportService {
                     ws.getRow(1).font = { bold: true };
                     ws.mergeCells('A1:E1');
 
-                 
+
 
                     // Set the value and styling for the merged cell
                     //ws.getCell('A1').value = 'NPSS Report';
@@ -156,7 +167,7 @@ export class npss_cs_export_excel_for_reportService {
             });
 
     }
-      
+
     //Custom validation logics
     //Uncomment below lines when validation is required
     //fn_customValidation(projName,screenInstance,message,callback){

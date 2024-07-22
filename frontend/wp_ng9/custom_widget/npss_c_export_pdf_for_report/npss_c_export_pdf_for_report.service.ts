@@ -26,6 +26,7 @@ export class npss_c_export_pdf_for_reportService {
         private dialogHelper: DialogService) { }
     //Default calling function
     fn_npss_c_export_pdf_for_report(source_id, destn_id, parent_source_id, event_code, event_params, screenInstance, internals, handler_code, event_data, data_source) {
+        let roleId = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "APP_USER_ROLES");
 
         let databinding: any = []
         let filter: any = []
@@ -35,9 +36,19 @@ export class npss_c_export_pdf_for_reportService {
         let Databinding: any = []
         let Searchparam: any = []
         let Filter: any = []
-        Databinding = JSON.stringify(screenInstance.list.bind_param.dsInfo.databinding),
-            Searchparam = JSON.stringify(screenInstance.cc_for_control.search_params),
-            Filter = JSON.stringify(screenInstance.list.bind_param.dsInfo.filter)
+        let eventCode:string;
+        Databinding = JSON.stringify(screenInstance.list.bind_param.dsInfo.databinding)
+        if (roleId!="730" &&(screenInstance.wftpa_description=='s_outward_transactions_details' || screenInstance.wftpa_description=='s_inward_transactions_details' )) {//Manager
+            Searchparam = JSON.stringify(screenInstance.cc_from_search.search_params)
+            eventCode=  Object.keys( screenInstance.list['datasource'])[1].toUpperCase()
+          
+        }
+        else {
+            Searchparam = JSON.stringify(screenInstance.cc_for_control.search_params)
+            eventCode=  Object.keys( screenInstance.list['datasource'])[0].toUpperCase()
+        }
+
+        Filter = JSON.stringify(screenInstance.list.bind_param.dsInfo.filter)
 
 
         let params = {
@@ -48,7 +59,7 @@ export class npss_c_export_pdf_for_reportService {
             "DTT_CODE": screenInstance.list.bind_param.dsInfo.dtt_code,
             "DT_CATEGORY": "",
             "DT_CODE": screenInstance.list.bind_param.dsInfo.dt_code,
-            "EVENT_CODE": event_code,
+            "EVENT_CODE": eventCode,
             "FILTERS": Filter,
             "HANDLER_CODE": handler_code,//"BIND_RECORD_FROM_QUERY",
             "IS_TREEVIEW": "",
@@ -80,19 +91,21 @@ export class npss_c_export_pdf_for_reportService {
                         PagingData: result.data.PagingData || ""
                     }
                     let dataBind = JSON.parse(params.DATA_BINDINGS)
-                    let header: any = [{col:'NO',alignment:'right'}]
+                    let header: any = [{ col: 'NO', alignment: 'right' }]
                     let bodyContent: any = []
                     let Header = JSON.parse(result.data.RowData)
-                let k=1;
-                    Header.forEach((c)=>{c.NO=k;
-                        k++;})
-                    let Headersvalue: any = [{text:'NO',style:'tableheader'}]
+                    let k = 1;
+                    Header.forEach((c) => {
+                        c.NO = k;
+                        k++;
+                    })
+                    let Headersvalue: any = [{ text: 'NO', style: 'tableheader' }]
                     for (let k = 0; k < dataBind.length; k++) {
                         let headerCol: any = {}
                         headerCol.text = dataBind[k]['header'].toUpperCase()
                         headerCol.style = 'tableheader'
                         Headersvalue.push(headerCol)
-                        header.push({col:dataBind[k]['target_column'].toLowerCase(),alignment:dataBind[k]['alignment'].toLowerCase()})
+                        header.push({ col: dataBind[k]['target_column'].toLowerCase(), alignment: dataBind[k]['alignment'].toLowerCase() })
                     }
                     bodyContent.push(Headersvalue)
                     //console.log(Headersvalue.length)
@@ -116,7 +129,7 @@ export class npss_c_export_pdf_for_reportService {
                         },
                         content: [
                             {
-                                text:params.ACTION_DESC.split('_').slice(1).join(' '),
+                                text: params.ACTION_DESC.split('_').slice(1).join(' '),
                                 style: 'header'
                             },
                             {
@@ -144,7 +157,7 @@ export class npss_c_export_pdf_for_reportService {
                             }, left: {
                                 bold: true,
                                 fontSize: 15,
-                            },right: {
+                            }, right: {
                                 bold: true,
                                 fontSize: 15,
                                 alignment: 'right'
@@ -152,7 +165,7 @@ export class npss_c_export_pdf_for_reportService {
                         }
 
                     }
-                    let screenName =params.ACTION_DESC.toLowerCase().split('_').slice(1).join('_')+ '_' + moment().format('DDMMYYYY') + '_' + moment().format('HHMMSS')
+                    let screenName = params.ACTION_DESC.toLowerCase().split('_').slice(1).join('_') + '_' + moment().format('DDMMYYYY') + '_' + moment().format('HHMMSS')
                     pdfmake.createPdf(dd).download(screenName);
                 } else {
 
@@ -160,7 +173,7 @@ export class npss_c_export_pdf_for_reportService {
                 }
             });
     }
-  
+
     //Custom validation logics
     //Uncomment below lines when validation is required
     //fn_customValidation(projName,screenInstance,message,callback){

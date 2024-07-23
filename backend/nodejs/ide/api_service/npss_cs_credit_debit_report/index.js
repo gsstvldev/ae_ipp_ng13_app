@@ -13,6 +13,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
+
     /*  Created By : Subramanian
     Created Date : 8/4/2024
     For: Credit Debit jasper report replacement
@@ -107,7 +108,7 @@ app.post('/', function(appRequest, appResponse, next) {
 	 categorypurpose as  Transaction_Code,
 	  Received_Time,
 STATUS,
-	End_to_End_ID,
+	PAYMENT_ENDTOEND_ID,
     tran_ref_id as  Transaction_Reference,
 clrsysref as  Clearing_Reference,
     otherreference as  Other_Reference,
@@ -152,7 +153,7 @@ from
 		NT.channel_refno,
 		NT.channel_id as SOURCE_CHANNEL,
         	NT.hdr_created_date AS Received_Time,
-		nt.payment_endtoend_id as End_to_End_ID,
+		nt.payment_endtoend_id as PAYMENT_ENDTOEND_ID,
 		nt.uetr,
 		nt.tran_ref_id,
 		nt.clrsysref,
@@ -208,7 +209,7 @@ where
 	CATEGORY_PURPOSE_PRTY as Transaction_code,
 	 Received_Time,
     status as  Status,
-                            End_to_End_ID,
+PAYMENT_ENDTOEND_ID,
                             tran_ref_id as  Transaction_Reference,
                             clrsysref as  Clearing_Reference,
     remittance_info as  Other_Reference,
@@ -230,7 +231,7 @@ FROM
 			NT.CATEGORY_PURPOSE_PRTY,
 			CMB.BANK_NAME AS SENDER_BANK,
 			NT.hdr_created_date  as Received_Time,
-			NT.PAYMENT_ENDTOEND_ID as End_to_End_ID,
+			NT.PAYMENT_ENDTOEND_ID as PAYMENT_ENDTOEND_ID,
 			NT.UETR,
 			NT.TRAN_REF_ID,
 			NT.CLRSYSREF,
@@ -382,6 +383,8 @@ WHERE PROCESS_TYPE = 'IP' ${cond_params}`
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
+
+
 
 
 

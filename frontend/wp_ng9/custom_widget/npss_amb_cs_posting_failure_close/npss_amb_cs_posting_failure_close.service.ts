@@ -30,7 +30,7 @@ export class npss_amb_cs_posting_failure_closeService {
         ClientParams.Roleid = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "APP_USER_ROLES");
         ClientParams.AppId = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "APP_ID");
         ClientParams.TENANT_ID = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "TENANT_ID");
-        ClientParams.RULE_CODE = 'POSTING_FAILURE_CLOSE'
+        ClientParams.RULE_CODE = 'CAMT54_OP_POSTING_MAN_CLOSE' //'POSTING_FAILURE_CLOSE'
         ClientParams.screenName = screenInstance.wftpa_description
         this.CallUrlWithData(ClientParams, screenInstance, internals);
     }

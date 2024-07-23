@@ -225,7 +225,7 @@ result.forEach((res)=>
                     val=(res[Report_keys[i]]?.toString())?res[Report_keys[i]]?.toString():res[Report_keys[i]]
                     bodyContent.push([{text:key,style: 'tablcolmn'},{text:val,style: 'tablcolmn'}])
                 }
-           else if(Report_keys[i].includes('PAYMENT'))
+           else if(Report_keys[i].includes('payment'))
                 {
                     let key:any='End-to-End ID'
                     let val:any=(res[Report_keys[i]]?.toString())?res[Report_keys[i]]?.toString():res[Report_keys[i]]

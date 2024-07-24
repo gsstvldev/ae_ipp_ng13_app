@@ -249,7 +249,7 @@ app.post('/', function (appRequest, appResponse, next) {
                                                     "channel_id": arrTranparamsObj.channel_id || '',
                                                     "dbtr_iban": arrTranparamsObj.dbtr_iban || '',
                                                     "hdr_msg_id": arrTranparamsObj.hdr_msg_id || '',
-                                                    "process_type": 'ORR',
+                                                    "process_type": 'ORRR',
                                                     "cbuae_return_code": returncode,
                                                     "account_currency": arrTranparamsObj.account_currency || '',
                                                     "intrbk_sttlm_amnt": arrTranparamsObj.intrbk_sttlm_amnt || '',

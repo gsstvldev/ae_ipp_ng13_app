@@ -21,6 +21,7 @@ export class npss_cs_export_excel_for_reportService {
     //Default calling function
     fn_npss_cs_export_excel_for_report(source_id, destn_id, parent_source_id, event_code, event_params, screenInstance, internals, handler_code, event_data, data_source) {
         let roleId = this.sessionHelper.GetVariable(SCOPE.SESSION_LEVEL, "APP_USER_ROLES");
+       let dbMode  = this.sessionHelper.GetVariable(SCOPE.MI_LEVEL, "DB_TYPE");
         let databinding: any = []
         let filter: any = []
         let search: any
@@ -68,7 +69,8 @@ export class npss_cs_export_excel_for_reportService {
             "UICGC_CODE": undefined,
             "UICG_CODE": screenInstance.cg_code,
             "VWFTPA_ID": screenInstance.wftpa_id,
-            "WFTPA_ID": screenInstance.wftpa_id
+            "WFTPA_ID": screenInstance.wftpa_id,
+            "DB_MODE":dbMode
         }
         this.httpHelper.HttpPost('/Handler/GetWFSelect', params)
             .subscribe((result: any) => {

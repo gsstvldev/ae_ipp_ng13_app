@@ -46,7 +46,7 @@ app.post('/', function(appRequest, appResponse, next) {
                     reqAuditLog.GetProcessToken(pSession, objLogInfo, function prct(error, prct_id) {
                         try {
                             var PRCT_ID = prct_id
-                            var take_status = `select success_process_status,success_status from core_nc_workflow_setup where rule_code = '${params.Rule_Code}' and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
+                            var take_status = `select success_process_status,success_status from core_nc_workflow_setup where rule_code = '${params.RULE_CODE}' and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
                             ExecuteQuery1(take_status, function (arrrule) {
                                 if (arrrule.length > 0) {
                                     success_process_status = arrrule[0].success_process_status;

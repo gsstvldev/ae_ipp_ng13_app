@@ -37,7 +37,7 @@ export class npss_amb_cs_posting_failure_closeService {
        CallUrlWithData(ClientParams, screenInstance, internals) {
         this.httpHelper.HttpPost('/microsvc/npss_amb_cs_posting_failure_close/', ClientParams)
             .subscribe((res: any) => {
-                if (res.data.status == "SUCCESS" || res.data == "SUCCESS") 
+                if (res.data.status == "Success" || res.data == "SUCCESS" || res.data == "Success" ) 
                     this.appHandler.callInternals(internals, screenInstance, "SUCCESS");
                else {
                     this.dialogHelper.ShowErrorDialog(res.data.status)

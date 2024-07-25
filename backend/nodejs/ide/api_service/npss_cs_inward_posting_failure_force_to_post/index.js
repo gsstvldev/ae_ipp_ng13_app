@@ -3,7 +3,7 @@ var express = require('express');
 var Path = require('path');
 var $REFPATH = Path.join(__dirname, '../../torus-references/');
 var app = express.Router();
-app.post('/', function(appRequest, appResponse, next) {
+app.post('/', function (appRequest, appResponse, next) {
     try {
         /*   Created By :Siva Harish
         Created Date :28-03-2023
@@ -355,6 +355,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             }, function () {
                                 // resolve('SUCCESS')
                                 objresponse.status = 'SUCCESS'
+                                objresponse.data = 'SUCCESS'
                                 sendResponse(null, objresponse)
                             })
                         })
@@ -517,6 +518,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             }, function () {
                                 // resolve('SUCCESS')
                                 objresponse.status = 'SUCCESS'
+                                objresponse.data = 'SUCCESS'
                                 sendResponse(null, objresponse)
                             })
                         })
@@ -692,6 +694,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             }, function () {
                                 // resolve('SUCCESS')
                                 objresponse.status = 'SUCCESS'
+                                objresponse.data = 'SUCCESS'
                                 sendResponse(null, objresponse)
                             })
                         })
@@ -832,6 +835,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             }, function () {
                                 //resolve('SUCCESS')
                                 objresponse.status = 'SUCCESS'
+                                objresponse.data = 'SUCCESS'
                                 sendResponse(null, objresponse)
                             })
                         })
@@ -965,7 +969,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                 if (responseBodyFromImagingService == 'SUCCESS') {
                                                                     var InsPrcs = async () => {
                                                                         var InsertTran = await InsertProcess(arrTranparamsObj, final_process_status, final_status, PRCT_ID)
-                                                                       if (InsertTran == 'SUCCESS') {
+                                                                        if (InsertTran == 'SUCCESS') {
                                                                             nextobjctfunc()
                                                                         } else {
                                                                             objresponse.status = 'FAILURE'
@@ -1002,6 +1006,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             }, function () {
                                 //resolve('SUCCESS')
                                 objresponse.status = 'SUCCESS'
+                                objresponse.data = 'SUCCESS'
                                 sendResponse(null, objresponse)
                             })
                         })

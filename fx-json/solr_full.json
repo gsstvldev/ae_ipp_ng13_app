@@ -1167,6 +1167,16 @@
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1721709764304$DQ$
       },
       {
+        $DQ$NAME$DQ$: $DQ$MESSAGE_DATA$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1721709764304$DQ$
+      },
+      {
+        $DQ$NAME$DQ$: $DQ$INSTRUCTED_FIN_INST_BIC$DQ$,
+        $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+        $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1721709764304$DQ$
+      },
+      {
         $DQ$NAME$DQ$: $DQ$NPSSPSR_ID$DQ$,
         $DQ$TYPE$DQ$: $DQ$NUMBER$DQ$,
         $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1681973868376$DQ$

@@ -1,1 +1,1 @@
-[]
+[{"query" : "alter table NPSS_CAMT53_STMT add column MESSAGE_DATA CHARACTER VARYING(80000), add column INSTRUCTED_FIN_INST_BIC CHARACTER VARYING(32);","params" : [] }]

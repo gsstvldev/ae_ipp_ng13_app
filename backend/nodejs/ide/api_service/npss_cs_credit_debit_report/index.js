@@ -194,7 +194,7 @@ from
 		and cmb.NEED_SYNC = 'Y'
 			)v
 where
-	process_type = 'OP'  ${cond_params}`
+	process_type = 'OP' and  T24_FT_REFERENCE_NUMBER is not null  ${cond_params}`
                             }
                             else {
                                 Taketran = ` SELECT DISTINCT UETR as UETR,

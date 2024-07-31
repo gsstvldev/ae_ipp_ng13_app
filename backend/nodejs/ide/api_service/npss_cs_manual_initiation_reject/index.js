@@ -9,8 +9,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
-
-    /*  Created By :sIVA  hARISH
+    /*  Created By :sIVA hARISH
     Created Date : 02-01-2022
     Modifyed by : Siva Harish
     Modified Date : 17/01/2023
@@ -21,8 +20,10 @@ app.post('/', function(appRequest, appResponse, next) {
     Reason for Changes for finance house
     Changes for mail 12/07/2023
      Reason for: Adding all coums in log,acct table while mail sending on 30-01-2024 by daseen
-     Reason for: Prepaid or credit tran Update  status & insert in log table  -- renga 13-06-2024
-     Reason :ELP and master CODE MERGED ON 11-07-2024 by Subramanian
+Reason for: Prepaid or credit tran Update  status & insert in log table  -- renga 13-06-2024
+Reason for: Last posting refno  -- Daseen 11-07-2024
+Reason for: Master elp merged  -- Daseen 31-07-2024
+
     */
     var serviceName = 'NPSS (CS) Manual Initiation Reject';
     var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
@@ -96,7 +97,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                 var TakeAcctInf = `select alternate_account_type,currency,account_number,alternate_account_id,inactive_marker,company_code,curr_rate_segment,customer_id,account_officer,ac.created_Date as acct_created_date,ac.modified_date as acct_modified_date,ac.issuer_type_code as acct_issuer_type_code,ac.* from core_nc_cbs_accounts ac where alternate_account_id= '${arrdata[0].dbtr_iban}'`
                                                                 ExecuteQuery1(TakeAcctInf, function (arrcbsact) {
                                                                     if (arrcbsact.length > 0) {
-                                                                        var Takepostrefno = `select * from npss_trn_process_log where status = 'OP_RCT_MAN_INAU_POSTING_SUCCESS' and uetr = '${arrdata[0].uetr}'`
+                                                                        var Takepostrefno = `select * from npss_trn_process_log where status = 'OP_RCT_MAN_INAU_POSTING_SUCCESS' and uetr = '${arrdata[0].uetr}'   order by npsstpl_id desc`
                                                                         ExecuteQuery1(Takepostrefno, function (arrpostno) {
                                                                             if (arrpostno.length > 0) {
                                                                                 fn_DoAPI(arrdata, arrUrl, arrcbsact, arrpostno, extend_retry_value, function (apiresult) {
@@ -147,7 +148,6 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                                 } else {
                                                                                                     updtranqry = `update npss_transactions set  checker = '${params.CREATED_BY_NAME}',status='${success_status}',process_status='${success_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsst_id='${params.Id}' `
                                                                                                 }
-
                                                                                                 ExecuteQuery(updtranqry, async function (uptranresult) {
                                                                                                     if (uptranresult == 'SUCCESS') {
                                                                                                         if (arrcbsact[0].currency == 'AED') {
@@ -156,26 +156,17 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                                         } else {
                                                                                                             let doMail = await SendMail(arrdata[0].uetr, arrcbsact)
                                                                                                         }
-
-
-
                                                                                                     } else {
                                                                                                         objresponse.status = 'Failure in Tran Status Update';
                                                                                                         sendResponse(null, objresponse)
                                                                                                     }
                                                                                                 })
-
-
                                                                                             } else {
                                                                                                 objresponse.status = 'FAILURE';
                                                                                                 reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Insert not succes", result);
                                                                                                 sendResponse(null, objresponse)
                                                                                             }
-
                                                                                         })
-
-
-
                                                                                     } else {
                                                                                         objresponse.status = 'Fail From T24 Unfreeze  Error Code -' + apiresult.error_code
                                                                                         sendResponse(null, objresponse);
@@ -185,43 +176,27 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                                 objresponse.status = 'No Posting Ref No Found';
                                                                                 sendResponse(null, objresponse)
                                                                             }
-
                                                                         })
-
-
-
                                                                     } else {
                                                                         objresponse.status = 'No Account Information found in cbs accounts table'
                                                                         sendResponse(null, objresponse)
                                                                     }
                                                                 })
-                                                            }
-
-                                                            else {
+                                                            } else {
                                                                 objresponse.status = 'No Url Found'
-
                                                                 sendResponse(null, objresponse)
                                                             }
-
                                                         })
-
                                                     }
-
-
                                                 } else {
                                                     objresponse.status = 'No data found in npss tran table'
                                                     sendResponse(null, objresponse)
                                                 }
-
                                             })
-
-
                                         } else {
                                             objresponse.status = 'No data found in core_nc_workflow_setup';
-
                                             sendResponse(null, objresponse)
                                         }
-
                                     } catch (error) {
                                         sendResponse(error)
                                     }
@@ -244,20 +219,13 @@ app.post('/', function(appRequest, appResponse, next) {
                                         objresponse.status = 'No data found in core_nc_workflow_setup table';
                                         sendResponse(null, objresponse)
                                     }
-
                                 })
-
-
-
-
-
                             }
 
 
                             // Do unfreeze API Call for Service 
                             function fn_DoAPI(trndata, url, arrActInf, arrpostno, extend_retry_value, callbackapi) {
                                 try {
-
                                     var request = require('request');
                                     var apiURL =
                                         apiURL = url[0].param_detail // apiURL + apiName
@@ -266,7 +234,6 @@ app.post('/', function(appRequest, appResponse, next) {
                                         timeout: 18000000,
                                         method: 'POST',
                                         json: {
-
 
                                             "payload": {
                                                 "ext_iden_retry_value": extend_retry_value || '',
@@ -282,17 +249,12 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 "dbtr_acct_name": trndata[0].dbtr_acct_name,
                                                 "cdtr_acct_name": trndata[0].cdtr_acct_name,
                                                 "process_type": trndata[0].process_type
-
-
-
                                             },
                                             "AccountInformation": {
                                                 "account_number": arrActInf[0].account_number || '',
                                                 "company_code": arrActInf[0].company_code || '',
                                                 "alternate_account_type": arrActInf[0].alternate_account_type || '',
                                                 "currency": arrActInf[0].currency || ''
-
-
                                             }
                                         },
                                         headers: {
@@ -353,6 +315,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                     })
                                 })
                             }
+
+
                             //function update transaction and log table insert for prepaid & creditcard trn
                             function Update_LogInsert(arrdata, success_status, success_process_status, arrrule) {
                                 return new Promise((resolve, reject) => {
@@ -664,7 +628,6 @@ app.post('/', function(appRequest, appResponse, next) {
                                 })
                             }
 
-
                             function TakeDealParam(uetr) {
                                 return new Promise((resolve, reject) => {
                                     let Takedata = `select  fn_pcidss_decrypt(response_data_json,$PCIDSS_KEY ) as response_data_json,fn_pcidss_decrypt(request_data_json,$PCIDSS_KEY ) as request_data_json,* from npss_trn_process_log where process_name = 'Get Deal' and uetr = '${uetr}'`
@@ -678,7 +641,6 @@ app.post('/', function(appRequest, appResponse, next) {
                                     })
                                 })
                             }
-
 
 
                             function ExecuteQuery1(query, callback) {
@@ -714,6 +676,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                     }
                                 });
                             }
+
+
                             function _BulkInsertProcessItem(insertarr, strTrnTableName, callbackInsert) {
                                 try {
                                     reqTranDBInstance.InsertBulkTranDB(mTranConn, strTrnTableName, insertarr, objSessionLogInfo, 300, function callbackInsertBulk(result, error) {
@@ -766,14 +730,6 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
-
-
-
-
-
-
-
-
 
 
 

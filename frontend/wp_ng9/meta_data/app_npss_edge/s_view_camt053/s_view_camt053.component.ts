@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 36156 
+Build ID        : 36169 
 Modified By     : Admin 
-Modified Date   : 2024-Jul-31 10:42 AM 
+Modified Date   : 2024-Jul-31 13:3 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_camt053
@@ -50,7 +50,7 @@ export class s_view_camt053Component implements OnInit,AfterViewInit {
 	navigation_ui : any = {}
 	navigation_ui_search : any = {}
 	navigation_ui_view_tran_details : any = {}
-	navigation_ui_view_message_data : any = {}
+	navigation_ui_view_message : any = {}
 	navigation_ui_export_as_excel : any = {}
 	navigation_ui_export_as_pdf : any = {}
 	navigation_ui_print : any = {}
@@ -115,14 +115,14 @@ export class s_view_camt053Component implements OnInit,AfterViewInit {
 		this.navigation_ui_view_tran_details.role = []
 		this.navigation_ui_view_tran_details.action = ""
 		
-		// "View Message Data" Button of "Navigation UI" component
-		this.navigation_ui_view_message_data.label_name = "View Message Data"
-		this.navigation_ui_view_message_data.show = true
-		this.navigation_ui_view_message_data.disabled = false
-		this.navigation_ui_view_message_data.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
-		this.navigation_ui_view_message_data.dynamic_param = {}
-		this.navigation_ui_view_message_data.role = []
-		this.navigation_ui_view_message_data.action = ""
+		// "View Message" Button of "Navigation UI" component
+		this.navigation_ui_view_message.label_name = "View Message"
+		this.navigation_ui_view_message.show = true
+		this.navigation_ui_view_message.disabled = false
+		this.navigation_ui_view_message.params = {"icon_only":false,"uicgcc_style":"fa fa-eye"}
+		this.navigation_ui_view_message.dynamic_param = {}
+		this.navigation_ui_view_message.role = []
+		this.navigation_ui_view_message.action = ""
 		
 		// "Export as Excel" Button of "Navigation UI" component
 		this.navigation_ui_export_as_excel.label_name = "Export as Excel"
@@ -314,10 +314,10 @@ export class s_view_camt053Component implements OnInit,AfterViewInit {
 		this.search_clear__cui_for_search_clear()
 	}
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view message data"
-	navigation_ui_view_message_data__action_button_click(){
-		this.navigation_ui_view_message_data__bt_from_message_data()
-		this.navigation_ui_view_message_data__sp_for_message_data()
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view message"
+	navigation_ui_view_message__action_button_click(){
+		this.navigation_ui_view_message__bt_from_message_data()
+		this.navigation_ui_view_message__sp_for_message_data()
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -367,7 +367,7 @@ export class s_view_camt053Component implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="page_load"
-		let destn_id="navigation_ui_view_message_data"
+		let destn_id="navigation_ui_view_message"
 		let parent_source_id=""
 		let event_code="e_1722401616761"
 		let event_params={"caller_name":"page_load__de_from_pg","event_desc":"DE From pg","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
@@ -580,7 +580,7 @@ export class s_view_camt053Component implements OnInit,AfterViewInit {
 		let Dest_Is_ctrl=true
 		
 		let source_id="transaction_list"
-		let destn_id="navigation_ui_view_message_data"
+		let destn_id="navigation_ui_view_message"
 		let parent_source_id=""
 		let event_code="e_1722401668332"
 		let event_params={"caller_name":"transaction_list__ee_from_list","event_desc":"EE From list","event_type":"SELECTION_CHANGED","caller_event_context":"SUCCESS","root_source_id":"transaction_list","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""}}
@@ -743,15 +743,15 @@ export class s_view_camt053Component implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view message data"
-	navigation_ui_view_message_data__bt_from_message_data() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view message"
+	navigation_ui_view_message__bt_from_message_data() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_view_message_data"
+		let source_id="navigation_ui_view_message"
 		let destn_id="message_data_ui"
 		let parent_source_id=""
 		let event_code="e_1722347725464"
-		let event_params={"caller_name":"navigation_ui_view_message_data__bt_from_message_data","event_desc":"BT From Message data","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_message_data","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":"","change_detection":""}}
+		let event_params={"caller_name":"navigation_ui_view_message__bt_from_message_data","event_desc":"BT From Message data","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_message","raiseparam":{"prevent_default_event":"N","need_blockchain_storage":"N","dt_code":"","dtt_code":"","key_column":"","key_value_level":"","key_value":"","change_detection":""}}
 		let handler_code="bind_tran"
 		let internals=""
 		let event_data={}
@@ -764,15 +764,15 @@ export class s_view_camt053Component implements OnInit,AfterViewInit {
  		} 
 	} 
 
-	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view message data"
-	navigation_ui_view_message_data__sp_for_message_data() { 
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui view message"
+	navigation_ui_view_message__sp_for_message_data() { 
 		let Dest_Is_ctrl=true
 		
-		let source_id="navigation_ui_view_message_data"
+		let source_id="navigation_ui_view_message"
 		let destn_id=""
 		let parent_source_id=""
 		let event_code="e_1722347777727"
-		let event_params={"caller_name":"navigation_ui_view_message_data__sp_for_message_data","event_desc":"SP For Message data","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_message_data","raiseparam":{"profile_code":"BTL_1304_1672474581833"}}
+		let event_params={"caller_name":"navigation_ui_view_message__sp_for_message_data","event_desc":"SP For Message data","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_view_message","raiseparam":{"profile_code":"BTL_1304_1672474581833"}}
 		let handler_code="show_profile"
 		let internals=""
 		let event_data={}

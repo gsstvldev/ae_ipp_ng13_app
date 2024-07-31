@@ -1,0 +1,41 @@
+<div class="dynamic-ui">
+	
+<fieldset [disabled]="isFormDisabled()" [hidden]="isFormHidden()">
+	<h2 class="need-header" [hidden]="hasHeader">{{component_header | translate}}</h2>	<form #f_npss_view_camt053_srch="ngForm">
+<div id="r0" class="row">
+	<div #npss_view_camt053_srch_memory78 id="RN31CN7" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('memory78')" >
+				<cdn_date [ctrl_id]="'npss_view_camt053_srch_memory78'" [comp_id]="comp_id" [ctrl]="ctrl.memory78" [model]="screen_instance[this.comp_id].f_npss_view_camt053_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_date>
+	</div>
+	<div  id="5653108d-9e2b-471f-b685-ea16708f3e6e_1722330688602" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('hdr_msg_rcpt_id')" >
+				<cdn_ctrl [ctrl_id]="'npss_view_camt053_srch_hdr_msg_rcpt_id'" [comp_id]="comp_id" [ctrl]="ctrl.hdr_msg_rcpt_id" [model]="screen_instance[this.comp_id].f_npss_view_camt053_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+</div>
+<div id="RN31" class="row">
+	<div  id="96d844ae-64c5-400c-84fe-96af47140a8f_1722330688602" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('stmt_id')" >
+				<cdn_ctrl [ctrl_id]="'npss_view_camt053_srch_stmt_id'" [comp_id]="comp_id" [ctrl]="ctrl.stmt_id" [model]="screen_instance[this.comp_id].f_npss_view_camt053_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+	<div  id="ae43bfc3-4a7b-4726-9306-4708312b6819_1722330688602" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('stmt_from_to_date_time')" >
+				<cdn_date [ctrl_id]="'npss_view_camt053_srch_stmt_from_to_date_time'" [comp_id]="comp_id" [ctrl]="ctrl.stmt_from_to_date_time" [model]="screen_instance[this.comp_id].f_npss_view_camt053_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_date>
+	</div>
+</div>
+<div id="r1" class="row">
+	<div  id="b75607d3-2357-4f01-86c0-d33db408c78e_1722330688602" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('stmt_to_date_time')" >
+				<cdn_date [ctrl_id]="'npss_view_camt053_srch_stmt_to_date_time'" [comp_id]="comp_id" [ctrl]="ctrl.stmt_to_date_time" [model]="screen_instance[this.comp_id].f_npss_view_camt053_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_date>
+	</div>
+	<div  id="9a72d957-89c0-497e-b5a3-1f0cd4070a90_1722330688602" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('uetr')" >
+				<cdn_ctrl [ctrl_id]="'npss_view_camt053_srch_uetr'" [comp_id]="comp_id" [ctrl]="ctrl.uetr" [model]="screen_instance[this.comp_id].f_npss_view_camt053_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+</div>
+<div id="1722330688602" class="row">
+	<div  id="195d95db-264e-46f8-a8cd-f7a73bbb0972_1722330688602" class="column col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" [hidden]="isControlHidden('txn_id')" >
+				<cdn_ctrl [ctrl_id]="'npss_view_camt053_srch_txn_id'" [comp_id]="comp_id" [ctrl]="ctrl.txn_id" [model]="screen_instance[this.comp_id].f_npss_view_camt053_srch.model" [screen_instance]="screen_instance" [form_instance]="this"></cdn_ctrl>
+	</div>
+</div>
+	</form>
+</fieldset >
+	<div class="row dynamic_action_btn">
+		<btn [ctrl_id]="'search_clear'" [comp_id]="comp_id" [ctrl]="screen_instance.search_clear" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.search_clear.show"></btn>
+		<btn [ctrl_id]="'search_search'" [comp_id]="comp_id" [ctrl]="screen_instance.search_search" [screen_instance]="screen_instance" [form_instance]="this" [hidden]="!screen_instance.search_search.show"></btn>
+ 	</div>
+
+</div>

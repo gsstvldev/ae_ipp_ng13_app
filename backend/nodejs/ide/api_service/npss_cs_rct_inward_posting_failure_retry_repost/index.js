@@ -9,6 +9,7 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
 
+
     try {
         /*   Created By :Siva Harish
         Created Date :10-03-2023
@@ -20,6 +21,8 @@ app.post('/', function(appRequest, appResponse, next) {
             Siva Harish-- Removing ext_iden_rtry_value and department_code in payload for all apis 28/04/2023
       Siva Harish-- Adding returnid 24/06/2023 in T24 inward return Nostro api 
          Daseen - Kafaka url in checker role on 22-11-2023
+         renga - for maker case log table insert needed also update the status
+         Daseen- Merging elp and master branch on 31-07-2024 (pasted elp full code) -WI 3987
        
         */
         var serviceName = 'NPSS (CS) RCT Inward Posting Failure Retry Repost';
@@ -83,18 +86,35 @@ app.post('/', function(appRequest, appResponse, next) {
                                     final_status = arrurlResult[0].success_status
 
                                     if (params.Roleid == '705' || params.Roleid == 705 || params.eligible_status.startsWith('IP_BCT')) {
-                                        var UpdateTrnTbl = `update npss_transactions set  status='${final_status}',process_status='${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsst_id in ${TempTranID} `
-                                        ExecuteQuery(UpdateTrnTbl, function (uptranresult) {
-                                            if (uptranresult == 'SUCCESS') {
-                                                objresponse.status = 'SUCCESS';
-                                                sendResponse(null, objresponse)
-                                            } else {
-                                                objresponse.status = 'FAILURE';
-                                                objresponse.errdata = "Error in npss transaction table update"
-                                                sendResponse(null, objresponse)
+                                        // var UpdateTrnTbl = `update npss_transactions set  status='${final_status}',process_status='${final_process_status}',MODIFIED_BY = '${params.CREATED_BY}',MODIFIED_DATE = '${reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo)}',MODIFIED_BY_NAME ='${params.CREATED_BY_NAME}',PRCT_ID ='${PRCT_ID}', MODIFIED_CLIENTIP = '${objSessionLogInfo.CLIENTIP}', MODIFIED_TZ = '${objSessionLogInfo.CLIENTTZ}', MODIFIED_TZ_OFFSET = '${objSessionLogInfo.CLIENTTZ_OFFSET}', MODIFIED_BY_SESSIONID = '${objSessionLogInfo.SESSION_ID}', MODIFIED_DATE_UTC = '${reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo)}'  where npsst_id in ${TempTranID} `
+                                        // ExecuteQuery(UpdateTrnTbl, async function (uptranresult) {
+                                        //  if (uptranresult == 'SUCCESS') {
+                                        ExecuteQuery1(take_api_params, async function (arrTranparams) {
+                                            if (arrTranparams.length > 0) {
 
+                                                //update the tran status inside the insertProcess function
+                                                var InsertUpdateTran = await InsertProcess(arrTranparams[0], final_process_status, final_status, PRCT_ID)
+                                                if (InsertUpdateTran == 'SUCCESS') {
+                                                    objresponse.status = 'SUCCESS';
+                                                    sendResponse(null, objresponse)
+                                                } else {
+                                                    objresponse.status = 'FAILURE';
+                                                    objresponse.errdata = "Error in npss log table insert & status update"
+                                                    sendResponse(null, objresponse)
+                                                }
+                                            } else {
+                                                objresponse.status = "FAILURE"
+                                                objresponse.errdata = "No Data found in Tran table"
+                                                sendResponse(null, objresponse)
                                             }
                                         })
+                                        // } else {
+                                        //     objresponse.status = 'FAILURE';
+                                        //     objresponse.errdata = "Error in npss transaction table update"
+                                        //     sendResponse(null, objresponse)
+
+                                        // }
+                                        //  })
 
                                     } else { //checker for repost
                                         ExecuteQuery1(take_api_params, async function (arrTranparams) {
@@ -235,7 +255,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                     })
                                 } else {
                                     objresponse.status = 'FAILURE'
-                                    objresponse.errdata = 'Failure in Insert Process for TranId' + arrTranparamsObj.npsst_id
+                                    objresponse.errdata = 'Failure in Insert Process for TranId' + arrTranparams.npsst_id
                                     sendResponse(null, objresponse)
                                 }
                             })
@@ -1440,6 +1460,8 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
+
 
 
 

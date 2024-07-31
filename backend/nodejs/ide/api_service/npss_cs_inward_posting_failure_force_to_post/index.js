@@ -11,10 +11,11 @@ app.post('/', function(appRequest, appResponse, next) {
         /*   Created By :Siva Harish
         Created Date :28-03-2023
         Modified_by : 10/07/2023
-      
-         
-       
-        */
+         Modified_name : suresh 
+         Modified_date : 25 -07-24
+         reason : payload changes for  CallELPASOapi api 
+         reason : elp code merged with master by renga 31-07-2024 :  WI 3987
+         */
         var serviceName = 'NPSS (CS) Inward Posting Failure Force to Post';
         var reqInstanceHelper = require($REFPATH + 'common/InstanceHelper'); ///  Response,error,info msg printing        
         var reqTranDBInstance = require($REFPATH + "instance/TranDBInstance.js"); /// postgres & oracle DB pointing        
@@ -41,7 +42,6 @@ app.post('/', function(appRequest, appResponse, next) {
             'msg': ''
         }; // Response to Client
         // Assign function for loginformation and session info
-
         reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInformation) {
             try {
                 objSessionLogInfo = objLogInfo; // Assing log information
@@ -66,7 +66,6 @@ app.post('/', function(appRequest, appResponse, next) {
                             var PRCT_ID = prct_id
                             var final_status
                             var final_process_status
-
                             var TakeStsPsts = `select success_process_status,success_status from core_nc_workflow_setup where rule_code = 'RCT_IP_POSTING_FAIL_REPOST'  and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
                             var take_api_params = `select ns.account_currency,ns.reversal_amount,ns.npsst_id,fn_pcidss_decrypt(ns.cr_acct_identification,$PCIDSS_KEY ) as cr_acct_identification,fn_pcidss_decrypt(ns.dbtr_acct_no,$PCIDSS_KEY ) as dbtr_acct_no,ns.dbtr_prvt_id,ns.department_code,ns.dbtr_cust_type,ns.ext_acct_id_code,ns.intrbk_sttlm_amnt,ns.instrument_type,ns.instruction_id,ns.hdr_msg_id,ns.hdr_clearing_system,ns.dbtr_other_issuer,ns.ext_person_id_code,ns.dbtr_country,ns.dbtr_city_birth,ns.dbtr_birth_date,ns.dbtr_document_id,ns.issuer_type_code,ns.dbtr_prvt_id,ns.remittance_info,ns.cr_acct_id_code,ns.hdr_msg_id,ns.hdr_created_date,ns.hdr_total_records,ns.hdr_total_amount,ns.hdr_settlement_date,ns.hdr_settlement_method, ns.hdr_clearing_system,ns.dr_sort_code,ns.cr_sort_code,ns.category_purpose,ns.category_purpose_prty,ns.ext_purpose_code,ns.ext_purpose_prty, ns.clrsysref, ns.uetr,ns.intrbk_sttlm_cur,ns.dbtr_iban,ns.cdtr_iban,ns.dbtr_acct_name,ns.cdtr_acct_name,ns.payment_endtoend_id,ns.charge_bearer ,fn_pcidss_decrypt(ns.message_data,$PCIDSS_KEY ) as message_data,ns.reversal_amount,ns.intrbk_sttlm_amnt, ns.process_type,ns.status,ns.process_status,ns.tran_ref_id, ns.value_date,ns.ext_org_id_code,ns.accp_date_time as accp_dt_tm from npss_transactions ns where npsst_id in ${TempTranID}`;
                             var Takekafkaurl = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='NPSS_CC_POSTING' and param_code='URL' and need_sync = 'Y'`
@@ -86,42 +85,29 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         objresponse.status = 'FAILURE';
                                                         objresponse.errdata = "Error in npss transaction table update"
                                                         sendResponse(null, objresponse)
-
                                                     }
                                                 })
-
                                             } else { //checker for repost
                                                 ExecuteQuery1(take_api_params, async function (arrTranparams) {
                                                     if (arrTranparams.length > 0) {
                                                         var Apicalls
-                                                       
                                                         let ext_ident_value
                                                         ext_ident_value = await GetRetrycount(arrTranparams[0].uetr)
                                                         if (params.eligible_status == 'IP_RCT_PC_T24_POSTING_RETRY') { //prepaid                            
-                                                            Apicalls = await Callprepaidapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl,ext_ident_value)
+                                                            Apicalls = await Callprepaidapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl, ext_ident_value)
                                                         } else if (params.eligible_status == 'IP_RCT_CC_T24_POSTING_RETRY') { //credit                                     
-                                                            Apicalls = await Callcreditapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl,ext_ident_value)
+                                                            Apicalls = await Callcreditapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl, ext_ident_value)
                                                         } else if (params.eligible_status == 'IP_RCT_RETURN_POSTING_RETRY') { //inward return Nostro Posting API                                                                                   
-                                                          Apicalls = await CallNostroapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl,ext_ident_value)
+                                                            Apicalls = await CallNostroapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl, ext_ident_value)
                                                         } else if (params.eligible_status == 'IP_RCT_RR_POSTING_RETRY') { //T24 inward return Posting API (Auto Return Case)                                                                                     
-                                                            Apicalls = await CallautoReturn(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl,ext_ident_value)
-                                                        } else if (params.eligible_status == 'IP_RCT_PC_POSTING_RETRY') { //ELPASO Posting
-                                                            Apicalls = await CallELPASOapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl,ext_ident_value)
+                                                            Apicalls = await CallautoReturn(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl, ext_ident_value)
+                                                        } else if (params.eligible_status == 'IP_RCT_PC_POSTING_RETRY' || params.eligible_status == 'IP_RCT_CC_POSTING_RETRY') { //ELPASO Posting
+                                                            Apicalls = await CallELPASOapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl, ext_ident_value)
                                                         } else if (params.eligible_status == 'IP_RCT_POSTING_RETRY') {//T24 INward 
-                                                            Apicalls = await CallT24Posting(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl,ext_ident_value)
+                                                            Apicalls = await CallT24Posting(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl, ext_ident_value)
                                                         } else {
                                                             objresponse.status = "FAILURE"
                                                             objresponse.errdata = "No Eligible status for checker role"
-                                                            sendResponse(null, objresponse)
-                                                        }
-
-                                                        if (Apicalls == 'SUCCESS') {
-                                                            objresponse.status = "SUCCESS"
-                                                            objresponse.errdata = ""
-                                                            sendResponse(null, objresponse)
-                                                        } else {
-                                                            objresponse.status = "API call FAILURE"
-                                                            objresponse.errdata = ""
                                                             sendResponse(null, objresponse)
                                                         }
                                                     } else {
@@ -130,7 +116,6 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         sendResponse(null, objresponse)
                                                     }
                                                 })
-
                                             }
                                         } else {
                                             objresponse.status = 'FAILURE';
@@ -138,32 +123,19 @@ app.post('/', function(appRequest, appResponse, next) {
                                             sendResponse(null, objresponse)
                                         }
                                     })
-
-
                                 } else {
                                     objresponse.status = "FAILURE"
                                     objresponse.errdata = "No Data found in Tran Table"
                                     sendResponse(null, objresponse)
                                 }
-
-
-
                             })
-
-
-
                         }
                         catch (error) {
                             reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_004", "ERROR IN API CALL FUNCTION", error);
                             sendResponse(error, null);
                         }
                     })
-
-
-
-
                     // Do API Call for Service 
-
                     function InsertProcess(arrTranparams, success_process_status, success_status, PRCT_ID) {
                         return new Promise((resolve, reject) => {
                             var processName
@@ -173,7 +145,6 @@ app.post('/', function(appRequest, appResponse, next) {
                                 processName = 'Repost - Checker'
                             }
                             var arrCusTranInst = [];
-
                             var objCusTranInst = {}
                             objCusTranInst.MSG_ID = arrTranparams.hdr_msg_id;
                             objCusTranInst.PRCT_ID = PRCT_ID;
@@ -221,7 +192,6 @@ app.post('/', function(appRequest, appResponse, next) {
                                             resolve('SUCCESS')
                                         } else {
                                             resolve('FAILURE')
-
                                         }
                                     })
                                 } else {
@@ -231,12 +201,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                 }
                             })
                         })
-
                     }
-
-
-
-                    function Callprepaidapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl,ext_ident_value) {
+                    function Callprepaidapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl, ext_ident_value) {
                         return new Promise((resolve, reject) => {
                             reqAsync.forEachOfSeries(arrTranparams, function (arrTranparamsObj, i, nextobjctfunc) {
                                 var TakepostingRefno = `select  process_ref_no,status_accp_date,status_intrbksttlmdt,status_resp_amount from npss_trn_process_log where uetr = '${arrTranparamsObj.uetr}' and process_name = 'Receive Pacs002'`
@@ -339,9 +305,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         headers: {
                                                             'Content-Type': 'application/json'
                                                         }
-
                                                     }
-
                                                     var PrintInfo = {}
                                                     PrintInfo.processName = 'Prepaid Card Pool Posting'
                                                     PrintInfo.url = arrurl[0].param_detail
@@ -349,13 +313,11 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     PrintInfo.npsst_id = arrTranparamsObj.npsst_id || ''
                                                     PrintInfo.msg_id = arrTranparamsObj.hdr_msg_id || ''
                                                     PrintInfo.clrsysref = arrTranparamsObj.clrsysref || ''
-
                                                     reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
                                                     request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                                                         if (error) {
                                                             reqInstanceHelper.PrintInfo(serviceName, '------------ API ERROR-------' + error, objSessionLogInfo);
                                                             sendResponse(error, null);
-
                                                         } else {
                                                             reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
                                                             if (responseBodyFromImagingService == 'SUCCESS') {
@@ -377,13 +339,11 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             }
                                                         }
                                                     });
-
                                                 } else {
                                                     objresponse.status = 'FAILURE'
                                                     objresponse.errdata = "Prepaid - npsstrrd_refno not found for" + arrTranparamsObj.npsst_id
                                                     sendResponse(null, objresponse)
                                                 }
-
                                             })
 
                                         } else {
@@ -392,25 +352,20 @@ app.post('/', function(appRequest, appResponse, next) {
                                             sendResponse(null, objresponse)
                                         }
                                     } else {
-
                                         objresponse.status = 'FAILURE'
                                         objresponse.errdata = "Prepaid - Process Ref no not found for Tran_id" + arrTranparamsObj.npsst_id
                                         sendResponse(null, objresponse)
                                     }
                                 })
-
                             }, function () {
-                                resolve('SUCCESS')
+                                // resolve('SUCCESS')
+                                objresponse.status = 'SUCCESS'
+                                objresponse.data = 'SUCCESS'
+                                sendResponse(null, objresponse)
                             })
                         })
-
-
-
                     }
-
-
-                    function Callcreditapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl,ext_ident_value) {
-
+                    function Callcreditapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl, ext_ident_value) {
                         return new Promise((resolve, reject) => {
                             reqAsync.forEachOfSeries(arrTranparams, function (arrTranparamsObj, i, nextobjctfunc) {
                                 var TakepostingRefno = `select  process_ref_no,status_accp_date,status_intrbksttlmdt,status_resp_amount from npss_trn_process_log where uetr = '${arrTranparamsObj.uetr}' and process_name = 'Receive Pacs002'`
@@ -513,9 +468,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         headers: {
                                                             'Content-Type': 'application/json'
                                                         }
-
                                                     }
-
                                                     var PrintInfo = {}
                                                     PrintInfo.url = arrurl[0].param_detail
                                                     PrintInfo.card = 'Credit CARD POOL POSTING'
@@ -523,13 +476,11 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     PrintInfo.npsst_id = arrTranparamsObj.npsst_id || ''
                                                     PrintInfo.msg_id = arrTranparamsObj.hdr_msg_id || ''
                                                     PrintInfo.clrsysref = arrTranparamsObj.clrsysref || ''
-
                                                     reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
                                                     request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                                                         if (error) {
                                                             reqInstanceHelper.PrintInfo(serviceName, '------------API ERROR-------' + error, objSessionLogInfo);
                                                             sendResponse(error, null);
-
                                                         } else {
                                                             reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
                                                             if (responseBodyFromImagingService == 'SUCCESS') {
@@ -556,17 +507,13 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     objresponse.errdata = "Credit - npsstrrd_refno not found for" + arrTranparamsObj.npsst_id
                                                     sendResponse(null, objresponse)
                                                 }
-
                                             })
-
-
                                         } else {
                                             objresponse.status = 'FAILURE'
                                             objresponse.errdata = "Credit card - Process Ref no is Missing for" + arrTranparamsObj.npsst_id
                                             sendResponse(null, objresponse)
                                         }
                                     } else {
-
                                         objresponse.status = 'FAILURE'
                                         objresponse.errdata = "Credit card - Process Ref no not found for Tran_id for" + arrTranparamsObj.npsst_id
                                         sendResponse(null, objresponse)
@@ -574,19 +521,14 @@ app.post('/', function(appRequest, appResponse, next) {
                                 })
 
                             }, function () {
-                                resolve('SUCCESS')
+                                // resolve('SUCCESS')
+                                objresponse.status = 'SUCCESS'
+                                objresponse.data = 'SUCCESS'
+                                sendResponse(null, objresponse)
                             })
                         })
-
-
-
-
                     }
-
-
-                    function CallNostroapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl,ext_ident_value) {
-
-
+                    function CallNostroapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl, ext_ident_value) {
                         return new Promise((resolve, reject) => {
                             reqAsync.forEachOfSeries(arrTranparams, function (arrTranparamsObj, i, nextobjctfunc) {
                                 var TakepostingRefno = `select  process_ref_no,status_accp_date,status_intrbksttlmdt,status_resp_amount from npss_trn_process_log where uetr = '${arrTranparamsObj.uetr}' and process_name = 'Receive Pacs002'`
@@ -604,7 +546,6 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         } else {
                                                             Virtual_account = 'N'
                                                         }
-
                                                         var lclinstrm
                                                         if (arrTranparamsObj.message_data !== null) {
                                                             var parser = new xml2js.Parser({ strict: false, trim: true });
@@ -696,7 +637,6 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                         "request_data_json": "",
                                                                         "participant_clearing_system": "",
                                                                         "retry_count": "0",
-
                                                                     }
                                                                 }
                                                             },
@@ -705,7 +645,6 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             }
 
                                                         }
-
                                                         var PrintInfo = {}
                                                         PrintInfo.processName = 'NOSTRO API Call'
                                                         PrintInfo.url = arrurl[0].param_detail
@@ -713,13 +652,11 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         PrintInfo.npsst_id = arrTranparamsObj.npsst_id || ''
                                                         PrintInfo.msg_id = arrTranparamsObj.hdr_msg_id || ''
                                                         PrintInfo.clrsysref = arrTranparamsObj.clrsysref || ''
-
                                                         reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
                                                         request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                                                             if (error) {
                                                                 reqInstanceHelper.PrintInfo(serviceName, '------------ API ERROR-------' + error, objSessionLogInfo);
                                                                 sendResponse(error, null);
-
                                                             } else {
                                                                 reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
                                                                 if (responseBodyFromImagingService == 'SUCCESS') {
@@ -747,39 +684,29 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         sendResponse(null, objresponse)
                                                     }
                                                 })
-
-
-
                                             } else {
                                                 objresponse.status = 'FAILURE'
                                                 objresponse.errdata = "NOSTRO API - No data found in cbs account for tran_id" + arrTranparamsObj.npsst_id
                                                 sendResponse(null, objresponse)
                                             }
                                         })
-
                                     } else {
-
                                         objresponse.status = 'FAILURE'
                                         objresponse.errdata = "Nostro  - Process Ref no not found for Tran_id for" + arrTranparamsObj.npsst_id
                                         sendResponse(null, objresponse)
                                     }
                                 })
-
                             }, function () {
-                                resolve('SUCCESS')
+                                // resolve('SUCCESS')
+                                objresponse.status = 'SUCCESS'
+                                objresponse.data = 'SUCCESS'
+                                sendResponse(null, objresponse)
                             })
                         })
-
-
-
-
-
                     }
-
-                    function CallautoReturn(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl,ext_ident_value) {
+                    function CallautoReturn(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl, ext_ident_value) {
                         return new Promise((resolve, reject) => {
                             reqAsync.forEachOfSeries(arrTranparams, function (arrTranparamsObj, i, nextobjctfunc) {
-
                                 var cbsaccount = `select curr_rate_segment,alternate_account_id,currency,account_number,account_officer,company_code,customer_id,alternate_account_type from core_nc_cbs_accounts where alternate_account_id ='${arrTranparamsObj.cdtr_iban}'`
                                 ExecuteQuery1(cbsaccount, function (arrcbsdata) {
                                     if (arrcbsdata.length > 0) {
@@ -794,7 +721,6 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     } else {
                                                         Virtual_account = 'N'
                                                     }
-
                                                     var request = require('request');
                                                     var options = {
                                                         url: arrurl[0].param_detail,
@@ -860,7 +786,6 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         headers: {
                                                             'Content-Type': 'application/json'
                                                         }
-
                                                     }
                                                     if (TakesellRate != '') {
                                                         options.json.data.payload.sell_rate = TakesellRate.sell_rate || ''
@@ -872,13 +797,11 @@ app.post('/', function(appRequest, appResponse, next) {
                                                     PrintInfo.npsst_id = arrTranparamsObj.npsst_id || ''
                                                     PrintInfo.msg_id = arrTranparamsObj.hdr_msg_id || ''
                                                     PrintInfo.clrsysref = arrTranparamsObj.clrsysref || ''
-
                                                     reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
                                                     request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                                                         if (error) {
                                                             reqInstanceHelper.PrintInfo(serviceName, '------------ API ERROR-------' + error, objSessionLogInfo);
                                                             sendResponse(error, null);
-
                                                         } else {
                                                             reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
                                                             if (responseBodyFromImagingService == 'SUCCESS') {
@@ -907,34 +830,21 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 }
                                             })
                                         }
-
                                         CallApi()
-
-
                                     } else {
                                         objresponse.status = 'FAILURE'
                                         objresponse.errdata = "No data found in cbs account for tran_id" + arrTranparamsObj.npsst_id
                                         sendResponse(null, objresponse)
                                     }
                                 })
-
-
-
-
                             }, function () {
-                                resolve('SUCCESS')
+                                //resolve('SUCCESS')
+                                objresponse.status = 'SUCCESS'
+                                objresponse.data = 'SUCCESS'
+                                sendResponse(null, objresponse)
                             })
                         })
-
-
-
-
-
-
                     }
-
-
-
                     function CallELPASOapi(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl, ext_ident_value) {
                         return new Promise((resolve, reject) => {
                             reqAsync.forEachOfSeries(arrTranparams, function (arrTranparamsObj, i, nextobjctfunc) {
@@ -956,6 +866,12 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         }
                                                         else {
                                                             lclinstrm = ""
+                                                        }
+                                                        if (params.eligible_status == 'IP_RCT_PC_POSTING_RETRY') {
+                                                            card = 'PREPAID_CARD'
+                                                        }
+                                                        else {
+                                                            card = 'CREDIT_CARD'
                                                         }
                                                         var request = require('request');
                                                         var options = {
@@ -1021,7 +937,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                         "clrsysref": arrTranparamsObj.clrsysref || '',
                                                                         "extIdentifier": arrTranparamsObj.clrsysref || '',
                                                                         "message_format": "urn:iso:std:iso:20022:tech:xsd:pacs.008.001.09",
-                                                                        "card_type": "PREPAID_CARD",
+                                                                        "card_type": card,
                                                                         "active_status": "ACCP",
                                                                         "process_ref_no": arrprsrefno[0].process_ref_no || '',
                                                                         "originalTrasactionId": "",
@@ -1040,7 +956,6 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                 'Content-Type': 'application/json'
                                                             }
                                                         }
-    
                                                         var PrintInfo = {}
                                                         PrintInfo.ApiName = 'ELPASO API CALL'
                                                         PrintInfo.url = arrurl[0].param_detail
@@ -1048,13 +963,12 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         PrintInfo.npsst_id = arrTranparamsObj.npsst_id || ''
                                                         PrintInfo.msg_id = arrTranparamsObj.hdr_msg_id || ''
                                                         PrintInfo.clrsysref = arrTranparamsObj.clrsysref || ''
-    
                                                         reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
                                                         request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                                                             if (error) {
                                                                 reqInstanceHelper.PrintInfo(serviceName, '------------ API ERROR-------' + error, objSessionLogInfo);
                                                                 sendResponse(error, null);
-    
+
                                                             } else {
                                                                 reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
                                                                 if (responseBodyFromImagingService == 'SUCCESS') {
@@ -1081,7 +995,6 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         objresponse.errdata = 'status_accp_date,status_intrbksttlmdt Not found for TranId' + arrTranparamsObj.npsst_id + 'for ELPASO Api Call'
                                                         sendResponse(null, objresponse)
                                                     }
-    
                                                 })
                                             } else {
                                                 objresponse.status = 'FAILURE'
@@ -1094,17 +1007,16 @@ app.post('/', function(appRequest, appResponse, next) {
                                         objresponse.errdata = 'Process Refno Not found for TranId' + arrTranparamsObj.npsst_id + 'for ELPASO Api Call'
                                         sendResponse(null, objresponse)
                                     }
-    
                                 })
                             }, function () {
-                                resolve('SUCCESS')
+                                //resolve('SUCCESS')
+                                objresponse.status = 'SUCCESS'
+                                objresponse.data = 'SUCCESS'
+                                sendResponse(null, objresponse)
                             })
                         })
                     }
-
-
-
-                    function CallT24Posting(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl,ext_ident_value) {
+                    function CallT24Posting(arrTranparams, final_process_status, final_status, PRCT_ID, arrurl, ext_ident_value) {
                         return new Promise((resolve, reject) => {
                             reqAsync.forEachOfSeries(arrTranparams, function (arrTranparamsObj, i, nextobjctfunc) {
                                 var TakepostingRefno = `select  process_ref_no,status_accp_date,status_intrbksttlmdt,status_resp_amount from npss_trn_process_log where uetr = '${arrTranparamsObj.uetr}' and process_name = 'Receive Pacs002'`
@@ -1124,7 +1036,6 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             } else {
                                                                 Virtual_account = 'N'
                                                             }
-
                                                             var lclinstrm
                                                             if (arrTranparamsObj.message_data !== null) {
                                                                 var parser = new xml2js.Parser({ strict: false, trim: true });
@@ -1218,14 +1129,12 @@ app.post('/', function(appRequest, appResponse, next) {
                                                                             "request_data_json": "",
                                                                             "participant_clearing_system": "",
                                                                             "retry_count": "0"
-
                                                                         }
                                                                     }
                                                                 },
                                                                 headers: {
                                                                     'Content-Type': 'application/json'
                                                                 }
-
                                                             }
                                                             if (TakesellRate != '') {
                                                                 options.json.data.payload.sell_rate = TakesellRate.sell_rate || ''
@@ -1238,13 +1147,11 @@ app.post('/', function(appRequest, appResponse, next) {
                                                             PrintInfo.npsst_id = arrTranparamsObj.npsst_id || ''
                                                             PrintInfo.msg_id = arrTranparamsObj.hdr_msg_id || ''
                                                             PrintInfo.clrsysref = arrTranparamsObj.clrsysref || ''
-
                                                             reqInstanceHelper.PrintInfo(serviceName, '------------API Request JSON-------' + JSON.stringify(PrintInfo), objSessionLogInfo);
                                                             request(options, function (error, responseFromImagingService, responseBodyFromImagingService) {
                                                                 if (error) {
                                                                     reqInstanceHelper.PrintInfo(serviceName, '----------- API ERROR-------' + error, objSessionLogInfo);
                                                                     sendResponse(error, null);
-
                                                                 } else {
                                                                     reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + responseBodyFromImagingService, objSessionLogInfo);
                                                                     if (responseBodyFromImagingService == 'SUCCESS') {
@@ -1273,32 +1180,26 @@ app.post('/', function(appRequest, appResponse, next) {
                                                         }
                                                     })
                                                 }
-
                                                 Checkdata()
-
-
                                             } else {
                                                 objresponse.status = 'FAILURE'
                                                 objresponse.errdata = "T24 Inward - No data found in cbs account for tran_id" + arrTranparamsObj.npsst_id
                                                 sendResponse(null, objresponse)
                                             }
                                         })
-
                                     } else {
-
                                         objresponse.status = 'FAILURE'
                                         objresponse.errdata = "T24 Inward  - Process Ref no not found for Tran_id for" + arrTranparamsObj.npsst_id
                                         sendResponse(null, objresponse)
                                     }
                                 })
-
                             }, function () {
-                                resolve('SUCCESS')
+                                // resolve('SUCCESS')
+                                objresponse.status = 'SUCCESS'
+                                sendResponse(null, objresponse)
                             })
                         })
                     }
-
-
                     function GetsellRate(arrcbsdata) {
                         return new Promise((resolve, reject) => {
                             var Takesellrate = `select sell_margin, sell_rate ,cif_number from  core_nc_cust_spl_rate where  cif_number='${arrcbsdata[0].customer_id}'`
@@ -1312,33 +1213,26 @@ app.post('/', function(appRequest, appResponse, next) {
                                     } else {
                                         resolve('')
                                     }
-
                                 } else {
                                     resolve('')
                                 }
                             })
                         })
-
                     }
-
                     function GetRetrycount(uetr) {
                         return new Promise((resolve, reject) => {
                             var TakeretryValue = `select ext_iden_retry_value from npss_trn_process_log where ext_iden_retry_value IS NOT NULL and uetr = '${uetr}' order by npsstpl_id desc`
                             ExecuteQuery1(TakeretryValue, function (extIdentValue) {
                                 if (extIdentValue.length > 0) {
-                                        var count = Number(extIdentValue[0].ext_iden_retry_value)
-                                        count ++
-                                        resolve(count)
-                                    
+                                    var count = Number(extIdentValue[0].ext_iden_retry_value)
+                                    count++
+                                    resolve(count)
                                 } else {
                                     resolve(1)
                                 }
-
                             })
                         })
                     }
-
-
                     //Execute Query Function
                     function ExecuteQuery1(query, callback) {
                         reqTranDBInstance.ExecuteSQLQuery(mTranConn, query, objSessionLogInfo, function (result, error) {
@@ -1365,14 +1259,12 @@ app.post('/', function(appRequest, appResponse, next) {
                                     sendResponse(error)
                                 } else {
                                     callback("SUCCESS");
-
                                 }
                             } catch (error) {
                                 sendResponse(error)
                             }
                         });
                     }
-
                     function _BulkInsertProcessItem(insertarr, strTrnTableName, callbackInsert) {
                         try {
                             reqTranDBInstance.InsertBulkTranDB(mTranConn, strTrnTableName, insertarr, objSessionLogInfo, 300, function callbackInsertBulk(result, error) {
@@ -1401,13 +1293,10 @@ app.post('/', function(appRequest, appResponse, next) {
                     function sendResponse(error, response) {
                         try {
                             if (error) {
-
                                 reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10005', '', error);
-
                             } else {
 
                                 reqInstanceHelper.SendResponse(serviceName, appResponse, response, objSessionLogInfo)
-
                             }
                         } catch (error) {
                             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10004', 'ERROR IN SEND RESPONSE FUNCTION : ', error);
@@ -1422,23 +1311,6 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 });

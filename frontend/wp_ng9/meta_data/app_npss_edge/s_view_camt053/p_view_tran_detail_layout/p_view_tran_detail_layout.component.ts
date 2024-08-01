@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 36173 
+Build ID        : 36176 
 Modified By     : Admin 
-Modified Date   : 2024-Aug-01 5:50 AM 
+Modified Date   : 2024-Aug-01 6:4 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_camt053
@@ -24,7 +24,7 @@ export class p_view_tran_detail_layoutComponent implements OnInit {
   // Variables 
   	back_ui : any = {}
 	tran_details : any = {}
-	header_and_settlement_details : any = {}
+	header_and_statement_details : any = {}
 
 
   // Constructor 
@@ -36,8 +36,8 @@ export class p_view_tran_detail_layoutComponent implements OnInit {
 		this.back_ui.need_header = ""
 		this.tran_details.desc = "Tran Details"
 		this.tran_details.need_header = true
-		this.header_and_settlement_details.desc = "Header and Settlement Details"
-		this.header_and_settlement_details.need_header = true
+		this.header_and_statement_details.desc = "Header and Statement Details"
+		this.header_and_statement_details.need_header = true
 	
 
     this.screen_instance['p_view_tran_detail_layout'] = {};

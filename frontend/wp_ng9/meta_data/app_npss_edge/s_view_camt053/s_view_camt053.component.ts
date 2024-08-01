@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 36169 
+Build ID        : 36171 
 Modified By     : Admin 
-Modified Date   : 2024-Jul-31 13:3 PM 
+Modified Date   : 2024-Aug-01 4:27 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_camt053
@@ -13,12 +13,14 @@ Screen Name     : s_view_camt053
 import { Component, OnInit,AfterViewInit, EventEmitter } from '@angular/core';
 import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
+import {npss_deem_cs_liquidity_export_excel_fileService} from '../../../custom_widget/npss_deem_cs_liquidity_export_excel_file/npss_deem_cs_liquidity_export_excel_file.service'
+import {npss_deem_cs_liquidity_export_pdfService} from '../../../custom_widget/npss_deem_cs_liquidity_export_pdf/npss_deem_cs_liquidity_export_pdf.service'
 
 @Component({
 	selector: 's_view_camt053',
 	templateUrl: './s_view_camt053.component.html',
 	styleUrls: ['./s_view_camt053.component.css'],
-	providers:[torus_cs_show_hideService]
+	providers:[torus_cs_show_hideService,npss_deem_cs_liquidity_export_excel_fileService,npss_deem_cs_liquidity_export_pdfService]
 })
     
 // Start of class 
@@ -53,7 +55,6 @@ export class s_view_camt053Component implements OnInit,AfterViewInit {
 	navigation_ui_view_message : any = {}
 	navigation_ui_export_as_excel : any = {}
 	navigation_ui_export_as_pdf : any = {}
-	navigation_ui_print : any = {}
 	message_data_ui : any = {}
 	search : any = {}
 	search_clear : any = {}
@@ -65,7 +66,7 @@ export class s_view_camt053Component implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_deem_cs_liquidity_export_excel_fileService:npss_deem_cs_liquidity_export_excel_fileService,private npss_deem_cs_liquidity_export_pdfService:npss_deem_cs_liquidity_export_pdfService) {
     
 	}
     
@@ -141,15 +142,6 @@ export class s_view_camt053Component implements OnInit,AfterViewInit {
 		this.navigation_ui_export_as_pdf.dynamic_param = {}
 		this.navigation_ui_export_as_pdf.role = []
 		this.navigation_ui_export_as_pdf.action = ""
-		
-		// "Print" Button of "Navigation UI" component
-		this.navigation_ui_print.label_name = "Print"
-		this.navigation_ui_print.show = true
-		this.navigation_ui_print.disabled = false
-		this.navigation_ui_print.params = {"icon_only":false,"uicgcc_style":"fa fa-print"}
-		this.navigation_ui_print.dynamic_param = {}
-		this.navigation_ui_print.role = []
-		this.navigation_ui_print.action = ""
 	
 		// Component level properties - "Message Data UI" 
 		this.message_data_ui.uictrl_code = "dynamic_ui"
@@ -255,6 +247,8 @@ export class s_view_camt053Component implements OnInit,AfterViewInit {
 		this.page_load__cf_in_page_load()
 		this.page_load__de_from_page_load()
 		this.page_load__de_from_pg()
+		this.page_load__de_for_excel()
+		this.page_load__de_for_pdf()
 	}
 
 	//Handler for INTERNAL event of "cf in page load"
@@ -281,6 +275,8 @@ export class s_view_camt053Component implements OnInit,AfterViewInit {
 	//Handler for INTERNAL event of "brfq for list"
 	brfq_for_list__internal(parent_event_result){
 		this.brfq_for_list__sfr_for_list(parent_event_result)
+		this.brfq_for_list__ee_for_excel(parent_event_result)
+		this.brfq_for_list__ee_for_pdf(parent_event_result)
 	}
 
 	//Handler for SELECTION_CHANGED event of "transaction list"
@@ -318,6 +314,16 @@ export class s_view_camt053Component implements OnInit,AfterViewInit {
 	navigation_ui_view_message__action_button_click(){
 		this.navigation_ui_view_message__bt_from_message_data()
 		this.navigation_ui_view_message__sp_for_message_data()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui export as excel"
+	navigation_ui_export_as_excel__action_button_click(){
+		this.navigation_ui_export_as_excel__cc_for_e_excel()
+	}
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui export as pdf"
+	navigation_ui_export_as_pdf__action_button_click(){
+		this.navigation_ui_export_as_pdf__cc_for_e_pdf()
 	}
 
 	//Handler for DPSINIT event of "page_load"
@@ -371,6 +377,48 @@ export class s_view_camt053Component implements OnInit,AfterViewInit {
 		let parent_source_id=""
 		let event_code="e_1722401616761"
 		let event_params={"caller_name":"page_load__de_from_pg","event_desc":"DE From pg","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__de_for_excel() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_export_as_excel"
+		let parent_source_id=""
+		let event_code="e_1722485722627"
+		let event_params={"caller_name":"page_load__de_for_excel","event_desc":"DE For Excel","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
+		let handler_code="disable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.disable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for DPSINIT event of "page_load"
+	page_load__de_for_pdf() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="page_load"
+		let destn_id="navigation_ui_export_as_pdf"
+		let parent_source_id=""
+		let event_code="e_1722485770838"
+		let event_params={"caller_name":"page_load__de_for_pdf","event_desc":"DE For PDF","event_type":"DPSINIT","caller_event_context":"SUCCESS","root_source_id":"dps_initialize","raiseparam":{}}
 		let handler_code="disable_element"
 		let internals=""
 		let event_data={}
@@ -479,7 +527,7 @@ export class s_view_camt053Component implements OnInit,AfterViewInit {
 		let event_code="e_1672474843740"
 		let event_params={"caller_name":"ssp_for_search__brfq_for_list","event_desc":"BRFQ for List","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"solr_search_name":null,"need_key_column":"N","chart_type":"","chart_label":"","chart_series":"","chart_data":"","avoid_parent_search_param":"N"},"parent_event_result":"SUCCESS"}
 		let handler_code="bind_record_from_query"
-		let internals="brfq_for_list__sfr_for_list,"
+		let internals="brfq_for_list__sfr_for_list,brfq_for_list__ee_for_excel,brfq_for_list__ee_for_pdf,"
 		let event_data={}
 		let data_source={"default":{"dt_1304_1672471156312":{"dtt_1304_1721709764304":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1672471156312","dt_desc":"NPSS Liquidity Management Group","dtt_code":"DTT_1304_1721709764304","dtt_desc":"NPSS CAMT53 Statement","ds_eligible":"DS_1722400268124","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS View camt053 Tran List MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"HDR_MSG_ID","alias_name":"","mq_id":"MQ_1722331735138","date_format":false},{"column_name":"HDR_MSG_RCPT_NAME","alias_name":"","mq_id":"MQ_1722331735642","date_format":false},{"column_name":"HDR_MSG_RCPT_ID","alias_name":"","mq_id":"MQ_1722331735842","date_format":false},{"column_name":"STMT_ID","alias_name":"","mq_id":"MQ_1722331736026","date_format":false},{"column_name":"STMT_FROMTODATE_TIME","alias_name":"","mq_id":"MQ_1722331736194","date_format":false},{"column_name":"STMT_TODATE_TIME","alias_name":"","mq_id":"MQ_1722331736378","date_format":false},{"column_name":"INSTN_ACCT_ID","alias_name":"","mq_id":"MQ_1722331779732","date_format":false},{"column_name":"PARENT_ACCT_ID","alias_name":"","mq_id":"MQ_1722331780124","date_format":false},{"column_name":"BALANCE_TYPE","alias_name":"","mq_id":"MQ_1722331780276","date_format":false},{"column_name":"BALANCE_AMOUNT","alias_name":"","mq_id":"MQ_1722331780620","date_format":false,"currency_format":true},{"column_name":"BALANCE_CRDB_IND","alias_name":"","mq_id":"MQ_1722331780836","date_format":false},{"column_name":"STMTBALDATE","alias_name":"","mq_id":"MQ_1722331817116","date_format":false},{"column_name":"ORIG_AMOUNT","alias_name":"","mq_id":"MQ_1722331817460","date_format":false,"currency_format":true},{"column_name":"INSTD_AMOUNT","alias_name":"","mq_id":"MQ_1722331817644","date_format":false,"currency_format":true},{"column_name":"TXN_AMOUNT","alias_name":"","mq_id":"MQ_1722331817844","date_format":false,"currency_format":true},{"column_name":"UETR","alias_name":"","mq_id":"MQ_1722331855422","date_format":false},{"column_name":"TXN_ID","alias_name":"","mq_id":"MQ_1722331855654","date_format":false}],"joins":[]},"eq_text":"select  NCS_ID,  HDR_MSG_ID,  HDR_MSG_RCPT_NAME,  HDR_MSG_RCPT_ID,  STMT_ID,  STMT_FROM_TO_DATE_TIME,  STMT_FROMTODATE_TIME,  STMT_TO_DATE_TIME,  STMT_TODATE_TIME,  INSTN_ACCT_ID,  PARENT_ACCT_ID,  BALANCE_TYPE,  BALANCE_AMOUNT,  BALANCE_CRDB_IND,  STMT_BAL_DATE,  STMTBALDATE,  ORIG_AMOUNT,  INSTD_AMOUNT,  TXN_AMOUNT,  UETR,  TXN_ID,  MESSAGE_DATA,  CREATED_BY,  CREATED_BY_NAME,  CREATED_BY_STS_ID,  CREATED_DATE,  CREATEDDATE,  DT_CODE,  DT_DESCRIPTION,  DTT_CODE,  DTT_DESCRIPTION,  MODIFIED_BY,  MODIFIED_BY_NAME,  MODIFIED_BY_STS_ID,  MODIFIED_DATE,  PRCT_ID,  STATUS,  PROCESS_STATUS,  SYSTEM_ID,  SYSTEM_NAME,  TENANT_ID,  APP_ID,  VERSION_NO from  (  select   NCS.NCS_ID,   NCS.HDR_MSG_ID,   NCS.HDR_MSG_RCPT_NAME,   NCS.HDR_MSG_RCPT_ID,   NCS.STMT_ID,   NCS.STMT_FROM_TO_DATE_TIME,   to_char(NCS.STMT_FROM_TO_DATE_TIME, 'DD/MM/YYYY') as STMT_FROMTODATE_TIME,   NCS.STMT_TO_DATE_TIME,   to_char(NCS.STMT_TO_DATE_TIME, 'DD/MM/YYYY') as STMT_TODATE_TIME,   NCS.INSTN_ACCT_ID,   NCS.PARENT_ACCT_ID,   NCS.BALANCE_TYPE,   NCS.BALANCE_AMOUNT,   NCS.BALANCE_CRDB_IND,   NCS.STMT_BAL_DATE,   to_char(NCS.STMT_BAL_DATE, 'DD/MM/YYYY') as STMTBALDATE,   NCS.ORIG_AMOUNT,   NCS.INSTD_AMOUNT,   NCS.TXN_AMOUNT,   NCS.UETR,   NCS.TXN_ID,   NCS.MESSAGE_DATA,   NCS.CREATED_BY,   NCS.CREATED_BY_NAME,   NCS.CREATED_BY_STS_ID,   NCS.CREATED_DATE,   TO_CHAR (NCS.CREATED_DATE,'YYYY-MM-DD HH:MI:SS AM') as CREATEDDATE,   NCS.DT_CODE,   NCS.DT_DESCRIPTION,   NCS.DTT_CODE,   NCS.DTT_DESCRIPTION,   NCS.MODIFIED_BY,   NCS.MODIFIED_BY_NAME,   NCS.MODIFIED_BY_STS_ID,   NCS.MODIFIED_DATE,   NCS.PRCT_ID,   NCS.STATUS,   NCS.PROCESS_STATUS,   NCS.SYSTEM_ID,   NCS.SYSTEM_NAME,   NCS.TENANT_ID,   NCS.APP_ID,   NCS.VERSION_NO  from   NPSS_CAMT53_STMT NCS)V $WHERE order by  NCS_ID desc"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS View camt053 Tran List MQ CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Header Msg Id","target_column":"HDR_MSG_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Header Msg Recepient Name","target_column":"HDR_MSG_RCPT_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Header Msg Recepient Id","target_column":"HDR_MSG_RCPT_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Statement Id","target_column":"STMT_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Statement from dt & time","target_column":"STMT_FROMTODATE_TIME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Statement to dt & time","target_column":"STMT_TODATE_TIME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Institution Acct id","target_column":"INSTN_ACCT_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Parent Acct Id","target_column":"PARENT_ACCT_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Balance Type","target_column":"BALANCE_TYPE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Balance Amount","target_column":"BALANCE_AMOUNT","alias_name":"","alignment":"Right","width":"","format":"CURRENCY:د.إ","date_format":false,"currency_format":true},{"header":"Balance Cr Db Ind","target_column":"BALANCE_CRDB_IND","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Statement Balance Date","target_column":"STMTBALDATE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Original Amount","target_column":"ORIG_AMOUNT","alias_name":"","alignment":"Right","width":"","format":"CURRENCY:د.إ","date_format":false,"currency_format":true},{"header":"Instructed Amount","target_column":"INSTD_AMOUNT","alias_name":"","alignment":"Right","width":"","format":"CURRENCY:د.إ","date_format":false,"currency_format":true},{"header":"Transaction Amount","target_column":"TXN_AMOUNT","alias_name":"","alignment":"Right","width":"","format":"CURRENCY:د.إ","date_format":false,"currency_format":true},{"header":"UETR","target_column":"UETR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Transaction Id","target_column":"TXN_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
@@ -506,6 +554,50 @@ export class s_view_camt053Component implements OnInit,AfterViewInit {
 		let data_source={"default":{"dt_1304_1672471156312":{"dtt_1304_1721709764304":{"st_ds":{"default":{"uicgc_code":"UICGC_1","event_code":"DEFAULT","dt_code":"DT_1304_1672471156312","dt_desc":"NPSS Liquidity Management Group","dtt_code":"DTT_1304_1721709764304","dtt_desc":"NPSS CAMT53 Statement","ds_eligible":"DS_1722400268124","ds_final":"","final_state":"","property_json":{"columns":{}},"system_type":"DEFAULT","eq_info":{"eq_code":"NPSS View camt053 Tran List MQ","eq_type":"S","eq_mode":"M","eq_designer_json":{},"eq_json":{"columns":[{"column_name":"HDR_MSG_ID","alias_name":"","mq_id":"MQ_1722331735138","date_format":false},{"column_name":"HDR_MSG_RCPT_NAME","alias_name":"","mq_id":"MQ_1722331735642","date_format":false},{"column_name":"HDR_MSG_RCPT_ID","alias_name":"","mq_id":"MQ_1722331735842","date_format":false},{"column_name":"STMT_ID","alias_name":"","mq_id":"MQ_1722331736026","date_format":false},{"column_name":"STMT_FROMTODATE_TIME","alias_name":"","mq_id":"MQ_1722331736194","date_format":false},{"column_name":"STMT_TODATE_TIME","alias_name":"","mq_id":"MQ_1722331736378","date_format":false},{"column_name":"INSTN_ACCT_ID","alias_name":"","mq_id":"MQ_1722331779732","date_format":false},{"column_name":"PARENT_ACCT_ID","alias_name":"","mq_id":"MQ_1722331780124","date_format":false},{"column_name":"BALANCE_TYPE","alias_name":"","mq_id":"MQ_1722331780276","date_format":false},{"column_name":"BALANCE_AMOUNT","alias_name":"","mq_id":"MQ_1722331780620","date_format":false,"currency_format":true},{"column_name":"BALANCE_CRDB_IND","alias_name":"","mq_id":"MQ_1722331780836","date_format":false},{"column_name":"STMTBALDATE","alias_name":"","mq_id":"MQ_1722331817116","date_format":false},{"column_name":"ORIG_AMOUNT","alias_name":"","mq_id":"MQ_1722331817460","date_format":false,"currency_format":true},{"column_name":"INSTD_AMOUNT","alias_name":"","mq_id":"MQ_1722331817644","date_format":false,"currency_format":true},{"column_name":"TXN_AMOUNT","alias_name":"","mq_id":"MQ_1722331817844","date_format":false,"currency_format":true},{"column_name":"UETR","alias_name":"","mq_id":"MQ_1722331855422","date_format":false},{"column_name":"TXN_ID","alias_name":"","mq_id":"MQ_1722331855654","date_format":false}],"joins":[]},"eq_text":"select  NCS_ID,  HDR_MSG_ID,  HDR_MSG_RCPT_NAME,  HDR_MSG_RCPT_ID,  STMT_ID,  STMT_FROM_TO_DATE_TIME,  STMT_FROMTODATE_TIME,  STMT_TO_DATE_TIME,  STMT_TODATE_TIME,  INSTN_ACCT_ID,  PARENT_ACCT_ID,  BALANCE_TYPE,  BALANCE_AMOUNT,  BALANCE_CRDB_IND,  STMT_BAL_DATE,  STMTBALDATE,  ORIG_AMOUNT,  INSTD_AMOUNT,  TXN_AMOUNT,  UETR,  TXN_ID,  MESSAGE_DATA,  CREATED_BY,  CREATED_BY_NAME,  CREATED_BY_STS_ID,  CREATED_DATE,  CREATEDDATE,  DT_CODE,  DT_DESCRIPTION,  DTT_CODE,  DTT_DESCRIPTION,  MODIFIED_BY,  MODIFIED_BY_NAME,  MODIFIED_BY_STS_ID,  MODIFIED_DATE,  PRCT_ID,  STATUS,  PROCESS_STATUS,  SYSTEM_ID,  SYSTEM_NAME,  TENANT_ID,  APP_ID,  VERSION_NO from  (  select   NCS.NCS_ID,   NCS.HDR_MSG_ID,   NCS.HDR_MSG_RCPT_NAME,   NCS.HDR_MSG_RCPT_ID,   NCS.STMT_ID,   NCS.STMT_FROM_TO_DATE_TIME,   to_char(NCS.STMT_FROM_TO_DATE_TIME, 'DD/MM/YYYY') as STMT_FROMTODATE_TIME,   NCS.STMT_TO_DATE_TIME,   to_char(NCS.STMT_TO_DATE_TIME, 'DD/MM/YYYY') as STMT_TODATE_TIME,   NCS.INSTN_ACCT_ID,   NCS.PARENT_ACCT_ID,   NCS.BALANCE_TYPE,   NCS.BALANCE_AMOUNT,   NCS.BALANCE_CRDB_IND,   NCS.STMT_BAL_DATE,   to_char(NCS.STMT_BAL_DATE, 'DD/MM/YYYY') as STMTBALDATE,   NCS.ORIG_AMOUNT,   NCS.INSTD_AMOUNT,   NCS.TXN_AMOUNT,   NCS.UETR,   NCS.TXN_ID,   NCS.MESSAGE_DATA,   NCS.CREATED_BY,   NCS.CREATED_BY_NAME,   NCS.CREATED_BY_STS_ID,   NCS.CREATED_DATE,   TO_CHAR (NCS.CREATED_DATE,'YYYY-MM-DD HH:MI:SS AM') as CREATEDDATE,   NCS.DT_CODE,   NCS.DT_DESCRIPTION,   NCS.DTT_CODE,   NCS.DTT_DESCRIPTION,   NCS.MODIFIED_BY,   NCS.MODIFIED_BY_NAME,   NCS.MODIFIED_BY_STS_ID,   NCS.MODIFIED_DATE,   NCS.PRCT_ID,   NCS.STATUS,   NCS.PROCESS_STATUS,   NCS.SYSTEM_ID,   NCS.SYSTEM_NAME,   NCS.TENANT_ID,   NCS.APP_ID,   NCS.VERSION_NO  from   NPSS_CAMT53_STMT NCS)V $WHERE order by  NCS_ID desc"},"listing_mode":"","locking_mode":"","locking_parameter":"","ccd_name":"NPSS View camt053 Tran List MQ CCD","filter":[{"filter_name":"TENANT_ID","binding_name":"TENANT_ID","binding_value":"","source_name":"TENANT_ID","source_value":"","source_type":"SESSION_LEVEL","oprtr":"=","data_type":"TEXT","conj_operator":"","group_no":""}],"databinding":[{"header":"Header Msg Id","target_column":"HDR_MSG_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Header Msg Recepient Name","target_column":"HDR_MSG_RCPT_NAME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Header Msg Recepient Id","target_column":"HDR_MSG_RCPT_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Statement Id","target_column":"STMT_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Statement from dt & time","target_column":"STMT_FROMTODATE_TIME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Statement to dt & time","target_column":"STMT_TODATE_TIME","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Institution Acct id","target_column":"INSTN_ACCT_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Parent Acct Id","target_column":"PARENT_ACCT_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Balance Type","target_column":"BALANCE_TYPE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Balance Amount","target_column":"BALANCE_AMOUNT","alias_name":"","alignment":"Right","width":"","format":"CURRENCY:د.إ","date_format":false,"currency_format":true},{"header":"Balance Cr Db Ind","target_column":"BALANCE_CRDB_IND","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Statement Balance Date","target_column":"STMTBALDATE","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Original Amount","target_column":"ORIG_AMOUNT","alias_name":"","alignment":"Right","width":"","format":"CURRENCY:د.إ","date_format":false,"currency_format":true},{"header":"Instructed Amount","target_column":"INSTD_AMOUNT","alias_name":"","alignment":"Right","width":"","format":"CURRENCY:د.إ","date_format":false,"currency_format":true},{"header":"Transaction Amount","target_column":"TXN_AMOUNT","alias_name":"","alignment":"Right","width":"","format":"CURRENCY:د.إ","date_format":false,"currency_format":true},{"header":"UETR","target_column":"UETR","alias_name":"","alignment":"Left","width":"","format":"","date_format":false},{"header":"Transaction Id","target_column":"TXN_ID","alias_name":"","alignment":"Left","width":"","format":"","date_format":false}]}}}}}}
 		try {
 			this.handler.select_first_record(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "brfq for list"
+	brfq_for_list__ee_for_excel(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="brfq_for_list"
+		let destn_id="navigation_ui_export_as_excel"
+		let parent_source_id="ssp_for_search"
+		let event_code="e_1722486228045"
+		let event_params={"caller_name":"brfq_for_list__ee_for_excel","event_desc":"EE For Excel","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"enable_disable_count":"Y","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""},"parent_event_result":"SUCCESS"}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for INTERNAL event of "brfq for list"
+	brfq_for_list__ee_for_pdf(parent_event_result) { 
+		let Dest_Is_ctrl=true
+		let parentEventResult ="SUCCESS"
+	if(parentEventResult!=parent_event_result) return true;
+		let source_id="brfq_for_list"
+		let destn_id="navigation_ui_export_as_pdf"
+		let parent_source_id="ssp_for_search"
+		let event_code="e_1722486280265"
+		let event_params={"caller_name":"brfq_for_list__ee_for_pdf","event_desc":"EE For PDF","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"enable_disable_count":"Y","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""},"parent_event_result":"SUCCESS"}
+		let handler_code="enable_element"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.handler.enable_element(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 
@@ -779,6 +871,48 @@ export class s_view_camt053Component implements OnInit,AfterViewInit {
 		let data_source={}
 		try {
 			this.handler.show_profile(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui export as excel"
+	navigation_ui_export_as_excel__cc_for_e_excel() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_export_as_excel"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1722485491046"
+		let event_params={"caller_name":"navigation_ui_export_as_excel__cc_for_e_excel","event_desc":"CC For E Excel","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_export_as_excel","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_deem_cs_liquidity_export_excel_fileService.fn_npss_deem_cs_liquidity_export_excel_file(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+		} catch(e) {
+ 			console.log("Handler Error");
+			console.log(e); 
+ 		} 
+	} 
+
+	//Handler for ACTION_BUTTON_CLICK event of "navigation ui export as pdf"
+	navigation_ui_export_as_pdf__cc_for_e_pdf() { 
+		let Dest_Is_ctrl=true
+		
+		let source_id="navigation_ui_export_as_pdf"
+		let destn_id=""
+		let parent_source_id=""
+		let event_code="e_1722485640476"
+		let event_params={"caller_name":"navigation_ui_export_as_pdf__cc_for_e_pdf","event_desc":"CC For E PDF","event_type":"ACTION_BUTTON_CLICK","caller_event_context":"SUCCESS","root_source_id":"navigation_ui_export_as_pdf","raiseparam":{}}
+		let handler_code="custom_connectors"
+		let internals=""
+		let event_data={}
+		let data_source={}
+		try {
+			this.npss_deem_cs_liquidity_export_pdfService.fn_npss_deem_cs_liquidity_export_pdf(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

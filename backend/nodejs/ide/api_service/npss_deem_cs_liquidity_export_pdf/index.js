@@ -166,6 +166,8 @@ app.post('/', function(appRequest, appResponse, next) {
                                             conditionObj["date"] = "Date(created_date)= Date('" + params.searchparams.dateoperatorvalue + "'" + ')';
                                         } else if ((params.searchparams.dateoperator == "BETWEEN")) {
                                             conditionObj["date"] = "Date(created_date) between Date('" + params.searchparams.dateoperatorvalue + "'" + ')' + " and  Date('" + params.searchparams.dateoperatorTovalue + "'" + ')';
+                                        }else if ((params.searchparams.dateoperator == "!=")) {
+                                            conditionObj["date"] = "Date(created_date) != Date('" + params.searchparams.dateoperatorvalue + "'" + ')' ;
                                         }
                                         let condtnQry = query + ' ' + 'where' + ' ' + conditionObj.date
                                         reqInstanceHelper.PrintInfo(serviceName, "..........formed query..............." + condtnQry, objSessionLogInfo);

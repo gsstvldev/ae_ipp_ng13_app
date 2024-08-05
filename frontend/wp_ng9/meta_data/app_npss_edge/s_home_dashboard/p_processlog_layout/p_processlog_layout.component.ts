@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 35896 
+Build ID        : 36108 
 Modified By     : Admin 
-Modified Date   : 2024-Jul-01 7:22 AM 
+Modified Date   : 2024-Aug-05 13:25 PM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_home_dashboard

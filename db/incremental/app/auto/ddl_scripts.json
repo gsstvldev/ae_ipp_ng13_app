@@ -1,1 +1,1 @@
-[{"query" : "alter table NPSS_CAMT53_STMT add column PAYMENT_INFO_ID CHARACTER VARYING(64);","params" : [] }]
+[]

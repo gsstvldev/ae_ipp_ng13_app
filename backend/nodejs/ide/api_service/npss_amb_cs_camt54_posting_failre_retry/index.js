@@ -6,8 +6,8 @@ var $REFPATH = Path.join(__dirname, '../../torus-references/');
 var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
-
     
+
 
 
     try {
@@ -50,102 +50,102 @@ app.post('/', function(appRequest, appResponse, next) {
                             var PRCT_ID = prct_id
                             var take_api_url = `Select param_category,param_code,param_detail from core_nc_system_setup where param_category='POSTING_FAILURE_RETRY' and param_code='URL' and need_sync = 'Y'`;
                             var take_status = `select success_process_status,success_status from core_nc_workflow_setup where rule_code = '${params.RULE_CODE}' and  eligible_status = '${params.eligible_status}' and eligible_process_status = '${params.eligible_process_status}'`
-                            ExecuteQuery1(take_status, function (arrrule) {
-                                if (arrrule.length > 0) {
-                                    success_process_status = arrrule[0].success_process_status;
-                                    success_status = arrrule[0].success_status;
-                                    if (Array.isArray(params.Tran_Id)) {
-                                        arrTranID = params.Tran_Id.map(function (eachTran) {
-                                            return eachTran.toString();
-                                        });
-                                    } else {
-                                        arrTranID = [params.Tran_Id.toString()];
+                            /*       ExecuteQuery1(take_status, function (arrrule) {
+                                      if (arrrule.length > 0) {
+                                          success_process_status = arrrule[0].success_process_status;
+                                          success_status = arrrule[0].success_status; */
+                            if (Array.isArray(params.Tran_Id)) {
+                                arrTranID = params.Tran_Id.map(function (eachTran) {
+                                    return eachTran.toString();
+                                });
+                            } else {
+                                arrTranID = [params.Tran_Id.toString()];
+                            }
+                            TempTranID = '(' + "'" + arrTranID.toString().split(',').join("','") + "'" + ')';
+
+                            var TakeTrnData = `select nt.npsst_id,nt.HDR_MSG_ID ,nt.uetr,nt.hdr_settlement_date,nt.intrbk_sttlm_cur,nt.intrbk_sttlm_amnt,nt.dbtr_iban,nt.cdtr_iban,nt.uetr ,clog.REQUEST_DATA_JSON,clog.msg_id, nt.PROCESS_TYPE,clog.process_name,nt.processing_system,nt.process_status,nt.status from NPSS_TRANSACTIONS nt inner join NPSS_CAMT_PROCESS_LOG clog on clog.process_NAME = 'Camt54posting' and  clog.uetr= nt.uetr    where nt. npsst_id in  ${TempTranID}`
+                            ExecuteQuery1(TakeTrnData, function (arrprocesslog) {
+                                if (arrprocesslog.length > 0) {
+                                    var arrCusTranInst = [];
+                                    for (let i = 0; i < arrprocesslog.length; i++) {
+                                        var objCusTranInst = {};
+                                        objCusTranInst.MSG_ID = arrprocesslog[i].hdr_msg_id;
+                                        objCusTranInst.PRCT_ID = PRCT_ID;
+
+                                        objCusTranInst.UETR = arrprocesslog[i].uetr;
+                                        objCusTranInst.PROCESS_TYPE = arrprocesslog[i].process_type;
+                                        objCusTranInst.PROCESS_TIME = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
+                                        objCusTranInst.PROCESS_NAME = arrprocesslog[i].process_name;
+                                        objCusTranInst.PROCESSING_SYSTEM = arrprocesslog[i].processing_system;
+                                        objCusTranInst.PROCESS_STATUS = arrprocesslog[i].process_status;
+                                        objCusTranInst.STATUS = arrprocesslog[i].status;
+                                        objCusTranInst.TENANT_ID = params.TENANT_ID;
+                                        objCusTranInst.APP_ID = '215'
+                                        objCusTranInst.DT_CODE = 'DT_1304_1672471156312'
+                                        objCusTranInst.DTT_CODE = 'DTT_1304_1721132786653'
+                                        objCusTranInst.DT_DESCRIPTION = 'transaction_group'
+                                        objCusTranInst.DTT_DESCRIPTION = 'Transaction'
+                                        objCusTranInst.CREATED_BY = params.CREATED_BY;
+                                        objCusTranInst.CREATED_BY_NAME = params.CREATED_BY_NAME;
+                                        objCusTranInst.CREATED_DATE = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
+                                        objCusTranInst.MODIFIED_BY = "";
+                                        objCusTranInst.MODIFIED_BY_NAME = "";
+                                        objCusTranInst.MODIFIED_DATE = null;
+                                        objCusTranInst.SYSTEM_ID = params.SYSTEM_ID;
+                                        objCusTranInst.SYSTEM_NAME = params.SYSTEM_NAME;
+                                        objCusTranInst.CREATED_BY_STS_ID = "";
+                                        objCusTranInst.MODIFIED_BY_STS_ID = "";
+                                        objCusTranInst.created_clientip = objSessionLogInfo.CLIENTIP;
+                                        objCusTranInst.created_tz = objSessionLogInfo.CLIENTTZ;
+                                        objCusTranInst.created_tz_offset = objSessionLogInfo.CLIENTTZ_OFFSET;
+                                        objCusTranInst.created_date_utc = reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo);
+                                        objCusTranInst.created_by_sessionid = objSessionLogInfo.SESSION_ID;
+                                        objCusTranInst.routingkey = headers.routingkey;
+                                        arrCusTranInst.push(objCusTranInst)
                                     }
-                                    TempTranID = '(' + "'" + arrTranID.toString().split(',').join("','") + "'" + ')';
+                                    _BulkInsertProcessItem(arrCusTranInst, 'NPSS_CAMT_PROCESS_LOG', function callbackInsert(CusTranInsertRes) {
+                                        if (CusTranInsertRes.length > 0) {
+                                            ExecuteQuery1(take_api_url, async function (arrUrl) {
+                                                if (arrUrl.length > 0) {
+                                                    let apiRes = await fnDoapicall(arrprocesslog, arrUrl)
+                                                    if (apiRes == 'SUCCESS') {
+                                                        objresponse.status = 'SUCCESS';
 
-                                    var TakeTrnData = `select nt.npsst_id,nt.HDR_MSG_ID ,nt.uetr,nt.hdr_settlement_date,nt.intrbk_sttlm_cur,nt.intrbk_sttlm_amnt,nt.dbtr_iban,nt.cdtr_iban,nt.uetr ,clog.REQUEST_DATA_JSON,clog.msg_id, nt.PROCESS_TYPE,clog.process_name,nt.processing_system,nt.process_status,nt.status from NPSS_TRANSACTIONS nt inner join NPSS_CAMT_PROCESS_LOG clog on clog.process_NAME = 'Camt54posting' and  clog.uetr= nt.uetr    where nt. npsst_id in  ${TempTranID}`
-                                    ExecuteQuery1(TakeTrnData, function (arrprocesslog) {
-                                        if (arrprocesslog.length > 0) {
-                                            var arrCusTranInst = [];
-                                            for (let i = 0; i < arrprocesslog.length; i++) {
-                                                var objCusTranInst = {};
-                                                objCusTranInst.MSG_ID = arrprocesslog[i].hdr_msg_id;
-                                                objCusTranInst.PRCT_ID = PRCT_ID;
-
-                                                objCusTranInst.UETR = arrprocesslog[i].uetr;
-                                                objCusTranInst.PROCESS_TYPE = arrprocesslog[i].process_type;
-                                                objCusTranInst.PROCESS_TIME = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
-                                                objCusTranInst.PROCESS_NAME = arrprocesslog[i].process_name;
-                                                objCusTranInst.PROCESSING_SYSTEM = arrprocesslog[i].processing_system;
-                                                objCusTranInst.PROCESS_STATUS = arrprocesslog[i].process_status;
-                                                objCusTranInst.STATUS = arrprocesslog[i].status;
-                                                objCusTranInst.TENANT_ID = params.TENANT_ID;
-                                                objCusTranInst.APP_ID = '215'
-                                                objCusTranInst.DT_CODE = 'DT_1304_1672471156312'
-                                                objCusTranInst.DTT_CODE = 'DTT_1304_1721132786653'
-                                                objCusTranInst.DT_DESCRIPTION = 'transaction_group'
-                                                objCusTranInst.DTT_DESCRIPTION = 'Transaction'
-                                                objCusTranInst.CREATED_BY = params.CREATED_BY;
-                                                objCusTranInst.CREATED_BY_NAME = params.CREATED_BY_NAME;
-                                                objCusTranInst.CREATED_DATE = reqDateFormatter.GetTenantCurrentDateTime(headers, objSessionLogInfo);
-                                                objCusTranInst.MODIFIED_BY = "";
-                                                objCusTranInst.MODIFIED_BY_NAME = "";
-                                                objCusTranInst.MODIFIED_DATE = null;
-                                                objCusTranInst.SYSTEM_ID = params.SYSTEM_ID;
-                                                objCusTranInst.SYSTEM_NAME = params.SYSTEM_NAME;
-                                                objCusTranInst.CREATED_BY_STS_ID = "";
-                                                objCusTranInst.MODIFIED_BY_STS_ID = "";
-                                                objCusTranInst.created_clientip = objSessionLogInfo.CLIENTIP;
-                                                objCusTranInst.created_tz = objSessionLogInfo.CLIENTTZ;
-                                                objCusTranInst.created_tz_offset = objSessionLogInfo.CLIENTTZ_OFFSET;
-                                                objCusTranInst.created_date_utc = reqDateFormatter.GetCurrentDateInUTC(headers, objSessionLogInfo);
-                                                objCusTranInst.created_by_sessionid = objSessionLogInfo.SESSION_ID;
-                                                objCusTranInst.routingkey = headers.routingkey;
-                                                arrCusTranInst.push(objCusTranInst)
-                                            }
-                                            _BulkInsertProcessItem(arrCusTranInst, 'NPSS_CAMT_PROCESS_LOG',  function callbackInsert(CusTranInsertRes) {
-                                                if (CusTranInsertRes.length > 0) {
-                                                    ExecuteQuery1(take_api_url, async function (arrUrl) {
-                                                        if (arrUrl.length > 0) {
-                                                            let apiRes = await fnDoapicall(arrprocesslog, arrUrl)
-                                                            if (apiRes == 'SUCCESS') {
-                                                                objresponse.status = 'SUCCESS';
-
-                                                                sendResponse(null, objresponse)
-                                                            } else if(apiRes == 'SUSPECIOUS'){
-                                                                objresponse.status = 'Suspicious in API CALL';
-                                                                reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "api call not success", apiRes);
-                                                                sendResponse(null, objresponse)
-                                                            }else{
-                                                                objresponse.status = 'Failure in API CALL';
-                                                                reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "api call not succes", apiRes);
-                                                                sendResponse(null, objresponse)
-                                                            }
-                                                        } else {
-                                                            objresponse.status = 'No API URL Found';
-                                                            reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "URL not found", result);
-                                                            sendResponse(null, objresponse)
-                                                        }
-                                                    })
-
+                                                        sendResponse(null, objresponse)
+                                                    } else if (apiRes == 'SUSPECIOUS') {
+                                                        objresponse.status = 'Suspicious in API CALL';
+                                                        reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "api call not success", apiRes);
+                                                        sendResponse(null, objresponse)
+                                                    } else {
+                                                        objresponse.status = 'Failure in API CALL';
+                                                        reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "api call not succes", apiRes);
+                                                        sendResponse(null, objresponse)
+                                                    }
                                                 } else {
-                                                    objresponse.status = 'Error in NPSS_CAMT_PROCESS_LOG Insert';
-                                                    reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Insert not succes", apiRes);
+                                                    objresponse.status = 'No API URL Found';
+                                                    reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "URL not found", result);
                                                     sendResponse(null, objresponse)
                                                 }
                                             })
-                                        }
-                                        else {
-                                            objresponse.status = "No Data found in Transaction table"
+
+                                        } else {
+                                            objresponse.status = 'Error in NPSS_CAMT_PROCESS_LOG Insert';
+                                            reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_CORE_001", "Insert not succes", apiRes);
                                             sendResponse(null, objresponse)
                                         }
                                     })
                                 }
                                 else {
-                                    objresponse.status = "No Data found in core nc workflow table"
+                                    objresponse.status = "No Data found in Transaction table"
                                     sendResponse(null, objresponse)
                                 }
                             })
+                            // }
+                            /*  else {
+                                 objresponse.status = "No Data found in core nc workflow table"
+                                 sendResponse(null, objresponse)
+                             }
+                         }) */
                         }
                         catch (error) {
                             reqInstanceHelper.PrintError(serviceName, objSessionLogInfo, "IDE_SERVICE_004", "ERROR IN API CALL FUNCTION", error);
@@ -153,8 +153,8 @@ app.post('/', function(appRequest, appResponse, next) {
                         }
                     })
 
-                    function fnDoapicall(trndata,url) {
-                        return new Promise((resolve, reject)=>{
+                    function fnDoapicall(trndata, url) {
+                        return new Promise((resolve, reject) => {
 
                             try {
 
@@ -169,14 +169,14 @@ app.post('/', function(appRequest, appResponse, next) {
 
 
                                         "payload": {
-                                         
+
                                             "hdr_settlement_date": trndata[0].hdr_settlement_date,
                                             "intrbk_sttlm_cur": trndata[0].intrbk_sttlm_cur,
                                             "intrbk_sttlm_amnt": trndata[0].intrbk_sttlm_amnt,
                                             "dbtr_iban": trndata[0].dbtr_iban,
                                             "cdtr_iban": trndata[0].cdtr_iban,
                                             "uetr": trndata[0].uetr,
-                                           
+
                                         }
                                     },
                                     headers: {
@@ -198,13 +198,13 @@ app.post('/', function(appRequest, appResponse, next) {
 
                                     } else {
                                         try {
-                                            reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' +  JSON.stringify(responseBodyFromImagingService), objSessionLogInfo);
-                                        
+                                            reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + JSON.stringify(responseBodyFromImagingService), objSessionLogInfo);
+
                                             var responseBody = JSON.parse(responseBodyFromImagingService)
                                             resolve(responseBody)
                                         } catch (error) {
-                                            reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' +  JSON.stringify(responseBodyFromImagingService), objSessionLogInfo);
-                                          
+                                            reqInstanceHelper.PrintInfo(serviceName, '------------API Response JSON-------' + JSON.stringify(responseBodyFromImagingService), objSessionLogInfo);
+
                                             var responseBody = responseBodyFromImagingService
                                             resolve(responseBody)
                                         }
@@ -301,6 +301,7 @@ app.post('/', function(appRequest, appResponse, next) {
     catch (error) {
         sendResponse(error, null);
     }
+
 
 
 

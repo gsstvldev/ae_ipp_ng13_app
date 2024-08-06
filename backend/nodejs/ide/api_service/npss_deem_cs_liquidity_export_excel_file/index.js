@@ -6,7 +6,6 @@ var $REFPATH = Path.join(__dirname, '../../torus-references/');
 var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
-
     /*  Created By : Suresh
    Created Date : 31/07/2024 
    wi - npss   3991  */
@@ -44,14 +43,15 @@ app.post('/', function(appRequest, appResponse, next) {
             reqTranDBInstance.GetTranDBConn(headers, false, async function (pSession) {
                 mTranConn = pSession; //  assign connection     
                 try {
-                    let Taketran;
-                    if (params.S_DATE) {
-                        Taketran = await fnSearchParamsQry();
-                    } else {
-                        Taketran = `select hdr_msg_id,hdr_msg_rcpt_name,hdr_msg_rcpt_id,stmt_id,stmt_from_to_date_time,stmt_to_date_time,instn_acct_id,parent_acct_id,balance_type,balance_amount,balance_crdb_ind,stmt_bal_date,orig_amount,instd_amount,txn_amount,uetr,txn_id from NPSS_CAMT53_STMT `;
-                    }
-                    console.log(Taketran);
-                    ExecuteQuery1(Taketran, function (arrdata) {
+                   
+                        
+                    
+                     let Taketran = `select ACCT_ID,PARENT_INST_ACCT_ID,BALANCE_TYPE_PROP,BALANCE_AMOUNT,BALANCE_CUR,BALANCE_CRDB_IND,STMT_BAL_DATE, STMT_BAL_DATE_TIME, COUNT_INDV_ENTRIES, SUM_INDV_ENTRIES, SUM_NET_ENTRIES, NET_CRDB_IND, TOT_CR_ENTRIES, SUM_CR_ENTRIES,TOT_DB_ENTRIES,SUM_DB_ENTRIES, ENTRY_REF,ENTRY_REF_CUR,ENTRY_AMOUNT,ENTRY_CRDB_IND,ENTRY_STATUS,ENTRY_BK_DATE,ENTRY_BK_DATE_TIME,VALUE_DATE,VALUE_DATE_TIME,ACCT_SERV_REF,BANK_CODE_PROP,INSTD_AMOUNT,INSTD_CUR,TXN_AMOUNT,TXN_CUR,BATCH_MSG_ID,BATCH_TXN_COUNT,BATCH_TOT_AMOUNT,BATCH_CRDB_IND,TXN_ACCSVC_REF,PAYMENT_INFO_ID,PAYMENT_INFO_ETE_ID,UETR,TXN_ID,CLR_SYSTEM_REF,CASH_TXN_AMOUNT,TXN_CRDB_IND,INSTRUCTING_FIN_INST_BIC,INSTRUCTED_FIN_INST_BIC,DBTR_BIC,CDTR_BIC from ad_gss_tran.npss_camt53_stmt`;
+                    
+                    let addquery = await fnSearchParamsQry(Taketran);
+                    console.log(addquery);
+
+                    ExecuteQuery1(addquery, function (arrdata) {
                         if (arrdata.length > 0) {
                             let Jsonbody = [];
                             for (let i = 0; i < arrdata.length; i++) {
@@ -88,6 +88,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                         Colobj[col] = row[col];
                                     });
                                     return Colobj;
+                                    
                                 });
                                 objresponse.status = 'SUCCESS';
                                 objresponse.header = Headers;
@@ -104,6 +105,7 @@ app.post('/', function(appRequest, appResponse, next) {
                             sendResponse(null, objresponse);
                         }
                     });
+
                     function ExecuteQuery1(query, callback) {
                         reqTranDBInstance.ExecuteSQLQuery(mTranConn, query, objSessionLogInfo, function (result, error) {
                             try {
@@ -121,34 +123,141 @@ app.post('/', function(appRequest, appResponse, next) {
                             }
                         });
                     }
-                    function fnSearchParamsQry() {
+
+                    function fnSearchParamsQry(query) {
                         return new Promise((resolve, reject) => {
                             try {
-                                let conditionObj = {};
-                                let dateOperator = params.S_DATE_OP;
-                                let dateValue = params.S_DATE
-                                let toDateValue = params.S_DATE_TO_VALUE
-                                if (dateOperator === "Greater Than Or Equal" || dateOperator === ">=" || dateOperator === "&gt;=") {
-                                    conditionObj["date"] = `Date(created_date) >= Date('${dateValue}')`;
-                                } else if (dateOperator === "Less Than Or Equal" || dateOperator === "<=" || dateOperator === "&lt;=") {
-                                    conditionObj["date"] = `Date(created_date) <=  Date('${dateValue}')`;
-                                } else if (dateOperator === "=" || dateOperator === "Equals") {
-                                    conditionObj["date"] = `Date(created_date) =  Date('${dateValue}')`;
-                                } else if (dateOperator === "BETWEEN" && toDateValue) {
-                                    conditionObj["date"] = `Date(created_date) BETWEEN  Date('${dateValue}') AND Date('${toDateValue}' )`;
-                                } else if (dateOperator === "Not Equal" || dateOperator === "!=" || dateOperator === "&lt;&gt;") {
-                                    conditionObj["date"] = `Date(created_date) !=  Date('${dateValue}')`;
+                                var condtnQry = ""
+                                conditionObj = {}
+                                if (params.searchparams.dateoperatorvalue != null && params.searchparams.dateoperatorvalue != undefined && params.searchparams.dateoperatorvalue != "") {
+                                    if ((params.searchparams.dateoperator == "Greater Than Or Equal") || (params.searchparams.dateoperator == ">=") || (params.searchparams.dateoperator == "&gt;=")) {
+                                        conditionObj["date"] = "Date(created_date) >= Date('" + params.searchparams.dateoperatorvalue + "'" + ')';
+                                    } else if ((params.searchparams.dateoperator == "Less Than Or Equal") || (params.searchparams.dateoperator == "<=") || (params.searchparams.dateoperator == "&lt;=")) {
+                                        conditionObj["date"] = "Date(created_date)<= Date('" + params.searchparams.dateoperatorvalue + "'" + ')';
+                                    } else if ((params.searchparams.dateoperator == "=") || (params.searchparams.dateoperator == "Equals")) {
+                                        conditionObj["date"] = "Date(created_date)= Date('" + params.searchparams.dateoperatorvalue + "'" + ')';
+                                    } else if ((params.searchparams.dateoperator == "BETWEEN")) {
+                                        conditionObj["date"] = "Date(created_date) between Date('" + params.searchparams.dateoperatorvalue + "'" + ')' + " and  Date('" + params.searchparams.dateoperatorTovalue + "'" + ')';
+                                    } else if ((params.searchparams.dateoperator == "!=")) {
+                                        conditionObj["date"] = "Date(created_date) != Date('" + params.searchparams.dateoperatorvalue + "'" + ')';
+                                    }
                                 }
-                                else {
-                                    reject(new Error('Invalid date operator or missing toDateValue for BETWEEN operator'));
+
+                                if (params.searchparams.stmtfromoperatorvalue != null && params.searchparams.stmtfromoperatorvalue != undefined && params.searchparams.stmtfromoperatorvalue != "") {
+                                    if ((params.searchparams.stmtfromoperator == "Greater Than Or Equal") || (params.searchparams.stmtfromoperator == ">=") || (params.searchparams.stmtfromoperator == "&gt;=")) {
+                                        conditionObj["stmt_date"] = "Date(STMT_FROM_TO_DATE_TIME) >= Date('" + params.searchparams.stmtfromoperatorvalue + "'" + ')';
+                                    } else if ((params.searchparams.stmtfromoperator == "Less Than Or Equal") || (params.searchparams.stmtfromoperator == "<=") || (params.searchparams.stmtfromoperator == "&lt;=")) {
+                                        conditionObj["stmt_date"] = "Date(STMT_FROM_TO_DATE_TIME)<= Date('" + params.searchparams.stmtfromoperatorvalue + "'" + ')';
+                                    } else if ((params.searchparams.stmtfromoperator == "=") || (params.searchparams.stmtfromoperator == "Equals")) {
+                                        conditionObj["stmt_date"] = "Date(STMT_FROM_TO_DATE_TIME)= Date('" + params.searchparams.stmtfromoperatorvalue + "'" + ')';
+                                    } else if ((params.searchparams.stmtfromoperator == "BETWEEN")) {
+                                        conditionObj["stmt_date"] = "Date(STMT_FROM_TO_DATE_TIME) between Date('" + params.searchparams.stmtfromoperatorvalue + "'" + ')' + " and  Date('" + params.searchparams.stmtfromoperatorTovalue + "'" + ')';
+                                    } else if ((params.searchparams.stmtfromoperator == "!=")) {
+                                        conditionObj["stmt_date"] = "Date(STMT_FROM_TO_DATE_TIME) != Date('" + params.searchparams.stmtfromoperatorvalue + "'" + ')';
+                                    }
                                 }
-                                let conditionQry = `Select hdr_msg_id,hdr_msg_rcpt_name,hdr_msg_rcpt_id,stmt_id,stmt_from_to_date_time,stmt_to_date_time,instn_acct_id,parent_acct_id,balance_type,balance_amount,balance_crdb_ind,stmt_bal_date,orig_amount,instd_amount,txn_amount,uetr,txn_id from NPSS_CAMT53_STMT WHERE ${conditionObj.date}`;
-                                resolve(conditionQry);
+
+                                if (params.searchparams.stmttooperatorvalue != null && params.searchparams.stmttooperatorvalue != undefined && params.searchparams.stmttooperatorvalue != "") {
+                                    if ((params.searchparams.stmttooperator == "Greater Than Or Equal") || (params.searchparams.stmttooperator == ">=") || (params.searchparams.stmttooperator == "&gt;=")) {
+                                        conditionObj["stmt_to_date"] = "Date(STMT_TO_DATE_TIME) >= Date('" + params.searchparams.stmttooperatorvalue + "'" + ')';
+                                    } else if ((params.searchparams.stmttooperator == "Less Than Or Equal") || (params.searchparams.stmttooperator == "<=") || (params.searchparams.stmttooperator == "&lt;=")) {
+                                        conditionObj["stmt_to_date"] = "Date(STMT_TO_DATE_TIME)<= Date('" + params.searchparams.stmttooperatorvalue + "'" + ')';
+                                    } else if ((params.searchparams.stmttooperator == "=") || (params.searchparams.stmttooperator == "Equals")) {
+                                        conditionObj["stmt_to_date"] = "Date(STMT_TO_DATE_TIME)= Date('" + params.searchparams.stmttooperatorvalue + "'" + ')';
+                                    } else if ((params.searchparams.stmttooperator == "BETWEEN")) {
+                                        conditionObj["stmt_to_date"] = "Date(STMT_TO_DATE_TIME) between Date('" + params.searchparams.stmttooperatorvalue + "'" + ')' + " and  Date('" + params.searchparams.stmttooperatorTovalue + "'" + ')';
+                                    } else if ((params.searchparams.stmttooperator == "!=")) {
+                                        conditionObj["stmt_to_date"] = "Date(STMT_TO_DATE_TIME) != Date('" + params.searchparams.stmttooperatorvalue + "'" + ')';
+                                    }
+                                }
+
+                                if (params.searchparams.acctoperatorvalue != null && params.searchparams.acctoperatorvalue != undefined && params.searchparams.acctoperatorvalue != "") {
+                                    if ((params.searchparams.acctoperator == "STARTS")) {
+                                        conditionObj["acct_no"] = "ACCT_ID like" + "'" + params.searchparams.acctoperatorvalue + "%" + "'";
+                                    } else if ((params.searchparams.acctoperator == "CONTAINS")) {
+                                        conditionObj["acct_no"] = "ACCT_ID like" + "'" + "%" + params.searchparams.acctoperatorvalue + "%" + "'";
+                                    } else if ((params.searchparams.acctoperator == "=") || (params.searchparams.acctoperator == "Equals")) {
+                                        conditionObj["acct_no"] = "ACCT_ID = " + "'" + params.searchparams.acctoperatorvalue + "'";
+                                    } else if ((params.searchparams.acctoperator == "!=") || (params.searchparams.acctoperator == "NOTEQUAL")) {
+                                        conditionObj["acct_no"] = "ACCT_ID != " + "'" + params.searchparams.acctoperatorvalue + "'";
+                                    }
+                                }
+
+                                if (params.searchparams.hdrmsdoperatorvalue != null && params.searchparams.hdrmsdoperatorvalue != undefined && params.searchparams.hdrmsdoperatorvalue != "") {
+                                    if ((params.searchparams.hdrmsdoperator == "STARTS")) {
+                                        conditionObj["hdr_msg_id"] = "HDR_MSG_ID like" + "'" + params.searchparams.hdrmsdoperatorvalue + "%" + "'";
+                                    } else if ((params.searchparams.hdrmsdoperator == "CONTAINS")) {
+                                        conditionObj["hdr_msg_id"] = "HDR_MSG_ID like" + "'" + "%" + params.searchparams.hdrmsdoperatorvalue + "%" + "'";
+                                    } else if ((params.searchparams.hdrmsdoperator == "=") || (params.searchparams.hdrmsdoperator == "Equals")) {
+                                        conditionObj["hdr_msg_id"] = "HDR_MSG_ID = " + "'" + params.searchparams.hdrmsdoperatorvalue + "'";
+                                    } else if ((params.searchparams.hdrmsdoperator == "!=") || (params.searchparams.hdrmsdoperator == "NOTEQUAL")) {
+                                        conditionObj["hdr_msg_id"] = "HDR_MSG_ID != " + "'" + params.searchparams.hdrmsdoperatorvalue + "'";
+                                    }
+                                }
+
+                                if (params.searchparams.uetroperator != null && params.searchparams.uetroperator != undefined && params.searchparams.uetroperator != "") {
+                                    if ((params.searchparams.uetroperator == "STARTS")) {
+                                        conditionObj["uetr"] = "UETR like" + "'" + params.searchparams.uetroperatorvalue + "%" + "'";
+                                    } else if ((params.searchparams.uetroperator == "CONTAINS")) {
+                                        conditionObj["uetr"] = "UETR like" + "'" + "%" + params.searchparams.uetroperatorvalue + "%" + "'";
+                                    } else if ((params.searchparams.uetroperator == "=") || (params.searchparams.uetroperator == "Equals")) {
+                                        conditionObj["uetr"] = "UETR = " + "'" + params.searchparams.uetroperatorvalue + "'";
+                                    } else if ((params.searchparams.uetroperator == "!=") || (params.searchparams.uetroperator == "NOTEQUAL")) {
+                                        conditionObj["uetr"] = "UETR != " + "'" + params.searchparams.uetroperatorvalue + "'";
+                                    }
+                                }
+
+                                if (params.searchparams.txnidoperatorvalue != null && params.searchparams.txnidoperatorvalue != undefined && params.searchparams.txnidoperatorvalue != "") {
+                                    if ((params.searchparams.txnidoperator == "STARTS")) {
+                                        conditionObj["txn_id"] = "TXN_ID like" + "'" + params.searchparams.txnidoperatorvalue + "%" + "'";
+                                    } else if ((params.searchparams.txnidoperator == "CONTAINS")) {
+                                        conditionObj["txn_id"] = "TXN_ID like" + "'" + "%" + params.searchparams.txnidoperatorvalue + "%" + "'";
+                                    } else if ((params.searchparams.txnidoperator == "=") || (params.searchparams.txnidoperator == "Equals")) {
+                                        conditionObj["txn_id"] = "TXN_ID = " + "'" + params.searchparams.txnidoperatorvalue + "'";
+                                    } else if ((params.searchparams.txnidoperator == "!=") || (params.searchparams.txnidoperator == "NOTEQUAL")) {
+                                        conditionObj["txn_id"] = "TXN_ID != " + "'" + params.searchparams.txnidoperatorvalue + "'";
+                                    }
+                                }
+
+                                if (params.searchparams.stmtidoperatorvalue != null && params.searchparams.stmtidoperatorvalue != undefined && params.searchparams.stmtidoperatorvalue != "") {
+                                    if ((params.searchparams.stmtidoperator == "STARTS")) {
+                                        conditionObj["stmt_id"] = "STMT_ID like" + "'" + params.searchparams.stmtidoperatorvalue + "%" + "'";
+                                    } else if ((params.searchparams.stmtidoperator == "CONTAINS")) {
+                                        conditionObj["stmt_id"] = "STMT_ID like" + "'" + "%" + params.searchparams.stmtidoperatorvalue + "%" + "'";
+                                    } else if ((params.searchparams.stmtidoperator == "=") || (params.searchparams.stmtidoperator == "Equals")) {
+                                        conditionObj["stmt_id"] = "STMT_ID = " + "'" + params.searchparams.stmtidoperatorvalue + "'";
+                                    } else if ((params.searchparams.stmtidoperator == "!=") || (params.searchparams.stmtidoperator == "NOTEQUAL")) {
+                                        conditionObj["stmt_id"] = "STMT_ID != " + "'" + params.searchparams.stmtidoperatorvalue + "'";
+                                    }
+                                }
+
+
+                                if (Object.keys(conditionObj).length > 0) {
+                                    var first_iteration = true;
+                                    for (const index in conditionObj) {
+                                        if (conditionObj.hasOwnProperty(index)) {
+                                            if (first_iteration) {
+                                                condtnQry += query + ' ' + "where" + ' ' + conditionObj[index]
+                                                first_iteration = false;
+                                            } else {
+                                                condtnQry += "and" + ' ' + conditionObj[index]
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    condtnQry = query
+                                }
+
+
+                                reqInstanceHelper.PrintInfo(serviceName, "..........formed query..............." + condtnQry, objSessionLogInfo);
+                                console.log(condtnQry)
+                                resolve(condtnQry)
                             } catch (error) {
-                                reject(error);
+                                resolve(error)
                             }
-                        });
+                        })
                     }
+                    
                     //Execute Query for common
                     function ExecuteQuery(query, callback) {
                         reqTranDBInstance.ExecuteSQLQuery(mTranConn, query, objSessionLogInfo, function (result, error) {
@@ -183,8 +292,6 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
-
-
 });
 
 module.exports = app;

@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 36214 
+Build ID        : 36215 
 Modified By     : Admin 
-Modified Date   : 2024-Aug-06 6:34 AM 
+Modified Date   : 2024-Aug-06 7:56 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_camt053
@@ -15,13 +15,13 @@ import {AppHandlerService} from '../../../scripts/fx/app.handler.service'
 import {torus_cs_show_hideService} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.service'
 import {npss_deem_cs_liquidity_export_excel_fileService} from '../../../custom_widget/npss_deem_cs_liquidity_export_excel_file/npss_deem_cs_liquidity_export_excel_file.service'
 import {npss_deem_cs_liquidity_export_pdfService} from '../../../custom_widget/npss_deem_cs_liquidity_export_pdf/npss_deem_cs_liquidity_export_pdf.service'
-import {npss_deem_cs_liquidity_export_csvService} from '../../../custom_widget/npss_deem_cs_liquidity_export_csv/npss_deem_cs_liquidity_export_csv.service'
+import {npss_deem_cs_liquidity_export_csv_fileService} from '../../../custom_widget/npss_deem_cs_liquidity_export_csv_file/npss_deem_cs_liquidity_export_csv_file.service'
 
 @Component({
 	selector: 's_view_camt053',
 	templateUrl: './s_view_camt053.component.html',
 	styleUrls: ['./s_view_camt053.component.css'],
-	providers:[torus_cs_show_hideService,npss_deem_cs_liquidity_export_excel_fileService,npss_deem_cs_liquidity_export_pdfService,npss_deem_cs_liquidity_export_csvService]
+	providers:[torus_cs_show_hideService,npss_deem_cs_liquidity_export_excel_fileService,npss_deem_cs_liquidity_export_pdfService,npss_deem_cs_liquidity_export_csv_fileService]
 })
     
 // Start of class 
@@ -68,7 +68,7 @@ export class s_view_camt053Component implements OnInit,AfterViewInit {
 
 
 	// Constructor 
-	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_deem_cs_liquidity_export_excel_fileService:npss_deem_cs_liquidity_export_excel_fileService,private npss_deem_cs_liquidity_export_pdfService:npss_deem_cs_liquidity_export_pdfService,private npss_deem_cs_liquidity_export_csvService:npss_deem_cs_liquidity_export_csvService) {
+	constructor(private handler:AppHandlerService ,private torus_cs_show_hideService:torus_cs_show_hideService,private npss_deem_cs_liquidity_export_excel_fileService:npss_deem_cs_liquidity_export_excel_fileService,private npss_deem_cs_liquidity_export_pdfService:npss_deem_cs_liquidity_export_pdfService,private npss_deem_cs_liquidity_export_csv_fileService:npss_deem_cs_liquidity_export_csv_fileService) {
     
 	}
     
@@ -994,7 +994,7 @@ export class s_view_camt053Component implements OnInit,AfterViewInit {
 		let event_data={}
 		let data_source={}
 		try {
-			this.npss_deem_cs_liquidity_export_csvService.fn_npss_deem_cs_liquidity_export_csv(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
+			this.npss_deem_cs_liquidity_export_csv_fileService.fn_npss_deem_cs_liquidity_export_csv_file(source_id,destn_id,parent_source_id,event_code,event_params,this,internals,handler_code,event_data,data_source)
 		} catch(e) {
  			console.log("Handler Error");
 			console.log(e); 

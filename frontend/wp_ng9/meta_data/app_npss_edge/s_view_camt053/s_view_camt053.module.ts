@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 36198 
+Build ID        : 36210 
 Modified By     : Admin 
-Modified Date   : 2024-Aug-05 4:16 AM 
+Modified Date   : 2024-Aug-06 4:42 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_camt053
@@ -22,6 +22,7 @@ import { SharedModule } from '../../../shared/shared.module'
 import {torus_cs_show_hideModule} from '../../../custom_widget/torus_cs_show_hide/torus_cs_show_hide.module'
 import {npss_deem_cs_liquidity_export_excel_fileModule} from '../../../custom_widget/npss_deem_cs_liquidity_export_excel_file/npss_deem_cs_liquidity_export_excel_file.module'
 import {npss_deem_cs_liquidity_export_pdfModule} from '../../../custom_widget/npss_deem_cs_liquidity_export_pdf/npss_deem_cs_liquidity_export_pdf.module'
+import {npss_deem_cs_liquidity_export_csvModule} from '../../../custom_widget/npss_deem_cs_liquidity_export_csv/npss_deem_cs_liquidity_export_csv.module'
 
 import {DialogModule} from 'primeng/dialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -56,7 +57,7 @@ import { f_npss_view_camt053_message_data_uiComponent } from './f_npss_view_camt
     OverlayPanelModule,
     
     s_view_camt053RoutingModule,
-    torus_cs_show_hideModule,npss_deem_cs_liquidity_export_excel_fileModule,npss_deem_cs_liquidity_export_pdfModule
+    torus_cs_show_hideModule,npss_deem_cs_liquidity_export_excel_fileModule,npss_deem_cs_liquidity_export_pdfModule,npss_deem_cs_liquidity_export_csvModule
   ],
   declarations: [s_view_camt053Component,p_main_layoutComponent,f_navigation_uiComponent,p_view_tran_detail_layoutComponent,f_back_uiComponent,p_search_layoutComponent,f_npss_view_camt053_srchComponent,p_message_data_layoutComponent,f_npss_view_camt053_message_data_uiComponent,],
   providers:[AppHandlerService,ComponenthelperService]

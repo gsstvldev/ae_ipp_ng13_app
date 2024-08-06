@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 36198 
+Build ID        : 36210 
 Modified By     : Admin 
-Modified Date   : 2024-Aug-05 4:16 AM 
+Modified Date   : 2024-Aug-06 4:42 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_camt053
@@ -108,6 +108,7 @@ focustoelement(){
 		this.ctrl.hdr_msg_rcpt_org_bic.currency_format = ""
 		this.ctrl.hdr_msg_rcpt_org_bic.data_scale = ""
 		this.ctrl.hdr_msg_rcpt_org_bic.binding_name = "HDR_MSG_RCPT_ORG_BIC"
+		this.ctrl.hdr_msg_rcpt_org_bic.hide_label = false
 		this.ctrl.hdr_msg_rcpt_org_bic.depends_on = ""
 		this.ctrl.hdr_msg_rcpt_org_bic.placeholder = ""
 		this.ctrl.hdr_msg_rcpt_org_bic.dynamic_param = ""
@@ -320,46 +321,46 @@ focustoelement(){
 		this.ctrl.npss_view_camt053_srch_txn_id = {}
 		this.ctrl.npss_view_camt053_srch_txn_id.onChangecomponent = new EventEmitter<any>()
 	
-		//Properties of txn_ref_msgid
-		this.ctrl.txn_ref_msgid = {}
-		this.ctrl.txn_ref_msgid.id = "1722330688602CN8"
-		this.ctrl.txn_ref_msgid.desc = "Transaction Reference MsgId"
-		this.ctrl.txn_ref_msgid.visible = true
-		this.ctrl.txn_ref_msgid.label_name = "Transaction Reference MsgId"
-		this.ctrl.txn_ref_msgid.df_code = "DF_1304_1721709921132"
-		this.ctrl.txn_ref_msgid.df_description = "Column Group 1"
-		this.ctrl.txn_ref_msgid.uictrl_code = "CDN_CTRL"
-		this.ctrl.txn_ref_msgid.target_column = "TXN_REF_MSGID"
-		this.ctrl.txn_ref_msgid.data_type = "TEXT"
-		this.ctrl.txn_ref_msgid.data_length = 64
-		this.ctrl.txn_ref_msgid.zone_df_code = "DF_1304_1721709921132"
-		this.ctrl.txn_ref_msgid.default_value = ""
-		this.ctrl.txn_ref_msgid.is_memory_ctrl = ""
-		this.ctrl.txn_ref_msgid.field_coordinates = ""
-		this.ctrl.txn_ref_msgid.sub_details = ""
-		this.ctrl.txn_ref_msgid.accept_char = ""
-		this.ctrl.txn_ref_msgid.currency_format = ""
-		this.ctrl.txn_ref_msgid.data_scale = ""
-		this.ctrl.txn_ref_msgid.binding_name = "TXN_REF_MSGID"
-		this.ctrl.txn_ref_msgid.hide_label = false
-		this.ctrl.txn_ref_msgid.depends_on = ""
-		this.ctrl.txn_ref_msgid.placeholder = ""
-		this.ctrl.txn_ref_msgid.dynamic_param = ""
-		this.ctrl.txn_ref_msgid.style_code = ""
-		this.ctrl.txn_ref_msgid.data_source = ""
-		this.ctrl.txn_ref_msgid.image_association = ""
-		this.ctrl.txn_ref_msgid.show = true
-		this.ctrl.txn_ref_msgid.sub_content = ""
-		this.ctrl.txn_ref_msgid.required = false
-		this.ctrl.txn_ref_msgid.vld_rules = []
-		this.ctrl.txn_ref_msgid.targetcolumn_lower = "txn_ref_msgid"
-		this.ctrl.txn_ref_msgid.disabled = false
-		this.ctrl.txn_ref_msgid.view_name = "f_npss_view_camt053_srch"
-		this.ctrl.txn_ref_msgid.ctrl_id = "npss_view_camt053_srch_txn_ref_msgid"
-		this.ctrl.npss_view_camt053_srch_txn_ref_msgid = {}
-		this.ctrl.npss_view_camt053_srch_txn_ref_msgid.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_view_camt053_srch.model = {"MEMORY78":"setcurrentdate(),{}","HDR_MSG_RCPT_ORG_BIC":"","STMT_ID":"","STMT_FROM_TO_DATE_TIME":"","STMT_TO_DATE_TIME":"","UETR":"","TXN_ID":"","TXN_REF_MSGID":""}
-		this.screen_instance[this.comp_id].f_npss_view_camt053_srch.Meta = [{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"HDR_MSG_RCPT_ORG_BIC"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"STMT_ID"},{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"STMT_FROM_TO_DATE_TIME"},{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"STMT_TO_DATE_TIME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"TXN_ID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"TXN_REF_MSGID"}]
+		//Properties of acct_id
+		this.ctrl.acct_id = {}
+		this.ctrl.acct_id.id = "1722330688602CN8"
+		this.ctrl.acct_id.desc = "Account Id"
+		this.ctrl.acct_id.visible = true
+		this.ctrl.acct_id.label_name = "Account Id"
+		this.ctrl.acct_id.df_code = "DF_1304_1721709921132"
+		this.ctrl.acct_id.df_description = "Column Group 1"
+		this.ctrl.acct_id.uictrl_code = "CDN_CTRL"
+		this.ctrl.acct_id.target_column = "ACCT_ID"
+		this.ctrl.acct_id.data_type = "TEXT"
+		this.ctrl.acct_id.data_length = 32
+		this.ctrl.acct_id.zone_df_code = "DF_1304_1721709921132"
+		this.ctrl.acct_id.default_value = ""
+		this.ctrl.acct_id.is_memory_ctrl = ""
+		this.ctrl.acct_id.field_coordinates = ""
+		this.ctrl.acct_id.sub_details = ""
+		this.ctrl.acct_id.accept_char = ""
+		this.ctrl.acct_id.currency_format = ""
+		this.ctrl.acct_id.data_scale = ""
+		this.ctrl.acct_id.binding_name = "ACCT_ID"
+		this.ctrl.acct_id.hide_label = false
+		this.ctrl.acct_id.depends_on = ""
+		this.ctrl.acct_id.placeholder = ""
+		this.ctrl.acct_id.dynamic_param = ""
+		this.ctrl.acct_id.style_code = ""
+		this.ctrl.acct_id.data_source = ""
+		this.ctrl.acct_id.image_association = ""
+		this.ctrl.acct_id.show = true
+		this.ctrl.acct_id.sub_content = ""
+		this.ctrl.acct_id.required = false
+		this.ctrl.acct_id.vld_rules = []
+		this.ctrl.acct_id.targetcolumn_lower = "acct_id"
+		this.ctrl.acct_id.disabled = false
+		this.ctrl.acct_id.view_name = "f_npss_view_camt053_srch"
+		this.ctrl.acct_id.ctrl_id = "npss_view_camt053_srch_acct_id"
+		this.ctrl.npss_view_camt053_srch_acct_id = {}
+		this.ctrl.npss_view_camt053_srch_acct_id.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_view_camt053_srch.model = {"MEMORY78":"setcurrentdate(),{}","HDR_MSG_RCPT_ORG_BIC":"","STMT_ID":"","STMT_FROM_TO_DATE_TIME":"","STMT_TO_DATE_TIME":"","UETR":"","TXN_ID":"","ACCT_ID":""}
+		this.screen_instance[this.comp_id].f_npss_view_camt053_srch.Meta = [{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"HDR_MSG_RCPT_ORG_BIC"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"STMT_ID"},{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"STMT_FROM_TO_DATE_TIME"},{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"STMT_TO_DATE_TIME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"TXN_ID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"ACCT_ID"}]
 		this.screen_instance[this.comp_id].f_npss_view_camt053_srch.dt_code = "dt_1304_1672471156312"
 		this.screen_instance[this.comp_id].f_npss_view_camt053_srch.dtt_code = "dtt_1304_1721709764304"
 		this.screen_instance[this.comp_id].f_npss_view_camt053_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl

@@ -1,5 +1,26 @@
 [{
-  $DQ$TRAN_INSERTION$DQ$: [],
+  $DQ$TRAN_INSERTION$DQ$: [
+    {
+      $DQ$NAME$DQ$: $DQ$ENTRY_REF_CUR$DQ$,
+      $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+      $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1721709764304$DQ$
+    },
+    {
+      $DQ$NAME$DQ$: $DQ$TXN_CUR$DQ$,
+      $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+      $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1721709764304$DQ$
+    },
+    {
+      $DQ$NAME$DQ$: $DQ$BALANCE_CUR$DQ$,
+      $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+      $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1721709764304$DQ$
+    },
+    {
+      $DQ$NAME$DQ$: $DQ$INSTD_CUR$DQ$,
+      $DQ$TYPE$DQ$: $DQ$TEXT$DQ$,
+      $DQ$DTT_CODE$DQ$: $DQ$DTT_1304_1721709764304$DQ$
+    }
+  ],
   $DQ$TRAN_DELETION$DQ$: [],
   $DQ$ATMT_INSERTION$DQ$: []
 }]

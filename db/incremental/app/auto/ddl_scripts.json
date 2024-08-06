@@ -1,1 +1,1 @@
-[{"query" : "alter table NPSS_CAMT53_STMT add column ENTRY_REF_CUR CHARACTER VARYING(32), add column TXN_CUR CHARACTER VARYING(32), add column BALANCE_CUR CHARACTER VARYING(32), add column INSTD_CUR CHARACTER VARYING(32);","params" : [] }]
+[]

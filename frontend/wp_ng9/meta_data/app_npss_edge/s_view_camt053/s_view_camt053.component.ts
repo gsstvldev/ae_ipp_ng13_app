@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 36211 
+Build ID        : 36214 
 Modified By     : Admin 
-Modified Date   : 2024-Aug-06 4:49 AM 
+Modified Date   : 2024-Aug-06 6:34 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_camt053
@@ -652,7 +652,7 @@ export class s_view_camt053Component implements OnInit,AfterViewInit {
 		let destn_id="navigation_ui_export_as_csv"
 		let parent_source_id="ssp_for_search"
 		let event_code="e_1722919659609"
-		let event_params={"caller_name":"brfq_for_list__ee_for_csv_btn","event_desc":"EE For CSV btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"enable_disable_count":"","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""},"parent_event_result":"SUCCESS"}
+		let event_params={"caller_name":"brfq_for_list__ee_for_csv_btn","event_desc":"EE For CSV btn","event_type":"INTERNAL","caller_event_context":"SUCCESS","root_source_id":"search_search","raiseparam":{"enable_disable_count":"Y","enable_disable_locked_by":"","disable_for":"","disable_except":"","disable_column":"","expression":""},"parent_event_result":"SUCCESS"}
 		let handler_code="enable_element"
 		let internals=""
 		let event_data={}

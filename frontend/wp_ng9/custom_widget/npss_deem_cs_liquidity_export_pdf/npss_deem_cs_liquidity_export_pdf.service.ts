@@ -36,6 +36,30 @@ export class npss_deem_cs_liquidity_export_pdfService {
         SearchParams.dateoperator = Search.memory78.operator
         SearchParams.dateoperatorvalue = Search.memory78.value
         SearchParams.dateoperatorTovalue = Search.memory78.tovalue
+        
+        SearchParams.acctoperator = Search.ACCT_ID.operator
+        SearchParams.acctoperatorvalue = Search.ACCT_ID.value
+
+        SearchParams.hdrmsdoperator = Search.HDR_MSG_ID.operator
+        SearchParams.hdrmsdoperatorvalue = Search.HDR_MSG_ID.value
+
+        SearchParams.stmtfromoperator = Search.STMT_FROM_TO_DATE_TIME.operator
+        SearchParams.stmtfromoperatorvalue = Search.STMT_FROM_TO_DATE_TIME.value
+        SearchParams.stmtfromoperatorTovalue = Search.STMT_FROM_TO_DATE_TIME.tovalue
+
+        SearchParams.stmttooperator = Search.STMT_TO_DATE_TIME.operator
+        SearchParams.stmttooperatorvalue = Search.STMT_TO_DATE_TIME.value
+        SearchParams.stmttooperatorTovalue = Search.STMT_TO_DATE_TIME.tovalue
+
+        SearchParams.stmtidoperator = Search.STMT_ID.operator
+        SearchParams.stmtidoperatorvalue = Search.STMT_ID.value
+
+        SearchParams.uetroperator = Search.UETR.operator
+        SearchParams.uetroperatorvalue = Search.UETR.value
+
+        SearchParams.txnidoperator = Search.TXN_ID.operator
+        SearchParams.txnidoperatorvalue = Search.TXN_ID.value
+        
         ClientParams.screenName = screenInstance.wftpa_description
         ClientParams.Tran_Id = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_NCS_ID");
         ClientParams.searchparams = SearchParams

@@ -258,7 +258,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                         }
 
 
-                                        if (Object.keys(conditionObj).length > 1) {
+                                        if (Object.keys(conditionObj).length > 0) {
                                             var first_iteration = true;
                                             for (const index in conditionObj) {
                                                 if (conditionObj.hasOwnProperty(index)) {

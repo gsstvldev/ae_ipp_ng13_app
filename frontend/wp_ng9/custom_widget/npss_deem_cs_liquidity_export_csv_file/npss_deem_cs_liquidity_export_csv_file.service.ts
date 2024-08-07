@@ -56,8 +56,8 @@ export class npss_deem_cs_liquidity_export_csv_fileService {
         let std_to_opr = screenInstance["search"].f_npss_view_camt053_srch.model.STMT_TO_DATE_TIME.operator
         let std_to_val = screenInstance["search"].f_npss_view_camt053_srch.model.STMT_TO_DATE_TIME.value
         let std_to_toval = screenInstance["search"].f_npss_view_camt053_srch.model.STMT_TO_DATE_TIME.tovalue
-        let uetr_opr = screenInstance["search"].f_npss_view_camt053_srch.model.STMT_ID.operator
-        let uetr_val = screenInstance["search"].f_npss_view_camt053_srch.model.STMT_ID.value
+        let uetr_opr = screenInstance["search"].f_npss_view_camt053_srch.model.UETR.operator
+        let uetr_val = screenInstance["search"].f_npss_view_camt053_srch.model.UETR.value
         let transac_id_opr = screenInstance["search"].f_npss_view_camt053_srch.model.TXN_ID.operator
         let transac_id_val = screenInstance["search"].f_npss_view_camt053_srch.model.TXN_ID.value
         let acc_id_opr = screenInstance["search"].f_npss_view_camt053_srch.model.ACCT_ID.operator

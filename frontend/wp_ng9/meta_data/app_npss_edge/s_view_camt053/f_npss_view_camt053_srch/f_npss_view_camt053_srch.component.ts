@@ -1,9 +1,9 @@
 /* ---------------------------------------------------------------------------
 UI Framework    : Angular
 Version         : 5.0 
-Build ID        : 36215 
+Build ID        : 36223 
 Modified By     : Admin 
-Modified Date   : 2024-Aug-06 7:56 AM 
+Modified Date   : 2024-Aug-08 4:48 AM 
 Generated From  : TORUS Low Code Platform 
 Copyright       : Torus Innovations Pvt Ltd © Copyright 2018 
 Screen Name     : s_view_camt053
@@ -61,7 +61,7 @@ focustoelement(){
 		this.ctrl.memory78.data_type = "DATETIME"
 		this.ctrl.memory78.data_length = 0
 		this.ctrl.memory78.zone_df_code = "DF_1304_1721709921132"
-		this.ctrl.memory78.default_value = "setcurrentdate(),{}"
+		this.ctrl.memory78.default_value = ""
 		this.ctrl.memory78.is_memory_ctrl = "Y"
 		this.ctrl.memory78.field_coordinates = ""
 		this.ctrl.memory78.sub_details = ""
@@ -108,6 +108,7 @@ focustoelement(){
 		this.ctrl.hdr_msg_id.currency_format = ""
 		this.ctrl.hdr_msg_id.data_scale = ""
 		this.ctrl.hdr_msg_id.binding_name = "HDR_MSG_ID"
+		this.ctrl.hdr_msg_id.hide_label = false
 		this.ctrl.hdr_msg_id.depends_on = ""
 		this.ctrl.hdr_msg_id.placeholder = ""
 		this.ctrl.hdr_msg_id.dynamic_param = ""
@@ -358,8 +359,47 @@ focustoelement(){
 		this.ctrl.acct_id.ctrl_id = "npss_view_camt053_srch_acct_id"
 		this.ctrl.npss_view_camt053_srch_acct_id = {}
 		this.ctrl.npss_view_camt053_srch_acct_id.onChangecomponent = new EventEmitter<any>()
-		this.screen_instance[this.comp_id].f_npss_view_camt053_srch.model = {"MEMORY78":"setcurrentdate(),{}","HDR_MSG_ID":"","STMT_ID":"","STMT_FROM_TO_DATE_TIME":"","STMT_TO_DATE_TIME":"","UETR":"","TXN_ID":"","ACCT_ID":""}
-		this.screen_instance[this.comp_id].f_npss_view_camt053_srch.Meta = [{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"HDR_MSG_ID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"STMT_ID"},{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"STMT_FROM_TO_DATE_TIME"},{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"STMT_TO_DATE_TIME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"TXN_ID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"ACCT_ID"}]
+	
+		//Properties of hdr_created_date_time
+		this.ctrl.hdr_created_date_time = {}
+		this.ctrl.hdr_created_date_time.id = "RN41CN9"
+		this.ctrl.hdr_created_date_time.desc = "HdrCreDtTm"
+		this.ctrl.hdr_created_date_time.visible = false
+		this.ctrl.hdr_created_date_time.label_name = "HdrCreDtTm"
+		this.ctrl.hdr_created_date_time.df_code = "DF_1304_1721709921132"
+		this.ctrl.hdr_created_date_time.df_description = "Column Group 1"
+		this.ctrl.hdr_created_date_time.uictrl_code = "CDN_DATE"
+		this.ctrl.hdr_created_date_time.target_column = "HDR_CREATED_DATE_TIME"
+		this.ctrl.hdr_created_date_time.data_type = "DATETIME"
+		this.ctrl.hdr_created_date_time.data_length = 0
+		this.ctrl.hdr_created_date_time.zone_df_code = "DF_1304_1721709921132"
+		this.ctrl.hdr_created_date_time.default_value = ""
+		this.ctrl.hdr_created_date_time.is_memory_ctrl = ""
+		this.ctrl.hdr_created_date_time.field_coordinates = ""
+		this.ctrl.hdr_created_date_time.sub_details = ""
+		this.ctrl.hdr_created_date_time.accept_char = ""
+		this.ctrl.hdr_created_date_time.currency_format = ""
+		this.ctrl.hdr_created_date_time.data_scale = ""
+		this.ctrl.hdr_created_date_time.binding_name = "HDR_CREATED_DATE_TIME"
+		this.ctrl.hdr_created_date_time.hide_label = false
+		this.ctrl.hdr_created_date_time.depends_on = ""
+		this.ctrl.hdr_created_date_time.placeholder = ""
+		this.ctrl.hdr_created_date_time.dynamic_param = ""
+		this.ctrl.hdr_created_date_time.style_code = ""
+		this.ctrl.hdr_created_date_time.data_source = ""
+		this.ctrl.hdr_created_date_time.image_association = ""
+		this.ctrl.hdr_created_date_time.show = true
+		this.ctrl.hdr_created_date_time.sub_content = ""
+		this.ctrl.hdr_created_date_time.required = false
+		this.ctrl.hdr_created_date_time.vld_rules = []
+		this.ctrl.hdr_created_date_time.targetcolumn_lower = "hdr_created_date_time"
+		this.ctrl.hdr_created_date_time.disabled = false
+		this.ctrl.hdr_created_date_time.view_name = "f_npss_view_camt053_srch"
+		this.ctrl.hdr_created_date_time.ctrl_id = "npss_view_camt053_srch_hdr_created_date_time"
+		this.ctrl.npss_view_camt053_srch_hdr_created_date_time = {}
+		this.ctrl.npss_view_camt053_srch_hdr_created_date_time.onChangecomponent = new EventEmitter<any>()
+		this.screen_instance[this.comp_id].f_npss_view_camt053_srch.model = {"MEMORY78":"","HDR_MSG_ID":"","STMT_ID":"","STMT_FROM_TO_DATE_TIME":"","STMT_TO_DATE_TIME":"","UETR":"","TXN_ID":"","ACCT_ID":"","HDR_CREATED_DATE_TIME":""}
+		this.screen_instance[this.comp_id].f_npss_view_camt053_srch.Meta = [{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"HDR_MSG_ID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"STMT_ID"},{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"STMT_FROM_TO_DATE_TIME"},{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"STMT_TO_DATE_TIME"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"UETR"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"TXN_ID"},{"CTLR_CODE":"CDN_CTRL","DATA_TYPE":"TEXT","TARGET_COLUMN":"ACCT_ID"},{"CTLR_CODE":"CDN_DATE","DATA_TYPE":"DATETIME","TARGET_COLUMN":"HDR_CREATED_DATE_TIME"}]
 		this.screen_instance[this.comp_id].f_npss_view_camt053_srch.dt_code = "dt_1304_1672471156312"
 		this.screen_instance[this.comp_id].f_npss_view_camt053_srch.dtt_code = "dtt_1304_1721709764304"
 		this.screen_instance[this.comp_id].f_npss_view_camt053_srch.controls = this.screen_instance[this.comp_id].form_instance.ctrl

@@ -179,7 +179,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                   conditionObj["created_date"] = "Date(created_date) >= Date('" + params.S_DATE + "'" + ')';
                 } else if ((params.S_DATE_OP == "Less Than Or Equal") || (params.S_DATE_OP == "<=") || (params.S_DATE_OP == "&lt;=")) {
                   conditionObj["created_date"] = "Date(created_date)<= Date('" + params.S_DATE + "'" + ')';
-                } else if ((params.S_DATE_OP == "=") || (params.S_DATE_OP == "Equals")) {
+                } else if ((params.S_DATE_OP == "=") || (params.S_DATE_OP == "Equals")|| (params.S_DATE_OP == "")) {
                   conditionObj["created_date"] = "Date(created_date)= Date('" + params.S_DATE + "'" + ')';
                 } else if ((params.S_DATE_OP == "BETWEEN")) {
                   conditionObj["created_date"] = "Date(created_date) between Date('" + params.S_DATE + "'" + ')' + " and  Date('" + params.S_DATE_TO_VALUE + "'" + ')';
@@ -192,7 +192,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                   conditionObj["stmt_date"] = "Date(STMT_FROM_TO_DATE_TIME) >= Date('" + params.S_STD_FROM_VAL + "'" + ')';
                 } else if ((params.S_STD_FROM_OPR == "Less Than Or Equal") || (params.S_STD_FROM_OPR == "<=") || (params.S_STD_FROM_OPR == "&lt;=")) {
                   conditionObj["stmt_date"] = "Date(STMT_FROM_TO_DATE_TIME)<= Date('" + params.S_STD_FROM_VAL + "'" + ')';
-                } else if ((params.S_STD_FROM_OPR == "=") || (params.S_STD_FROM_OPR == "Equals")) {
+                } else if ((params.S_STD_FROM_OPR == "=") || (params.S_STD_FROM_OPR == "Equals")|| (params.S_STD_FROM_OPR == "")) {
                   conditionObj["stmt_date"] = "Date(STMT_FROM_TO_DATE_TIME)= Date('" + params.S_STD_FROM_VAL + "'" + ')';
                 } else if ((params.S_STD_FROM_OPR == "BETWEEN")) {
                   conditionObj["stmt_date"] = "Date(STMT_FROM_TO_DATE_TIME) between Date('" + params.S_STD_FROM_VAL + "'" + ')' + " and  Date('" + params.S_STD_FROM_TOVAL + "'" + ')';
@@ -206,7 +206,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                   conditionObj["stmt_to_date"] = "Date(STMT_TO_DATE_TIME) >= Date('" + params.S_STD_TO_VAL + "'" + ')';
                 } else if ((params.S_STD_TO_OPR == "Less Than Or Equal") || (params.S_STD_TO_OPR == "<=") || (params.S_STD_TO_OPR == "&lt;=")) {
                   conditionObj["stmt_to_date"] = "Date(STMT_TO_DATE_TIME)<= Date('" + params.S_STD_TO_VAL + "'" + ')';
-                } else if ((params.S_STD_TO_OPR == "=") || (params.S_STD_TO_OPR == "Equals")) {
+                } else if ((params.S_STD_TO_OPR == "=") || (params.S_STD_TO_OPR == "Equals")|| (params.S_STD_TO_OPR == "")) {
                   conditionObj["stmt_to_date"] = "Date(STMT_TO_DATE_TIME)= Date('" + params.S_STD_TO_VAL + "'" + ')';
                 } else if ((params.S_STD_TO_OPR == "BETWEEN")) {
                   conditionObj["stmt_to_date"] = "Date(STMT_TO_DATE_TIME) between Date('" + params.S_STD_TO_VAL + "'" + ')' + " and  Date('" + params.S_STD_TO_TOVAL + "'" + ')';
@@ -220,7 +220,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                   conditionObj["acct_no"] = "ACCT_ID like" + "'" + params.S_ACC_ID_VAL + "%" + "'";
                 } else if ((params.S_ACC_ID_OPR == "CONTAINS")) {
                   conditionObj["acct_no"] = "ACCT_ID like" + "'" + "%" + params.S_ACC_ID_VAL + "%" + "'";
-                } else if ((params.S_ACC_ID_OPR == "=") || (params.S_ACC_ID_OPR == "Equals")) {
+                } else if ((params.S_ACC_ID_OPR == "=") || (params.S_ACC_ID_OPR == "Equals")|| (params.S_ACC_ID_OPR == "")) {
                   conditionObj["acct_no"] = "ACCT_ID = " + "'" + params.S_ACC_ID_VAL + "'";
                 } else if ((params.S_ACC_ID_OPR == "!=") || (params.S_ACC_ID_OPR == "NOTEQUAL")) {
                   conditionObj["acct_no"] = "ACCT_ID != " + "'" + params.S_ACC_ID_VAL + "'";
@@ -232,7 +232,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                   conditionObj["hdr_msg_id"] = "HDR_MSG_ID like" + "'" + params.S_MSG_ID + "%" + "'";
                 } else if ((params.S_MSG_ID_OPT == "CONTAINS")) {
                   conditionObj["hdr_msg_id"] = "HDR_MSG_ID like" + "'" + "%" + params.S_MSG_ID + "%" + "'";
-                } else if ((params.S_MSG_ID_OPT == "=") || (params.S_MSG_ID_OPT == "Equals")) {
+                } else if ((params.S_MSG_ID_OPT == "=") || (params.S_MSG_ID_OPT == "Equals")|| (params.S_MSG_ID_OPT == "")) {
                   conditionObj["hdr_msg_id"] = "HDR_MSG_ID = " + "'" + params.S_MSG_ID + "'";
                 } else if ((params.S_MSG_ID_OPT == "!=") || (params.S_MSG_ID_OPT == "NOTEQUAL")) {
                   conditionObj["hdr_msg_id"] = "HDR_MSG_ID != " + "'" + params.S_MSG_ID + "'";
@@ -244,7 +244,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                   conditionObj["uetr"] = "UETR like" + "'" + params.S_UETR_VAL + "%" + "'";
                 } else if ((params.S_UETR_OPR == "CONTAINS")) {
                   conditionObj["uetr"] = "UETR like" + "'" + "%" + params.S_UETR_VAL + "%" + "'";
-                } else if ((params.S_UETR_OPR == "=") || (params.S_UETR_OPR == "Equals")) {
+                } else if ((params.S_UETR_OPR == "=") || (params.S_UETR_OPR == "Equals") || (params.S_UETR_OPR == "")) {
                   conditionObj["uetr"] = "UETR = " + "'" + params.S_UETR_VAL + "'";
                 } else if ((params.S_UETR_OPR == "!=") || (params.S_UETR_OPR == "NOTEQUAL")) {
                   conditionObj["uetr"] = "UETR != " + "'" + params.S_UETR_VAL + "'";
@@ -256,7 +256,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                   conditionObj["txn_id"] = "TXN_ID like" + "'" + params.S_TRANSAC_ID_VAL + "%" + "'";
                 } else if ((params.S_TRANSAC_ID_OPR == "CONTAINS")) {
                   conditionObj["txn_id"] = "TXN_ID like" + "'" + "%" + params.S_TRANSAC_ID_VAL + "%" + "'";
-                } else if ((params.S_TRANSAC_ID_OPR == "=") || (params.S_TRANSAC_ID_OPR == "Equals")) {
+                } else if ((params.S_TRANSAC_ID_OPR == "=") || (params.S_TRANSAC_ID_OPR == "Equals")|| (params.S_TRANSAC_ID_OPR == "")) {
                   conditionObj["txn_id"] = "TXN_ID = " + "'" + params.S_TRANSAC_ID_VAL + "'";
                 } else if ((params.S_TRANSAC_ID_OPR == "!=") || (params.S_TRANSAC_ID_OPR == "NOTEQUAL")) {
                   conditionObj["txn_id"] = "TXN_ID != " + "'" + params.S_TRANSAC_ID_VAL + "'";
@@ -268,7 +268,7 @@ reqLogInfo.AssignLogInfoDetail(appRequest, function (objLogInfo, objSessionInfor
                   conditionObj["stmt_id"] = "STMT_ID like" + "'" + params.S_STD_ID + "%" + "'";
                 } else if ((params.S_STD_ID_OPR == "CONTAINS")) {
                   conditionObj["stmt_id"] = "STMT_ID like" + "'" + "%" + params.S_STD_ID + "%" + "'";
-                } else if ((params.S_STD_ID_OPR == "=") || (params.S_STD_ID_OPR == "Equals")) {
+                } else if ((params.S_STD_ID_OPR == "=") || (params.S_STD_ID_OPR == "Equals")|| (params.S_STD_ID_OPR == "")) {
                   conditionObj["stmt_id"] = "STMT_ID = " + "'" + params.S_STD_ID + "'";
                 } else if ((params.S_STD_ID_OPR == "!=") || (params.S_STD_ID_OPR == "NOTEQUAL")) {
                   conditionObj["stmt_id"] = "STMT_ID != " + "'" + params.S_STD_ID + "'";

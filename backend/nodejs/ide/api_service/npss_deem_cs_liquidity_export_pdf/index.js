@@ -6,6 +6,7 @@ var $REFPATH = Path.join(__dirname, '../../torus-references/');
 var app = express.Router();
 
 app.post('/', function(appRequest, appResponse, next) {
+    
 
 
 
@@ -159,7 +160,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 conditionObj["date"] = "Date(created_date) >= Date('" + params.searchparams.dateoperatorvalue + "'" + ')';
                                             } else if ((params.searchparams.dateoperator == "Less Than Or Equal") || (params.searchparams.dateoperator == "<=") || (params.searchparams.dateoperator == "&lt;=")) {
                                                 conditionObj["date"] = "Date(created_date)<= Date('" + params.searchparams.dateoperatorvalue + "'" + ')';
-                                            } else if ((params.searchparams.dateoperator == "=") || (params.searchparams.dateoperator == "Equals")) {
+                                            } else if ((params.searchparams.dateoperator == "=") || (params.searchparams.dateoperator == "Equals")||(params.searchparams.dateoperator == "")) {
                                                 conditionObj["date"] = "Date(created_date)= Date('" + params.searchparams.dateoperatorvalue + "'" + ')';
                                             } else if ((params.searchparams.dateoperator == "BETWEEN")) {
                                                 conditionObj["date"] = "Date(created_date) between Date('" + params.searchparams.dateoperatorvalue + "'" + ')' + " and  Date('" + params.searchparams.dateoperatorTovalue + "'" + ')';
@@ -173,7 +174,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 conditionObj["stmt_date"] = "Date(STMT_FROM_TO_DATE_TIME) >= Date('" + params.searchparams.stmtfromoperatorvalue + "'" + ')';
                                             } else if ((params.searchparams.stmtfromoperator == "Less Than Or Equal") || (params.searchparams.stmtfromoperator == "<=") || (params.searchparams.stmtfromoperator == "&lt;=")) {
                                                 conditionObj["stmt_date"] = "Date(STMT_FROM_TO_DATE_TIME)<= Date('" + params.searchparams.stmtfromoperatorvalue + "'" + ')';
-                                            } else if ((params.searchparams.stmtfromoperator == "=") || (params.searchparams.stmtfromoperator == "Equals")) {
+                                            } else if ((params.searchparams.stmtfromoperator == "=") || (params.searchparams.stmtfromoperator == "Equals")||(params.searchparams.stmtfromoperator == "")) {
                                                 conditionObj["stmt_date"] = "Date(STMT_FROM_TO_DATE_TIME)= Date('" + params.searchparams.stmtfromoperatorvalue + "'" + ')';
                                             } else if ((params.searchparams.stmtfromoperator == "BETWEEN")) {
                                                 conditionObj["stmt_date"] = "Date(STMT_FROM_TO_DATE_TIME) between Date('" + params.searchparams.stmtfromoperatorvalue + "'" + ')' + " and  Date('" + params.searchparams.stmtfromoperatorTovalue + "'" + ')';
@@ -187,7 +188,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 conditionObj["stmt_to_date"] = "Date(STMT_TO_DATE_TIME) >= Date('" + params.searchparams.stmttooperatorvalue + "'" + ')';
                                             } else if ((params.searchparams.stmttooperator == "Less Than Or Equal") || (params.searchparams.stmttooperator == "<=") || (params.searchparams.stmttooperator == "&lt;=")) {
                                                 conditionObj["stmt_to_date"] = "Date(STMT_TO_DATE_TIME)<= Date('" + params.searchparams.stmttooperatorvalue + "'" + ')';
-                                            } else if ((params.searchparams.stmttooperator == "=") || (params.searchparams.stmttooperator == "Equals")) {
+                                            } else if ((params.searchparams.stmttooperator == "=") || (params.searchparams.stmttooperator == "Equals")||(params.searchparams.stmttooperator == "")) {
                                                 conditionObj["stmt_to_date"] = "Date(STMT_TO_DATE_TIME)= Date('" + params.searchparams.stmttooperatorvalue + "'" + ')';
                                             } else if ((params.searchparams.stmttooperator == "BETWEEN")) {
                                                 conditionObj["stmt_to_date"] = "Date(STMT_TO_DATE_TIME) between Date('" + params.searchparams.stmttooperatorvalue + "'" + ')' + " and  Date('" + params.searchparams.stmttooperatorTovalue + "'" + ')';
@@ -201,7 +202,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 conditionObj["acct_no"] = "ACCT_ID like" + "'" + params.searchparams.acctoperatorvalue + "%" + "'";
                                             } else if ((params.searchparams.acctoperator == "CONTAINS")) {
                                                 conditionObj["acct_no"] = "ACCT_ID like" + "'" + "%" + params.searchparams.acctoperatorvalue + "%" + "'";
-                                            } else if ((params.searchparams.acctoperator == "=") || (params.searchparams.acctoperator == "Equals")) {
+                                            } else if ((params.searchparams.acctoperator == "=") || (params.searchparams.acctoperator == "Equals") ||(params.searchparams.acctoperator == "")) {
                                                 conditionObj["acct_no"] = "ACCT_ID = " + "'" + params.searchparams.acctoperatorvalue + "'";
                                             } else if ((params.searchparams.acctoperator == "!=") || (params.searchparams.acctoperator == "NOTEQUAL")) {
                                                 conditionObj["acct_no"] = "ACCT_ID != " + "'" + params.searchparams.acctoperatorvalue + "'";
@@ -213,7 +214,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 conditionObj["hdr_msg_id"] = "HDR_MSG_ID like" + "'" + params.searchparams.hdrmsdoperatorvalue + "%" + "'";
                                             } else if ((params.searchparams.hdrmsdoperator == "CONTAINS")) {
                                                 conditionObj["hdr_msg_id"] = "HDR_MSG_ID like" + "'" + "%" + params.searchparams.hdrmsdoperatorvalue + "%" + "'";
-                                            } else if ((params.searchparams.hdrmsdoperator == "=") || (params.searchparams.hdrmsdoperator == "Equals")) {
+                                            } else if ((params.searchparams.hdrmsdoperator == "=") || (params.searchparams.hdrmsdoperator == "Equals")||(params.searchparams.hdrmsdoperator == "") ) {
                                                 conditionObj["hdr_msg_id"] = "HDR_MSG_ID = " + "'" + params.searchparams.hdrmsdoperatorvalue + "'";
                                             } else if ((params.searchparams.hdrmsdoperator == "!=") || (params.searchparams.hdrmsdoperator == "NOTEQUAL")) {
                                                 conditionObj["hdr_msg_id"] = "HDR_MSG_ID != " + "'" + params.searchparams.hdrmsdoperatorvalue + "'";
@@ -225,7 +226,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 conditionObj["uetr"] = "UETR like" + "'" + params.searchparams.uetroperatorvalue + "%" + "'";
                                             } else if ((params.searchparams.uetroperator == "CONTAINS")) {
                                                 conditionObj["uetr"] = "UETR like" + "'" + "%" + params.searchparams.uetroperatorvalue + "%" + "'";
-                                            } else if ((params.searchparams.uetroperator == "=") || (params.searchparams.uetroperator == "Equals")) {
+                                            } else if ((params.searchparams.uetroperator == "=") || (params.searchparams.uetroperator == "Equals")||(params.searchparams.uetroperator == "")) {
                                                 conditionObj["uetr"] = "UETR = " + "'" + params.searchparams.uetroperatorvalue + "'";
                                             } else if ((params.searchparams.uetroperator == "!=") || (params.searchparams.uetroperator == "NOTEQUAL")) {
                                                 conditionObj["uetr"] = "UETR != " + "'" + params.searchparams.uetroperatorvalue + "'";
@@ -237,7 +238,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 conditionObj["txn_id"] = "TXN_ID like" + "'" + params.searchparams.txnidoperatorvalue + "%" + "'";
                                             } else if ((params.searchparams.txnidoperator == "CONTAINS")) {
                                                 conditionObj["txn_id"] = "TXN_ID like" + "'" + "%" + params.searchparams.txnidoperatorvalue + "%" + "'";
-                                            } else if ((params.searchparams.txnidoperator == "=") || (params.searchparams.txnidoperator == "Equals")) {
+                                            } else if ((params.searchparams.txnidoperator == "=") || (params.searchparams.txnidoperator == "Equals")||(params.searchparams.txnidoperator == "")) {
                                                 conditionObj["txn_id"] = "TXN_ID = " + "'" + params.searchparams.txnidoperatorvalue + "'";
                                             } else if ((params.searchparams.txnidoperator == "!=") || (params.searchparams.txnidoperator == "NOTEQUAL")) {
                                                 conditionObj["txn_id"] = "TXN_ID != " + "'" + params.searchparams.txnidoperatorvalue + "'";
@@ -249,7 +250,7 @@ app.post('/', function(appRequest, appResponse, next) {
                                                 conditionObj["stmt_id"] = "STMT_ID like" + "'" + params.searchparams.stmtidoperatorvalue + "%" + "'";
                                             } else if ((params.searchparams.stmtidoperator == "CONTAINS")) {
                                                 conditionObj["stmt_id"] = "STMT_ID like" + "'" + "%" + params.searchparams.stmtidoperatorvalue + "%" + "'";
-                                            } else if ((params.searchparams.stmtidoperator == "=") || (params.searchparams.stmtidoperator == "Equals")) {
+                                            } else if ((params.searchparams.stmtidoperator == "=") || (params.searchparams.stmtidoperator == "Equals")||(params.searchparams.stmtidoperator == "")) {
                                                 conditionObj["stmt_id"] = "STMT_ID = " + "'" + params.searchparams.stmtidoperatorvalue + "'";
                                             } else if ((params.searchparams.stmtidoperator == "!=") || (params.searchparams.stmtidoperator == "NOTEQUAL")) {
                                                 conditionObj["stmt_id"] = "STMT_ID != " + "'" + params.searchparams.stmtidoperatorvalue + "'";
@@ -370,6 +371,7 @@ app.post('/', function(appRequest, appResponse, next) {
             reqInstanceHelper.SendResponse(serviceName, appResponse, null, objSessionLogInfo, 'IDE_SERVICE_10002', 'ERROR IN ASSIGN LOG INFO FUNCTION', error);
         }
     })
+
 
 
 

@@ -18,6 +18,7 @@ import { DialogService } from '../../scripts/fx/dialog.service'; // Dialog box a
 import { HttphelperService } from '../../scripts/fx/httphelper.service'; // for server call only use http services
 import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
+import * as moment from 'moment-timezone';
 
 @Injectable()
 export class npss_deem_cs_liquidity_export_csv_fileService {
@@ -31,7 +32,7 @@ export class npss_deem_cs_liquidity_export_csv_fileService {
                 if (res.data.status == "SUCCESS") {
                     if (res.data.data.length > 0) {
                         let arr = res.data.data
-                        let filename = screenInstance.wftpa_description
+                        let filename = screenInstance.wftpa_description + '_' + moment().format('DDMMYYYY') + '_' + moment().format('HHMMSS') 
                         this.exportToCsv(arr, filename)
                     } else {
                         this.dialogHelper.ShowErrorDialog('No Date Found');

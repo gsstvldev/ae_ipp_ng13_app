@@ -33,6 +33,7 @@ export class npss_deem_cs_liquidity_export_csv_fileService {
                     if (res.data.data.length > 0) {
                         let arr = res.data.data
                         let filename = screenInstance.wftpa_description + '_' + moment().format('DDMMYYYY') + '_' + moment().format('HHMMSS') 
+                        //let filename = screenInstance.wftpa_description
                         this.exportToCsv(arr, filename)
                     } else {
                         this.dialogHelper.ShowErrorDialog('No Date Found');
@@ -65,19 +66,19 @@ export class npss_deem_cs_liquidity_export_csv_fileService {
         let acc_id_val = screenInstance["search"].f_npss_view_camt053_srch.model.ACCT_ID.value
         let ClientParams: any = {};
         ClientParams.Tran_Id = this.coreHelper.get_value_from_memory("MEMORY_VARIABLES", "MI_LEVEL_NCS_ID");
-        ClientParams.S_DATE = S_date
+        ClientParams.S_DATE = this.convertdate(S_date)
         ClientParams.S_DATE_OP = S_date_operator
-        ClientParams.S_DATE_TO_VALUE = S_date_to_value
+        ClientParams.S_DATE_TO_VALUE = this.convertdate(S_date_to_value)
         ClientParams.S_MSG_ID = Msg_id
         ClientParams.S_MSG_ID_OPT = Msg_id_opt
         ClientParams.S_STD_ID = std_id
         ClientParams.S_STD_ID_OPR = std_id_opr
         ClientParams.S_STD_FROM_OPR = std_from_opr
-        ClientParams.S_STD_FROM_VAL = std_from_val
-        ClientParams.S_STD_FROM_TOVAL = std_from_toval
+        ClientParams.S_STD_FROM_VAL = this.convertdate(std_from_val)
+        ClientParams.S_STD_FROM_TOVAL = this.convertdate(std_from_toval)
         ClientParams.S_STD_TO_OPR = std_to_opr
-        ClientParams.S_STD_TO_VAL = std_to_val
-        ClientParams.S_STD_TO_TOVAL = std_to_toval
+        ClientParams.S_STD_TO_VAL = this.convertdate(std_to_val)
+        ClientParams.S_STD_TO_TOVAL = this.convertdate(std_to_toval)
         ClientParams.S_UETR_OPR = uetr_opr
         ClientParams.S_UETR_VAL = uetr_val
         ClientParams.S_TRANSAC_ID_OPR = transac_id_opr
@@ -131,6 +132,14 @@ export class npss_deem_cs_liquidity_export_csv_fileService {
                 }).join(separator);
             }).join('\n');
         this.saveAsFile(csvContent, `${fileName}${CSV_EXTENSION}`, CSV_TYPE);
+    }
+
+    convertdate(mydate) {
+        if (mydate != '') {
+            return moment(mydate).format('YYYY-MM-DD')
+        } else {
+            return ''
+        }
     }
     //Custom validation logics
     //Uncomment below lines when validation is required
